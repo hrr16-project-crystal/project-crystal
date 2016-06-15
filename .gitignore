@@ -1,0 +1,19 @@
+# Misc
+.DS_Store
+.AppleDouble
+.LSOverride
+azure.err
+iisnode.yml
+
+# Build files
+client/build
+
+# Node modules
+node_modules/
+
+# Floobits
+.floo
+.floobit
+.flooignore
+
+# API KEYS
