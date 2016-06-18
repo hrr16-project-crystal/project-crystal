@@ -16,4 +16,5 @@ node_modules/
 .floobit
 .flooignore
 
-# API KEYS
+# API Keys and Secrets
+config.js
