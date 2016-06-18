@@ -7,4 +7,7 @@
 
 4. Removed all styling from index.css and from the landingPage css file due to errors in webpack?
 
-5. 
+5. Need to add jsx extensions to components in Auth folder. Jsx isn't catching all linting errors...
+
+6. Need to fix the authReducer and index.js file in reducer folder to get app to load properly
+  For now, just duplicated the content of both files to get it to work
