@@ -1,30 +1,13 @@
 import React, { Component } from 'react';
 import './index.css';
+import Header from '../App/Header';
 
 class LandingPage extends Component {
   render() {
     return (
       <div className="hero">
         <div className="hero__overlay">
-          <nav>
-            <a className="logo">Sparkq
-              <span className="logo__dot">.</span>
-            </a>
-            <ul className="menu">
-              <li className="menu__item">
-                <a className="menu__link" href="">Services</a>
-              </li>
-              <li className="menu__item">
-                <a className="menu__link" href="">About</a>
-              </li>
-              <li className="menu__item">
-                <a className="menu__link" href="">Contact</a>
-              </li>
-              <li className="menu__item">
-                <a className="menu__link" href="">Login</a>
-              </li>
-            </ul>
-          </nav>
+          <Header />
           <div className="hero__promo">
             <h4 className="hero__promo__pretitle">Reimagining What It Means</h4>
             <h1 className="hero__promo__title">To Be In Love</h1>
@@ -50,3 +33,28 @@ LandingPage.PropTypes = {};
 LandingPage.defaultProps = {};
 
 export default LandingPage;
+
+/*
+This is all JSX from earlier version of Landing Page
+
+<nav>
+  <a className="logo">Sparkq
+    <span className="logo__dot">.</span>
+  </a>
+  <ul className="menu">
+    <li className="menu__item">
+      <a className="menu__link" href="">Services</a>
+    </li>
+    <li className="menu__item">
+      <a className="menu__link" href="">About</a>
+    </li>
+    <li className="menu__item">
+      <a className="menu__link" href="">Contact</a>
+    </li>
+    <li className="menu__item">
+      <a className="menu__link" href="">Login</a>
+    </li>
+  </ul>
+</nav>
+
+*/

@@ -30,15 +30,15 @@ import { createStore, applyMiddleware } from 'redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import reduxThunk from 'redux-thunk';
 
-import App from './components/app/';
+import App from './App/';
 import Signin from './Authentication/Signin';
 import Signout from './Authentication/Signout';
 import Signup from './Authentication/Signup';
 import Dashboard from './Dashboard/Dashboard';
 import requireAuth from './Authentication/RequireAuth';
-import Welcome from './Authentication/Welcome';
-import reducers from './reducers';
-import { AUTH_USER } from './actions/types';
+import LandingPage from './LandingPage/';
+import reducers from './rootReducer';
+import { AUTH_USER } from './constants/types';
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers);
@@ -55,7 +55,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={App}>
-        <IndexRoute component={Welcome} />
+        <IndexRoute component={LandingPage} />
         <Route path="signin" component={Signin} />
         <Route path="signout" component={Signout} />
         <Route path="signup" component={Signup} />

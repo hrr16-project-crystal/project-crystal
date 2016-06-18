@@ -5,8 +5,16 @@
 import axios from 'axios';
 // browserHistory can be used to make changes to the URL for programmatic navigation
 import { browserHistory } from 'react-router';
-import { AUTH_USER, AUTH_ERROR, UNAUTH_USER, FETCH_MESSAGE } from '../actions/types';
+import { AUTH_USER, AUTH_ERROR, UNAUTH_USER, FETCH_MESSAGE } from '../constants/types';
 const apiUrl = 'http://localhost:3000';
+
+// Pass a string and it will send an error message to all components
+export const authError = error => {
+  return {
+    type: AUTH_ERROR,
+    payload: error,
+  };
+};
 
 // Whenever we call signinUser we are going to return a function that is auto called by
 // redux-thunk middleware and it gets called with the dispatch method
@@ -37,13 +45,6 @@ export const signinUser = ({ email, password }) => {
   };
 };
 
-// Pass a string and it will send an error message to all components
-export const authError = error => {
-  return {
-    type: AUTH_ERROR,
-    payload: error,
-  };
-};
 
 export const signoutUser = () => {
   localStorage.removeItem('token');

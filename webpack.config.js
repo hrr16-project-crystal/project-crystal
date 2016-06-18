@@ -1,4 +1,4 @@
-// const source = `${__dirname}/client/src/`;
+// const source = `${__dirname}/client/src/index`;
 // const command = process.env.npm_lifecycle_event;
 // const cssnano = require('cssnano');
 // const webpack = require('webpack');
@@ -57,7 +57,9 @@
 //   },
 //   entry: source,
 //   output: {
-//     path: `${__dirname}/client/build/`,
+//     // path: `${__dirname}/client/build/`,
+//     path: __dirname,
+//     publicPath: '/',
 //     filename: settings[command].filename,
 //   },
 //   module: {

@@ -7,18 +7,18 @@ class Header extends Component {
     if (this.props.authenticated) {
       // show link to sign out
       return (
-        <li className="nav-item">
-          <Link to="/signout" className="nav-link">Sign Out</Link>
+        <li className="menu__item">
+          <Link to="/signout" className="menu__link">Sign Out</Link>
         </li>
       );
     } else {
       // show link to sign in or sign up
       return [
-        <li className="nav-item" key={1}>
-          <Link to="/signin" className="nav-link">Sign In</Link>
+        <li className="menu__item" key={1}>
+          <Link to="/signin" className="menu__link">Sign In</Link>
         </li>,
-        <li className="nav-item" key={2}>
-          <Link to="/signup" className="nav-link">Sign Up</Link>
+        <li className="menu__item" key={2}>
+          <Link to="/signup" className="menu__link">Sign Up</Link>
         </li>,
       ];
     }
@@ -26,9 +26,9 @@ class Header extends Component {
 
   render() {
     return (
-      <nav className="navbar navbar-light">
-        <Link to="/" className="navbar-brand">Home</Link>
-        <ul className="nav navbar-nav">
+      <nav>
+        <Link to="/" className="logo">Sparkq</Link>
+        <ul className="menu">
           {this.renderLinks()}
         </ul>
       </nav>
