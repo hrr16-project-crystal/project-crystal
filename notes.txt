@@ -1,0 +1,10 @@
+1. Moved index.html from client/src directory to the root directory. Think this
+  may have something to do with the webpack default config from tutorial and the output path?
+  
+2. Downloaded and install babel-preset-stage-1 and added a .babelrc file per tutorial... may not be needed
+
+3. Webpack file has been completely commented out. Added tutorial settings instead
+
+4. Removed all styling from index.css and from the landingPage css file due to errors in webpack?
+
+5. 

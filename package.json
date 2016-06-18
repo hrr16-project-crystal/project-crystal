@@ -5,13 +5,15 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --progress",
-    "start": "nodemon server/server.js"
+    "start": "nodemon server/server.js",
+    "mike": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/hrr16-project-crystal/project-crystal"
   },
   "dependencies": {
+    "babel-preset-stage-1": "^6.5.0",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.15.1",
     "express": "^4.14.0",
