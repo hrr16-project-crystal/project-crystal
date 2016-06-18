@@ -6,6 +6,7 @@ const port = process.env.PORT || 3000;
 const app = express();
 const router = require('./router');
 const mongoose = require('mongoose');
+const cors = require('cors');
 // app.use(express.static(`${__dirname}/../client/build`));
 // const path = require('path');
 
@@ -16,6 +17,8 @@ mongoose.connect('mongodb://localhost:auth/auth-server');
 
 // Morgan is a logging framework (middleware) and helpful for debugging
 app.use(morgan('combined'));
+// Cors is a middleware that will handle CORS in the browser
+app.use(cors());
 // Middleware that parses incoming requests into JSON no matter the type of request
 app.use(bodyParser.json({ type: '*/*' }));
 router(app);

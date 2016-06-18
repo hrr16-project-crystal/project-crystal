@@ -14,6 +14,16 @@ class Signin extends Component {
     this.props.signinUser({ email, password });
   }
 
+  renderAlert() {
+    if (this.props.errorMessage) {
+      return (
+        <div className="alert alert-danger">
+          <strong>Oops!</strong> {this.props.errorMessage}
+        </div>
+      );
+    }
+  }
+
   render() {
     const { handleSubmit, fields: { email, password } } = this.props;
 
@@ -25,17 +35,22 @@ class Signin extends Component {
         </fieldset>
         <fieldset className="form-group">
           <label>Password:</label>
-          <input className="form-control" {...password} />
+          <input type="password" className="form-control" {...password} />
         </fieldset>
+        {this.renderAlert()}
         <button action="submit" className="btn btn-primary">Sign In</button>
       </form>
     );
   }
 }
 
+const mapStateToProps = state => {
+  return { errorMessage: state.auth.error };
+};
+
 // First arg is for configuration and second set of parenthesis is for the Component
 // This gives us access to 'this.props.email' & 'this.props.password'
 export default reduxForm({
   form: 'signin',
   fields: ['email', 'password'],
-}, null, actions)(Signin);
+}, mapStateToProps, actions)(Signin);
