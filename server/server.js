@@ -6,10 +6,10 @@ const port = process.env.PORT || 3000;
 const app = express();
 const router = require('./router');
 const mongoose = require('mongoose');
-// app.use(express.static(`${__dirname}/../client/build`));
+app.use(express.static(`${__dirname}/../client/build`));
 // const path = require('path');
 
-// app.get('*', (req, res) => res.sendFile(path.join(`${__dirname}/../client/build/index.html`)));
+app.get('/', (req, res) => res.sendFile(path.join(`${__dirname}/../client/build/index.html`)));
 
 // module.exports = app;
 mongoose.connect('mongodb://localhost:auth/auth-server');

@@ -9,7 +9,7 @@ const requireSignin = passport.authenticate('local', { session: false });
 
 module.exports = (app) => {
   // On the / route, make sure the user is authenticated first, otherwise block them
-  app.get('/', requireAuth, (req, res) => {
+  app.get('/dashboard/*', requireAuth, (req, res) => {
     res.send({ hi: 'there' });
   });
   // On the /signin route, make sure the user is authenticated first, otherwise block them
