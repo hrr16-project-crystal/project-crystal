@@ -9,8 +9,11 @@ const requireSignin = passport.authenticate('local', { session: false });
 
 module.exports = (app) => {
   // On the / route, make sure the user is authenticated first, otherwise block them
-  app.get('/dashboard/*', requireAuth, (req, res) => {
-    res.send({ hi: 'there' });
+  // app.get('/dashboard/*', requireAuth, (req, res) => {
+  //   res.send({ message: 'Super secret code is ABC123' });
+  // });
+  app.get('/', requireAuth, (req, res) => {
+    res.send({ message: 'Super secret code is ABC123' });
   });
   // On the /signin route, make sure the user is authenticated first, otherwise block them
   app.post('/signin', requireSignin, Authentication.signin);

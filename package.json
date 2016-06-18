@@ -5,19 +5,22 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --progress",
-    "start": "nodemon server/server.js"
+    "start": "nodemon server/server.js",
+    "mike": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/hrr16-project-crystal/project-crystal"
   },
   "dependencies": {
+    "axios": "^0.12.0",
+    "babel-preset-stage-1": "^6.5.0",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.15.1",
+    "cors": "^2.7.1",
     "express": "^4.14.0",
     "jwt-simple": "^0.5.0",
     "mongoose": "^4.5.0",
-    "morgan": "^1.7.0",
     "passport": "^0.3.2",
     "passport-jwt": "^2.0.0",
     "passport-local": "^1.0.0",
@@ -26,7 +29,9 @@
     "react-dom": "^15.1.0",
     "react-redux": "^4.4.5",
     "react-router": "^2.4.1",
-    "redux": "^3.5.2"
+    "redux": "^3.5.2",
+    "redux-form": "^5.2.5",
+    "redux-thunk": "^2.1.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.6",
