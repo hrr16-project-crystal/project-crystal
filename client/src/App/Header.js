@@ -15,7 +15,7 @@ class Header extends Component {
       // show link to sign in or sign up
       return [
         <li className="menu__item" key={1}>
-          <Link to="/signin" className="menu__link">Sign In</Link>
+          <Link to="/signin" className="menu__link">Sign In!</Link>
         </li>,
         <li className="menu__item" key={2}>
           <Link to="/signup" className="menu__link">Sign Up</Link>
