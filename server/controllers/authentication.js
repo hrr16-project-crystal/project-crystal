@@ -7,7 +7,7 @@ const tokenForUser = user => {
   // Sub is short for Subject and it is the convention used for JWT
   // iat is short for Issued at Time and is another convention used for JWT
   const timestap = new Date().getTime();
-  return jwt.encode({ sub: user.id, iat: timestap }, config.secret);
+  return jwt.encode({ sub: user.id, iat: timestap }, config.jwtSecret);
 };
 
 exports.signin = (req, res, next) => {

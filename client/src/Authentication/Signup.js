@@ -40,6 +40,7 @@ class Signup extends Component {
         </fieldset>
         {this.renderAlert()}
         <button action="Submit" className="btn btn-primary">Signup</button>
+        <button>Signup with Facebook</button>
       </form>
     );
   }
