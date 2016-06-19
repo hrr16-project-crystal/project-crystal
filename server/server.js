@@ -2,13 +2,22 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const port = process.env.PORT || 3000;
 const app = express();
+const path = require('path');
+const webpack = require('webpack');
+const config = require('../webpack.config');
+const compiler = webpack(config);
 const router = require('./router');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
-// app.use(express.static(`${__dirname}/../client/build`));
-// const path = require('path');
-// app.get('*', (req, res) => res.sendFile(path.join(`${__dirname}/../client/build/index.html`)));
+if (app.get('env') === 'development') {
+  app.use(require('webpack-dev-middleware')(compiler, {
+    noInfo: true,
+    publicPath: config.output.publicPath
+  }));
+  app.use(require('webpack-hot-middleware')(compiler));
+}
+app.use('/', express.static(path.resolve(__dirname, '../client/build')));
 
 mongoose.connect('mongodb://localhost:auth/auth-server');
 
@@ -17,5 +26,8 @@ app.use(cors());
 // Middleware that parses incoming requests into JSON no matter the type of request
 app.use(bodyParser.json({ type: '*/*' }));
 router(app);
+// app.use('/*', function (req, res) {
+//   res.redirect('/');
+// });
 
-app.listen(port, () => console.log(`Server listening on port: ${port}`));
+app.listen(port, () => console.log(`Server started at: http://localhost:${port}`));

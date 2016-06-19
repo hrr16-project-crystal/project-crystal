@@ -40,6 +40,8 @@ import LandingPage from './LandingPage/';
 import reducers from './rootReducer';
 import { AUTH_USER } from './constants/types';
 
+import './index.css';
+
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers);
 
