@@ -9,7 +9,9 @@ class Dashboard extends Component {
 
   render() {
     return (
-      <div>{this.props.message}</div>
+      <div>{this.props.message}
+      <h1>USER DASHBOARD HERE</h1>
+      </div>
     );
   }
 }
