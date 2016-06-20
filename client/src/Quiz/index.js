@@ -31,7 +31,7 @@ class Quiz extends Component {
     const {
       fields: { hug, compliment, kiss },
       handleSubmit,
-    } = this.props
+    } = this.props;
     
     return (
       <div className="quiz-box">
