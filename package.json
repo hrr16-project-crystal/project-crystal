@@ -12,14 +12,18 @@
     "url": "https://github.com/hrr16-project-crystal/project-crystal"
   },
   "dependencies": {
+    "bluebird": "3.4.1",
     "body-parser": "^1.15.1",
     "express": "^4.13.4",
     "path": "^0.12.7",
+    "pg": "5.1.0",
+    "pg-promise": "4.7.5",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
     "react-redux": "^4.4.5",
     "react-router": "^2.4.1",
-    "redux": "^3.5.2"
+    "redux": "^3.5.2",
+    "sequelize": "3.23.3"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.6",
