@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
 import * as actions from './AuthActions';
+import axios from 'axios';
 
 class Signin extends Component {
   constructor(props) {
@@ -9,9 +10,12 @@ class Signin extends Component {
   }
 
   handleFormSubmit({ email, password }) {
-    console.log(email, password);
     // Need to do something to log user in
     this.props.signinUser({ email, password });
+  }
+
+  facebookLogin() {
+    this.props.facebookLogin();
   }
 
   renderAlert() {

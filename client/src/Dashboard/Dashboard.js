@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../Authentication/AuthActions';
+import Header from '../App/Header';
 
 class Dashboard extends Component {
-  componentWillMount() {
-    this.props.fetchMessage();
-  }
+  // componentWillMount() {
+  //   this.props.fetchMessage();
+  // }
+  // const divStyle = {
+  //   backgroundColor: 'yellow'
+  // };
 
   render() {
     return (
-      <div>{this.props.message}
-      <h1>USER DASHBOARD HERE</h1>
+      <div style={{ backgroundColor: 'yellow' }}>
+        <Header />
       </div>
     );
   }

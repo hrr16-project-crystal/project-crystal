@@ -8,7 +8,7 @@ const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
 // LocalStrategy is to verify the email and password when signing in to app.
 const LocalStrategy = require('passport-local');
-const FacebookStrategy = require('passport-facebook');
+const FacebookStrategy = require('passport-facebook').Strategy;
 
 // Create local strategy
 // Since we're using email to get users signed up, we need to reset the key to use email
@@ -66,7 +66,7 @@ const fbOptions = {
 };
 
 const fbLogin = new FacebookStrategy(fbOptions, (accessToken, refreshToken, profile, done) => {
-  User.findOrCreate({ facebookId: profile.id }, (err, user) => {
+  User.findOrCreate({ email: profile.emails[0].value }, (err, user) => {
     if (err) {
       return done(err);
     }
@@ -75,11 +75,11 @@ const fbLogin = new FacebookStrategy(fbOptions, (accessToken, refreshToken, prof
     }
     const newUser = new User();
 
-    newUser.fb.id = profile.id;
-    newUser.fb.accessToken = accessToken;
-    newUser.fb.firstName = profile.name.givenName;
-    newUser.fb.lastName = profile.name.familyName;
-    newUser.fb.email = profile.emails[0].value;
+    // newUser.fb.id = profile.id;
+    // newUser.fb.accessToken = accessToken;
+    // newUser.fb.firstName = profile.name.givenName;
+    // newUser.fb.lastName = profile.name.familyName;
+    // newUser.fb.email = profile.emails[0].value;
 
     newUser.save((err) => {
       if (err) {

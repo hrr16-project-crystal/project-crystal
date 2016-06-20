@@ -10,9 +10,9 @@ const facebookSignin = passport.authenticate('facebook');
 const facebookSigninCallback = passport.authenticate('facebook', { failureRedirect: '/login' });
 
 module.exports = (app) => {
-  // app.get('/dashboard/*', requireAuth, (req, res) => {
-  //   res.send({ message: 'Super secret code is ABC123' });
-  // });
+  app.get('/dashboard', requireAuth, (req, res) => {
+    res.send({ message: 'Super secret code is ABC123' });
+  });
   // On the / route, make sure the user is authenticated first, otherwise block them
   app.get('/', requireAuth, (req, res) => {
     res.send({ message: 'Super secret code is ABC123' });
@@ -23,6 +23,6 @@ module.exports = (app) => {
 
   app.get('/auth/facebook', facebookSignin);
   app.get('/auth/facebook/callback', facebookSigninCallback, (req, res) => {
-    res.redirect('/');
+    res.redirect('/dashboard');
   });
 };
