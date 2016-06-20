@@ -72,5 +72,4 @@ function mapStateToProps(state) {
 export default reduxForm({
   form: 'answers',
   fields: ['hug', 'compliment', 'kiss'],
-  validate,
 }, mapStateToProps, actions)(Quiz);

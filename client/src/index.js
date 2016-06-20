@@ -35,6 +35,7 @@ import Signin from './Authentication/Signin';
 import Signout from './Authentication/Signout';
 import Signup from './Authentication/Signup';
 import Dashboard from './Dashboard/Dashboard';
+import Quiz from './Quiz/index';
 import requireAuth from './Authentication/RequireAuth';
 import LandingPage from './LandingPage/';
 import reducers from './rootReducer';
@@ -62,6 +63,7 @@ ReactDOM.render(
         <Route path="signout" component={Signout} />
         <Route path="signup" component={Signup} />
         <Route path="dashboard" component={requireAuth(Dashboard)} />
+        <Route path="quiz" component={Quiz} />
       </Route>
     </Router>
   </Provider>
