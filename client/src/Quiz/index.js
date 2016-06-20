@@ -1,56 +1,62 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { reduxForm } from 'redux-form';
+import * as actions from './QuizActions';
 import './index.css';
 
 class Quiz extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state = {
-      //get from db later
-      questions: [
-        {id: 1, question: "Did you give your partner a compliment today?"},
-        {id: 2, question: "Did you give your partner a hug today?"}, 
-        {id: 3, question: "Did you help your partner in any way today?"}
-      ]
-    };
+
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
-  componentWillMount(){
-    this.getQuestions();
+  componentWillMount() {
+    this.props.getQuestions();
   }
 
-  //replace URL once available
-  getQuestions(){
-    $.ajax({
-     type: 'GET',
-     contentType: 'application/json',
-     url: '/api/questions',
-     success: questions => this.setState({ questions: questions }),
-   });
-  }
-
-  postResponse(event){
-    event.preventDefault();
-    $.ajax({
-       type: 'POST',
-       contentType: 'application/json',
-       url: '/api/user/questions/answered',
-       data: JSON.stringify(data),
-       success: data => {
-         console.log('ajax called, postResponse sent');
-       },
-       error: function (data) {
-         console.error('ajax called, postResponse failed');
-       },
+  renderQuestions() {
+    return this.props.questions.map(function(question) {
+      return <Question question={question} post={this.props.postResponse} key={question.id} />
     });
   }
 
+  handleFormSubmit(formProps) {
+    this.props.postResponse(formProps);
+  }
+
   render() {
+    //need to pass id of question answered to post request
+    // map over this.props.questions, creating a new Question comp for each
+    const {
+      fields: { hug, compliment, kiss },
+      handleSubmit,
+    } = this.props;
+    
     return (
       <div className="quiz-box">
-        //need to pass id of question answered to post request
-        <p>{this.state.questions.pop()}</p>
-        <input type="submit" value="Yes" onClick={this.postResponse}>
-        <input type="submit" value="No" onClick={this.postResponse}>
+        {this.renderQuestions()}
+        <form onSubmit={handleSubmit(this.handleFormSubmit)}>
+          <label>
+            <input type="radio" {...hug} value="yes" checked={hug.value === 'yes'}/> Yes
+          </label>
+          <label>
+            <input type="radio" {...hug} value="no" checked={hug.value === 'no'}/> No
+          </label>
+          <label>
+            <input type="radio" {...compliment} value="yes" checked={compliment.value === 'yes'}/> Yes
+          </label>
+          <label>
+            <input type="radio" {...compliment} value="no" checked={compliment.value === 'no'}/> No
+          </label>
+          <label>
+            <input type="radio" {...kiss} value="yes" checked={kiss.value === 'yes'}/> Yes
+          </label>
+          <label>
+            <input type="radio" {...kiss} value="no" checked={kiss.value === 'no'}/> No
+          </label>
+          <button action="submit">Submit</button>
+        </form>
       </div>
     );
   }
@@ -59,4 +65,11 @@ class Quiz extends Component {
 Quiz.PropTypes = {};
 Quiz.defaultProps = {};
 
-export default Quiz;
+function mapStateToProps(state) {
+  return { questions: state.quiz.questions };
+}
+
+export default reduxForm({
+  form: 'answers',
+  fields: ['hug', 'compliment', 'kiss'],
+}, mapStateToProps, actions)(Quiz);
