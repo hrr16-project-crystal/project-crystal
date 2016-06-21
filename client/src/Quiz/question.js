@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 const Question = (props) => {
   return (
     <div>
-      <p>{props.question}</p>
+      <p>{this.props.question}</p>
     </div>
   );
 };

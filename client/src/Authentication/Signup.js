@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
 import * as actions from './AuthActions';
+import axios from 'axios';
 
 class Signup extends Component {
+  constructor(props) {
+    super(props);
+    this.facebookLogin = this.facebookLogin.bind(this);
+  }
   handleFormSubmit(formProps) {
     // Call action creator to signup the user
     this.props.signupUser(formProps);
@@ -16,6 +21,10 @@ class Signup extends Component {
         </div>
       );
     }
+  }
+
+  facebookLogin() {
+    this.props.facebookLogin();
   }
 
   render() {
@@ -40,6 +49,7 @@ class Signup extends Component {
         </fieldset>
         {this.renderAlert()}
         <button action="Submit" className="btn btn-primary">Signup</button>
+        <button><a href="/auth/facebook">Signup with Facebook</a></button>
       </form>
     );
   }

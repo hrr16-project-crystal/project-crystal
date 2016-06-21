@@ -79,3 +79,18 @@ export const fetchMessage = () => {
     });
   };
 };
+
+export const facebookLogin = () => {
+  return dispatch => {
+    axios.get('/auth/facebook')
+    .then(response => {
+      dispatch({ type: AUTH_USER });
+      console.log(response);
+      browserHistory.push('/dashboard');
+    })
+    .catch(response => {
+      console.log(response);
+      dispatch(authError(response.data.error));
+    });
+  };
+};

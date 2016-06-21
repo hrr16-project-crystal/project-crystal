@@ -3,21 +3,32 @@ import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import * as actions from './QuizActions';
 import './index.css';
+import Question from './question';
 
 class Quiz extends Component {
   constructor(props) {
     super(props);
-
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
   componentWillMount() {
     this.props.getQuestions();
+    console.log('Quiz Comp: ' + this.props.questions);
   }
 
   renderQuestions() {
-    return this.props.questions.map(function(question) {
-      return <Question question={question} post={this.props.postResponse} key={question.id} />
+    // console.log('Render Question' + this.props.questions);
+    // return this.props.questions.data.map(question => {
+    //   return <Question question={question} post={this.props.postResponse} key={question.id} />;
+    // });
+    const quest = ['Did you hug?', 'Did you kiss?'];
+    // this.props.getQuestions();
+    const newQuest = this.props.questions;
+    return newQuest.map(question => {
+      console.log(question);
+      return (
+        <div>{question}</div>
+      );
     });
   }
 
@@ -26,13 +37,15 @@ class Quiz extends Component {
   }
 
   render() {
-    //need to pass id of question answered to post request
+    // need to pass id of question answered to post request
     // map over this.props.questions, creating a new Question comp for each
     const {
-      fields: { hug, compliment, kiss },
-      handleSubmit,
-    } = this.props;
-    
+      fields: { hug, compliment, kiss }, handleSubmit } = this.props;
+    return (
+      <div>
+        {this.renderQuestions()}
+      </div>
+    );
     return (
       <div className="quiz-box">
         {this.renderQuestions()}
@@ -62,12 +75,14 @@ class Quiz extends Component {
   }
 }
 
-Quiz.PropTypes = {};
-Quiz.defaultProps = {};
+// Quiz.PropTypes = {};
+// Quiz.defaultProps = {};
 
-function mapStateToProps(state) {
+const mapStateToProps = state => {
   return { questions: state.quiz.questions };
-}
+};
+
+// export default connect(mapStateToProps, actions)(Quiz);
 
 export default reduxForm({
   form: 'answers',

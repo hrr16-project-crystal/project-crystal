@@ -9,13 +9,15 @@ const compiler = webpack(config);
 const router = require('./router');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const webpackHotMiddleware = require('webpack-hot-middleware');
+const webpackDevMiddleware = require('webpack-dev-middleware');
 
 if (app.get('env') === 'development') {
-  app.use(require('webpack-dev-middleware')(compiler, {
+  app.use(webpackDevMiddleware(compiler, {
     noInfo: true,
-    publicPath: config.output.publicPath
+    publicPath: config.output.publicPath,
   }));
-  app.use(require('webpack-hot-middleware')(compiler));
+  app.use(webpackHotMiddleware(compiler));
 }
 app.use('/', express.static(path.resolve(__dirname, '../client/build')));
 
