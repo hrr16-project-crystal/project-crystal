@@ -21,7 +21,7 @@ module.exports = (app) => {
   app.post('/signin', requireSignin, Authentication.signin);
   app.post('/signup', Authentication.signup);
   app.get('/questions', (req, res) => {
-    res.send(['Did you hug today?', 'Did you kiss today']);
+    res.send(['Did you hug today?', 'Did you kiss today', 'Did you go out on a date?']);
   });
 
   app.get('/auth/facebook', facebookSignin);
