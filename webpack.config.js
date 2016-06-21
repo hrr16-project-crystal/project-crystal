@@ -1,87 +1,98 @@
-const source = `${__dirname}/client/src/`;
-const command = process.env.npm_lifecycle_event;
-const cssnano = require('cssnano');
+const path = require('path');
 const webpack = require('webpack');
+const precss = require('precss');
 const autoprefixer = require('autoprefixer');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const WebpackBrowserPlugin = require('webpack-browser-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-// const loadBrowse = new WebpackBrowserPlugin();
-const removeDup = new webpack.optimize.DedupePlugin();
-const extractCSS = new ExtractTextPlugin("style.min.css");
-const minJS = new webpack.optimize.UglifyJsPlugin({
-  compress: {
-    warnings: false,
-  },
-});
-const addHTML = new HtmlWebpackPlugin({
-  template: `${source}index.html`,
-  minify: {
-    collapseWhitespace: true,
-    conservativeCollapse: true, // test this
-    html5: true,
-    removeComments: true,
-    sortAttributes: true,
-    sortClassName: true,
-  },
-});
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-// Configuration settings according to npm command used
-const settings = {
-  // npm run start
-  start: {
-    filename: 'bundle.js',
-    loaders: {
-      js: ['babel?presets[]=es2015,presets[]=react'],
-      css: ExtractTextPlugin.extract('isomorphic-style', 'css', 'postcss'),
-    },
-    plugins: [/*loadBrowse,*/ extractCSS, addHTML],
-  },
-
-  // npm run build
-  build: {
-    filename: 'bundle.min.js',
-    loaders: {
-      js: ['babel?presets[]=es2015,presets[]=react', 'eslint'],
-      css: ExtractTextPlugin.extract('isomorphic-style', 'css', 'postcss'),
-    },
-    plugins: [/*loadBrowse,*/ extractCSS, addHTML, removeDup/*, minJS*/],
-  },
-};
-
-module.exports = {
-  devServer: {
-    historyApiFallback: true,
-    contentBase: './',
-    hot: true
-  },
-  entry: source,
+const config = {
+  devtool: 'cheap-module-eval-source-map',
+  entry: [
+    'webpack-hot-middleware/client',
+    './client/src/index',
+  ],
   output: {
-    path: `${__dirname}/client/build/`,
-    filename: settings[command].filename,
+    path: path.join(__dirname, '/client/build/'),
+    filename: 'bundle.js',
+    publicPath: '/',
   },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin(),
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+    }),
+    new BrowserSyncPlugin({
+      // browse to http://localhost:3000/ during development,
+      // ./client/build/ directory is being served
+      host: 'localhost',
+      port: 3030,
+      // uncomment to use this instead of express/node server
+      // server: { baseDir: ['client/build'] }
+      files: [
+        'client/build/*.js',
+      ],
+    }),
+    new CopyWebpackPlugin(
+      [
+        {
+          from: `${__dirname}/client/src/index.html`,
+          to: `${__dirname}/client/build/index.html`,
+        },
+      ]
+    ),
+  ],
   module: {
     loaders: [
       {
-        test: /\.jsx?$/,
-        include: source,
-        loaders: settings[command].loaders.js,
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+        query: {
+          plugins: [
+            ['react-transform', {
+              transforms: [
+                {
+                  transform: 'react-transform-hmr',
+                  imports: ['react'],
+                  locals: ['module'],
+                }, {
+                  transform: 'react-transform-catch-errors',
+                  imports: ['react', 'redbox-react'],
+                },
+              ],
+            }],
+          ],
+        },
       },
-      {
-        test: /\.css$/,
-        include: source,
-        loader: settings[command].loaders.css,
-      },
-      {
-        test: /.*\.(gif|png|jpe?g|svg)$/i,
-        include: source,
-        loaders: [
-          'file?name=assets/[name].[ext]',
-          // 'image-webpack'
-        ]
-      }
+      { test: /\.css$/, loader: 'style-loader!css-loader!postcss-loader' },
+      { test: /\.png$/, loader: 'url-loader?limit=100000' },
+      { test: /\.jpg$/, loader: 'file-loader' },
+      { test: /\.svg$/, loader:
+        'url?limit=65000&mimetype=image/svg+xml&name=public/fonts/[name].[ext]' },
+      { test: /\.woff$/, loader:
+        'url?limit=65000&mimetype=application/font-woff&name=public/fonts/[name].[ext]' },
+      { test: /\.woff2$/, loader:
+        'url?limit=65000&mimetype=application/font-woff2&name=public/fonts/[name].[ext]' },
+      { test: /\.[ot]tf$/, loader:
+        'url?limit=65000&mimetype=application/octet-stream&name=public/fonts/[name].[ext]' },
+      { test: /\.eot$/, loader:
+        'url?limit=65000&mimetype=application/vnd.ms-fontobject&name=public/fonts/[name].[ext]' },
     ],
   },
-  postcss: [autoprefixer, cssnano],
-  plugins: settings[command].plugins,
+  postcss: () => [precss, autoprefixer],
 };
+
+if (process.env.NODE_ENV === 'production') {
+  config.plugins.push(
+    new webpack.optimize.UglifyJsPlugin({
+      compressor: {
+        screw_ie8: true,
+        warnings: false,
+      },
+    })
+  );
+}
+
+module.exports = config;

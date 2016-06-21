@@ -16,4 +16,6 @@ node_modules/
 .floobit
 .flooignore
 
-# API KEYS
+# API Keys and Secrets
+# config.js
+# during final production need to ignore this file to hide secrets

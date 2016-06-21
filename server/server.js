@@ -10,6 +10,14 @@ app.use(express.static(`${__dirname}/../client/build`));
 app.use(bodyParser.json());
 
 const path = require('path');
+const webpack = require('webpack');
+const config = require('../webpack.config');
+const compiler = webpack(config);
+const router = require('./router');
+const mongoose = require('mongoose');
+const cors = require('cors');
+const webpackHotMiddleware = require('webpack-hot-middleware');
+const webpackDevMiddleware = require('webpack-dev-middleware');
 
 // populate postgresql db
 require('./db/populateDb')();
@@ -19,13 +27,11 @@ const coupleAPIroutes = require('./routes/api/couple');
 const questionAPIroutes = require('./routes/api/questions'); 
 
 // // *** API routes *** //
-
 app.use('/api/v1', userAPIroutes);
 app.use('/api/v1', coupleAPIroutes);
 app.use('/api/v1', questionAPIroutes);
 
 // // *** error handlers *** //
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
@@ -56,30 +62,27 @@ app.use(function(err, req, res, next) {
 });
 
 
-// only intialise router routes once db is initialised! //.. but can refactor this in later instance.. 
-app.post('/users/add', (req, res) => {
-  console.log('POST request reached my server yay!');
-
-  const newUserObj = req.body;
-
-  db.users.add(newUserObj)
-    .then(data => {
-      res.json({
-        success: true,
-        data
-      });
-    })
-    .catch(err => {
-      res.json({
-        success: false,
-        error: err.message || err
-      });
-    });
-});
-
-
 app.get('*', (req, res) => res.sendFile(path.join(`${__dirname}/../client/build/index.html`)));
 
 app.listen(port, () => console.log('Server running on port 3000!'));
 
 module.exports = app;
+
+if (app.get('env') === 'development') {
+  app.use(webpackDevMiddleware(compiler, {
+    noInfo: true,
+    publicPath: config.output.publicPath,
+  }));
+  app.use(webpackHotMiddleware(compiler));
+}
+app.use('/', express.static(path.resolve(__dirname, '../client/build')));
+
+mongoose.connect('mongodb://localhost:auth/auth-server');
+
+// Cors is a middleware that will handle CORS in the browser
+app.use(cors());
+// Middleware that parses incoming requests into JSON no matter the type of request
+app.use(bodyParser.json({ type: '*/*' }));
+router(app);
+
+app.listen(port, () => console.log(`Server started at: http://localhost:${port}`));
