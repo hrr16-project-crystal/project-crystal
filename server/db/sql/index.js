@@ -35,6 +35,20 @@ module.exports = {
         all: sql('users/all.sql'),
         findById: sql('users/findById.sql')
     },
+    couples: {
+        create: sql('couples/create.sql'),
+        init: sql('couples/init.sql'),
+        add: sql('couples/add.sql'),
+        all: sql('couples/all.sql'),
+        findById: sql('couples/findById.sql'),
+        remove: sql('couples/remove.sql'),
+        updateScore: sql('couples/updateScore.sql')
+    },
+    couples_users: {
+        create: sql('couples_users/create.sql'),
+        init: sql('couples_users/init.sql'),
+        add: sql('couples_users/add.sql'),
+    }
     // products: {
     //     create: sql('products/create.sql'),
     //     empty: sql('products/empty.sql'),

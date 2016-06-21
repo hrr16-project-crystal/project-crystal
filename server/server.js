@@ -2,8 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const db = require(__dirname + '/db/index').db;
 
-// before app exp? 
-const userAPIroutes = require('./routes/api/user');
+// // before app exp? 
+// const userAPIroutes = require('./routes/api/user');
 
 const app = express();
 const React = require('react');
@@ -17,8 +17,11 @@ const path = require('path');
 // populate postgresql db
 require('./db/populateDb')();
 
+const userAPIroutes = require('./routes/api/user');
+const coupleAPIroutes = require('./routes/api/couple'); 
+
 app.use('/api/v1', userAPIroutes);
-// app.use('api/v1/', coupleAPIroutes);
+app.use('/api/v1', coupleAPIroutes);
 // app.use('api/v1', questionAPIroutes);
 
 

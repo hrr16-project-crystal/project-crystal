@@ -1,4 +1,10 @@
 /*
+    Creates Database
+-- */
+-- CREATE DATABASE blossomly
+-- OWNER 'some user?'
+
+/*
     Creates table Users.
 */
 

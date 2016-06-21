@@ -7,7 +7,8 @@ const promise = require('bluebird');
 const repos = {
     users: require('./repos/users'),
     // questions: require('./repos/questions'),
-    // answers: require('./repos/answers'),
+    couples: require('./repos/couples'),
+    couples_users: require('./repos/couples_users'),
 };
 
 // pg-promise initialization options:
@@ -20,7 +21,8 @@ const options = {
     extend: obj => {
         obj.users = repos.users(obj);
         // obj.questions = repos.questions(obj);
-        // obj.answers = repos.answers(obj); 
+        obj.couples = repos.couples(obj); 
+        obj.couples_users = repos.couples_users(obj); 
     }
 
 };
@@ -29,7 +31,7 @@ const options = {
 const config = {
     host: 'localhost',
     port: 5432,
-    database: 'blossomly',                         // CHANGED 
+    database: 'blossomly',                       
     user: 'Roger'
 };
 
@@ -39,7 +41,7 @@ var pgp = require('pg-promise')(options);
 // Create the database instance:
 var db = pgp(config);
 
-// // Load and initialize all the diagnostics:      // CHANGED
+// // Load and initialize all the diagnostics:      
 // var diag = require('./diagnostics');
 // diag.init(options);
 

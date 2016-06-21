@@ -1,6 +1,6 @@
 'use strict';
 
-var sql = require('../sql').users;
+var sql = require('../sql').questions;
 
 module.exports = rep => {
 
@@ -37,14 +37,14 @@ module.exports = rep => {
       rep.oneOrNone(sql.findById, id, user =>
         user),
 
-    // RF: 
-    // update: (user_id, objWithUpdates, pgp) => {
-    //   console.log('===================');
-    //   const sqlUpdate = "UPDATE public.Users SET first_name=${first_name}, last_name=${last_name}, email=${email}, password=${password} WHERE user_id=${user_id} RETURNING *";
-    //   const modSqlUpdate = pgp.as.format(sqlUpdate, objWithUpdates, { partial: true });
-    //   return rep.one(modSqlUpdate, user =>
-    //     user);
-    // },
+    // update: (user_id, objWithUpdates, pgp) => 
+    //     {
+    //         console.log('===================');
+    //         console.log(pgp.as.format(sql.update, objWithUpdates, {partial: true}));
+    //              console.log('===================');
+    //         return rep.one(pgp.as.format(sql.update, objWithUpdates, {partial: true}), user =>
+    //         user);
+    //     },
 
     // Returns all user records;
     all: () =>
