@@ -11,7 +11,7 @@ import { Router, Route, browserHistory } from 'react-router';
   //for all components
 import App from './components/App';
 import LandingPage from './components/LandingPage';
-import './index.css';
+// require ('./index.css');
 
 //below is JSX, route can have path and component or just 1 or the other
   //nest routes to show what is in which container

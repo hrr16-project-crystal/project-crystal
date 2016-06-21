@@ -6,7 +6,7 @@ const promise = require('bluebird');
 // executed, which should be as fast as possible.
 const repos = {
     users: require('./repos/users'),
-    // questions: require('./repos/questions'),
+    questions: require('./repos/questions'),
     couples: require('./repos/couples'),
     couples_users: require('./repos/couples_users'),
 };
@@ -20,7 +20,7 @@ const options = {
     // Extending the database protocol with our custom repositories:
     extend: obj => {
         obj.users = repos.users(obj);
-        // obj.questions = repos.questions(obj);
+        obj.questions = repos.questions(obj);
         obj.couples = repos.couples(obj); 
         obj.couples_users = repos.couples_users(obj); 
     }

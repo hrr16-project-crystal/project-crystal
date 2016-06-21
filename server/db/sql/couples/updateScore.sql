@@ -3,7 +3,7 @@
 */
 
 UPDATE $(schema~).Couples
-SET "score"=${score} 
-WHERE "couple_id"=${couple_id}
+SET score=$2
+WHERE couple_id=$1
 RETURNING *
 

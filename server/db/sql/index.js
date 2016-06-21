@@ -48,11 +48,13 @@ module.exports = {
         create: sql('couples_users/create.sql'),
         init: sql('couples_users/init.sql'),
         add: sql('couples_users/add.sql'),
+    },
+    questions: {
+        create: sql('questions/create.sql'),
+        init: sql('questions/init.sql'),
+        add: sql('questions/add.sql'),
+        all: sql('questions/all.sql'),
+        findByFrequency: sql('questions/findByFrequency.sql'),
+        remove: sql('questions/remove.sql')
     }
-    // products: {
-    //     create: sql('products/create.sql'),
-    //     empty: sql('products/empty.sql'),
-    //     drop: sql('products/drop.sql'),
-    //     add: sql('products/add.sql')
-    // }
 };

@@ -16,12 +16,19 @@ router.get('/couples', (req, res, next) => {
           data
         });
     })
+    .catch(err => {
+      res.json({
+        success: false,
+        error: err.message || err
+      });
+    });
 });
 
 // RF: Inner join, return couple + user infos
 // get single couple
 router.get('/couples/:id', (req, res, next) => {
-  Couples.findById(req.params.id)
+  const couple_id = parseInt(req.params.id);
+  Couples.findById(couple_id)
     .then(data => {
       return res.status(200)
         .json({
@@ -29,6 +36,12 @@ router.get('/couples/:id', (req, res, next) => {
           data
         });
     })
+    .catch(err => {
+      res.json({
+        success: false,
+        error: err.message || err
+      });
+    });
 });
 
 // RF: inner join, returng couple + user info
@@ -59,9 +72,10 @@ router.post('/couples/add', (req, res, next) => {
     })
 });
 
-// RF: Currently hardcoded to score. Should make variable param for any-field update
 // update couple relationship score and return couple
-router.put('/couples/:score', (req, res, next) => {
+router.put('/couples/:id/:score', (req, res, next) => {
+  const couple_id = parseInt(req.params.id),
+    score = parseInt(req.params.score);
   Couples.updateScore(couple_id, score)
     .then(data => {
       return res.status(200)
@@ -78,9 +92,23 @@ router.put('/couples/:score', (req, res, next) => {
     });
 });
 
-// delete a couple
+// delete a couple and return the deleted couple
 router.delete('/couples/:id', (req, res, next) => {
-  res.send('nothing yet!');
+  const couple_id = parseInt(req.params.id);
+  Couples.remove(couple_id)
+    .then(data => {
+      return res.status(200)
+        .json({
+          success: true,
+          data
+        });
+    })
+    .catch(err => {
+      res.json({
+        success: false,
+        error: err.message || err
+      });
+    });
 });
 
 module.exports = router;
