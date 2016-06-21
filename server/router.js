@@ -37,6 +37,10 @@ module.exports = (app) => {
     res.send('Success');
   });
 
+  app.get('/meter', (req, res) => {
+    res.send({ message: 'Super secret code is ABC123' });
+  });
+
   app.get('/auth/facebook', facebookSignin);
   app.get('/auth/facebook/callback', facebookSigninCallback, (req, res) => {
     res.redirect('/dashboard');
