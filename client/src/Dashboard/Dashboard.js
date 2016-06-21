@@ -2,26 +2,25 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../Authentication/AuthActions';
 import Header from '../App/Header';
+import Quiz from '../Quiz';
 
-class Dashboard extends Component {
+export default class Dashboard extends Component {
   // componentWillMount() {
   //   this.props.fetchMessage();
   // }
-  // const divStyle = {
-  //   backgroundColor: 'yellow'
-  // };
 
   render() {
     return (
-      <div style={{ backgroundColor: 'yellow' }}>
+      <div>
         <Header />
+        <Quiz />
       </div>
     );
   }
 }
 
-const mapStateToProps = state => {
-  return { message: state.auth.message };
-};
+// const mapStateToProps = state => {
+//   return { message: state.auth.message };
+// };
 
-export default connect(mapStateToProps, actions)(Dashboard);
+// export default connect(mapStateToProps, actions)(Dashboard);

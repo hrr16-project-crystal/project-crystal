@@ -20,6 +20,9 @@ module.exports = (app) => {
   // On the /signin route, make sure the user is authenticated first, otherwise block them
   app.post('/signin', requireSignin, Authentication.signin);
   app.post('/signup', Authentication.signup);
+  app.get('/questions', (req, res) => {
+    res.send(['Did you hug today?', 'Did you kiss today']);
+  });
 
   app.get('/auth/facebook', facebookSignin);
   app.get('/auth/facebook/callback', facebookSigninCallback, (req, res) => {
