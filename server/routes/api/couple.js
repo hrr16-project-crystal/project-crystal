@@ -78,8 +78,8 @@ router.put('/couples/:score', (req, res, next) => {
     });
 });
 
-// delete single user
-router.delete('/users/:id', (req, res, next) => {
+// delete a couple
+router.delete('/couples/:id', (req, res, next) => {
   res.send('nothing yet!');
 });
 
