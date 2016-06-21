@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from '../Authentication/AuthActions';
 import Header from '../App/Header';
 import Quiz from '../Quiz';
+import Meter from '../Meter';
 
 export default class Dashboard extends Component {
 
@@ -11,7 +12,7 @@ export default class Dashboard extends Component {
       <div>
         <Header />
         <Quiz />
-        <Meteor />
+        <Meter />
       </div>
     );
   }
