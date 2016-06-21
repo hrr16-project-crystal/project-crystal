@@ -48,6 +48,8 @@ export const signinUser = ({ email, password }) => {
 
 export const signoutUser = () => {
   localStorage.removeItem('token');
+  // Can remove this line below to redirect to Signout component to display marketing message
+  browserHistory.push('/');
 
   return { type: UNAUTH_USER };
 };

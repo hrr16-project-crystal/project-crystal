@@ -8,6 +8,16 @@ const requireAuth = passport.authenticate('jwt', { session: false });
 const requireSignin = passport.authenticate('local', { session: false });
 const facebookSignin = passport.authenticate('facebook');
 const facebookSigninCallback = passport.authenticate('facebook', { failureRedirect: '/login' });
+const dbQuestions = [
+  {
+    id: 'hug',
+    body: 'Did you hug today?',
+  },
+  {
+    id: 'kiss',
+    body: 'Did you kiss today?',
+  },
+];
 
 module.exports = (app) => {
   app.get('/dashboard', requireAuth, (req, res) => {
@@ -21,7 +31,10 @@ module.exports = (app) => {
   app.post('/signin', requireSignin, Authentication.signin);
   app.post('/signup', Authentication.signup);
   app.get('/questions', (req, res) => {
-    res.send(['Did you hug today?', 'Did you kiss today']);
+    res.send(dbQuestions);
+  });
+  app.post('/questions/answered', (req, res) => {
+    res.send('Success');
   });
 
   app.get('/auth/facebook', facebookSignin);

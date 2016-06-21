@@ -5,9 +5,6 @@ import Header from '../App/Header';
 import Quiz from '../Quiz';
 
 export default class Dashboard extends Component {
-  // componentWillMount() {
-  //   this.props.fetchMessage();
-  // }
 
   render() {
     return (
@@ -18,9 +15,3 @@ export default class Dashboard extends Component {
     );
   }
 }
-
-// const mapStateToProps = state => {
-//   return { message: state.auth.message };
-// };
-
-// export default connect(mapStateToProps, actions)(Dashboard);
