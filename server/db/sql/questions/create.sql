@@ -5,7 +5,8 @@
 CREATE TABLE ${schema~}.Questions
 (
     question_id serial PRIMARY KEY,
-    question_text text NOT NULL,
+    body text NOT NULL,
     frequency text NOT NULL,
+    tag text NOT NULL,
     answers jsonb
 );
