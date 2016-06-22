@@ -19,7 +19,7 @@ class Quiz extends Component {
     return this.props.questions.data.map(question => {
       return (
         <div>
-          <label>{question.body}</label>
+          <label>{question.question_text}</label>
           <div>
             <select className="quiz-questions" {...fields[question.tag]}>
               <option></option>

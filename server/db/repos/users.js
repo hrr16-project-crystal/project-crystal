@@ -36,6 +36,9 @@ module.exports = rep => {
     findById: id =>
       rep.oneOrNone(sql.findById, id, user =>
         user),
+    findByEmail: email =>
+      rep.oneOrNone(sql.findByEmail, email, user =>
+        user),
 
     // RF: 
     // update: (user_id, objWithUpdates, pgp) => {

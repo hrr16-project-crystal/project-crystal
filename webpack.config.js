@@ -6,13 +6,14 @@ const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const config = {
-  devtool: 'cheap-module-eval-source-map',
+  devtool: '#source-map',
   entry: [
     'webpack-hot-middleware/client',
     './client/src/index',
   ],
   output: {
     path: path.join(__dirname, '/client/build/'),
+    sourceMapFilename: 'bundle.map',
     filename: 'bundle.js',
     publicPath: '/',
   },
