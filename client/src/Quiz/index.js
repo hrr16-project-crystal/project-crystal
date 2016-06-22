@@ -21,21 +21,36 @@ class Quiz extends Component {
         <div>
           <label>{question.body}</label>
           <div>
-            <select className="quiz-questions" {...fields[question.body]}>
-              <option></option>
-              <option value={20}>{question.answers.answers[0]}</option>
-              <option value={15}>{question.answers.answers[1]}</option>
-              <option value={10}>{question.answers.answers[2]}</option>
-              <option value={5}>{question.answers.answers[3]}</option>
+            <select className="quiz-questions" {...fields[question.question_id]}>
+              <option>Select your answer...</option>
+              <option value={[question.category, 20]}>{question.answers.answers[0]}</option>
+              <option value={[question.category, 15]}>{question.answers.answers[1]}</option>
+              <option value={[question.category, 10]}>{question.answers.answers[2]}</option>
+              <option value={[question.category, 5]}>{question.answers.answers[3]}</option>
             </select>
           </div>
         </div>
       );
     });
   }
+  
 
   handleFormSubmit(formProps) {
-    this.props.postResponse(formProps);
+    let result = {};
+    for (var key in formProps) {
+      let count;
+      let tempArr = formProps[key] ? formProps[key].split(',') : [];
+      if (!result[tempArr[0]]) {
+        result[tempArr[0]] = [+tempArr[1], 1];
+        
+      } else {
+        result[tempArr[0]][0] += +tempArr[1];
+        result[tempArr[0]][1]++;
+      }
+    }
+    console.log('After running math func....');
+    console.log(result);
+    this.props.postResponse(result);
   }
 
   render() {
@@ -57,10 +72,10 @@ class Quiz extends Component {
 }
 
 const mapStateToProps = state => {
-  return { questions: state.quiz.questions };
+  return { questions: state.quiz.questions, user: state.auth.user };
 };
 
 export default reduxForm({
   form: 'answers',
-  fields: ['friendsFamily', 'finances', 'pastRelationships', 'lifePicture', 'celebrate'],
+  fields: ['6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22'],
 }, mapStateToProps, actions)(Quiz);
