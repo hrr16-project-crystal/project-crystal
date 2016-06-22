@@ -16,16 +16,19 @@ class Quiz extends Component {
 
   renderQuestions() {
     const { fields } = this.props;
-    return this.props.questions.map(question => {
+    return this.props.questions.data.map(question => {
       return (
         <div>
-          <h2>{question.body}</h2>
-          <label>
-            <input type="radio" {...fields[question.id]} value="yes" />Yes
-          </label>
-          <label>
-            <input type="radio" {...fields[question.id]} value="no" />No
-          </label>
+          <label>{question.body}</label>
+          <div>
+            <select className="quiz-questions" {...fields[question.tag]}>
+              <option></option>
+              <option value={20}>{question.answers.answers[0]}</option>
+              <option value={15}>{question.answers.answers[1]}</option>
+              <option value={10}>{question.answers.answers[2]}</option>
+              <option value={5}>{question.answers.answers[3]}</option>
+            </select>
+          </div>
         </div>
       );
     });
@@ -53,14 +56,11 @@ class Quiz extends Component {
   }
 }
 
-// Quiz.PropTypes = {};
-// Quiz.defaultProps = {};
-
 const mapStateToProps = state => {
   return { questions: state.quiz.questions };
 };
 
 export default reduxForm({
   form: 'answers',
-  fields: ['hug', 'kiss'],
+  fields: ['friendsFamily', 'finances', 'pastRelationships', 'lifePicture', 'celebrate'],
 }, mapStateToProps, actions)(Quiz);

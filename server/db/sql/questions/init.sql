@@ -4,7 +4,7 @@
     Inserts Questions into the table.
 */
 
-INSERT INTO ${schema~}.Questions(question_text, frequency, answers) VALUES
+INSERT INTO ${schema~}.Questions(body, frequency, tag, answers) VALUES
 
 ('Have you done something nice for your partner recently?', 'daily',
 '{ "answers": [ "Yes", "No" ]}'),
@@ -20,7 +20,6 @@ INSERT INTO ${schema~}.Questions(question_text, frequency, answers) VALUES
 
 ('Have you gone on a date in the last week?', 'daily',
 '{ "answers": [ "Yes", "No" ]}'),
-
 
 ('What do your friends and family think of your partner?', 'initial',
 '{ "answers": [

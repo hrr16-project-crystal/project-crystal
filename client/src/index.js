@@ -13,6 +13,7 @@ import Dashboard from './Dashboard/Dashboard';
 import Quiz from './Quiz/index';
 import requireAuth from './Authentication/RequireAuth';
 import LandingPage from './LandingPage/';
+import Meter from './Meter/';
 import reducers from './rootReducer';
 import { AUTH_USER } from './constants/types';
 
@@ -33,11 +34,12 @@ render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={App}>
-        <IndexRoute component={LandingPage} />
+        <IndexRoute component={Meter} />
         <Route path="signin" component={Signin} />
         <Route path="signout" component={Signout} />
         <Route path="signup" component={Signup} />
         <Route path="dashboard" component={requireAuth(Dashboard)} />
+        <Route path="meter" component={Meter} />
         <Route path="quiz" component={Quiz} />
       </Route>
     </Router>
