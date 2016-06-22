@@ -1,10 +1,10 @@
 // Passport checks requests before they hit the protected routes/controllers
 // Passport will have a couple strategies and then pass the request to the route handler
 const passport = require('passport');
-const User = require('../db/models/User');
+// const User = require('../db/models/User');
 const config = require('../../config');
-// const Users = require(__dirname + '/../../db/index').db.users;
-// const pgp = require(__dirname + '/../../db/index').pgp; 
+const Users = require(__dirname + '/../db/index').db.users;
+const pgp = require(__dirname + '/../db/index').pgp; 
 // A strategy is a method for authenticating a user (can be used for FB/Google login) aka plugin
 const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
@@ -12,6 +12,16 @@ const ExtractJwt = require('passport-jwt').ExtractJwt;
 const LocalStrategy = require('passport-local');
 const FacebookStrategy = require('passport-facebook').Strategy;
 
+
+const comparePassword = function (candidatePassword, callback) {
+  // this.password is the hashed and salted password in the user
+  bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
+    if (err) {
+      return callback(err);
+    }
+    return callback(null, isMatch);
+  });
+};
 // Create local strategy
 // Since we're using email to get users signed up, we need to reset the key to use email
 // for use with LocalStrategy. By default, it looks for username and password (we have email and pw)

@@ -1,13 +1,15 @@
-const User = require('../db/models/User');
 const jwt = require('jwt-simple');
 const config = require('../../config');
+const Users = require(__dirname + '/../db/index').db.users;
+const pgp = require(__dirname + '/../db/index').pgp; 
+const bcrypt = require('bcrypt-nodejs');
 
 const tokenForUser = user => {
   // First argument is what to encode and the second is the secret to use
   // Sub is short for Subject and it is the convention used for JWT
   // iat is short for Issued at Time and is another convention used for JWT
-  const timestap = new Date().getTime();
-  return jwt.encode({ sub: user.id, iat: timestap }, config.jwtSecret);
+  const timestamp = new Date().getTime();
+  return jwt.encode({ sub: user.id, iat: timestamp }, config.jwtSecret);
 };
 
 exports.signin = (req, res, next) => {
@@ -16,38 +18,45 @@ exports.signin = (req, res, next) => {
 };
 
 exports.signup = (req, res, next) => {
+  const first_name = req.body.firstName;
+  const last_name = req.body.lastName;
   const email = req.body.email;
   const password = req.body.password;
 
-  // Used to make sure both email and password have been entered.
-  // Can also check for more validation (i.e. @domain.com)
-  if (!email || !password) {
-    return res.status(422).send({ error: 'You must provide an email and password' });
-  }
-
-  // Used return statement for Style Guide needing return (lines 12,26,31)
-  // See if a user with the given email exists.
-  return User.findOne({ email }, (err, data) => {
-    if (err) {
-      return next(err);
-    }
+  Users.findByEmail(req.body.email)
+    .then(data => {
     // If a user with email does exist then return an error
-    if (data) {
-      return res.status(422).send({ error: 'Email is in use' });
-    }
+      if (data) {
+        return res.status(422).send({ error: 'Email is in use' });
+      }
     // Otherwise, create and save user request
-    const user = new User({
-      // Using ES6 object property shorthand
+    const user = {
+      first_name,
+      last_name,
       email,
-      password,
-    });
-    // Removed 'err' argument for Style guide no reusing variables in top level scope
-    return user.save(() => {
+      password
+    };
+
+    bcrypt.genSalt(10, (err, salt) => {
       if (err) {
         return next(err);
       }
-      // Respond to request when the user was created with the JWT
+      return bcrypt.hash(user.password, salt, null, (err, hash) => {
+        if (err) {
+          return next(err);
+        }
+        user.password = hash;
+        return next();
+      });
+    });
+
+    return Users.add(user)
+    .then(data => {
       return res.json({ token: tokenForUser(user) });
+    })
+    .catch(err => {
+      return next(err);
     });
   });
 };
+

@@ -33,7 +33,8 @@ module.exports = {
         drop: sql('users/drop.sql'),
         add: sql('users/add.sql'),
         all: sql('users/all.sql'),
-        findById: sql('users/findById.sql')
+        findById: sql('users/findById.sql'),
+        findByEmail: sql('users/findByEmail.sql')
     },
     couples: {
         create: sql('couples/create.sql'),
