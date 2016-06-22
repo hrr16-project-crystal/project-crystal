@@ -29,6 +29,10 @@ const questionAPIroutes = require('./routes/api/questions');
 app.use('/api/v1', userAPIroutes);
 app.use('/api/v1', coupleAPIroutes);
 app.use('/api/v1', questionAPIroutes);
+app.post('/api/v1/answers', (req,res) => {
+  console.log('Server file console log.....');
+  console.log(req.body);
+})
 router(app);
 
 // // *** error handlers *** //

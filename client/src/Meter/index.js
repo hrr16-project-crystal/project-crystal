@@ -52,7 +52,6 @@ class Meter extends Component {
     
     return (
       <div>
-        <Header />
         <div className="container">
         {this.renderStats()}
         </div>

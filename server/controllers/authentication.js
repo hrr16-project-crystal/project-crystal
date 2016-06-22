@@ -14,7 +14,10 @@ const tokenForUser = user => {
 
 exports.signin = (req, res, next) => {
   // User has already had their email and password auth'd ,just need to give them a token
-  res.send({ token: tokenForUser(req.user) });
+  res.send({
+    token: tokenForUser(req.user),
+    user: req.user,
+  });
 };
 
 exports.signup = (req, res, next) => {
@@ -46,9 +49,13 @@ exports.signup = (req, res, next) => {
           return next(err);
         }
         user.password = hash;
+
         Users.add(user)
           .then(data => {
-            return res.json({ token: tokenForUser(user) });
+            return res.json({
+              token: tokenForUser(user),
+              user: data,
+            });
           })
           .catch(err => {
             return next(err);

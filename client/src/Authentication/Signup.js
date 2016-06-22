@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
 import * as actions from './AuthActions';
 import axios from 'axios';
+import './index.css'; 
 
 class Signup extends Component {
   constructor(props) {
@@ -57,13 +58,21 @@ class Signup extends Component {
             {passwordConfirm.touched && passwordConfirm.error &&
               <div className="error">{passwordConfirm.error}</div>}
         </fieldset>
+        <fieldset className="form-group">
+          <label>Would you like to initiate a new couple?</label>
+          <select className="signup-questions">
+            <option>Select an answer...</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+        </fieldset>
         {this.renderAlert()}
         <button action="Submit" className="btn btn-primary">Signup</button>
-        <button><a href="/auth/facebook">Signup with Facebook</a></button>
       </form>
     );
   }
 }
+// <button><a href="/auth/facebook">Signup with Facebook</a></button>
 
 const validate = (formProps) => {
   const errors = {};

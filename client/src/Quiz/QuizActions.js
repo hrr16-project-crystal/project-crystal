@@ -15,25 +15,11 @@ export const getQuestions = () => {
   };
 };
 
-/*
-THis is how we get the data from the DB
-export const getQuestions = () => {
-  return dispatch => {
-    axios.get(`${apiUrl}/api/v1/questions`)
-    .then(response => {
-      dispatch({
-        type: FETCH_QUESTIONS,
-        payload: response.data,
-      });
-    });
-  };
-};
-*/
-
-export const postResponse = ({ friendsFamily, finances, pastRelationships, lifePicture, celebrate }) => {
+export const postResponse = ({ Respect, Communication, Spontaneity, Intimacy, Generosity }) => {
   return (dispatch) => {
-    axios.post(`${apiUrl}/questions/answered`, { friendsFamily, finances, pastRelationships, lifePicture, celebrate })
+    axios.post(`${apiUrl}/answers`, { Respect, Communication, Spontaneity, Intimacy, Generosity })
       .then(response => {
+        console.log('QuizAction console log....');
         console.log(response);
         dispatch({ type: MARK_ANSWERED });
         browserHistory.push('/dashboard');

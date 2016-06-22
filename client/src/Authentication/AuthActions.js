@@ -32,7 +32,7 @@ export const signinUser = ({ email, password }) => {
       // update the state to indicate the user is authenticated
       // because of redux we have direct access to the dispatch method
       // This is equivalent to calling an action creator and return an object as an action
-      dispatch({ type: AUTH_USER });
+      dispatch({ type: AUTH_USER, payload: response.data.user });
       // Save the JWT token to localStorage's token key
       localStorage.setItem('token', response.data.token);
       // Redirect to the dashboard
@@ -58,6 +58,9 @@ export const signupUser = ({ firstName, lastName, email, password }) => {
   return (dispatch) => {
     axios.post(`${apiUrl}/signup`, { firstName, lastName, email, password })
     .then(response => {
+      console.log('==============')
+      console.log(response);
+      console.log('==============')
       dispatch({ type: AUTH_USER });
       localStorage.setItem('token', response.data.token);
       browserHistory.push('/dashboard');

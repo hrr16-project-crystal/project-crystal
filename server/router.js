@@ -17,16 +17,6 @@ const stats = {
   generosity: 65
 }
 
-const answered = {
-  tag: {
-    friendsFamily: 0,
-    finances: 0,
-    pastRelationships: 0,
-    lifePicture: 0,
-    celebrate: 0
-  }
-};
-
 module.exports = (app) => {
   app.get('/dashboard', requireAuth, (req, res) => {
     res.status(200);
