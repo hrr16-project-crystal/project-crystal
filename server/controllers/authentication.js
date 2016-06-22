@@ -46,17 +46,17 @@ exports.signup = (req, res, next) => {
           return next(err);
         }
         user.password = hash;
-        return next();
+        Users.add(user)
+          .then(data => {
+            return res.json({ token: tokenForUser(user) });
+          })
+          .catch(err => {
+            return next(err);
+          });
       });
     });
 
-    return Users.add(user)
-    .then(data => {
-      return res.json({ token: tokenForUser(user) });
-    })
-    .catch(err => {
-      return next(err);
-    });
+    
   });
 };
 
