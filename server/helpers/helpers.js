@@ -1,6 +1,7 @@
 const omit = require('lodash/omit');
 const clc = require('cli-color');
 
+// desensitizes record objects, useful before passing data to front-end
 exports.desensitize = (recordOrRecords) => {
   const sensitiveKeys = ['password'];
   if (Array.isArray(recordOrRecords)) {
@@ -14,6 +15,7 @@ exports.desensitize = (recordOrRecords) => {
   return new Error('There was an error desensitizing the records');
 };
 
+// logs input in bold white text with black background
 exports.customLog = (input) => {
   console.log(clc.white.bgBlack.underline(input));
 };
