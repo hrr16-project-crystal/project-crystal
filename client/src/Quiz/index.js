@@ -5,6 +5,7 @@ import * as actions from './QuizActions';
 import { Link, browserHistory } from 'react-router';
 import Header from '../App/Header';
 import './index.css';
+import Header from '../App/Header';
 
 class Quiz extends Component {
   constructor(props) {
@@ -20,11 +21,11 @@ class Quiz extends Component {
     const { fields } = this.props;
     return this.props.questions.data.map(question => {
       return (
-        <div>
+        <div className="row" key={question.question_id}>
+          <div className="quiz-questions col s10 offset-1">
           <label>{question.body}</label>
-          <div>
-            <select className="quiz-questions" {...fields[question.question_id]}>
-              <option>Select your answer...</option>
+            <select className="quiz-questions col s10 offset-1" {...fields[question.question_id]}>
+              <option className="tip">Select your answer...</option>
               <option value={[question.category, 20]}>{question.answers.answers[0]}</option>
               <option value={[question.category, 15]}>{question.answers.answers[1]}</option>
               <option value={[question.category, 10]}>{question.answers.answers[2]}</option>
@@ -71,14 +72,16 @@ class Quiz extends Component {
     }
 
     return (
-      <div>
+      <div className="teal lighten-5">
         <Header />
-        <div className="quiz-box">
+        <h2>Let's get to know you...</h2>
+        <div className="quiz-box container">
           <form onSubmit={handleSubmit(this.handleFormSubmit)}>
             {this.renderQuestions()}
-            <button type="submit">Submit</button>
+            <button className="waves-effect waves-light btn" type="submit">Submit</button>
           </form>
         </div>
+      </div>
       </div>
     );
   }

@@ -8,5 +8,5 @@ CREATE TABLE ${schema~}.Questions
     body text NOT NULL,
     frequency text NOT NULL,
     category text NOT NULL,
-    answers jsonb
+    answers json
 );
