@@ -14,7 +14,6 @@ export const getQuestions = () => {
   };
 };
 
-
 export const postResponse = ({ Respect, Communication, Spontaneity, Intimacy, Generosity, Total, user_id }) => {
   return dispatch => {
     axios.post('/api/v1/couples/answers',
