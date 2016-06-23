@@ -1,7 +1,10 @@
 import React from 'react';
 import './landingPage.css';
 import Header from '../App/Header';
+<<<<<<< d4356f4a5f8b7328365717c84cc3175da9b977b5
 
+=======
+>>>>>>> Refactor directory
 
 function LandingPage() {
   return (

@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
 import * as actions from './authAction';
-<<<<<<< eee4d10ac0295d9dcd949d903cc535630d975626:client/src/Components/Authentication/Signin.js
 import './auth.css';
-=======
-import axios from 'axios';
-import './index.css';
->>>>>>> Refactor directory structure:client/src/Components/Authentication/Signin.js
 
 class Signin extends Component {
   constructor(props) {
