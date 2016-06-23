@@ -31,20 +31,22 @@ router.get('/users/:id', (req, res, next) => {
 // add new user and return new added user
 router.post('/users/add', (req, res, next) => {
   const newUserObj = req.body;
-  Users.add(newUserObj)
-    .then(data => {
-      return res.status(200)
-        .json({
-          success: true,
-          data
+  if (req.body.couple === 'yes') {
+    Users.add(newUserObj)
+      .then(data => {
+        return res.status(200)
+          .json({
+            success: true,
+            data
+          });
+      })
+      .catch(err => {
+        res.json({
+          success: false,
+          error: err.message || err
         });
-    })
-    .catch(err => {
-      res.json({
-        success: false,
-        error: err.message || err
-      });
-    });
+      });    
+  }
 });
 
 // Not working at the moment 

@@ -22,6 +22,15 @@ module.exports = rep => {
       rep.one(sql.add, [couple_id, user_id], coupleUser =>
         coupleUser),
 
+    findByUserId: user_id =>
+      // Possibly need to remove public (may not entire Schema name...)
+      rep.one('SELECT * FROM public.couples_users WHERE public.couples_users.user_id = $1', user_id)
+      .then(data => {
+        console.log(' IN THE THEN FUNC IN COUPLERS USERS');
+        console.log(data);
+        return data;
+      }),
+
       // Update and remove/delete are built into Schema/flow from db user or couple actions
       // as this is purely a junction table
 

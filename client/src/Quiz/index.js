@@ -33,21 +33,29 @@ class Quiz extends Component {
       );
     });
   }
-  
 
   handleFormSubmit(formProps) {
     let result = {};
-    for (var key in formProps) {
-      let count;
-      let tempArr = formProps[key] ? formProps[key].split(',') : [];
-      if (!result[tempArr[0]]) {
-        result[tempArr[0]] = [+tempArr[1], 1];
-        
-      } else {
-        result[tempArr[0]][0] += +tempArr[1];
-        result[tempArr[0]][1]++;
-      }
-    }
+    // for (var key in formProps) {
+    //   let count;
+    //   let tempArr = formProps[key] ? formProps[key].split(',') : [];
+    //   if (!result[tempArr[0]]) {
+    //     result[tempArr[0]] = [+tempArr[1], 1];
+
+    //   } else {
+    //     result[tempArr[0]][0] += +tempArr[1];
+    //     result[tempArr[0]][1]++;
+    //   }
+    // }
+
+    result = {
+      user_id: 9, // We will access this from redux store and redux store will save this after signin/signup
+      Respect: 69,
+      Spontaneity: 58,
+      Intimacy: 50,
+      Generosity: 25,
+      Total: 62,
+    };
     console.log('After running math func....');
     console.log(result);
     this.props.postResponse(result);
