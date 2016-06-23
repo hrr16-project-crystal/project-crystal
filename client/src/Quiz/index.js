@@ -86,6 +86,7 @@ class Quiz extends Component {
     );}
 
     return (
+<<<<<<< HEAD
       <div className="teal lighten-5">
         <Header />
         <h2>Let's get to know you...</h2>
@@ -93,6 +94,14 @@ class Quiz extends Component {
           <form onSubmit={handleSubmit(this.handleFormSubmit)}>
             {this.renderQuestions()}
             <button className="waves-effect waves-light btn" type="submit">Submit</button>
+=======
+      <div>
+        <Header />
+        <div className="quiz-box">
+          <form onSubmit={handleSubmit(this.handleFormSubmit)}>
+            {this.renderQuestions()}
+            <button type="submit">Submit</button>
+>>>>>>> 1378014b68f7be97efe66d5f2e781fd35aaaf079
           </form>
         </div>
       </div>

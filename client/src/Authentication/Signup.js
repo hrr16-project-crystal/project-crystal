@@ -107,7 +107,8 @@ const mapStateToProps = state => {
   return { errorMessage: state.auth.error };
 };
 
-// be sure to add otherEmail as a field to indicate the other person's email address if they are no the first to sign up
+// be sure to add otherEmail as a field to indicate the other person's email address if they are
+// not the first to sign up
 export default reduxForm({
   form: 'signup',
   fields: ['firstName', 'lastName', 'email', 'password', 'passwordConfirm', 'couple'],

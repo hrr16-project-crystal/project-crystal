@@ -70,6 +70,7 @@ module.exports = rep => {
       // Average them with new scores
       // Then, insert average into the table
     },
+
     // Returns all couple records;
     all: () =>
       rep.any(sql.all),
