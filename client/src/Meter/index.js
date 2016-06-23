@@ -6,7 +6,7 @@ import './index.css';
 
 class Meter extends Component {
   componentWillMount() {
-    this.props.getHealth();
+    this.props.getHealth(this.props.user.coupleID);
   }
 
   renderStats() {
@@ -51,8 +51,20 @@ class Meter extends Component {
 
   render() {
     if (!this.props.health) {
-      return <div>Loading...</div>;
-    }
+      return (   
+      <div class="preloader-wrapper big active">
+        <div class="spinner-layer spinner-blue-only">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
     return (
       <div>
@@ -65,7 +77,10 @@ class Meter extends Component {
 }
 
 const mapStateToProps = state => {
-  return { health: state.meter.health };
+  return { 
+    health: state.meter.health,
+    user: state.auth.user
+  };
 };
 
 export default connect(mapStateToProps, actions)(Meter);

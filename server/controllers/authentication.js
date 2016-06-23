@@ -61,6 +61,7 @@ exports.signup = (req, res, next) => {
             .then(createdUser => {
               CouplesUsers.add(couple.couple_id, createdUser.user_id)
               .then(coupleUser => {
+                createdUser.coupleID = coupleUser.couple_id;
                 res.json({
                   token: tokenForUser(createdUser),
                   user: createdUser,
@@ -78,6 +79,7 @@ exports.signup = (req, res, next) => {
               .then(createdUser => {
                 CouplesUsers.add(coupleUser.couple_id, createdUser.user_id)
                 .then(data => {
+                  createdUser.coupleID = coupleUser.couple_id;
                   res.json({
                     token: tokenForUser(createdUser),
                     user: createdUser,

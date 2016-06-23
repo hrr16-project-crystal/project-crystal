@@ -5,7 +5,6 @@ import * as actions from './QuizActions';
 import { Link, browserHistory } from 'react-router';
 import Header from '../App/Header';
 import './index.css';
-import Header from '../App/Header';
 
 class Quiz extends Component {
   constructor(props) {
@@ -61,15 +60,29 @@ class Quiz extends Component {
     this.props.postResponse(result);
     // This works, but the health meter doesn't display scores until you  go home then back to dashboard
     // Issue with the data being 0 immediately... 
-    browserHistory.push('/dashboard');
+
+    setTimeout(function(){
+      browserHistory.push('/dashboard');
+    },1000);
   }
 
   render() {
     const { handleSubmit } = this.props;
 
     if (!this.props.questions) {
-      return <div>Loading...</div>;
-    }
+      return (   
+      <div class="preloader-wrapper big active">
+        <div class="spinner-layer spinner-blue-only">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
+    );}
 
     return (
       <div className="teal lighten-5">
@@ -81,7 +94,6 @@ class Quiz extends Component {
             <button className="waves-effect waves-light btn" type="submit">Submit</button>
           </form>
         </div>
-      </div>
       </div>
     );
   }
