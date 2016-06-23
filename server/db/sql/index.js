@@ -1,28 +1,28 @@
 'use strict';
-
 const QueryFile = require('pg-promise').QueryFile;
 
 // Helper for linking to external query files;
 const sql = (file) => {                         
+    // var path = './db/sql/' + file;
+    const path = __dirname + '/' + file; 
 
-    var path = './db/sql/' + file;
+    // RF: Remove two lines below
+    // const helpers = require(__dirname + '/../../helpers/helpers');
+    // helpers.customLog(path);  
 
-    var options = {
-
+    const options = {
         // minifying the SQL is always advised;
         // see also option 'compress' in the API;
         minify: true,
 
-        // Showing how to use static pre-formatting parameters -
-        // we have variable 'schema' in each SQL (as an example);
+        // using static pre-formatting parameters -
+        // we have variable 'schema' in each SQL;
         params: {
             schema: 'public' // replaces ${schema~} with "public"
         }
     };
 
     return new QueryFile(path, options);
-    // See QueryFile API:
-    // http://vitaly-t.github.io/pg-promise/QueryFile.html
 }
 
 module.exports = {
@@ -34,7 +34,7 @@ module.exports = {
         add: sql('users/add.sql'),
         all: sql('users/all.sql'),
         findById: sql('users/findById.sql'),
-        findByEmail: sql('users/findByEmail.sql')
+        findByEmail: sql('users/findByEmail.sql'),
     },
     couples: {
         create: sql('couples/create.sql'),
@@ -43,7 +43,7 @@ module.exports = {
         all: sql('couples/all.sql'),
         findById: sql('couples/findById.sql'),
         remove: sql('couples/remove.sql'),
-        updateScore: sql('couples/updateScore.sql')
+        updateScore: sql('couples/updateScore.sql'),
     },
     couples_users: {
         create: sql('couples_users/create.sql'),
@@ -56,6 +56,6 @@ module.exports = {
         add: sql('questions/add.sql'),
         all: sql('questions/all.sql'),
         findByFrequency: sql('questions/findByFrequency.sql'),
-        remove: sql('questions/remove.sql')
+        remove: sql('questions/remove.sql'),
     }
 };
