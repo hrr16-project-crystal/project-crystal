@@ -22,17 +22,16 @@ const webpackDevMiddleware = require('webpack-dev-middleware');
 require('./db/populateDb')();
 
 const userAPIroutes = require('./routes/api/user');
-const coupleAPIroutes = require('./routes/api/couple'); 
-const questionAPIroutes = require('./routes/api/questions'); 
+const coupleAPIroutes = require('./routes/api/couple');
+const questionAPIroutes = require('./routes/api/questions');
+
+const CouplesUser = require('./db/repos/couples_users');
 
 // // *** API routes *** //
 app.use('/api/v1', userAPIroutes);
 app.use('/api/v1', coupleAPIroutes);
 app.use('/api/v1', questionAPIroutes);
-app.post('/api/v1/answers', (req,res) => {
-  console.log('Server file console log.....');
-  console.log(req.body);
-})
+
 router(app);
 
 // // *** error handlers *** //

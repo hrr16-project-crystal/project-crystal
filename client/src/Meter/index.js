@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from './MeterActions';
 import './index.css';
-import Header from '../App/Header';
+// import Header from '../App/Header';
 
 class Meter extends Component {
   componentWillMount() {
     this.props.getHealth();
   }
-  
+
   renderStats() {
     return (
       <div className="container">
@@ -24,20 +24,24 @@ class Meter extends Component {
               <td>{this.props.health.total}</td>
             </tr>
             <tr>
-              <td>Spantaneity</td>
-              <td>{this.props.health.spontaneity}</td>
+              <td>Respect</td>
+              <td>{this.props.health.respect}</td>
             </tr>
             <tr>
-              <td>Helpfulness</td>
-              <td>{this.props.health.helpful}</td>
+              <td>Communication</td>
+              <td>{this.props.health.communication}</td>
             </tr>
             <tr>
-              <td>Romance</td>
-              <td>{this.props.health.romance}</td>
+              <td>Intimacy</td>
+              <td>{this.props.health.intimacy}</td>
             </tr>
             <tr>
               <td>Generosity</td>
               <td>{this.props.health.generosity}</td>
+            </tr>
+            <tr>
+              <td>Spontaneity</td>
+              <td>{this.props.health.spontaneity}</td>
             </tr>
           </tbody>
         </table>
@@ -46,10 +50,10 @@ class Meter extends Component {
   }
 
   render() {
-    if(!this.props.health) {
-      return <div>Loading...</div>
+    if (!this.props.health) {
+      return <div>Loading...</div>;
     }
-    
+
     return (
       <div>
         <div className="container">

@@ -15,12 +15,11 @@ export const getQuestions = () => {
   };
 };
 
-export const postResponse = ({ Respect, Communication, Spontaneity, Intimacy, Generosity }) => {
+export const postResponse = ({ Respect, Communication, Spontaneity, Intimacy, Generosity, user_id }) => {
   return (dispatch) => {
-    axios.post(`${apiUrl}/answers`, { Respect, Communication, Spontaneity, Intimacy, Generosity })
+    axios.post(`${apiUrl}/couples/answers`,
+      { Respect, Communication, Spontaneity, Intimacy, Generosity, user_id })
       .then(response => {
-        console.log('QuizAction console log....');
-        console.log(response);
         dispatch({ type: MARK_ANSWERED });
         browserHistory.push('/dashboard');
       })

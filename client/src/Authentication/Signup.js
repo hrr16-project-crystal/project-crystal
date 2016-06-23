@@ -29,7 +29,7 @@ class Signup extends Component {
   }
 
   render() {
-    const { handleSubmit, fields: { firstName, lastName, email, password, passwordConfirm }} = this.props;
+    const { handleSubmit, fields: { firstName, lastName, email, password, passwordConfirm, couple }} = this.props;
     return (
       <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
         <fieldset className="form-group">
@@ -60,11 +60,13 @@ class Signup extends Component {
         </fieldset>
         <fieldset className="form-group">
           <label>Would you like to initiate a new couple?</label>
-          <select className="signup-questions">
-            <option>Select an answer...</option>
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
-          </select>
+          <div>
+            <select className="signup-questions" {...couple}>
+              <option>Select an answer...</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </div>
         </fieldset>
         {this.renderAlert()}
         <button action="Submit" className="btn btn-primary">Signup</button>
@@ -72,6 +74,7 @@ class Signup extends Component {
     );
   }
 }
+
 // <button><a href="/auth/facebook">Signup with Facebook</a></button>
 
 const validate = (formProps) => {
@@ -100,8 +103,9 @@ const mapStateToProps = state => {
   return { errorMessage: state.auth.error };
 };
 
+// be sure to add otherEmail as a field to indicate the other person's email address if they are no the first to sign up
 export default reduxForm({
   form: 'signup',
-  fields: ['firstName','lastName', 'email', 'password', 'passwordConfirm'],
+  fields: ['firstName','lastName', 'email', 'password', 'passwordConfirm', 'couple'],
   validate,
 }, mapStateToProps, actions)(Signup);
