@@ -4,6 +4,7 @@ import * as actions from './quizAction';
 import './quiz.css';
 import { browserHistory } from 'react-router';
 import Header from '../App/Header';
+import './quiz.css';
 
 class Quiz extends Component {
   constructor(props) {
