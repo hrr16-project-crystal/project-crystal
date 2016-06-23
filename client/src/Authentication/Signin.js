@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
 import * as actions from './AuthActions';
 import axios from 'axios';
+import './index.css';
 
 class Signin extends Component {
   constructor(props) {
@@ -32,18 +33,33 @@ class Signin extends Component {
     const { handleSubmit, fields: { email, password } } = this.props;
 
     return (
-      <form onSubmit={handleSubmit(this.handleFormSubmit)}>
-        <fieldset className="form-group">
-          <label>Email:</label>
-          <input className="form-control" {...email} />
-        </fieldset>
-        <fieldset className="form-group">
-          <label>Password:</label>
-          <input type="password" className="form-control" {...password} />
-        </fieldset>
-        {this.renderAlert()}
-        <button action="submit" className="btn btn-primary">Sign In</button>
-      </form>
+      <div className="signin--box">
+        <div className="signin__overlay">
+          <form className="row signin__form" onSubmit={handleSubmit(this.handleFormSubmit)}>
+            <h6 className="signin--box__title">Self awareness in a relationship makes all the difference</h6>
+            <fieldset className="form-group col s4">
+              <div className="input-field">
+                <i className="material-icons prefix">email</i>
+                <input type="email" className="form-control" {...email} />
+                <label for="icon_email">Email:</label>
+              </div>
+            </fieldset>
+            <fieldset className="form-group col s4">
+              <div className="input-field">
+                <i className="material-icons prefix">lock</i>
+                <input type="password" className="form-control" {...password} />
+                <label for="icon_lock">Password:</label>
+              </div>
+            </fieldset>
+            <div className="signin__btn">
+              <button action="submit" className="btn btn-primary waves-effect waves-light btn-large">Sign In</button>
+              <div className="signin__alert">
+                {this.renderAlert()}
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
     );
   }
 }
