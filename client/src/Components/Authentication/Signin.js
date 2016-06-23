@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
-import * as actions from './AuthActions';
+import * as actions from './authAction';
 import axios from 'axios';
 import './index.css';
 
