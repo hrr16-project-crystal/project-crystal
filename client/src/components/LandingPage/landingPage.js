@@ -1,5 +1,5 @@
 import React from 'react';
-import './index.css';
+import './landingPage.css';
 import Header from '../App/Header';
 
 function LandingPage() {

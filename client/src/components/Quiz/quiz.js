@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
-import * as actions from './QuizActions';
+import * as actions from './quizAction';
+import './quiz.css';
 import { Link, browserHistory } from 'react-router';
 import Header from '../App/Header';
-import './index.css';
 
 class Quiz extends Component {
   constructor(props) {

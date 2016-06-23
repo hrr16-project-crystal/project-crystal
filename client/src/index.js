@@ -5,17 +5,17 @@ import { createStore, applyMiddleware } from 'redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import reduxThunk from 'redux-thunk';
 
-import App from './App/';
-import Signin from './Authentication/Signin';
-import Signout from './Authentication/Signout';
-import Signup from './Authentication/Signup';
-import Dashboard from './Dashboard/Dashboard';
-import Quiz from './Quiz/index';
-import requireAuth from './Authentication/RequireAuth';
-import LandingPage from './LandingPage/';
-import Meter from './Meter/';
-import reducers from './rootReducer';
-import { AUTH_USER } from './constants/types';
+import App from './components/App/App';
+import Signin from './components/Authentication/Signin';
+import Signout from './components/Authentication/Signout';
+import Signup from './components/Authentication/signup';
+import Dashboard from './components/Dashboard/dashboard';
+import Quiz from './components/Quiz/Quiz';
+import requireAuth from './components/Authentication/requireAuth';
+import LandingPage from './components/LandingPage/LandingPage';
+import Meter from './components/Meter/Meter';
+import reducers from './helpers/rootReducer/rootReducer';
+import { AUTH_USER } from './helpers/constants/types';
 
 import './index.css';
 
