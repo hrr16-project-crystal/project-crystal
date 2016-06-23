@@ -6,9 +6,7 @@ function LandingPage() {
   return (
     <div className="hero">
       <div className="hero__overlay">
-        <div className="hero__header">
-          <Header />
-        </div>
+        <Header />
         <div className="hero__promo">
           <h4 className="hero__promo__pretitle">Reimagining What It Means</h4>
           <h1 className="hero__promo__title">To Be In Love</h1>

@@ -8,11 +8,6 @@
   background-color: rgba(0, 0, 0, 0.5);;
 }
 
-.hero__header nav {
-  background-color: rgba(0,0,0,0);
-  box-shadow: none;
-}
-
 .logo {
   color: #fff;
   text-decoration: none;
