@@ -7,8 +7,6 @@ export const getHealth = () => {
   return dispatch => {
     axios.get(`${apiUrl}/couples/4`)
       .then(response => {
-        console.log('METER ACTIONS');
-        console.log(response);
         dispatch({
           type: FETCH_HEALTH,
           payload: response.data,
