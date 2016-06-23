@@ -58,10 +58,10 @@ export const signupUser = ({ firstName, lastName, email, password, couple }) => 
   return (dispatch) => {
     axios.post(`${apiUrl}/signup`, { firstName, lastName, email, password, couple })
     .then(response => {
-      console.log('==============')
-      console.log(response);
-      console.log('==============')
-      dispatch({ type: AUTH_USER });
+      console.log('==============');
+      console.log(response.data.user);
+      console.log('==============');
+      dispatch({ type: AUTH_USER, payload: response.data.user });
       localStorage.setItem('token', response.data.token);
       browserHistory.push('/dashboard');
     })

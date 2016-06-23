@@ -29,10 +29,10 @@ const options = {
 
 // Database connection parameters:
 const config = {
-    host: 'localhost',
-    port: 5432,
-    database: 'blossomly',                       
-    user: 'postgres'
+  host: 'localhost',
+  port: 5432,
+  database: 'blossomly',
+  user: 'postgres',
 };
 
 // Load and initialize pg-promise:

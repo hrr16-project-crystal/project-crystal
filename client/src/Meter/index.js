@@ -21,27 +21,27 @@ class Meter extends Component {
           <tbody>
             <tr>
               <td>Total Score</td>
-              <td>{this.props.health.total}</td>
+              <td>{this.props.health.data[0].score}</td>
             </tr>
             <tr>
               <td>Respect</td>
-              <td>{this.props.health.respect}</td>
+              <td>{this.props.health.data[0].respect_score}</td>
             </tr>
             <tr>
               <td>Communication</td>
-              <td>{this.props.health.communication}</td>
+              <td>{this.props.health.data[0].communication_score}</td>
             </tr>
             <tr>
               <td>Intimacy</td>
-              <td>{this.props.health.intimacy}</td>
+              <td>{this.props.health.data[0].intimacy_score}</td>
             </tr>
             <tr>
               <td>Generosity</td>
-              <td>{this.props.health.generosity}</td>
+              <td>{this.props.health.data[0].generosity_score}</td>
             </tr>
             <tr>
               <td>Spontaneity</td>
-              <td>{this.props.health.spontaneity}</td>
+              <td>{this.props.health.data[0].spontaneity_score}</td>
             </tr>
           </tbody>
         </table>
