@@ -1,5 +1,7 @@
 const omit = require('lodash/omit');
 const clc = require('cli-color');
+const bcrypt = require('bcrypt-nodejs');
+const Promise = require('bluebird');
 
 // desensitizes record objects, useful before passing data to front-end
 exports.desensitize = (recordOrRecords) => {
@@ -18,4 +20,20 @@ exports.desensitize = (recordOrRecords) => {
 // logs input in bold white text with black background
 exports.customLog = (input) => {
   console.log(clc.white.bgBlack.underline(input));
+};
+
+exports.hashPassword = (password) => {
+  return new Promise((resolve, reject) => {
+    bcrypt.genSalt(10, (err, salt) => {
+      if (err) {
+        reject(err);
+      }
+      bcrypt.hash(password, salt, null, (err2, hash) => {
+        if (err2) {
+          reject(err2);
+        }
+        resolve(hash);
+      });
+    });
+  });
 };
