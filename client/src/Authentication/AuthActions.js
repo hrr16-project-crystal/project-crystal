@@ -63,7 +63,7 @@ export const signupUser = ({ firstName, lastName, email, password, couple }) => 
       console.log('==============');
       dispatch({ type: AUTH_USER, payload: response.data.user });
       localStorage.setItem('token', response.data.token);
-      browserHistory.push('/dashboard');
+      browserHistory.push('/quiz');
     })
     .catch(response => {
       dispatch(authError(response.data.error));

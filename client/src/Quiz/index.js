@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import * as actions from './QuizActions';
+import { Link } from 'react-router';
 import './index.css';
 
 class Quiz extends Component {
@@ -69,7 +70,9 @@ class Quiz extends Component {
       <div className="quiz-box">
         <form onSubmit={handleSubmit(this.handleFormSubmit)}>
           {this.renderQuestions()}
-          <button type="submit">Submit</button>
+          <Link to="/dashboard">
+            <button type="submit">Submit</button>
+          </Link>
         </form>
       </div>
     );
