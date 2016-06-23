@@ -3,7 +3,7 @@
 */
 
 UPDATE $(schema~).Couples
-SET score = (score + $2),
+SET score= (score + $2) / 2,
 respect_score = (respect_score + $3) / 2,
 communication_score = (communication_score + $4) / 2,
 intimacy_score = (intimacy_score + $5) / 2 ,
