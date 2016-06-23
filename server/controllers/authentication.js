@@ -87,16 +87,9 @@ exports.signup = (req, res, next) => {
                 CouplesUsers.add(coupleUser.couple_id, createdUser.user_id)
                 .then(data => {
                   createdUser.coupleID = coupleUser.couple_id;
-                  res.json({
-                    token: tokenForUser(createdUser),
-                    user: createdUser,
-                  });
                 });
               });
             });
           });
         }
-      });
-    });
-  });
-};
+        
