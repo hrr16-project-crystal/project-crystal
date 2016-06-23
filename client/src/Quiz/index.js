@@ -20,11 +20,11 @@ class Quiz extends Component {
     const { fields } = this.props;
     return this.props.questions.data.map(question => {
       return (
-        <div>
+        <div className="row" key={question.question_id}>
+          <div className="quiz-questions col s10 offset-1">
           <label>{question.body}</label>
-          <div>
-            <select className="quiz-questions" {...fields[question.question_id]}>
-              <option>Select your answer...</option>
+            <select className="quiz-questions col s10 offset-1" {...fields[question.question_id]}>
+              <option className="tip">Select your answer...</option>
               <option value={[question.category, 20]}>{question.answers.answers[0]}</option>
               <option value={[question.category, 15]}>{question.answers.answers[1]}</option>
               <option value={[question.category, 10]}>{question.answers.answers[2]}</option>
@@ -37,6 +37,7 @@ class Quiz extends Component {
   }
 
   handleFormSubmit(formProps) {
+
     const result = {};
     for (var key in formProps) {
       const tempArr = formProps[key] ? formProps[key].split(',') : [];
@@ -59,23 +60,38 @@ class Quiz extends Component {
     this.props.postResponse(result);
     // This works, but the health meter doesn't display scores until you  go home then back to dashboard
     // Issue with the data being 0 immediately... 
-    browserHistory.push('/dashboard');
+
+    setTimeout(function(){
+      browserHistory.push('/dashboard');
+    },1000);
   }
 
   render() {
     const { handleSubmit } = this.props;
 
     if (!this.props.questions) {
-      return <div>Loading...</div>;
-    }
+      return (   
+      <div class="preloader-wrapper big active">
+        <div class="spinner-layer spinner-blue-only">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
+    );}
 
     return (
-      <div>
+      <div className="teal lighten-5">
         <Header />
-        <div className="quiz-box">
+        <h2>Let's get to know you...</h2>
+        <div className="quiz-box container">
           <form onSubmit={handleSubmit(this.handleFormSubmit)}>
             {this.renderQuestions()}
-            <button type="submit">Submit</button>
+            <button className="waves-effect waves-light btn" type="submit">Submit</button>
           </form>
         </div>
       </div>
