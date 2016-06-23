@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import * as actions from './QuizActions';
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
+import Header from '../App/Header';
 import './index.css';
 
 class Quiz extends Component {
@@ -56,6 +57,9 @@ class Quiz extends Component {
     result.Total = Math.floor((userTotal / (total * 20)) * 100);
     result.user_id = this.props.user.user_id;
     this.props.postResponse(result);
+    // This works, but the health meter doesn't display scores until you  go home then back to dashboard
+    // Issue with the data being 0 immediately... 
+    browserHistory.push('/dashboard');
   }
 
   render() {
@@ -66,13 +70,14 @@ class Quiz extends Component {
     }
 
     return (
-      <div className="quiz-box">
-        <form onSubmit={handleSubmit(this.handleFormSubmit)}>
-          {this.renderQuestions()}
-          <Link to="/dashboard">
+      <div>
+        <Header />
+        <div className="quiz-box">
+          <form onSubmit={handleSubmit(this.handleFormSubmit)}>
+            {this.renderQuestions()}
             <button type="submit">Submit</button>
-          </Link>
-        </form>
+          </form>
+        </div>
       </div>
     );
   }

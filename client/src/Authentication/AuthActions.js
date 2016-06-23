@@ -1,4 +1,3 @@
-// When we call an action creator it returns an action
 // Actions get piped into the dispatch method (funnel)
 // Dispatch method makes sure the action gets sent to all middleware and then reducers
 // Redux thunk gives very direct access to dispatch
