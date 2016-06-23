@@ -54,10 +54,9 @@ module.exports = rep => {
     //   rep.oneOrNone(sql.updateScore, [couple_id, score], couple =>
     //     couple),
 
-    updateScore: (scoreObj, coupleId) =>
+    updateScore: (scoreObj, coupleId) => {
       // rep.oneOrNone(sql.updateScore, [coupleId, scoreObj], couple =>
       //   couple),
-      {
       console.log('couple.js in the repo ==========');
       console.log(coupleId);
       console.log('couple.js in the repo---fsdfsdfsdfd');
@@ -69,10 +68,9 @@ module.exports = rep => {
         scoreObj.Intimacy, scoreObj.Generosity, scoreObj.Spontaneity,
       ]);
       // existing value of the row -- as part of the writing operation)
-      
       // Average them with new scores
       // Then, insert average into the table
-      },
+    },
 
     // Returns all couple records;
     all: () =>
