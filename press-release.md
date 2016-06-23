@@ -24,7 +24,7 @@ Sparkq
 
 ## Quote from You ##
   > Everyone wants to make the world a better place. That starts with giving
-  the people we love the attention they deserve. — Jason Bacchetta
+  the people we love the attention they deserve.
 
 ## How to Get Started ##
   > Simply create an account, invite your partner, and answer a few questions

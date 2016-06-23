@@ -3,7 +3,7 @@
 const passport = require('passport');
 const bcrypt = require('bcrypt-nodejs');
 // const User = require('../db/models/User');
-const config = require('../config');
+const config = require('../../config');
 const Users = require(__dirname + '/../db/index').db.users;
 const pgp = require(__dirname + '/../db/index').pgp; 
 // A strategy is a method for authenticating a user (can be used for FB/Google login) aka plugin

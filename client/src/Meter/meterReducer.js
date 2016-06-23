@@ -1,4 +1,4 @@
-import { FETCH_HEALTH } from '../../helpers/constants/types';
+import { FETCH_HEALTH } from '../constants/types';
 
 export default (state = {}, action) => {
   switch (action.type) {

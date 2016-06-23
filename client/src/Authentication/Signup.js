@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
-import * as actions from './authAction';
+import * as actions from './AuthActions';
 import axios from 'axios';
-import './auth.css'; 
+import './index.css'; 
 
 class Signup extends Component {
   constructor(props) {
