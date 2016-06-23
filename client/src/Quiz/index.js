@@ -37,6 +37,7 @@ class Quiz extends Component {
   }
 
   handleFormSubmit(formProps) {
+
     const result = {};
     for (var key in formProps) {
       const tempArr = formProps[key] ? formProps[key].split(',') : [];
@@ -56,6 +57,7 @@ class Quiz extends Component {
     }
     result.Total = Math.floor((userTotal / (total * 20)) * 100);
     result.user_id = this.props.user.user_id;
+
     this.props.postResponse(result);
     // This works, but the health meter doesn't display scores until you  go home then back to dashboard
     // Issue with the data being 0 immediately... 
