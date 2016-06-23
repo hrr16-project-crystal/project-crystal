@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Users = require(__dirname + '/../../db/index').db.users;
-const pgp = require(__dirname + '/../../db/index').pgp; 
+const pgp = require(__dirname + '/../../db/index').pgp;
 
 // get all users
 router.get('/users', (req, res, next) => {
@@ -27,6 +27,17 @@ router.get('/users/:id', (req, res, next) => {
     })
 });
 
+router.post('/users/test', (req, res, next) => {
+  const newUser = req.body;
+  Users.checkIfExists(newUser.email).then(exists => {
+    if (exists) {
+      //
+    } else {
+      //
+    }
+  });
+});
+
 // RF: rely on either params/queries in url, or on passed objects. Not combinations!
 // add new user and return new added user
 router.post('/users/add', (req, res, next) => {
@@ -45,7 +56,7 @@ router.post('/users/add', (req, res, next) => {
           success: false,
           error: err.message || err
         });
-      });    
+      });
   }
 });
 
