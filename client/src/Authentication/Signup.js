@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
 import * as actions from './AuthActions';
 import axios from 'axios';
-import './index.css'; 
+import './index.css';
 
 class Signup extends Component {
   constructor(props) {
@@ -103,9 +103,10 @@ const mapStateToProps = state => {
   return { errorMessage: state.auth.error };
 };
 
-// be sure to add otherEmail as a field to indicate the other person's email address if they are no the first to sign up
+// be sure to add otherEmail as a field to indicate the other person's email address if they are
+// not the first to sign up
 export default reduxForm({
   form: 'signup',
-  fields: ['firstName','lastName', 'email', 'password', 'passwordConfirm', 'couple'],
+  fields: ['firstName', 'lastName', 'email', 'password', 'passwordConfirm', 'couple'],
   validate,
 }, mapStateToProps, actions)(Signup);

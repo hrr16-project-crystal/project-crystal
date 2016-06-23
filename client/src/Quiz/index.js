@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import * as actions from './QuizActions';
+import { Link, browserHistory } from 'react-router';
+import Header from '../App/Header';
 import './index.css';
 
 class Quiz extends Component {
@@ -35,30 +37,29 @@ class Quiz extends Component {
   }
 
   handleFormSubmit(formProps) {
-    let result = {};
-    // for (var key in formProps) {
-    //   let count;
-    //   let tempArr = formProps[key] ? formProps[key].split(',') : [];
-    //   if (!result[tempArr[0]]) {
-    //     result[tempArr[0]] = [+tempArr[1], 1];
-
-    //   } else {
-    //     result[tempArr[0]][0] += +tempArr[1];
-    //     result[tempArr[0]][1]++;
-    //   }
-    // }
-
-    result = {
-      user_id: 9, // We will access this from redux store and redux store will save this after signin/signup
-      Respect: 69,
-      Spontaneity: 58,
-      Intimacy: 50,
-      Generosity: 25,
-      Total: 62,
-    };
-    console.log('After running math func....');
-    console.log(result);
+    const result = {};
+    for (var key in formProps) {
+      const tempArr = formProps[key] ? formProps[key].split(',') : [];
+      if (!result[tempArr[0]]) {
+        result[tempArr[0]] = [+tempArr[1], 1];
+      } else {
+        result[tempArr[0]][0] += +tempArr[1];
+        result[tempArr[0]][1]++;
+      }
+    }
+    let total = 0;
+    let userTotal = 0;
+    for (var key in result) {
+      userTotal += result[key][0];
+      total += result[key][1];
+      result[key] = Math.floor((result[key][0] / (result[key][1] * 20)) * 100);
+    }
+    result.Total = Math.floor((userTotal / (total * 20)) * 100);
+    result.user_id = this.props.user.user_id;
     this.props.postResponse(result);
+    // This works, but the health meter doesn't display scores until you  go home then back to dashboard
+    // Issue with the data being 0 immediately... 
+    browserHistory.push('/dashboard');
   }
 
   render() {
@@ -69,11 +70,14 @@ class Quiz extends Component {
     }
 
     return (
-      <div className="quiz-box">
-        <form onSubmit={handleSubmit(this.handleFormSubmit)}>
-          {this.renderQuestions()}
-          <button type="submit">Submit</button>
-        </form>
+      <div>
+        <Header />
+        <div className="quiz-box">
+          <form onSubmit={handleSubmit(this.handleFormSubmit)}>
+            {this.renderQuestions()}
+            <button type="submit">Submit</button>
+          </form>
+        </div>
       </div>
     );
   }
@@ -85,5 +89,8 @@ const mapStateToProps = state => {
 
 export default reduxForm({
   form: 'answers',
-  fields: ['6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22'],
+  fields: [
+    '6', '7', '8', '9', '10', '11', '12', '13', '14', '15',
+    '16', '17', '18', '19', '20', '21', '22',
+  ],
 }, mapStateToProps, actions)(Quiz);

@@ -53,23 +53,23 @@ module.exports = rep => {
     // updateScore: (couple_id, score) =>
     //   rep.oneOrNone(sql.updateScore, [couple_id, score], couple =>
     //     couple),
-
-    updateScore: (scoreObj, coupleId) =>
+    updateScore: (scoreObj, coupleId) => {
       // rep.oneOrNone(sql.updateScore, [coupleId, scoreObj], couple =>
       //   couple),
-      {
       console.log('couple.js in the repo ==========');
       console.log(coupleId);
       console.log('couple.js in the repo---fsdfsdfsdfd');
       console.log(scoreObj);
 
       // Grab current scores (can we use sql query to insert something and it will
-      return rep.one(sql.updateScore, [coupleId, 110]);
+      return rep.one(sql.updateScore, [
+        coupleId, scoreObj.Total, scoreObj.Respect, scoreObj.Communication,
+        scoreObj.Intimacy, scoreObj.Generosity, scoreObj.Spontaneity,
+      ]);
       // existing value of the row -- as part of the writing operation)
-      
       // Average them with new scores
       // Then, insert average into the table
-      },
+    },
 
     // Returns all couple records;
     all: () =>

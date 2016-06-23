@@ -15,11 +15,13 @@ export const getQuestions = () => {
   };
 };
 
-export const postResponse = ({ Respect, Communication, Spontaneity, Intimacy, Generosity, user_id }) => {
+export const postResponse = ({ Respect, Communication, Spontaneity, Intimacy, Generosity, Total, user_id }) => {
   return (dispatch) => {
     axios.post(`${apiUrl}/couples/answers`,
-      { Respect, Communication, Spontaneity, Intimacy, Generosity, user_id })
+      { Respect, Communication, Spontaneity, Intimacy, Generosity, Total, user_id })
       .then(response => {
+        console.log('========= POST RESPONSE=======');
+        console.log(response);
         dispatch({ type: MARK_ANSWERED });
         browserHistory.push('/dashboard');
       })
