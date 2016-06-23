@@ -3,7 +3,7 @@ import {
   UNAUTH_USER,
   AUTH_ERROR,
   FETCH_MESSAGE,
-} from '../constants/types';
+} from '../../helpers/constants/types';
 
 
 export default (state = {}, action) => {
