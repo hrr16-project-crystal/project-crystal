@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actions from './meterAction';
-import './meter.css';
+import * as actions from './MeterActions';
+import './index.css';
 // import Header from '../App/Header';
 
 class Meter extends Component {

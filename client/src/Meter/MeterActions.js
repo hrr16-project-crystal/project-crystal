@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_HEALTH } from '../../helpers/constants/types';
+import { FETCH_HEALTH } from '../constants/types';
 import { browserHistory } from 'react-router';
 const apiUrl = 'http://localhost:3000/api/v1';
 

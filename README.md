@@ -1,6 +1,6 @@
 # Project Name
 
-> Sparkq — an app for couples.
+> Pithy project description
 
 ## Team
 
@@ -20,17 +20,15 @@
 
 ## Usage
 
-> Create an account, invite a partner, and answer a few questions to get
-started.
+> Some usage instructions
 
 ## Requirements
 
-- Node 6.2.x
-- Express 4.14.x
-- PostgreSQL 9.5.x
-- React 15.1.x
-- ReactDOM 15.1.x
-- Redux 3.5.x
+- Node 0.10.x
+- Redis 2.6.x
+- Postgresql 9.1.x
+- etc
+- etc
 
 ## Development
 
@@ -39,13 +37,14 @@ started.
 From within the root directory:
 
 ```sh
-npm i
-npm run start
+sudo npm install -g bower
+npm install
+bower install
 ```
 
 ### Roadmap
 
-View the project roadmap [here](https://github.com/hrr16-project-crystal/project-crystal/issues)
+View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
 
 
 ## Contributing
