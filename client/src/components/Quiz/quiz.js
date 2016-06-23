@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
-<<<<<<< 6688dc77e6ff628653ae6718b650fe8c0d393b32:client/src/Quiz/index.js
-import * as actions from './QuizActions';
-import { Link, browserHistory } from 'react-router';
-import Header from '../App/Header';
-import './index.css';
-=======
 import * as actions from './quizAction';
 import './quiz.css';
->>>>>>> Refactor directory structure:client/src/components/Quiz/quiz.js
+import { Link, browserHistory } from 'react-router';
+import Header from '../App/Header';
 
 class Quiz extends Component {
   constructor(props) {
@@ -110,12 +105,8 @@ const mapStateToProps = state => {
 
 export default reduxForm({
   form: 'answers',
-<<<<<<< 6688dc77e6ff628653ae6718b650fe8c0d393b32:client/src/Quiz/index.js
   fields: [
     '6', '7', '8', '9', '10', '11', '12', '13', '14', '15',
     '16', '17', '18', '19', '20', '21', '22',
   ],
-=======
-  fields: ['6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22'],
->>>>>>> Refactor directory structure:client/src/components/Quiz/quiz.js
 }, mapStateToProps, actions)(Quiz);

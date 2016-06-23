@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
 import * as actions from './authAction';
-import axios from 'axios';
-import './index.css';
+import './auth.css';
 
 class Signin extends Component {
   constructor(props) {

@@ -29,11 +29,10 @@ const options = {
 
 // Database connection parameters:
 const config = {
-  host: 'ec2-50-112-35-113.us-west-2.compute.amazonaws.com',
+  host: 'localhost',
   port: 5432,
   database: 'blossomly',
-  user: 'other_user',
-  password: 'hottub'
+  user: 'postgres',
 };
 
 // Load and initialize pg-promise:

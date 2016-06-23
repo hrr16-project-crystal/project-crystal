@@ -4,7 +4,7 @@
 
 .signin--box {
   height: 100vh;
-  background: #000 no-repeat center/cover url("../assets/15.jpg");
+  background: #000 no-repeat center/cover url("../../assets/15.jpg");
 }
 
 .signin__btn {
@@ -45,7 +45,7 @@
 
 .signup--box {
   height: 100vh;
-  background: #000 no-repeat center/cover url("../assets/17.jpg");
+  background: #000 no-repeat center/cover url("../../assets/17.jpg");
 }
 
 .signup__overlay {
