@@ -1,9 +1,9 @@
 'use strict';
-
 const express = require('express');
 const router = express.Router();
 const Users = require(__dirname + '/../../db/index').db.users;
 const pgp = require(__dirname + '/../../db/index').pgp;
+const helpers = require(__dirname + '/../../helpers/helpers');
 
 // get all users
 router.get('/users', (req, res, next) => {
@@ -30,10 +30,10 @@ router.get('/users/:id', (req, res, next) => {
 });
 
 router.post('/users/addtest', (req, res, next) => {
-  const helpers = require(__dirname + '/../../helpers/helpers');
   // PRB: assume the client will pass a newUser object that matches our expectation
   // e.g.: { first_name: 'Michelle', last_name: 'Tu', isFirstOfCouple: true }
   let newUser = req.body;
+
   Users.checkIfExists(newUser.email)
     .then(exists => {
       if (exists) {
@@ -46,14 +46,26 @@ router.post('/users/addtest', (req, res, next) => {
         helpers.hashPassword(newUser.password)
           .then(hash => {
             newUser.password = hash;
-            helpers.customLog(hash);
-            res.send(hash);
-            // if (newUser.isFirstOfCouple){
-            //   return Couples.add()
-            // }
-            // else {
-            //   // deal with User being second of existing Couple
-            // }
+            if (newUser.isFirstOfCouple) {
+              Users.testAdd(newUser)
+                .then(addedUser => {
+                  helpers.customLog('New User with table joins is: ');
+                  helpers.customLog(addedUser);
+                  res.send('soething!!!!');
+                })
+                .catch(err => {
+                  helpers.customLog(err); 
+                  res.send(err)
+                });
+            } else {
+              // deal with User being second of existing Couple
+              // Users.testAdd(newUser)
+              //   .then(addedUser => {
+              //     helpers.customLog('New User with table joins is: ');
+              //     helpers.customLog(addedUser);
+              //     res.send('soething!!!!'); 
+              //   });
+            }
           });
       }
     })

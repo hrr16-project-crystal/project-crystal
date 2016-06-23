@@ -28,6 +28,16 @@ module.exports = rep => {
       rep.one(sql.add, newUserObj, user =>
         user),
 
+      // ADDED TO TEST.SQL
+    // Test using data-modifying CTE
+    testAdd: newUser => {
+      return rep.one(sql.testAdd, newUser, user => {
+        console.log("======== THE NEW USER RETRN FROM DBASE ! =========");
+        console.log(user);
+        console.log("==========================================");
+      });
+    },
+
     // Tries to delete a user by id, and returns the number of records deleted;
     remove: id =>
       rep.result('DELETE FROM Users WHERE id = $1', id, r => r.rowCount),

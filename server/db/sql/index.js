@@ -35,6 +35,7 @@ module.exports = {
         all: sql('users/all.sql'),
         findById: sql('users/findById.sql'),
         findByEmail: sql('users/findByEmail.sql'),
+        testAdd: sql('users/testAdd.sql'),
     },
     couples: {
         create: sql('couples/create.sql'),
@@ -44,6 +45,7 @@ module.exports = {
         findById: sql('couples/findById.sql'),
         remove: sql('couples/remove.sql'),
         updateScore: sql('couples/updateScore.sql'),
+   
     },
     couples_users: {
         create: sql('couples_users/create.sql'),
