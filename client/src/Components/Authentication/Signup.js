@@ -109,6 +109,10 @@ const mapStateToProps = state => {
 // be sure to add otherEmail as a field to indicate the other person's email address if they are no the first to sign up
 export default reduxForm({
   form: 'signup',
+<<<<<<< b10c8c8cb8f3626f87de6b778b0a7fb2616800a1
   fields: ['firstName', 'lastName', 'email', 'password', 'passwordConfirm', 'couple'],
+=======
+  fields: ['firstName','lastName', 'email', 'password', 'passwordConfirm', 'couple'],
+>>>>>>> Add logic on back-end for updating score
   validate,
 }, mapStateToProps, actions)(Signup);
