@@ -1,6 +1,8 @@
 const jwt = require('jwt-simple');
 const config = require('../../config');
 const Users = require(__dirname + '/../db/index').db.users;
+const Couples = require(__dirname + '/../db/index').db.couples;
+const CouplesUsers = require(__dirname + '/../db/index').db.couples_users;
 const pgp = require(__dirname + '/../db/index').pgp; 
 const bcrypt = require('bcrypt-nodejs');
 
@@ -9,7 +11,7 @@ const tokenForUser = user => {
   // Sub is short for Subject and it is the convention used for JWT
   // iat is short for Issued at Time and is another convention used for JWT
   const timestamp = new Date().getTime();
-  return jwt.encode({ sub: user.id, iat: timestamp }, config.jwtSecret);
+  return jwt.encode({ sub: user.user_id, iat: timestamp }, config.jwtSecret);
 };
 
 exports.signin = (req, res, next) => {
@@ -21,6 +23,7 @@ exports.signin = (req, res, next) => {
 };
 
 exports.signup = (req, res, next) => {
+  console.log('We are in the signup route...');
   const first_name = req.body.firstName;
   const last_name = req.body.lastName;
   const email = req.body.email;
@@ -28,6 +31,7 @@ exports.signup = (req, res, next) => {
 
   Users.findByEmail(req.body.email)
     .then(data => {
+      console.log('We are in findByEmail');
     // If a user with email does exist then return an error
       if (data) {
         return res.status(422).send({ error: 'Email is in use' });
@@ -37,7 +41,7 @@ exports.signup = (req, res, next) => {
       first_name,
       last_name,
       email,
-      password
+      password,
     };
 
     bcrypt.genSalt(10, (err, salt) => {
@@ -50,20 +54,51 @@ exports.signup = (req, res, next) => {
         }
         user.password = hash;
 
-        Users.add(user)
-          .then(data => {
-            return res.json({
-              token: tokenForUser(user),
-              user: data,
+        if (req.body.couple === 'yes') {
+          Couples.add()
+          .then(couple => {
+            Users.add(user)
+            .then(createdUser => {
+              CouplesUsers.add(couple.couple_id, createdUser.user_id)
+              .then(coupleUser => {
+                res.json({
+                  token: tokenForUser(createdUser),
+                  user: createdUser,
+                });
+              });
             });
-          })
-          .catch(err => {
-            return next(err);
           });
+        } else {
+          const otherUserEmail = req.body.otherEmail
+          Users.findByEmail(otherUserEmail)
+          .then(otherUser => {
+            CouplesUsers.findByUserId(otherUser.user_id)
+            .then(coupleUser => {
+              Users.add(user)
+              .then(createdUser => {
+                CouplesUsers.add(coupleUser.couple_id, createdUser.user_id)
+                .then(data => {
+                  res.json({
+                    token: tokenForUser(createdUser),
+                    user: createdUser,
+                  });
+                });
+              });
+            });
+          });
+        }
+        // Users.add(user)
+        //   .then(data => {
+        //     return res.json({
+        //       token: tokenForUser(data),
+        //       user: data,
+        //     });
+        //   })
+        //   .catch(err => {
+        //     return next(err);
+        //   });
       });
     });
-
-    
-  });
+    });
 };
 

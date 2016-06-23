@@ -3,7 +3,7 @@
 */
 
 UPDATE $(schema~).Couples
-SET score=$2
+SET score= (score + $2) / 2
 WHERE couple_id=$1
 RETURNING *
 

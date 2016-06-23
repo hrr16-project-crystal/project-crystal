@@ -54,9 +54,9 @@ export const signoutUser = () => {
   return { type: UNAUTH_USER };
 };
 
-export const signupUser = ({ firstName, lastName, email, password }) => {
+export const signupUser = ({ firstName, lastName, email, password, couple }) => {
   return (dispatch) => {
-    axios.post(`${apiUrl}/signup`, { firstName, lastName, email, password })
+    axios.post(`${apiUrl}/signup`, { firstName, lastName, email, password, couple })
     .then(response => {
       console.log('==============')
       console.log(response);
