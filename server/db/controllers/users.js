@@ -28,15 +28,20 @@ module.exports = rep => {
       rep.one(sql.add, newUserObj, user =>
         user),
 
-      // ADDED TO TEST.SQL
-    // Test using data-modifying CTE
-    testAdd: newUser => {
-      return rep.one(sql.testAdd, newUser, user => {
-        console.log("======== THE NEW USER RETRN FROM DBASE ! =========");
-        console.log(user);
-        console.log("==========================================");
-      });
-    },
+    testAdd: newUser =>
+      rep.one(sql.testAdd, newUser)
+      // RF so that sql.testAdd does the 3 table join. 
+      .then(addedCoupleUser => rep.one(sql.findById, addedCoupleUser.user_id)),
+
+    // testAdd: newUser => {
+    //   return rep.one(sql.testAdd, newUser)
+    //     .then(addedCoupleUser => {
+    //       return rep.one(sql.findById, addedCoupleUser.user_id)
+    //         .then(wholeUserInfo => {
+    //           return wholeUserInfo;
+    //         })
+    //     })
+    // },
 
     // Tries to delete a user by id, and returns the number of records deleted;
     remove: id =>
@@ -51,11 +56,11 @@ module.exports = rep => {
       rep.oneOrNone(sql.findByEmail, email, user =>
         user),
 
-    checkIfExists: email => 
-      rep.oneOrNone(sql.findByEmail, email, user =>{
+    checkIfExists: email =>
+      rep.oneOrNone(sql.findByEmail, email, user => {
         // const helpers = require(__dirname + '/../../helpers/helpers');
         // helpers.customLog(user);
-        if (user !== null){
+        if (user !== null) {
           return true;
         }
         return false;

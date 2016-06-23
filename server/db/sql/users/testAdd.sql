@@ -14,4 +14,4 @@ new_couple AS (
 )
 INSERT INTO couples_users (couple_id, user_id)
 SELECT new_couple.couple_id, new_user.user_id FROM new_couple, new_user
-RETURNING *
+RETURNING * 

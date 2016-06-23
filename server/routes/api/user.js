@@ -51,7 +51,7 @@ router.post('/users/addtest', (req, res, next) => {
                 .then(addedUser => {
                   helpers.customLog('New User with table joins is: ');
                   helpers.customLog(addedUser);
-                  res.send('soething!!!!');
+                  res.send(helpers.desensitize(addedUser));
                 })
                 .catch(err => {
                   helpers.customLog(err); 
