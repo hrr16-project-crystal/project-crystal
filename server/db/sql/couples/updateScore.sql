@@ -12,5 +12,3 @@ generosity_score = CASE WHEN generosity_score=0 THEN (generosity_score + $6) ELS
 spontaneity_score = CASE WHEN spontaneity_score=0 THEN (spontaneity_score + $7) ELSE ((spontaneity_score + $7) / 2) END
 WHERE couple_id=$1
 RETURNING *
-
-

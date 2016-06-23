@@ -53,7 +53,6 @@ module.exports = rep => {
     // updateScore: (couple_id, score) =>
     //   rep.oneOrNone(sql.updateScore, [couple_id, score], couple =>
     //     couple),
-
     updateScore: (scoreObj, coupleId) => {
       // rep.oneOrNone(sql.updateScore, [coupleId, scoreObj], couple =>
       //   couple),
@@ -71,7 +70,6 @@ module.exports = rep => {
       // Average them with new scores
       // Then, insert average into the table
     },
-
     // Returns all couple records;
     all: () =>
       rep.any(sql.all),
