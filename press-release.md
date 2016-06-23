@@ -1,29 +1,39 @@
 # Project Name #
-
+Sparkq
  
 ## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
+  > An App For Couples
 
 ## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  > Relationship suggestions, date reminders,
+  appreciation notes, honey do lists, and a place for private sharing.
 
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  > Sparkq is an app that helps couples build their relationship and stay
+  connected. It uses machine learning to identify factors that contribute to
+  a healthy and happy relationship, and gives users concrete suggestions for
+  keeping the passion alive.
 
 ## Problem ##
-  > Describe the problem your product solves.
+  > It's too easy to get caught up in our busy lifestyles, forgetting about
+  what's most important — the people we love.
 
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
+  > Sparkq helps you visualize and monitor the health of your relationship,
+  keeping your partner front and center.
 
 ## Quote from You ##
-  > A quote from a spokesperson in your company.
+  > Everyone wants to make the world a better place. That starts with giving
+  the people we love the attention they deserve.
 
 ## How to Get Started ##
-  > Describe how easy it is to get started.
+  > Simply create an account, invite your partner, and answer a few questions
+   to get your personalized relationship health meter rollin'!
 
 ## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  > We've always had a wonderful marriage, but Sparkq helped us pinpoint
+  opportunities for personal growth, and that took our relationship to a
+  whole new level. — Katie Campbell
 
 ## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
+  > Go to sparkq.co today and set your relationship on fire!
