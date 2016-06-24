@@ -93,7 +93,7 @@ class Signup extends Component {
               >
                 <i id="small-icon" className="material-icons prefix">email</i>
                 <input type="email" className="form-control" {...otherEmail} />
-                <label>Partners Email:</label>
+                <label>Partner's Email:</label>
               </div>
             </fieldset>
             {this.renderAlert()}
