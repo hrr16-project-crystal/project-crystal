@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from './meterAction';
 import './meter.css';
-// import Header from '../App/Header';
 
 class Meter extends Component {
   componentWillMount() {
@@ -51,20 +50,23 @@ class Meter extends Component {
 
   render() {
     if (!this.props.health) {
-      return (   
-      <div class="preloader-wrapper big active">
-        <div class="spinner-layer spinner-blue-only">
-          <div class="circle-clipper left">
-            <div class="circle"></div>
-          </div><div class="gap-patch">
-            <div class="circle"></div>
-          </div><div class="circle-clipper right">
-            <div class="circle"></div>
+      return (
+        <div>
+          <span>Loading!!!!!!!!!</span>
+          <div className="preloader-wrapper big active">
+            <div className="spinner-layer spinner-blue-only">
+              <div className="circle-clipper left">
+                <div className="circle"></div>
+              </div><div className="gap-patch">
+                <div className="circle"></div>
+              </div><div className="circle-clipper right">
+                <div className="circle"></div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    );
-  }
+      );
+    }
 
     return (
       <div>
@@ -77,9 +79,9 @@ class Meter extends Component {
 }
 
 const mapStateToProps = state => {
-  return { 
+  return {
     health: state.meter.health,
-    user: state.auth.user
+    user: state.auth.user,
   };
 };
 

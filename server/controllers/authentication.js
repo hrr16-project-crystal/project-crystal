@@ -11,11 +11,12 @@ const tokenForUser = user => {
   // Sub is short for Subject and it is the convention used for JWT
   // iat is short for Issued at Time and is another convention used for JWT
   const timestamp = new Date().getTime();
-  return jwt.encode({ sub: user.user_id, iat: timestamp }, config.jwtSecret);
+  return jwt.encode({ sub: user.user_id, iat: timestamp, couple_id: user.couple_id }, config.jwtSecret);
 };
 
 exports.signin = (req, res, next) => {
   // User has already had their email and password auth'd ,just need to give them a token
+  req.user.coupleID = 35;
   res.send({
     token: tokenForUser(req.user),
     user: req.user,
@@ -70,9 +71,15 @@ exports.signup = (req, res, next) => {
             });
           });
         } else {
-          const otherUserEmail = req.body.otherEmail
+          console.log('hittttttttt');
+          const otherUserEmail = req.body.otherEmail;
+          console.log(otherUserEmail);
+          console.log('Above is the other User email ^^^^^');
+          console.log(req.body);
           Users.findByEmail(otherUserEmail)
           .then(otherUser => {
+            console.log('findByEmail=======');
+            console.log(otherUser);
             CouplesUsers.findByUserId(otherUser.user_id)
             .then(coupleUser => {
               Users.add(user)
@@ -89,17 +96,7 @@ exports.signup = (req, res, next) => {
             });
           });
         }
-        // Users.add(user)
-        //   .then(data => {
-        //     return res.json({
-        //       token: tokenForUser(data),
-        //       user: data,
-        //     });
-        //   })
-        //   .catch(err => {
-        //     return next(err);
-        //   });
       });
     });
-    });
+  });
 };

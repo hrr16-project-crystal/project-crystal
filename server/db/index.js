@@ -37,15 +37,8 @@ const config = {
   port: 5432,
   database: 'blossomly',
   user: 'other_user',
-  password: 'hottub'
+  password: 'hottub',
 };
-
-// const config = {
-//   host: 'localhost',
-//   port: 5432,
-//   database: 'blossomly',
-//   user: 'postgres',
-// };
 
 // Load and initialize pg-promise:
 var pgp = require('pg-promise')(options);

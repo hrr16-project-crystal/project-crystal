@@ -8,11 +8,14 @@ class Header extends Component {
       // show link to sign out
       return [
         <li className="menu__item" key={1}>
-          <Link to="/signout" className="menu__link">Sign Out</Link>
+          <Link to="/quiz" className="menu__link">Quiz</Link>
         </li>,
         <li className="menu__item" key={2}>
           <Link to="/dashboard" className="menu__link">Dashboard</Link>
-        </li>
+        </li>,
+        <li className="menu__item" key={3}>
+          <Link to="/signout" className="menu__link">Sign Out</Link>
+        </li>,
       ];
     } else {
       // show link to sign in or sign up
