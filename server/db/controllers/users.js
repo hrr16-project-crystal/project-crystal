@@ -42,9 +42,9 @@ module.exports = rep => {
         console.log("going through secondUser in db controller")
         return rep.one(sql.addSecondUser, secondUser)
           .then(result => {
-            console.log('=== below shoudl return the couple id and user id for the second user');
+            console.log('=== should now return WHOLE info for user! .. may add 2 couple id cols..');
             console.log(result);
-            console.log('--------------------------------------');
+            console.log('----------------------=========== ----------------');
             return result;
           })
           .catch(err => {

@@ -1,3 +1,6 @@
+/*
+  Returns all User related information, from a user_id 
+*/
 
 SELECT Users.*, Couples.*
 FROM Users

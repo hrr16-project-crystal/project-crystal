@@ -1,5 +1,6 @@
 /*
     Selects a particular user record by email.
+    // MAYBE ADD INNER JOIN ??? 
 */
 
 SELECT * FROM ${schema~}.Users 
