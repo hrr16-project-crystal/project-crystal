@@ -2,11 +2,7 @@ import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
 import * as actions from './quizAction';
 import './quiz.css';
-<<<<<<< 27ba9b9cbcc75b2ea56f13c68a7010d0634b11e9
 import { browserHistory } from 'react-router';
-=======
-import { Link, browserHistory } from 'react-router';
->>>>>>> Refactor directory
 import Header from '../App/Header';
 
 class Quiz extends Component {
