@@ -29,7 +29,7 @@ if (token) {
   store.dispatch({ type: AUTH_USER });
 }
 
-// The provider communicates with the connected components*
+// The provider communicates with the connected components *
 render(
   <Provider store={store}>
     <Router history={browserHistory}>
