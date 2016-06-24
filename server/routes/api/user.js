@@ -51,7 +51,7 @@ router.post('/users/add', (req, res, next) => {
                   res.send(helpers.desensitize(addedUser));
                 });
             } else {
-              Users.testAddSecondUser(newUser)
+              Users.addSecondUser(newUser)
                 .then(addedUser => {
                   res.send(helpers.desensitize(addedUser));
                 });

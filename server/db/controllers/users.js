@@ -29,7 +29,7 @@ module.exports = rep => {
       // RF so that sql.add does the 3 table join. 
       .then(addedCoupleUser => rep.one(sql.findById, addedCoupleUser.user_id)),
 
-    testAddSecondUser: secondUser =>
+    addSecondUser: secondUser =>
       rep.one(sql.addSecondUser, secondUser),
 
     // Tries to delete a user by id, and returns the number of records deleted;
