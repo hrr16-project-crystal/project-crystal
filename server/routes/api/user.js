@@ -2,7 +2,6 @@
 const express = require('express');
 const router = express.Router();
 const Users = require(__dirname + '/../../db/index').db.users;
-const pgp = require(__dirname + '/../../db/index').pgp;
 const helpers = require(__dirname + '/../../helpers/helpers');
 
 /** Get all existing users  */
@@ -15,24 +14,37 @@ router.get('/users', (req, res, next) => {
           data: helpers.desensitize(data),
         });
     })
+    .catch(err => next(err));
 });
 
-// MODIFY THIS TOO... 
-// get single user
+/** Get single user record  */
 router.get('/users/:id', (req, res, next) => {
   Users.findById(req.params.id)
     .then(data => {
+      if (!data) {
+        return res.status(500)
+          .json({
+            success: false,
+            data: 'User with ID of ' + req.params.id + ' does not exist',
+          });
+      }
       return res.status(200)
         .json({
           success: true,
-          data
+          data: helpers.desensitize(data),
         });
     })
+    .catch(err => next(err));
 });
 
-/** Add new user and return newly added user and couple record  */
+/** Update single user record  */
+router.put('/users/:id', (req, res, next) => {
+  res.send('Update route currently not yet set up! Stay tuned :)'); 
+});
+
+/** Add new user and return newly added user record  */
 router.post('/users/add', (req, res, next) => {
-  let newUser = req.body;
+  const newUser = req.body;
   Users.checkIfExists(newUser.email)
     .then(exists => {
       if (exists) {
@@ -59,12 +71,31 @@ router.post('/users/add', (req, res, next) => {
           });
       }
     })
-    .catch(err => helpers.customLog(err));
+    .catch(err => next(err));
 });
 
-// delete single user
+/** Delete single user record  */
 router.delete('/users/:id', (req, res, next) => {
-  res.send('nothing yet!');
+  Users.findById(req.params.id)
+    .then(exists => {
+      if (!exists) {
+        res.status(500)
+          .json({
+            success: false,
+            data: 'User with ID of ' + req.params.id + ' does not exit',
+          });
+      } else {
+        Users.removeById(req.params.id)
+          .then(deletedUser => {
+            return res.status(200)
+              .json({
+                success: true,
+                data: helpers.desensitize(deletedUser),
+              });
+          });
+      }
+    })
+    .catch(err => next(err));
 });
 
 module.exports = router;

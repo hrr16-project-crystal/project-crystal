@@ -26,7 +26,7 @@
 
 WITH new_user AS (
   INSERT INTO Users (first_name, last_name, email, password)
-  VALUES(${first_name}, ${last_name}, ${email}, ${password})
+  VALUES(INITCAP(${first_name}), INITCAP(${last_name}), LOWER(${email}), ${password})
   RETURNING *
 ),
 matching_user AS (

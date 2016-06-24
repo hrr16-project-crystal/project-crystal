@@ -33,21 +33,15 @@ module.exports = rep => {
       rep.one(sql.addSecondUser, secondUser),
 
     // Tries to delete a user by id, and returns the number of records deleted;
-    remove: id =>
-      rep.result('DELETE FROM Users WHERE id = $1', id, r => r.rowCount),
+    removeById: id =>
+      rep.one(sql.removeById, id),
 
     // Tries to find a user from id;
     findById: id =>
       rep.oneOrNone(sql.findById, id, user =>
         user),
 
-    // findByEmail: email =>
-    //   rep.oneOrNone(sql.findByEmail, email, user =>
-    //     user),
-
-    // RF: Needs to be able to handle case insensitive email requests.... !!!!!!!!!!!
-    // citext? 
-    // Check if user exists using email and return boolean true/false
+    // Check if user exists by email and return boolean true/false
     checkIfExists: email =>
       rep.oneOrNone(sql.findByEmail, email, user => {
         if (user !== null) {
@@ -62,6 +56,6 @@ module.exports = rep => {
 
     // Returns the total number of users;
     total: () =>
-      rep.one('SELECT count(*) FROM Users', [], data => parseInt(data.count))
+      rep.one('SELECT count(*) FROM Users', [], data => parseInt(data.count)),
   };
 };
