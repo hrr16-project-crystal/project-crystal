@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
 import * as actions from './authAction';
 import './auth.css';
-
 class Signup extends Component {
   constructor(props) {
     super(props);
@@ -23,7 +22,7 @@ class Signup extends Component {
       );
     }
   }
-
+  
   render() {
     const { handleSubmit, fields: {
       firstName, lastName, email, password, passwordConfirm, couple, otherEmail,
@@ -64,7 +63,8 @@ class Signup extends Component {
                 <i id="small-icon" className="material-icons prefix">lock</i>
                 <input type="password" className="form-control" {...password} />
                 <label>Password:</label>
-                {password.touched && password.error && <div className="error">{password.error}</div>}
+                {password.touched && password.error &&
+                  <div className="error">{password.error}</div>}
               </div>
             </fieldset>
             <fieldset className="form-group">

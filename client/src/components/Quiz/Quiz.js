@@ -89,7 +89,7 @@ class Quiz extends Component {
         <div className="quiz-box container">
           <h2>Let's get to know you...</h2>
           <p>Answer these questions below to allow us to get a snapshot of where your
-          relation is right now. Please take your time and answer these questions honestly. Spark
+          relation is right now. Please take your time and answer these questions honestly. SparkQ
           is here to help YOU!</p>
           <div className="divider divide"></div>
           <form onSubmit={handleSubmit(this.handleFormSubmit)}>
