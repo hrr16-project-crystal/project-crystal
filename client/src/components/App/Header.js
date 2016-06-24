@@ -13,6 +13,9 @@ class Header extends Component {
           <Link to="/calendar" className="menu__link">Calendar</Link>
         </li>,
         <li className="menu__item" key={1}>
+          <Link to="/todo" className="menu__link">ToDo</Link>
+        </li>,
+        <li className="menu__item" key={1}>
           <Link to="/quiz" className="menu__link">Quiz</Link>
         </li>,
         <li className="menu__item" key={2}>
