@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import * as actions from './quizAction';
 import './quiz.css';
-import { Link, browserHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 import Header from '../App/Header';
 
 class Quiz extends Component {
@@ -19,7 +18,7 @@ class Quiz extends Component {
   handleFormSubmit(formProps) {
 
     const result = {};
-    for (var key in formProps) {
+    for (const key in formProps) {
       const tempArr = formProps[key] ? formProps[key].split(',') : [];
       if (!result[tempArr[0]]) {
         result[tempArr[0]] = [+tempArr[1], 1];
@@ -30,7 +29,7 @@ class Quiz extends Component {
     }
     let total = 0;
     let userTotal = 0;
-    for (var key in result) {
+    for (const key in result) {
       userTotal += result[key][0];
       total += result[key][1];
       result[key] = Math.floor((result[key][0] / (result[key][1] * 20)) * 100);
@@ -40,7 +39,7 @@ class Quiz extends Component {
 
     this.props.postResponse(result);
 
-    setTimeout(function(){
+    setTimeout(() => {
       browserHistory.push('/dashboard');
     }, 1000);
   }
@@ -90,7 +89,7 @@ class Quiz extends Component {
         <div className="quiz-box container">
           <h2>Let's get to know you...</h2>
           <p>Answer these questions below to allow us to get a snapshot of where your
-          relation is right now. Please take your time and answer these questions honestly. Sparkq
+          relation is right now. Please take your time and answer these questions honestly. SparkQ
           is here to help YOU!</p>
           <div className="divider divide"></div>
           <form onSubmit={handleSubmit(this.handleFormSubmit)}>

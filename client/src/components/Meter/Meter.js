@@ -13,9 +13,9 @@ class Meter extends Component {
       <div className="container">
         <table>
           <thead>
-          <tr>
-            <th className="center-align">Relationship Health Score</th>
-          </tr>
+            <tr>
+              <th className="center-align">Relationship Health Score</th>
+            </tr>
           </thead>
           <tbody>
             <tr>
@@ -52,7 +52,6 @@ class Meter extends Component {
     if (!this.props.health) {
       return (
         <div>
-          <span>Loading!!!!!!!!!</span>
           <div className="preloader-wrapper big active">
             <div className="spinner-layer spinner-blue-only">
               <div className="circle-clipper left">

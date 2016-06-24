@@ -55,13 +55,8 @@ export const signoutUser = () => {
 
 export const signupUser = ({ firstName, lastName, email, password, couple, otherEmail }) => {
   return (dispatch) => {
-    console.log(otherEmail);
-    console.log('Above is the authentication other email prop');
     axios.post(`${apiUrl}/signup`, { firstName, lastName, email, password, couple, otherEmail })
     .then(response => {
-      console.log('==============');
-      console.log(response.data);
-      console.log('==============');
       dispatch({ type: AUTH_USER, payload: response.data.user });
       localStorage.setItem('token', response.data.token);
       browserHistory.push('/quiz');
@@ -86,17 +81,15 @@ export const fetchMessage = () => {
   };
 };
 
-export const facebookLogin = () => {
-  return dispatch => {
-    axios.get('/auth/facebook')
-    .then(response => {
-      dispatch({ type: AUTH_USER });
-      console.log(response);
-      browserHistory.push('/dashboard');
-    })
-    .catch(response => {
-      console.log(response);
-      dispatch(authError(response.data.error));
-    });
-  };
-};
+// export const facebookLogin = () => {
+//   return dispatch => {
+//     axios.get('/auth/facebook')
+//     .then(response => {
+//       dispatch({ type: AUTH_USER });
+//       browserHistory.push('/dashboard');
+//     })
+//     .catch(response => {
+//       dispatch(authError(response.data.error));
+//     });
+//   };
+// };

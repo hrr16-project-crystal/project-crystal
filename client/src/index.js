@@ -8,10 +8,10 @@ import reduxThunk from 'redux-thunk';
 import App from './components/App/App';
 import Signin from './components/Authentication/Signin';
 import Signout from './components/Authentication/Signout';
-import Signup from './components/Authentication/signup';
-import Dashboard from './components/Dashboard/dashboard';
+import Signup from './components/Authentication/Signup';
+import Dashboard from './components/Dashboard/Dashboard';
 import Quiz from './components/Quiz/Quiz';
-import requireAuth from './components/Authentication/requireAuth';
+import requireAuth from './components/Authentication/RequireAuth';
 import LandingPage from './components/LandingPage/LandingPage';
 import Meter from './components/Meter/Meter';
 import reducers from './helpers/rootReducer/rootReducer';
@@ -29,7 +29,7 @@ if (token) {
   store.dispatch({ type: AUTH_USER });
 }
 
-// The provider communicates with the connected components *
+// The provider Communicates with the connected components *
 render(
   <Provider store={store}>
     <Router history={browserHistory}>
