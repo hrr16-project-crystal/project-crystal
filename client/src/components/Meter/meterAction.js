@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_HEALTH } from '../../Helpers/constants/types';
+import { FETCH_HEALTH } from '../../helpers/constants/types';
 const apiUrl = 'http://localhost:3000/api/v1';
 
 export const getHealth = (coupleID) => {
