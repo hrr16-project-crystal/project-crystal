@@ -5,6 +5,7 @@ const Users = require(__dirname + '/../../db/index').db.users;
 const pgp = require(__dirname + '/../../db/index').pgp;
 const helpers = require(__dirname + '/../../helpers/helpers');
 
+// TEST IF UPDATED WELL
 // get all users
 router.get('/users', (req, res, next) => {
   Users.all()
@@ -12,11 +13,12 @@ router.get('/users', (req, res, next) => {
       return res.status(200)
         .json({
           success: true,
-          data
+          data: helpers.desensitize(data),
         });
     })
 });
 
+// MODIFY THIS TOO... 
 // get single user
 router.get('/users/:id', (req, res, next) => {
   Users.findById(req.params.id)
@@ -29,11 +31,9 @@ router.get('/users/:id', (req, res, next) => {
     })
 });
 
-router.post('/users/addtest', (req, res, next) => {
-  // PRB: assume the client will pass a newUser object that matches our expectation
-  // e.g.: { first_name: 'Michelle', last_name: 'Tu', isFirstOfCouple: true }
+/** Add new user and return newly added user and couple record  */
+router.post('/users/add', (req, res, next) => {
   let newUser = req.body;
-
   Users.checkIfExists(newUser.email)
     .then(exists => {
       if (exists) {
@@ -46,81 +46,24 @@ router.post('/users/addtest', (req, res, next) => {
         helpers.hashPassword(newUser.password)
           .then(hash => {
             newUser.password = hash;
-            // RF: Simply use otherUserEmail string as the flag/check. 
             if (newUser.isFirstOfCouple) {
               Users.testAdd(newUser)
                 .then(addedUser => {
                   res.send(helpers.desensitize(addedUser));
                 });
             } else {
+              // RF(?): Require email and a 'couple' password? Otherwise a stranger
+              // can simply join the existing couple
               Users.testAddSecondUser(newUser)
-                .then((resultt)=>{
-                  // should send user id and couple id, check if couple id matches existing user
-                  // email - couple id. 
-                  res.send(resultt); 
-                })
-                .catch((errr)=>{
-                  res.send(err); 
-                })
-              // deal with User being second of existing Couple
-              // They will provide other user's email on property
-              // expect: newUser.otherUserEmail
-              // STEPS
-                
+                .then(addedUser => {
+                  res.send(addedUser);
+                });
             }
           });
       }
     })
     .catch(err => helpers.customLog(err));
 });
-
-// RF: rely on either params/queries in url, or on passed objects. Not combinations!
-// add new user and return new added user
-router.post('/users/add', (req, res, next) => {
-  const newUserObj = req.body;
-  if (req.body.couple === 'yes') {
-    Users.add(newUserObj)
-      .then(data => {
-        return res.status(200)
-          .json({
-            success: true,
-            data
-          });
-      })
-      .catch(err => {
-        res.json({
-          success: false,
-          error: err.message || err
-        });
-      });
-  }
-});
-
-// Not working at the moment 
-// Idea - limit update to single param query e.g. /users/:id/:fieldToChange
-// // updates existing user record
-// router.put('/users/:id', (req, res, next) => {
-//   const user_id = parseInt(req.params.id);
-//   const objWithUpdates = req.body;
-//   res.json({
-//     success: false,
-//     data: 'THIS API IS NOT CURRENTLY SET UP'
-//   }); 
-//   Users.update(user_id, objWithUpdates, pgp)
-//     .then(data => {
-//       return res.status(200)
-//         .json({
-//           success: true,
-//           data
-//         });
-//     })
-//     .catch(err => {
-//       res.json({
-//         success: false,
-//         error: err.message || err
-//       });
-//     });
-// });
 
 // delete single user
 router.delete('/users/:id', (req, res, next) => {

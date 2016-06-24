@@ -6,7 +6,8 @@
   "scripts": {
     "build": "webpack --display-error-details -w",
     "clean": "rimraf client/build",
-    "start": "npm run clean && concurrently \"npm run build\" \"nodemon server/server.js\""
+    "start": "npm run clean && concurrently \"npm run build\" \"nodemon server/server.js\"",
+    "generate-docs": "node_modules/.bin/jsdoc -c jsdoc.json"
   },
   "repository": {
     "type": "git",

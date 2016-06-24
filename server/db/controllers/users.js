@@ -23,35 +23,19 @@ module.exports = rep => {
     empty: () =>
       rep.none(sql.empty),
 
-    // Adds a new user, and returns the new id;    //   SHOULD CHANGE TO WHOLE USER RETURN!
-    add: newUserObj =>
-      rep.one(sql.add, newUserObj, user =>
-        user),
+    // // Adds a new user, and returns the new id;   
+    // add: newUserObj =>
+    //   rep.one(sql.add, newUserObj, user =>
+    //     user),
 
-    // Adds a new user to Users, Couples and Couples_Users table, and returns all user information
+    // Adds a new user to Users, Couples and Couples_Users table, and returns all User information
     testAdd: newUser =>
       rep.one(sql.testAdd, newUser)
       // RF so that sql.testAdd does the 3 table join. 
       .then(addedCoupleUser => rep.one(sql.findById, addedCoupleUser.user_id)),
 
     testAddSecondUser: secondUser =>
-      // find coupleId with otherUserEmail
-      // add user to users table, add to EXISTING couple_user table
-      // newUser.otherCoupleEmail
-      {
-        console.log("going through secondUser in db controller")
-        return rep.one(sql.addSecondUser, secondUser)
-          .then(result => {
-            console.log('=== should now return WHOLE info for user! .. may add 2 couple id cols..');
-            console.log(result);
-            console.log('----------------------=========== ----------------');
-            return result;
-          })
-          .catch(err => {
-            console.log(err);
-            return err;
-          })
-      },
+      rep.one(sql.addSecondUser, secondUser),
 
     // Tries to delete a user by id, and returns the number of records deleted;
     remove: id =>
@@ -86,8 +70,14 @@ module.exports = rep => {
     // },
 
     // Returns all user records;
-    all: () =>
-      rep.any(sql.all),
+    all: () => {
+      console.log('reached the ALL hitpoint..');
+      return rep.any(sql.all).then(res=>{
+        console.log("BELOW IS result of sql.all op"); 
+        console.log(res);
+        return res;
+      });
+    },
 
     // Returns the total number of users;
     total: () =>
