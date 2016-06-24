@@ -1,4 +1,4 @@
-import { FETCH_QUESTIONS, MARK_ANSWERED, } from '../../helpers/constants/types';
+import { FETCH_QUESTIONS, MARK_ANSWERED, } from '../../Helpers/constants/types';
 
 export default (state = {}, action) => {
   switch (action.type) {
