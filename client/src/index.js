@@ -22,11 +22,15 @@ import Calendar from './components/Calendar/Calendar';
 
 import reducers from './helpers/rootReducer/rootReducer';
 import { AUTH_USER } from './helpers/constants/types';
+import startChat from './Chat/message';
 
 import './index.css';
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers, window.devToolsExtension && window.devToolsExtension());
+
+//start socket chat
+startChat(store);
 
 const token = localStorage.getItem('token');
 // If we have a token then consider user to be signed in
