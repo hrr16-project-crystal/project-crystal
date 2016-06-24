@@ -1,19 +1,14 @@
 /*
-    Creates Database
--- */
--- CREATE DATABASE blossomly
--- OWNER 'some user?'
-
-/*
     Creates table Users.
 */
+CREATE EXTENSION IF NOT EXISTS citext; 
 
 CREATE TABLE ${schema~}.Users
 (
     user_id serial PRIMARY KEY,
     first_name text NOT NULL,
     last_name text NOT NULL,
-    email text NOT NULL UNIQUE, 
+    email citext NOT NULL UNIQUE, 
     password text NOT NULL
 );
 

@@ -5,8 +5,7 @@ const Users = require(__dirname + '/../../db/index').db.users;
 const pgp = require(__dirname + '/../../db/index').pgp;
 const helpers = require(__dirname + '/../../helpers/helpers');
 
-// TEST IF UPDATED WELL
-// get all users
+/** Get all existing users  */
 router.get('/users', (req, res, next) => {
   Users.all()
     .then(data => {
@@ -47,16 +46,14 @@ router.post('/users/add', (req, res, next) => {
           .then(hash => {
             newUser.password = hash;
             if (newUser.isFirstOfCouple) {
-              Users.testAdd(newUser)
+              Users.add(newUser)
                 .then(addedUser => {
                   res.send(helpers.desensitize(addedUser));
                 });
             } else {
-              // RF(?): Require email and a 'couple' password? Otherwise a stranger
-              // can simply join the existing couple
               Users.testAddSecondUser(newUser)
                 .then(addedUser => {
-                  res.send(addedUser);
+                  res.send(helpers.desensitize(addedUser));
                 });
             }
           });

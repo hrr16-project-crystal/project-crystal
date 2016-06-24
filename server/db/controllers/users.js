@@ -23,15 +23,10 @@ module.exports = rep => {
     empty: () =>
       rep.none(sql.empty),
 
-    // // Adds a new user, and returns the new id;   
-    // add: newUserObj =>
-    //   rep.one(sql.add, newUserObj, user =>
-    //     user),
-
     // Adds a new user to Users, Couples and Couples_Users table, and returns all User information
-    testAdd: newUser =>
-      rep.one(sql.testAdd, newUser)
-      // RF so that sql.testAdd does the 3 table join. 
+    add: newUser =>
+      rep.one(sql.add, newUser)
+      // RF so that sql.add does the 3 table join. 
       .then(addedCoupleUser => rep.one(sql.findById, addedCoupleUser.user_id)),
 
     testAddSecondUser: secondUser =>
@@ -46,38 +41,24 @@ module.exports = rep => {
       rep.oneOrNone(sql.findById, id, user =>
         user),
 
-    findByEmail: email =>
-      rep.oneOrNone(sql.findByEmail, email, user =>
-        user),
+    // findByEmail: email =>
+    //   rep.oneOrNone(sql.findByEmail, email, user =>
+    //     user),
 
+    // RF: Needs to be able to handle case insensitive email requests.... !!!!!!!!!!!
+    // citext? 
+    // Check if user exists using email and return boolean true/false
     checkIfExists: email =>
       rep.oneOrNone(sql.findByEmail, email, user => {
-        // const helpers = require(__dirname + '/../../helpers/helpers');
-        // helpers.customLog(user);
         if (user !== null) {
           return true;
         }
         return false;
       }),
 
-    // RF: 
-    // update: (user_id, objWithUpdates, pgp) => {
-    //   console.log('===================');
-    //   const sqlUpdate = "UPDATE public.Users SET first_name=${first_name}, last_name=${last_name}, email=${email}, password=${password} WHERE user_id=${user_id} RETURNING *";
-    //   const modSqlUpdate = pgp.as.format(sqlUpdate, objWithUpdates, { partial: true });
-    //   return rep.one(modSqlUpdate, user =>
-    //     user);
-    // },
-
     // Returns all user records;
-    all: () => {
-      console.log('reached the ALL hitpoint..');
-      return rep.any(sql.all).then(res=>{
-        console.log("BELOW IS result of sql.all op"); 
-        console.log(res);
-        return res;
-      });
-    },
+    all: () =>
+      rep.any(sql.all),
 
     // Returns the total number of users;
     total: () =>
