@@ -35,23 +35,27 @@ class Signin extends Component {
       <div className="signin--box">
         <div className="signin__overlay">
           <form className="signin__form" onSubmit={handleSubmit(this.handleFormSubmit)}>
-            <h6 className="signin--box__title">Self awareness in a relationship makes all the difference</h6>
+            <h6 className="signin--box__title">
+            Self awareness in a relationship makes all the difference</h6>
             <fieldset className="form-group">
               <div className="input-field">
                 <i className="material-icons prefix">email</i>
                 <input type="email" className="form-control" {...email} />
-                <label for="icon_email">Email:</label>
+                <label>Email:</label>
               </div>
             </fieldset>
             <fieldset className="form-group">
               <div className="input-field">
                 <i className="material-icons prefix">lock</i>
                 <input type="password" className="form-control" {...password} />
-                <label for="icon_lock">Password:</label>
+                <label>Password:</label>
               </div>
             </fieldset>
             <div className="signin__btn">
-              <button action="submit" className="btn btn-primary waves-effect waves-light btn-large">Sign In</button>
+              <button
+                action="submit"
+                className="btn btn-primary waves-effect waves-light btn-large"
+              >Sign In</button>
               <div className="signin__alert">
                 {this.renderAlert()}
               </div>

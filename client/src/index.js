@@ -5,17 +5,17 @@ import { createStore, applyMiddleware } from 'redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import reduxThunk from 'redux-thunk';
 
-import App from './components/App/App';
-import Signin from './components/Authentication/Signin';
-import Signout from './components/Authentication/Signout';
-import Signup from './components/Authentication/signup';
-import Dashboard from './components/Dashboard/dashboard';
-import Quiz from './components/Quiz/Quiz';
-import requireAuth from './components/Authentication/requireAuth';
-import LandingPage from './components/LandingPage/LandingPage';
-import Meter from './components/Meter/Meter';
-import reducers from './helpers/rootReducer/rootReducer';
-import { AUTH_USER } from './helpers/constants/types';
+import App from './Components/App/App';
+import Signin from './Components/Authentication/Signin';
+import Signout from './Components/Authentication/Signout';
+import Signup from './Components/Authentication/Signup';
+import Dashboard from './Components/Dashboard/Dashboard';
+import Quiz from './Components/Quiz/Quiz';
+import requireAuth from './Components/Authentication/RequireAuth';
+import LandingPage from './Components/LandingPage/LandingPage';
+import Meter from './Components/Meter/Meter';
+import reducers from './Helpers/rootReducer/rootReducer';
+import { AUTH_USER } from './Helpers/constants/types';
 
 import './index.css';
 
@@ -29,7 +29,7 @@ if (token) {
   store.dispatch({ type: AUTH_USER });
 }
 
-// The provider communicates with the connected components *
+// The provider Communicates with the connected components *
 render(
   <Provider store={store}>
     <Router history={browserHistory}>

@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 import { reducer as form } from 'redux-form';
-import authReducer from '../../components/Authentication/authReducer';
-import quizReducer from '../../components/Quiz/quizReducer';
-import meterReducer from '../../components/Meter/meterReducer';
+import authReducer from '../../Components/Authentication/authReducer';
+import quizReducer from '../../Components/Quiz/quizReducer';
+import meterReducer from '../../Components/Meter/meterReducer';
 
 const rootReducer = combineReducers({
   form,

@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
 import * as actions from './authAction';
 import './auth.css';
+
 class Signup extends Component {
   constructor(props) {
     super(props);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
   handleFormSubmit(formProps) {
@@ -22,23 +24,6 @@ class Signup extends Component {
     }
   }
 
-  // renderInput() {
-  //   const coupleFlag = this.props.fields.couple.value;
-  //   const { fields: otherEmail } = this.props;
-
-  //   if (coupleFlag === 'no') {
-  //     return (
-  //       <fieldset className="form-group">
-  //         <div className="input-field">
-  //           <i id="small-icon" className="material-icons prefix">email</i>
-  //           <input type="email" className="form-control" {...otherEmail} />
-  //           <label>Partner's Email:</label>
-  //         </div>
-  //       </fieldset>
-  //     );
-  //   }
-  // }
-
   render() {
     const { handleSubmit, fields: {
       firstName, lastName, email, password, passwordConfirm, couple, otherEmail,
@@ -46,14 +31,15 @@ class Signup extends Component {
     return (
       <div className="signup--box">
         <div className="signup__overlay">
-          <form className="signup__form" onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
+          <form className="signup__form" onSubmit={handleSubmit(this.handleFormSubmit)}>
             <h6 className="signup--box__title">A better relationship is right around the corner</h6>
             <fieldset className="form-group">
               <div className="input-field">
                 <i id="small-icon" className="material-icons prefix">person_pin</i>
                 <input type="text" className="form-control" {...firstName} />
                 <label>First Name:</label>
-                {firstName.touched && firstName.error && <div className="error">{firstName.error}</div>}
+                {firstName.touched && firstName.error &&
+                  <div className="error">{firstName.error}</div>}
               </div>
             </fieldset>
             <fieldset className="form-group">
@@ -61,7 +47,8 @@ class Signup extends Component {
                 <i id="small-icon" className="material-icons prefix">person_pin</i>
                 <input type="text" className="form-control" {...lastName} />
                 <label>Last Name:</label>
-                {lastName.touched && lastName.error && <div className="error">{lastName.error}</div>}
+                {lastName.touched && lastName.error &&
+                  <div className="error">{lastName.error}</div>}
               </div>
             </fieldset>
             <fieldset className="form-group">
@@ -100,7 +87,10 @@ class Signup extends Component {
               </div>
             </fieldset>
             <fieldset className="form-group">
-              <div className="input-field">
+              <div
+                className="input-field"
+                hidden={this.props.fields.couple.value === 'no' ? false : true}
+              >
                 <i id="small-icon" className="material-icons prefix">email</i>
                 <input type="email" className="form-control" {...otherEmail} />
                 <label>Partner's Email:</label>
@@ -179,8 +169,7 @@ const validate = (formProps) => {
 const mapStateToProps = state => {
   return { errorMessage: state.auth.error };
 };
-// be sure to add otherEmail as a field to indicate the other person's email address if they are
-// not the first to sign up
+
 export default reduxForm({
   form: 'signup',
   fields: ['firstName', 'lastName', 'email', 'password', 'passwordConfirm', 'couple', 'otherEmail'],
