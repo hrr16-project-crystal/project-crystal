@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'; // gg
 import { connect } from 'react-redux';
 import * as actions from './meterAction';
 import './meter.css';
