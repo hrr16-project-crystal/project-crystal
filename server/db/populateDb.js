@@ -15,7 +15,7 @@ const populateDb = () => {
     // .then(coupleUsers => console.log('DB successfully created junction couples_users table', coupleUsers))
     // .catch(err => console.log(err))
     .then(db.questions.create)
-    // .then(db.questions.init)
+    .then(db.questions.init)
     // .then(() => console.log("DB successfully populated with questions: "))
     .catch(err => console.log(err));
 };

@@ -3,7 +3,7 @@ const router = express.Router();
 const Questions = require(__dirname + '/../../db/index').db.questions;
 const pgp = require(__dirname + '/../../db/index').pgp;
 
-// // get all questions
+/** Get all existing questions. May pass options on req.body to specify additional search criteria  */
 // router.get('/questions', (req, res, next) => {
 //   Questions.all()
 //     .then(data => {
