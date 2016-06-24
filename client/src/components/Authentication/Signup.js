@@ -13,7 +13,7 @@ class Signup extends Component {
     // Call action creator to signup the user
     this.props.signupUser(formProps);
   }
-
+​
   renderAlert() {
     if (this.props.errorMessage) {
       return (
@@ -119,7 +119,11 @@ class Signup extends Component {
  <input name="group1" type="radio" {...couple} value="no" />
  <label>No - connect with my partner</label>
  </p>
+<<<<<<< f702070628353f5027ea90caf0713d12c2b4ed07
 
+=======
+ ​
+>>>>>>> Add rebase files
  Josh's attempt at radio buttons....
  to replace dropdown, need to get this working
  <form action="#">
@@ -153,7 +157,7 @@ const validate = (formProps) => {
   if (!formProps.email) {
     errors.email = 'Please enter an email';
   }
-
+  
   if (!formProps.password) {
     errors.password = 'Please enter a password';
   }
@@ -163,7 +167,7 @@ const validate = (formProps) => {
   if (formProps.password !== formProps.passwordConfirm) {
     errors.password = 'Passwords must match';
   }
-
+  
   return errors;
 };
 
