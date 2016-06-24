@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { reduxForm, propTypes } from 'redux-form';
+import { reduxForm } from 'redux-form';
 import * as actions from './authAction';
 import './auth.css';
 class Signup extends Component {
@@ -119,9 +119,6 @@ class Signup extends Component {
 }
 
 /*
-
-email1@gm.com => pass => 33, 32,
-email2@gm.com => pass
 
 <p>
   <input name="group1" type="radio" {...couple} value="yes" />
