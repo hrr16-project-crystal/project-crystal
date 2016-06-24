@@ -4,7 +4,7 @@
 import axios from 'axios';
 // browserHistory can be used to make changes to the URL for programmatic navigation
 import { browserHistory } from 'react-router';
-import { AUTH_USER, AUTH_ERROR, UNAUTH_USER, FETCH_MESSAGE } from '../../Helpers/constants/types';
+import { AUTH_USER, AUTH_ERROR, UNAUTH_USER, FETCH_MESSAGE } from '../../helpers/constants/types';
 const apiUrl = 'http://localhost:3000';
 
 // Pass a string and it will send an error message to all components
