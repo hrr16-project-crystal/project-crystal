@@ -2,16 +2,13 @@
   display: block;
   color: black;
 }
-
 .signin--box {
   height: 100vh;
   background: #000 no-repeat center/cover url("../../assets/15.jpg");
 }
-
 .signin__btn {
   padding-right: 22vh;
 }
-
 .signin__overlay {
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
@@ -21,13 +18,11 @@
   max-width: 400px;
   padding-top: 1em;
 }
-
 .signin__form {
   display: inline-block;
   margin: auto;
   text-align: center;
 }
-
 .signin--box__title {
   padding-top: 27vh;
   text-align: center;
@@ -37,24 +32,19 @@
   font-weight: 700;
   margin: 24px 0 10px;
 }
-
 .signin__alert {
   color: #fff;
   font-weight: 70;
 }
-
 .form-group {
   color: #fff;
   border: 1px solid transparent;
-
 }
-
 .signup--box {
   height: 120vh;
   background: #000 no-repeat center/cover url("../../assets/17.jpg");
 
 }
-
 .signup__overlay {
   height: 120vh;
   background-color: rgba(0, 0, 0, 0.5);
@@ -109,6 +99,24 @@
   display: inline-block;
   text-align: center;
 
+}
+.form-group label, .form-group input{
+ color: #fff;
+ font-size: 1.1em;
+}
+.signup--box__title {
+  text-align: center;
+  color: #fff;
+  font-size: 35px;
+  line-height: 65px;
+  font-weight: 700;
+}
+.signup__form {
+  max-width: 400px;
+  margin: auto;
+  padding-top: 1em;
+  display: inline-block;
+  text-align: center;
 }
 
 #small-icon {
