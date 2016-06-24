@@ -8,7 +8,6 @@ class Signup extends Component {
     super(props);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
-
   handleFormSubmit(formProps) {
     // Call action creator to signup the user
     this.props.signupUser(formProps);
@@ -25,9 +24,7 @@ class Signup extends Component {
   }
 
   render() {
-    const { handleSubmit, fields: {
-      firstName, lastName, email, password, passwordConfirm, couple, otherEmail,
-    } } = this.props;
+    const { handleSubmit, fields: { firstName, lastName, email, password, passwordConfirm, couple }} = this.props;
     return (
       <div className="signup--box">
         <div className="signup__overlay">
@@ -51,13 +48,10 @@ class Signup extends Component {
                   <div className="error">{lastName.error}</div>}
               </div>
             </fieldset>
-            <fieldset className="form-group">
-              <div className="input-field">
-                <i id="small-icon" className="material-icons prefix">email</i>
-                <input type="email" className="form-control" {...email} />
-                <label>Email:</label>
-                {email.touched && email.error && <div className="error">{email.error}</div>}
-              </div>
+            <fieldset className="form-group col 4">
+              <label>Email:</label>
+              <input className="form-control col 4" {...email} />
+              {email.touched && email.error && <div className="error">{email.error}</div>}
             </fieldset>
             <fieldset className="form-group">
               <div className="input-field">
@@ -68,22 +62,19 @@ class Signup extends Component {
                   <div className="error">{password.error}</div>}
               </div>
             </fieldset>
-            <fieldset className="form-group">
-              <div className="input-field">
-                <i id="small-icon" className="material-icons prefix">lock</i>
-                <input type="password" className="form-control" {...passwordConfirm} />
-                <label>Confirm Password:</label>
-                  {passwordConfirm.touched && passwordConfirm.error &&
-                    <div className="error">{passwordConfirm.error}</div>}
-              </div>
+            <fieldset className="form-group col 4">
+              <label>Confirm Password:</label>
+              <input type="password" className="form-control" {...passwordConfirm} />
+                {passwordConfirm.touched && passwordConfirm.error &&
+                  <div className="error">{passwordConfirm.error}</div>}
             </fieldset>
-            <fieldset className="form-group">
-              <label>Would you like to start a new couple?</label>
+            <fieldset className="form-group col 4">
+              <label>Would you like to initiate a new couple?</label>
               <div>
                 <select className="signup-questions" {...couple}>
                   <option>Select an answer...</option>
-                  <option value="yes">Yes - my partner has not signed up yet</option>
-                  <option value="no">No - connect with my partner</option>
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
                 </select>
               </div>
             </fieldset>
@@ -98,10 +89,7 @@ class Signup extends Component {
               </div>
             </fieldset>
             {this.renderAlert()}
-            <button
-              action="Submit"
-              className="btn btn-primary waves-effect waves-light"
-            >Signup</button>
+            <button action="Submit" className="btn btn-primary">Signup</button>
           </form>
         </div>
       </div>
@@ -109,46 +97,10 @@ class Signup extends Component {
   }
 }
 
-/*
-Mike's Attempt at radio buttons....
-<p>
-  <input name="group1" type="radio" {...couple} value="yes" />
-  <label>Yes - my partner has not signed up yet</label>
-</p>
-<p>
-  <input name="group1" type="radio" {...couple} value="no" />
-  <label>No - connect with my partner</label>
-</p>
-
-Josh's attempt at radio buttons....
-to replace dropdown, need to get this working
-<form action="#">
-   <p>
-     <input className="with-gap" name="group1" id="agree" type="radio" />
-     <label for="agree">Yes - my partner has not signed up yet</label>
-   </p>
-   <p>
-     <input className="with-gap" name="group1" type="radio" />
-     <label for="disagree">No - connect with my partner</label>
-   </p>
- </form>
- <select className="signup-questions" {...couple}>
-   <option>Select an answer...</option>
-   <option value="yes">Yes - my partner has not signed up yet</option>
-   <option value="no">No - connect with my partner</option>
- </select>
-*/
+// <button><a href="/auth/facebook">Signup with Facebook</a></button>
 
 const validate = (formProps) => {
   const errors = {};
-
-  if (!formProps.firstName) {
-    errors.firstName = 'Please enter your first name';
-  }
-
-  if (!formProps.lastName) {
-    errors.lastName = 'Please enter your last name';
-  }
 
   if (!formProps.email) {
     errors.email = 'Please enter an email';
@@ -157,9 +109,11 @@ const validate = (formProps) => {
   if (!formProps.password) {
     errors.password = 'Please enter a password';
   }
+
   if (!formProps.passwordConfirm) {
     errors.passwordConfirm = 'Please enter a password confirmation';
   }
+
   if (formProps.password !== formProps.passwordConfirm) {
     errors.password = 'Passwords must match';
   }
@@ -173,6 +127,6 @@ const mapStateToProps = state => {
 
 export default reduxForm({
   form: 'signup',
-  fields: ['firstName', 'lastName', 'email', 'password', 'passwordConfirm', 'couple', 'otherEmail'],
+  fields: ['firstName', 'lastName', 'email', 'password', 'passwordConfirm', 'couple'],
   validate,
 }, mapStateToProps, actions)(Signup);
