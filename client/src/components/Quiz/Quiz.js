@@ -1,4 +1,4 @@
-import React, { Component } from 'react'; // gg
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import * as actions from './quizAction';
