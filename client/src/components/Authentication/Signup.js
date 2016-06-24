@@ -119,7 +119,7 @@ class Signup extends Component {
 }
 
 /*
-
+Mike's Attempt at radio buttons....
 <p>
   <input name="group1" type="radio" {...couple} value="yes" />
   <label>Yes - my partner has not signed up yet</label>
@@ -128,6 +128,24 @@ class Signup extends Component {
   <input name="group1" type="radio" {...couple} value="no" />
   <label>No - connect with my partner</label>
 </p>
+
+Josh's attempt at radio buttons....
+to replace dropdown, need to get this working
+<form action="#">
+   <p>
+     <input className="with-gap" name="group1" id="agree" type="radio" />
+     <label for="agree">Yes - my partner has not signed up yet</label>
+   </p>
+   <p>
+     <input className="with-gap" name="group1" type="radio" />
+     <label for="disagree">No - connect with my partner</label>
+   </p>
+ </form>
+ <select className="signup-questions" {...couple}>
+   <option>Select an answer...</option>
+   <option value="yes">Yes - my partner has not signed up yet</option>
+   <option value="no">No - connect with my partner</option>
+ </select>
 */
 
 const validate = (formProps) => {
