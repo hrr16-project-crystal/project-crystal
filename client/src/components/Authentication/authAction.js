@@ -53,9 +53,11 @@ export const signoutUser = () => {
   return { type: UNAUTH_USER };
 };
 
-export const signupUser = ({ firstName, lastName, email, password, couple }) => {
+export const signupUser = ({ firstName, lastName, email, password, couple, otherEmail }) => {
   return (dispatch) => {
-    axios.post(`${apiUrl}/signup`, { firstName, lastName, email, password, couple })
+    console.log(otherEmail);
+    console.log('Above is the authentication other email prop');
+    axios.post(`${apiUrl}/signup`, { firstName, lastName, email, password, couple, otherEmail })
     .then(response => {
       console.log('==============');
       console.log(response.data);

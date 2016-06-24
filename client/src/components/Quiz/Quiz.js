@@ -16,26 +16,6 @@ class Quiz extends Component {
     this.props.getQuestions();
   }
 
-  renderQuestions() {
-    const { fields } = this.props;
-    return this.props.questions.data.map(question => {
-      return (
-        <div className="row" key={question.question_id}>
-          <div className="quiz-questions col s10 offset-1">
-          <label>{question.body}</label>
-            <select className="quiz-questions col s10 offset-1" {...fields[question.question_id]}>
-              <option className="tip">Select your answer...</option>
-              <option value={[question.category, 20]}>{question.answers.answers[0]}</option>
-              <option value={[question.category, 15]}>{question.answers.answers[1]}</option>
-              <option value={[question.category, 10]}>{question.answers.answers[2]}</option>
-              <option value={[question.category, 5]}>{question.answers.answers[3]}</option>
-            </select>
-          </div>
-        </div>
-      );
-    });
-  }
-
   handleFormSubmit(formProps) {
 
     const result = {};
@@ -57,39 +37,61 @@ class Quiz extends Component {
     }
     result.Total = Math.floor((userTotal / (total * 20)) * 100);
     result.user_id = this.props.user.user_id;
-
     this.props.postResponse(result);
-    // This works, but the health meter doesn't display scores until you  go home then back to dashboard
-    // Issue with the data being 0 immediately... 
 
     setTimeout(function(){
       browserHistory.push('/dashboard');
-    },1000);
+    }, 1000);
+  }
+
+  renderQuestions() {
+    const { fields } = this.props;
+    return this.props.questions.data.map(question => {
+      return (
+        <div className="row" key={question.question_id}>
+          <div className="quiz-questions col s10 offset-1">
+            <label>{question.body}</label>
+            <select className="quiz-questions col s10 offset-1" {...fields[question.question_id]}>
+              <option className="tip">Select your answer...</option>
+              <option value={[question.category, 20]}>{question.answers.answers[0]}</option>
+              <option value={[question.category, 15]}>{question.answers.answers[1]}</option>
+              <option value={[question.category, 10]}>{question.answers.answers[2]}</option>
+              <option value={[question.category, 5]}>{question.answers.answers[3]}</option>
+            </select>
+          </div>
+        </div>
+      );
+    });
   }
 
   render() {
     const { handleSubmit } = this.props;
 
     if (!this.props.questions) {
-      return (   
-      <div class="preloader-wrapper big active">
-        <div class="spinner-layer spinner-blue-only">
-          <div class="circle-clipper left">
-            <div class="circle"></div>
-          </div><div class="gap-patch">
-            <div class="circle"></div>
-          </div><div class="circle-clipper right">
-            <div class="circle"></div>
+      return (
+        <div className="preloader-wrapper big active">
+          <div className="spinner-layer spinner-blue-only">
+            <div className="circle-clipper left">
+              <div className="circle"></div>
+            </div><div className="gap-patch">
+              <div className="circle"></div>
+            </div><div className="circle-clipper right">
+              <div className="circle"></div>
+            </div>
           </div>
         </div>
-      </div>
-    );}
+      );
+    }
 
     return (
       <div className="teal lighten-5">
         <Header />
-        <h2>Let's get to know you...</h2>
         <div className="quiz-box container">
+          <h2>Let's get to know you...</h2>
+          <p>Answer these questions below to allow us to get a snapshot of where your
+          relation is right now. Please take your time and answer these questions honestly. Sparkq
+          is here to help YOU!</p>
+          <div className="divider divide"></div>
           <form onSubmit={handleSubmit(this.handleFormSubmit)}>
             {this.renderQuestions()}
             <button className="waves-effect waves-light btn" type="submit">Submit</button>
