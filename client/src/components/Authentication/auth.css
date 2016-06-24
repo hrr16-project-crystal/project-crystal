@@ -9,7 +9,7 @@
 }
 
 .signin__btn {
-  padding-right: 40vh;
+  padding-right: 22vh;
 }
 
 .signin__overlay {
@@ -22,6 +22,9 @@
 .signin__form {
   display: inline-block;
   margin: auto;
+  text-align: center;
+  max-width: 400px;
+  padding-top: 1em;
   text-align: center;
 }
 
@@ -47,7 +50,7 @@
 
 .signup--box {
   height: 120vh;
-  background: #000 no-repeat center/cover url("../assets/17.jpg");
+  background: #000 no-repeat center/cover url("../../assets/17.jpg");
 }
 
 .signup__overlay {
@@ -74,5 +77,11 @@
   max-width: 400px;
   margin: auto;
   padding-top: 1em;
+  display: inline-block;
+  text-align: center;
+}
+
+.stuff {
+  font-size: 1.5em;
 }
 

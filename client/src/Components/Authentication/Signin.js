@@ -34,16 +34,16 @@ class Signin extends Component {
     return (
       <div className="signin--box">
         <div className="signin__overlay">
-          <form className="row signin__form" onSubmit={handleSubmit(this.handleFormSubmit)}>
+          <form className="signin__form" onSubmit={handleSubmit(this.handleFormSubmit)}>
             <h6 className="signin--box__title">Self awareness in a relationship makes all the difference</h6>
-            <fieldset className="form-group col s4">
+            <fieldset className="form-group">
               <div className="input-field">
                 <i className="material-icons prefix">email</i>
                 <input type="email" className="form-control" {...email} />
                 <label for="icon_email">Email:</label>
               </div>
             </fieldset>
-            <fieldset className="form-group col s4">
+            <fieldset className="form-group">
               <div className="input-field">
                 <i className="material-icons prefix">lock</i>
                 <input type="password" className="form-control" {...password} />
