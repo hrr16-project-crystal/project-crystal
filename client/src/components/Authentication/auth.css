@@ -1,5 +1,6 @@
 .signup-questions {
   display: block;
+  color: black;
 }
 
 .signin--box {
@@ -8,7 +9,7 @@
 }
 
 .signin__btn {
-  padding-right: 40vh;
+  padding-right: 22vh;
 }
 
 .signin__overlay {
@@ -21,6 +22,9 @@
 .signin__form {
   display: inline-block;
   margin: auto;
+  text-align: center;
+  max-width: 400px;
+  padding-top: 1em;
   text-align: center;
 }
 
@@ -41,17 +45,43 @@
 
 .form-group {
   color: #fff;
+  border: 1px solid transparent;
 }
 
 .signup--box {
-  height: 100vh;
+  height: 120vh;
   background: #000 no-repeat center/cover url("../../assets/17.jpg");
 }
 
 .signup__overlay {
-  height: 100vh;
+  height: 120vh;
   background-color: rgba(0, 0, 0, 0.5);
   width: 100%;
   text-align: center;
+}
+
+.form-group label, .form-group input{
+ color: #fff;
+ font-size: 1.1em;
+}
+
+.signup--box__title {
+  text-align: center;
+  color: #fff;
+  font-size: 35px;
+  line-height: 65px;
+  font-weight: 700;
+}
+
+.signup__form {
+  max-width: 400px;
+  margin: auto;
+  padding-top: 1em;
+  display: inline-block;
+  text-align: center;
+}
+
+.stuff {
+  font-size: 1.5em;
 }
 
