@@ -46,81 +46,33 @@ router.post('/users/addtest', (req, res, next) => {
         helpers.hashPassword(newUser.password)
           .then(hash => {
             newUser.password = hash;
+            // RF: Simply use otherUserEmail string as the flag/check. 
             if (newUser.isFirstOfCouple) {
               Users.testAdd(newUser)
                 .then(addedUser => {
-                  helpers.customLog('New User with table joins is: ');
-                  helpers.customLog(addedUser);
                   res.send(helpers.desensitize(addedUser));
-                })
-                .catch(err => {
-                  helpers.customLog(err); 
-                  res.send(err)
                 });
             } else {
+              Users.testAddSecondUser(newUser)
+                .then((resultt)=>{
+                  // should send user id and couple id, check if couple id matches existing user
+                  // email - couple id. 
+                  res.send(resultt); 
+                })
+                .catch((errr)=>{
+                  res.send(err); 
+                })
               // deal with User being second of existing Couple
-              // Users.testAdd(newUser)
-              //   .then(addedUser => {
-              //     helpers.customLog('New User with table joins is: ');
-              //     helpers.customLog(addedUser);
-              //     res.send('soething!!!!'); 
-              //   });
+              // They will provide other user's email on property
+              // expect: newUser.otherUserEmail
+              // STEPS
+                
             }
           });
       }
     })
     .catch(err => helpers.customLog(err));
 });
-
-
-//         if (req.body.couple === 'yes') {
-//           Couples.add()
-//           .then(couple => {
-//             Users.add(user)
-//             .then(createdUser => {
-//               CouplesUsers.add(couple.couple_id, createdUser.user_id)
-//               .then(coupleUser => {
-//                 res.json({
-//                   token: tokenForUser(createdUser),
-//                   user: createdUser,
-//                 });
-//               });
-//             });
-//           });
-//         } else {
-//           const otherUserEmail = req.body.otherEmail
-//           Users.findByEmail(otherUserEmail)
-//           .then(otherUser => {
-//             CouplesUsers.findByUserId(otherUser.user_id)
-//             .then(coupleUser => {
-//               Users.add(user)
-//               .then(createdUser => {
-//                 CouplesUsers.add(coupleUser.couple_id, createdUser.user_id)
-//                 .then(data => {
-//                   res.json({
-//                     token: tokenForUser(createdUser),
-//                     user: createdUser,
-//                   });
-//                 });
-//               });
-//             });
-//           });
-//         }
-//         // Users.add(user)
-//         //   .then(data => {
-//         //     return res.json({
-//         //       token: tokenForUser(data),
-//         //       user: data,
-//         //     });
-//         //   })
-//         //   .catch(err => {
-//         //     return next(err);
-//         //   });
-//       });
-//     });
-//     });
-
-
 
 // RF: rely on either params/queries in url, or on passed objects. Not combinations!
 // add new user and return new added user

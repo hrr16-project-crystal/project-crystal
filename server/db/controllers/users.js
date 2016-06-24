@@ -28,20 +28,30 @@ module.exports = rep => {
       rep.one(sql.add, newUserObj, user =>
         user),
 
+    // Adds a new user to Users, Couples and Couples_Users table, and returns all user information
     testAdd: newUser =>
       rep.one(sql.testAdd, newUser)
       // RF so that sql.testAdd does the 3 table join. 
       .then(addedCoupleUser => rep.one(sql.findById, addedCoupleUser.user_id)),
 
-    // testAdd: newUser => {
-    //   return rep.one(sql.testAdd, newUser)
-    //     .then(addedCoupleUser => {
-    //       return rep.one(sql.findById, addedCoupleUser.user_id)
-    //         .then(wholeUserInfo => {
-    //           return wholeUserInfo;
-    //         })
-    //     })
-    // },
+    testAddSecondUser: secondUser =>
+      // find coupleId with otherUserEmail
+      // add user to users table, add to EXISTING couple_user table
+      // newUser.otherCoupleEmail
+      {
+        console.log("going through secondUser in db controller")
+        return rep.one(sql.addSecondUser, secondUser)
+          .then(result => {
+            console.log('=== below shoudl return the couple id and user id for the second user');
+            console.log(result);
+            console.log('--------------------------------------');
+            return result;
+          })
+          .catch(err => {
+            console.log(err);
+            return err;
+          })
+      },
 
     // Tries to delete a user by id, and returns the number of records deleted;
     remove: id =>
