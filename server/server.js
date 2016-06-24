@@ -52,6 +52,15 @@ app.use('/api/v1', lovebucksAPIroutes);
 
 router(app);
 
+// Socket.io
+io.on('connection', function(socket) {
+  // once socket-client emits 'chat msg' event from client, chatHandler function will be invoked
+  socket.on('chat msg', function chatHandler(msg) {
+    // server emits 'chat msg' event back to every socket-client
+    io.emit('chat msg', msg);
+  });
+});
+
 // // *** error handlers *** //
 // catch 404 and forward to error handler
 
