@@ -36,7 +36,6 @@ class Quiz extends Component {
     }
     result.Total = Math.floor((userTotal / (total * 20)) * 100);
     result.user_id = this.props.user.user_id;
-
     this.props.postResponse(result);
 
     setTimeout(() => {
