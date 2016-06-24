@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Chart } from 'react-google-charts'
+import { Chart } from 'react-google-charts';
 import { connect } from 'react-redux';
 import * as actions from './meterAction';
 import './meter.css';
