@@ -8,12 +8,12 @@ class Signup extends Component {
     super(props);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
-​
+
   handleFormSubmit(formProps) {
     // Call action creator to signup the user
     this.props.signupUser(formProps);
   }
-​
+
   renderAlert() {
     if (this.props.errorMessage) {
       return (
@@ -108,7 +108,7 @@ class Signup extends Component {
     );
   }
 }
-​
+
 /*
  Mike's Attempt at radio buttons....
  <p>
@@ -119,7 +119,7 @@ class Signup extends Component {
  <input name="group1" type="radio" {...couple} value="no" />
  <label>No - connect with my partner</label>
  </p>
- ​
+
  Josh's attempt at radio buttons....
  to replace dropdown, need to get this working
  <form action="#">
@@ -138,22 +138,22 @@ class Signup extends Component {
  <option value="no">No - connect with my partner</option>
  </select>
  */
-​
+
 const validate = (formProps) => {
   const errors = {};
-​
+
   if (!formProps.firstName) {
     errors.firstName = 'Please enter your first name';
   }
-​
+
   if (!formProps.lastName) {
     errors.lastName = 'Please enter your last name';
   }
-​
+
   if (!formProps.email) {
     errors.email = 'Please enter an email';
   }
-​
+
   if (!formProps.password) {
     errors.password = 'Please enter a password';
   }
@@ -163,14 +163,14 @@ const validate = (formProps) => {
   if (formProps.password !== formProps.passwordConfirm) {
     errors.password = 'Passwords must match';
   }
-​
+
   return errors;
 };
-​
+
 const mapStateToProps = state => {
   return { errorMessage: state.auth.error };
 };
-​
+
 export default reduxForm({
   form: 'signup',
   fields: ['firstName', 'lastName', 'email', 'password', 'passwordConfirm', 'couple', 'otherEmail'],
