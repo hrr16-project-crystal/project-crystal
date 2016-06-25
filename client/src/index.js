@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import reduxThunk from 'redux-thunk';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import App from './components/App/App';
 import Signin from './components/Authentication/Signin';
@@ -14,6 +15,9 @@ import Quiz from './components/Quiz/Quiz';
 import requireAuth from './components/Authentication/RequireAuth';
 import LandingPage from './components/LandingPage/LandingPage';
 import Meter from './components/Meter/Meter';
+import Calendar from './components/Calendar/Calendar';
+import CreateEvent from './components/Calendar/CreateEvent';
+
 import reducers from './helpers/rootReducer/rootReducer';
 import { AUTH_USER } from './helpers/constants/types';
 
@@ -29,6 +33,8 @@ if (token) {
   store.dispatch({ type: AUTH_USER });
 }
 
+injectTapEventPlugin();
+
 // The provider Communicates with the connected components *
 render(
   <Provider store={store}>
@@ -41,6 +47,8 @@ render(
         <Route path="dashboard" component={requireAuth(Dashboard)} />
         <Route path="meter" component={Meter} />
         <Route path="quiz" component={Quiz} />
+        <Route path="calendar" component={Calendar} />
+        <Route path="event" component={CreateEvent} />
       </Route>
     </Router>
   </Provider>

@@ -20,6 +20,12 @@ class Header extends Component {
     } else {
       // show link to sign in or sign up
       return [
+        <li className="menu__item" key={4}>
+          <Link to="/calendar" className="menu__link">Calendar</Link>
+        </li>,
+        <li className="menu__item" key={3}>
+          <Link to="/event" className="menu__link">Create</Link>
+        </li>,
         <li className="menu__item" key={1}>
           <Link to="/signin" className="menu__link">Sign In</Link>
         </li>,
