@@ -16,7 +16,7 @@ export const getQuestions = () => {
 };
 
 export const postResponse = ({ Respect, Communication, Spontaneity, Intimacy, Generosity, Total, user_id }) => {
-  return (dispatch) => {
+  return dispatch => {
     axios.post(`${apiUrl}/couples/answers`,
       { Respect, Communication, Spontaneity, Intimacy, Generosity, Total, user_id })
       .then(response => {
