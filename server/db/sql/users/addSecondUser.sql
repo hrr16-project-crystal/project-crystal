@@ -51,10 +51,14 @@ ON Couples.couple_id = partial_user_info.couple_id
 
 other_user_email
 */
-
-INSERT INTO Users (first_name, last_name, email, password, couple_id) 
-VALUES (LOWER(${first_name}), LOWER(${last_name}), LOWER(${email}), ${password}, ${couple_id})
-RETURNING user_id, first_name, last_name, email, password, couple_id 
+WITH new_user AS (
+  INSERT INTO Users (first_name, last_name, email, password, couple_id) 
+  VALUES (LOWER(${first_name}), LOWER(${last_name}), LOWER(${email}), ${password}, ${couple_id})
+  RETURNING user_id, first_name, last_name, email, password, couple_id 
+)
+SELECT * from new_user
+INNER JOIN Couples
+ON Couples.couple_id = new_user.couple_id; 
 -- // add inner join to couples on couple_id
 
 -- WITH other_user AS (
