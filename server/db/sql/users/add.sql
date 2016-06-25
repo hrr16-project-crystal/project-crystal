@@ -2,7 +2,6 @@
     Inserts a new user record into Users, Couples and couples_users tables.
 */
 
-
 WITH new_couple AS (
   INSERT INTO Couples
   VALUES (DEFAULT)
