@@ -11,3 +11,5 @@ export const DELETE_EVENT = 'DELETE_EVENT';
 export const UPDATE_MESSAGE = 'UPDATE_MESSAGE';
 export const ADD_MESSAGE = 'ADD_MESSAGE';
 export const GET_MESSAGES = 'GET_MESSAGES';
+export const FETCH_TODOS = 'FETCH_TODOS';
+export const ADDED_TODO = 'ADDED_TODO';
