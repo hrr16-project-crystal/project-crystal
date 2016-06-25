@@ -35,8 +35,6 @@ module.exports = rep => {
     addSecondUser: secondUser => {
       return rep.oneOrNone(sql.updateExistingCouple, secondUser.other_user_email)
         .then(updatedExistingCouple => {
-          // Existing couple will only have it's have_both_users_joined flag updated if
-          // it was previously set to false
           if (updatedExistingCouple) {
             secondUser['couple_id'] = updatedExistingCouple.couple_id;
             return rep.one(sql.addSecondUser, secondUser);
@@ -49,20 +47,13 @@ module.exports = rep => {
     // PRF: Remove modularity of SQL queries or connect under single task/transaction using pg-promise inbuilt methods
     // Delete a user by user ID and return the successfully deleted User's record
     removeById: userIdToDelete => {
-      // first find the user's corresponding couple id and confirm whether they are the last existing user in the couple or not by reference to the have_both_users_joined flag column
       return rep.oneOrNone(sql.checkIfBothUsersHaveJoined, userIdToDelete)
-        .then(bothUsersHaveJoined => {
-          // if true, no user of the Couple has yet requested deletion. Manually set flag to false
-          // then proceed with User record deletion.
-          // NOTE: bothUsersHaveJoined is actually a reference to Couple record returned where flag is true. 
+        .then(bothUsersHaveJoined => { 
           if (bothUsersHaveJoined) {
             return rep.one(sql.setBothUsersHaveJoinedToFalse, bothUsersHaveJoined.couple_id)
               .then(updatedCouple => {
                 return rep.one(sql.removeById, userIdToDelete);
               });
-            // else if not true, only one user is related to the existing Couple. So proceed to delete
-            // the Couple record. Related User record(s) will be deleted in cascade.
-            // removeByUserId as opposed to removeById returns Couple and single User record joined
           } 
           return rep.one(sqlCouples.removeByUserId, userIdToDelete);
         });
@@ -92,9 +83,6 @@ module.exports = rep => {
         });
       }
     },
-
-    // checkIfBothUsersHaveJoined: (userRequestingDeletion) =>
-    //   rep.oneOrNone(sql.checkIfBothUsersHaveJoined, userRequestingDeletion),
 
     // Returns all user records;
     all: () =>

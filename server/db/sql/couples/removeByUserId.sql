@@ -4,8 +4,7 @@
     It must do this, because couple record deletion will cascade through to users
 
     NOTE: Does not account for have_both_users_joined flag or linked User records.
-    Controller method currently only in use for and by Users.removebyId controller logic,
-    which accounts for the above
+    This must be accounted for by the engineer in the DB Controller logic. 
 */
 
 WITH found_user AS (
@@ -18,5 +17,3 @@ deleted_couple_record AS (
   RETURNING score, respect_score, intimacy_score, communication_score, generosity_score, spontaneity_score, have_both_users_joined
 )
 SELECT * FROM found_user, deleted_couple_record
-
- -- if you delete Couple, will it cascade down or not? is this an issue? 
