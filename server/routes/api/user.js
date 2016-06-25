@@ -59,6 +59,7 @@ router.post('/users/add', (req, res, next) => {
           .then(hash => {
             newUser.password = hash;
             // RF: Unify under a single addUser method, move logic to DB controllers
+            // Don't need to expose this logic in routes. newUser when passed will include is_first_of_couple flag. 
             if (newUser.is_first_of_couple) {
               Users.addFirstUser(newUser)
                 .then(addedUser => {
@@ -71,16 +72,13 @@ router.post('/users/add', (req, res, next) => {
             } else {
               Users.addSecondUser(newUser)
                 .then(addedUser => {
-                  console.log('inside User addSecondUser route, after trying adding...');
                   if (addedUser) {
-                    console.log('addedUser is truthy!');
                     res.status(200)
                       .json({
                         success: true,
                         data: helpers.desensitize(addedUser),
                       });
                   } else {
-                    console.log('addedUser is falsy!!!'); 
                     res.status(500)
                       .json({
                         success: false,
@@ -97,12 +95,16 @@ router.post('/users/add', (req, res, next) => {
 
 /** Delete single user record  */
 router.delete('/users/:id', (req, res, next) => {
-  res.send('Delete route currently not yet set up! Stay tuned :)');
-  /* Steps:
-    Check if Couples have_both_users_joined = true
-      If true, then set to false. Then proceed to delete user requesting deletion.
-      If false, then delete the Couple record. Then proceed to delete the user requesting deletion. 
-  */
+  // RF: parseInt all req.params.id values, as they are all currently passing in as strings! 
+  Users.removeById(req.params.id)
+    .then(deletedUser => {
+      res.status(200)
+        .json({
+          status: true,
+          data: helpers.desensitize(deletedUser),
+        });
+    })
+    .catch(err => next(err));
 });
 
 module.exports = router;

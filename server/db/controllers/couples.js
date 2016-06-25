@@ -46,8 +46,8 @@ module.exports = rep => {
     },
 
     // Tries to delete a couple by id, and returns the deleted couple;
-    remove: couple_id =>
-      rep.oneOrNone(sql.remove, couple_id, couple => couple),
+    removeById: couple_id =>
+      rep.oneOrNone(sql.removeById, couple_id, couple => couple),
 
     // Finds a couple by id, returns array of users related to that couple
     findById: couple_id => {

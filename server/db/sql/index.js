@@ -39,6 +39,8 @@ module.exports = {
         addSecondUser: sql('users/addSecondUser.sql'),
         removeById: sql('users/removeById.sql'),
         updateExistingCouple: sql('users/updateExistingCouple.sql'),
+        checkIfBothUsersHaveJoined: sql('users/checkIfBothUsersHaveJoined.sql'),
+        setBothUsersHaveJoinedToFalse: sql('users/setBothUsersHaveJoinedToFalse.sql'),
     },
     couples: {
         create: sql('couples/create.sql'),
@@ -46,9 +48,10 @@ module.exports = {
         add: sql('couples/add.sql'),
         all: sql('couples/all.sql'),
         findById: sql('couples/findById.sql'),
-        remove: sql('couples/remove.sql'),
+        removeById: sql('couples/removeById.sql'),
         updateScore: sql('couples/updateScore.sql'),
-    },
+        removeByUserId: sql('couples/removeByUserId.sql'), 
+    },  
     couples_users: {
         create: sql('couples_users/create.sql'),
         init: sql('couples_users/init.sql'),
