@@ -4,7 +4,7 @@
 
 SELECT * FROM Users
 INNER JOIN Couples
-on Couples.couple_id = Users.couple_id
+ON Couples.couple_id = Users.couple_id
 WHERE Users.user_id = $1
 
 -- SELECT * from Users

@@ -38,6 +38,7 @@ module.exports = {
         addFirstUser: sql('users/addFirstUser.sql'), 
         addSecondUser: sql('users/addSecondUser.sql'),
         removeById: sql('users/removeById.sql'),
+        updateExistingCouple: sql('users/updateExistingCouple.sql'),
     },
     couples: {
         create: sql('couples/create.sql'),

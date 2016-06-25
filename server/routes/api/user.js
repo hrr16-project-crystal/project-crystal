@@ -6,6 +6,7 @@ const helpers = require(__dirname + '/../../helpers/helpers');
 
 /** Get all existing users  */
 router.get('/users', (req, res, next) => {
+  // RF: Allow Users.all method to accept an options object to define stricter search criteria
   Users.all()
     .then(data => {
       return res.status(200)
@@ -25,7 +26,7 @@ router.get('/users/:id', (req, res, next) => {
         return res.status(500)
           .json({
             success: false,
-            data: 'User with ID of ' + req.params.id + ' does not exist',
+            data: 'User with ID of ' + req.params.id + ' does not exist!',
           });
       }
       return res.status(200)
@@ -39,7 +40,7 @@ router.get('/users/:id', (req, res, next) => {
 
 /** Update single user record  */
 router.put('/users/:id', (req, res, next) => {
-  res.send('Update route currently not yet set up! Stay tuned :)'); 
+  res.send('Update route currently not yet set up! Stay tuned :)');
 });
 
 /** Add new user and return newly added user record  */
@@ -51,21 +52,41 @@ router.post('/users/add', (req, res, next) => {
         res.status(500)
           .json({
             success: false,
-            data: 'Email is already is use',
+            data: 'Email ' + newUser.email + ' is already is use!',
           });
       } else {
         helpers.hashPassword(newUser.password)
           .then(hash => {
             newUser.password = hash;
+            // RF: Unify under a single addUser method, move logic to DB controllers
             if (newUser.is_first_of_couple) {
               Users.addFirstUser(newUser)
                 .then(addedUser => {
-                  res.send(helpers.desensitize(addedUser));
+                  res.status(200)
+                    .json({
+                      success: true,
+                      data: helpers.desensitize(addedUser),
+                    });
                 });
             } else {
               Users.addSecondUser(newUser)
                 .then(addedUser => {
-                  res.send(helpers.desensitize(addedUser));
+                  console.log('inside User addSecondUser route, after trying adding...');
+                  if (addedUser) {
+                    console.log('addedUser is truthy!');
+                    res.status(200)
+                      .json({
+                        success: true,
+                        data: helpers.desensitize(addedUser),
+                      });
+                  } else {
+                    console.log('addedUser is falsy!!!'); 
+                    res.status(500)
+                      .json({
+                        success: false,
+                        data: newUser.other_user_email + ' is already connected to a Couple!',
+                      });
+                  }
                 });
             }
           });
@@ -76,26 +97,27 @@ router.post('/users/add', (req, res, next) => {
 
 /** Delete single user record  */
 router.delete('/users/:id', (req, res, next) => {
-  Users.findById(req.params.id)
-    .then(exists => {
-      if (!exists) {
-        res.status(500)
-          .json({
-            success: false,
-            data: 'User with ID of ' + req.params.id + ' does not exit',
-          });
-      } else {
-        Users.removeById(req.params.id)
-          .then(deletedUser => {
-            return res.status(200)
-              .json({
-                success: true,
-                data: helpers.desensitize(deletedUser),
-              });
-          });
-      }
-    })
-    .catch(err => next(err));
+  res.send('Delete route currently not yet set up! Stay tuned :)');
+  // Users.findById(req.params.id)
+  //   .then(exists => {
+  //     if (!exists) {
+  //       res.status(500)
+  //         .json({
+  //           success: false,
+  //           data: 'User with ID of ' + req.params.id + ' does not exit',
+  //         });
+  //     } else {
+  //       Users.removeById(req.params.id)
+  //         .then(deletedUser => {
+  //           return res.status(200)
+  //             .json({
+  //               success: true,
+  //               data: helpers.desensitize(deletedUser),
+  //             });
+  //         });
+  //     }
+  //   })
+  //   .catch(err => next(err));
 });
 
 module.exports = router;

@@ -1,5 +1,5 @@
 /*
-    Creates a new Couples record and new related Users record with injected couple_id foreign key
+    Creates a new Couples record and new related Users record with injected couple_id Foreign Key
 */
 
 WITH new_couple AS (
