@@ -31,10 +31,11 @@ module.exports = {
         empty: sql('users/empty.sql'),
         init: sql('users/init.sql'),
         drop: sql('users/drop.sql'),
-        add: sql('users/add.sql'),
+        // add: sql('users/add.sql'),
         all: sql('users/all.sql'),
         findById: sql('users/findById.sql'),
         findByEmail: sql('users/findByEmail.sql'),
+        addFirstUser: sql('users/addFirstUser.sql'), 
         addSecondUser: sql('users/addSecondUser.sql'),
         removeById: sql('users/removeById.sql'),
     },
@@ -46,7 +47,6 @@ module.exports = {
         findById: sql('couples/findById.sql'),
         remove: sql('couples/remove.sql'),
         updateScore: sql('couples/updateScore.sql'),
-   
     },
     couples_users: {
         create: sql('couples_users/create.sql'),

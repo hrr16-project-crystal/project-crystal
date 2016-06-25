@@ -25,8 +25,8 @@ module.exports = rep => {
       rep.none(sql.empty),
 
     // Adds a new User using passed in data from newUser object
-    add: newUser =>
-      rep.one(sql.add, newUser),
+    addFirstUser: newUser =>
+      rep.one(sql.addFirstUser, newUser),
 
     addSecondUser: secondUser =>
       rep.one(sql.addSecondUser, secondUser),

@@ -57,8 +57,8 @@ router.post('/users/add', (req, res, next) => {
         helpers.hashPassword(newUser.password)
           .then(hash => {
             newUser.password = hash;
-            if (newUser.isFirstOfCouple) {
-              Users.add(newUser)
+            if (newUser.is_first_of_couple) {
+              Users.addFirstUser(newUser)
                 .then(addedUser => {
                   res.send(helpers.desensitize(addedUser));
                 });
