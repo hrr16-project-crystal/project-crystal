@@ -22,6 +22,11 @@ exports.customLog = (input) => {
   console.log(clc.white.bgBlack.underline(input));
 };
 
+// naively checks to see if an input is an email and returns true or false
+exports.checkIfEmail = (possibleEmail) =>
+  /@/i.test(possibleEmail);
+
+// password hashing function
 exports.hashPassword = (password) => {
   return new Promise((resolve, reject) => {
     bcrypt.genSalt(10, (err, salt) => {

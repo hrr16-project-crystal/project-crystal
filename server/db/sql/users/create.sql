@@ -1,5 +1,6 @@
 /*
-    Creates table Users.
+    Create Users table
+    RF: password and other character checks e.g. password text NOT NULL CHECK (CHECK(char_length(password)>8)),
 */
 CREATE EXTENSION IF NOT EXISTS citext; 
 
@@ -13,5 +14,3 @@ CREATE TABLE Users
     couple_id integer NOT NULL,
     FOREIGN KEY (couple_id) REFERENCES Couples(couple_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
-
-   -- password text NOT NULL CHECK (CHECK(char_length(password)>8)),

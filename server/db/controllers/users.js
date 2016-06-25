@@ -1,6 +1,6 @@
 'use strict';
-
-var sql = require('../sql').users;
+const helpers = require(__dirname + '/../../helpers/helpers');
+const sql = require('../sql').users;
 
 module.exports = rep => {
 
@@ -24,22 +24,9 @@ module.exports = rep => {
     empty: () =>
       rep.none(sql.empty),
 
-    // Adds a new user to Users, Couples and Couples_Users table, and returns all User information
-    add: newUser => {
-      console.log('adding new user ....');
-      return rep.one(sql.add, newUser)
-        .then(result => {
-          console.log('adding new user, successful!');
-          return result;
-        })
-        .catch(err => {
-          console.log('adding new user, but erred...'); 
-          console.log(err);
-          return err; 
-        });
-    },
-    // RF so that sql.add does the 3 table join. 
-    // .then(addedCoupleUser => rep.one(sql.findById, addedCoupleUser.user_id)),
+    // Adds a new User using passed in data from newUser object
+    add: newUser =>
+      rep.one(sql.add, newUser),
 
     addSecondUser: secondUser =>
       rep.one(sql.addSecondUser, secondUser),
@@ -48,19 +35,30 @@ module.exports = rep => {
     removeById: id =>
       rep.one(sql.removeById, id),
 
-    // Tries to find a user from id;
+    // Find and return user by user ID
     findById: id =>
       rep.oneOrNone(sql.findById, id, user =>
         user),
 
-    // Check if user exists by email and return boolean true/false
-    checkIfExists: email =>
-      rep.oneOrNone(sql.findByEmail, email, user => {
-        if (user !== null) {
-          return true;
-        }
-        return false;
-      }),
+    // Check if user exists by email or ID and return boolean true/false
+    checkIfExists: emailOrId => {
+      if (helpers.checkIfEmail(emailOrId)) {
+        return rep.oneOrNone(sql.findByEmail, emailOrId, user => {
+          if (user !== null) {
+            return true;
+          }
+          return false;
+        });
+      } else {
+        // assume emailOrId is an ID
+        return rep.oneOrNone(sql.findById, emailOrId, user => {
+          if (user !== null) {
+            return true;
+          }
+          return false;
+        });
+      }
+    },
 
     // Returns all user records;
     all: () =>
