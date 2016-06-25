@@ -1,5 +1,6 @@
 /*
-  Update existing Couple have_both_users_joined column if possible. 
+  Find existing Couple using passed in user email
+  Update existing Couple have_both_users_joined column if possible to True. 
   If update successful, return Couple record that was target of update
 */
 

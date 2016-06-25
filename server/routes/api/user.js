@@ -95,13 +95,23 @@ router.post('/users/add', (req, res, next) => {
 
 /** Delete single user record  */
 router.delete('/users/:id', (req, res, next) => {
-  // RF: parseInt all req.params.id values, as they are all currently passing in as strings! 
-  Users.removeById(req.params.id)
-    .then(deletedUser => {
-      res.status(200)
-        .json({
-          status: true,
-          data: helpers.desensitize(deletedUser),
+  // PRF: parseInt all req.params.id values? As they are all currently passing in as strings 
+  Users.findById(req.params.id)
+    .then(data => {
+      if (!data) {
+        return res.status(500)
+          .json({
+            success: false,
+            data: 'User with ID of ' + req.params.id + ' does not exist!',
+          });
+      }
+      Users.removeById(req.params.id)
+        .then(deletedUser => {
+          res.status(200)
+            .json({
+              status: true,
+              data: helpers.desensitize(deletedUser),
+            });
         });
     })
     .catch(err => next(err));
