@@ -7,7 +7,8 @@ module.exports = rep => {
   return {
 
     // Creates the table;
-    create: () => rep.none(sql.create),
+    create: () =>
+      rep.none(sql.create),
 
     // Initializes the table with some user records, and returns each user
     init: () =>
@@ -24,10 +25,21 @@ module.exports = rep => {
       rep.none(sql.empty),
 
     // Adds a new user to Users, Couples and Couples_Users table, and returns all User information
-    add: newUser =>
-      rep.one(sql.add, newUser)
-      // RF so that sql.add does the 3 table join. 
-      .then(addedCoupleUser => rep.one(sql.findById, addedCoupleUser.user_id)),
+    add: newUser => {
+      console.log('adding new user ....');
+      return rep.one(sql.add, newUser)
+        .then(result => {
+          console.log('adding new user, successful!');
+          return result;
+        })
+        .catch(err => {
+          console.log('adding new user, but erred...'); 
+          console.log(err);
+          return err; 
+        });
+    },
+    // RF so that sql.add does the 3 table join. 
+    // .then(addedCoupleUser => rep.one(sql.findById, addedCoupleUser.user_id)),
 
     addSecondUser: secondUser =>
       rep.one(sql.addSecondUser, secondUser),

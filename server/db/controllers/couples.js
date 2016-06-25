@@ -7,7 +7,18 @@ module.exports = rep => {
   return {
 
     // Creates the table;
-    create: () => rep.none(sql.create),
+    create: () => {
+      console.log('inside couples creation...');
+      return rep.none(sql.create)
+        .then(result => {
+          console.log('couples creation, successfull.. ');
+          return result;
+        })
+        .catch(but => {
+          console.log('couples creation, err but..');
+          return but; 
+        });
+    },
 
     // Initializes the table with some couple records, and returns each couple
     init: () =>
