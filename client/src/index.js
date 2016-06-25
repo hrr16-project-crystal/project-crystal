@@ -16,7 +16,6 @@ import requireAuth from './components/Authentication/RequireAuth';
 import LandingPage from './components/LandingPage/LandingPage';
 import Meter from './components/Meter/Meter';
 import Calendar from './components/Calendar/Calendar';
-import CreateEvent from './components/Calendar/CreateEvent';
 
 import reducers from './helpers/rootReducer/rootReducer';
 import { AUTH_USER } from './helpers/constants/types';
@@ -48,7 +47,6 @@ render(
         <Route path="meter" component={Meter} />
         <Route path="quiz" component={Quiz} />
         <Route path="calendar" component={Calendar} />
-        <Route path="event" component={CreateEvent} />
       </Route>
     </Router>
   </Provider>

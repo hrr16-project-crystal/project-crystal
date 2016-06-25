@@ -12,6 +12,9 @@ BigCalendar.momentLocalizer(moment);
 // CSS edits were the margin top of 48px and min-height of 600px on main calendar
 
 export default class Calendar extends Component {
+  componentWillMount() {
+    this.props.fetchEvents();
+  }
 
   render() {
     return (

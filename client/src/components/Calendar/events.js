@@ -7,6 +7,7 @@ export default [
   },
   {
     title: 'Long Event',
+    allDay: true,
     start: new Date(2016, 5, 7),
     end: new Date(2016, 5, 10)
   },
