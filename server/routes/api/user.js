@@ -98,26 +98,11 @@ router.post('/users/add', (req, res, next) => {
 /** Delete single user record  */
 router.delete('/users/:id', (req, res, next) => {
   res.send('Delete route currently not yet set up! Stay tuned :)');
-  // Users.findById(req.params.id)
-  //   .then(exists => {
-  //     if (!exists) {
-  //       res.status(500)
-  //         .json({
-  //           success: false,
-  //           data: 'User with ID of ' + req.params.id + ' does not exit',
-  //         });
-  //     } else {
-  //       Users.removeById(req.params.id)
-  //         .then(deletedUser => {
-  //           return res.status(200)
-  //             .json({
-  //               success: true,
-  //               data: helpers.desensitize(deletedUser),
-  //             });
-  //         });
-  //     }
-  //   })
-  //   .catch(err => next(err));
+  /* Steps:
+    Check if Couples have_both_users_joined = true
+      If true, then set to false. Then proceed to delete user requesting deletion.
+      If false, then delete the Couple record. Then proceed to delete the user requesting deletion. 
+  */
 });
 
 module.exports = router;

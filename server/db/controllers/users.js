@@ -28,20 +28,16 @@ module.exports = rep => {
     addFirstUser: newUser =>
       rep.one(sql.addFirstUser, newUser),
 
+    // Adds a new User to an existing couple using passed in data from secondUser object 
     addSecondUser: secondUser => {
       return rep.oneOrNone(sql.updateExistingCouple, secondUser.other_user_email)
         .then(updatedExistingCouple => {
           // Existing couple will only have it's have_both_users_joined flag updated if
           // it was previously set to false
-          console.log('inside then of updatedExistingCouple...');
           if (updatedExistingCouple) {
-            console.log('inside truthy updateExistingCouple....');
-            console.log(updatedExistingCouple);
-            console.log('========================'); 
             secondUser['couple_id'] = updatedExistingCouple.couple_id;
             return rep.one(sql.addSecondUser, secondUser);
           }
-          console.log('inside non-truthy updatedExistingCouple...');
           return null;
         });
     },
