@@ -2,6 +2,7 @@ const omit = require('lodash/omit');
 const clc = require('cli-color');
 const bcrypt = require('bcrypt-nodejs');
 const Promise = require('bluebird');
+const each = require('lodash/each');
 
 // desensitizes record objects, useful before passing data to front-end
 exports.desensitize = (recordOrRecords) => {
@@ -17,9 +18,12 @@ exports.desensitize = (recordOrRecords) => {
   return new Error('There was an error desensitizing the records');
 };
 
-// logs input in bold white text with black background
+// Takes any amount of input and ouputs bold white text with black background and seperator 
+// lines for clarity. 
 exports.customLog = (input) => {
+  console.log('-------------------- Roger\'s Custom Log ---------------------');
   console.log(clc.white.bgBlack.underline(input));
+  console.log('---------------------- End of Log ----------------------------');
 };
 
 // naively checks to see if an input is an email and returns true or false

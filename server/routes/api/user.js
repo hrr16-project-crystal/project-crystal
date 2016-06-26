@@ -40,16 +40,16 @@ router.get('/users/:id', (req, res, next) => {
 
 /** Update single user record  */
 router.put('/users/:id', (req, res, next) => {
-  res.send('Update route currently not yet set up! Stay tuned :)');
+  res.status(501).send('Update route currently not yet set up! Stay tuned :)');
 });
 
 /** Add new user and return newly added user record  */
 router.post('/users/add', (req, res, next) => {
   const newUser = req.body;
   Users.checkIfExists(newUser.email)
-    .then(exists => {
+    .then(exists => { 
       if (exists) {
-        res.status(500)
+        res.status(422)
           .json({
             success: false,
             data: 'Email ' + newUser.email + ' is already is use!',
@@ -79,7 +79,7 @@ router.post('/users/add', (req, res, next) => {
                         data: helpers.desensitize(addedUser),
                       });
                   } else {
-                    res.status(500)
+                    res.status(422)
                       .json({
                         success: false,
                         data: newUser.other_user_email + ' is already connected to a Couple!',
@@ -99,7 +99,7 @@ router.delete('/users/:id', (req, res, next) => {
   Users.findById(req.params.id)
     .then(data => {
       if (!data) {
-        return res.status(500)
+        return res.status(422)
           .json({
             success: false,
             data: 'User with ID of ' + req.params.id + ' does not exist!',
