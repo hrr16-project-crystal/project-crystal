@@ -8,7 +8,7 @@ export const fetchEvents = () => {
     axios.get(`${testAPI}/testevents`)
     .then(response => {
       dispatch({
-        type: CREATE_EVENT,
+        type: FETCH_EVENTS,
         payload: response.data,
       });
     });
@@ -17,11 +17,11 @@ export const fetchEvents = () => {
 
 export const createEvent = ({ title, startDate, startTime, endDate, endTime, category, description }) => {
   return dispatch => {
-    axios.post(`${apiUrl}/testevents`,
-      title, startDate, startTime, endDate, endTime, category, description)
+    axios.post(`${testAPI}/createevent`,
+      { title, startDate, startTime, endDate, endTime, category, description })
     .then(response => {
       dispatch({
-        type: FETCH_EVENTS,
+        type: CREATE_EVENT,
         payload: response.data,
       });
     });

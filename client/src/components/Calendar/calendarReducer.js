@@ -5,7 +5,7 @@ export default (state = {}, action) => {
     case CREATE_EVENT:
       return { ...state, event: action.payload };
     case FETCH_EVENTS:
-      reutrn { ...state, events: action.payload };
+      return { ...state, events: action.payload };
   }
   return state;
 }

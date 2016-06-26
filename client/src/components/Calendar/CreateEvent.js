@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
-import * as actions from './createEventActions';
+import * as actions from './calendarActions';
 import DatePicker from 'material-ui/DatePicker';
 import TimePicker from 'material-ui/TimePicker';
 import Dialog from 'material-ui/Dialog';
 import RaisedButton from 'material-ui/RaisedButton';
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import ActionToday from 'material-ui/svg-icons/action/today';
 
@@ -34,12 +32,14 @@ class CreateEvent extends Component {
 
   handleFormSubmit(formProps) {
     this.setState({ open: false });
-    console.log(formProps);
-    // console.log(typeof formProps.startDate);
-    // console.log(formProps.startDate);
+    console.log(formProps.startDate.toString().split(' '));
+    console.log(formProps.startTime.toString().split(' '));
     this.props.createEvent(formProps);
     // TODO: Look into fixing the start and end dates/times.
     // right now there are two properties. Can possibly merge into just one
+    // Need to get into YYYY, MM, DD, HR, MIN format for event array
+    // ["Tue", "Jun", "28", "2016", "00:00:00", "GMT-0400", "(EDT)"] => DatePicker
+    // ["Sat", "Jun", "25", "2016", "18:45:43", "GMT-0400", "(EDT)"] => TimePicker
   }
 
   render() {
