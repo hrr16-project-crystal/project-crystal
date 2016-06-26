@@ -8,3 +8,6 @@ export const FETCH_HEALTH = 'FETCH_HEALTH';
 export const CREATE_EVENT = 'CREATE_EVENT';
 export const FETCH_EVENTS = 'FETCH_EVENTS';
 export const DELETE_EVENT = 'DELETE_EVENT';
+export const UPDATE_MESSAGE = 'UPDATE_MESSAGE';
+export const ADD_MESSAGE = 'ADD_MESSAGE';
+export const GET_MESSAGES = 'GET_MESSAGES';

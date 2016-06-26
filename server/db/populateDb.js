@@ -8,6 +8,7 @@ const populateDb = () => {
     // .then(db.categories.init)   // new
     .then(db.questions.create)
     .then(db.questions.init)
+    .then(db.messages.create)
     .then(db.events.create)
     // .then(db.events.init)
     .catch(err => console.log(err))

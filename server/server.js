@@ -4,7 +4,7 @@ const db = require(__dirname + '/db/index').db;
 
 const app = express();
 const http = require('http').Server(app);
-const io = require('socket.io')(http);
+const socketServer = require('./socket');
 const React = require('react');
 const port = process.env.PORT || 3000;
 
@@ -27,6 +27,7 @@ const userAPIroutes = require('./routes/api/user');
 const coupleAPIroutes = require('./routes/api/couple');
 const questionAPIroutes = require('./routes/api/questions');
 const eventsAPIroutes = require('./routes/api/events');
+const messageAPIroutes = require('./routes/api/message');
 
 // const CouplesUser = require('./db/repos/couples_users');
 
@@ -35,17 +36,9 @@ app.use('/api/v1', userAPIroutes);
 app.use('/api/v1', coupleAPIroutes);
 app.use('/api/v1', questionAPIroutes);
 app.use('/api/v1', eventsAPIroutes);
+app.use('/api/v1', messageAPIroutes);
 
 router(app);
-
-// Socket.io
-io.on('connection', function(socket) {
-  // once socket-client emits 'chat msg' event from client, chatHandler function will be invoked
-  socket.on('chat msg', function chatHandler(msg) {
-    // server emits 'chat msg' event back to every socket-client
-    io.emit('chat msg', msg);
-  });
-});
 
 // // *** error handlers *** //
 // catch 404 and forward to error handler
@@ -95,4 +88,7 @@ app.use(cors());
 app.use(bodyParser.json({ type: '*/*' }));
 router(app);
 
-app.listen(port, () => console.log(`Server started at: http://localhost:${port}`));
+const webServer = app.listen(port, () => console.log(`Server started at: http://localhost:${port}`));
+
+// // *** Socket.io *** //
+socketServer(webServer);

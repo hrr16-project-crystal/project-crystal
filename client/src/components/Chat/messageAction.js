@@ -1,15 +1,37 @@
-export const UPDATE_MESSAGE = 'update-message';
-export const ADD_MESSAGE = 'add-message';
-export const ADD_RESPONSE = 'add-response';
- 
-export function updateMessage(message) {
-  return { type: UPDATE_MESSAGE, message };
-}
- 
-export function addMessage(message) {
-  return { type: ADD_MESSAGE, message };
-}
- 
-export function addResponse(message) {
-  return { type: ADD_RESPONSE, message };
-}
+import axios from 'axios';
+import { UPDATE_MESSAGE, ADD_MESSAGE, GET_MESSAGES} from '../../helpers/constants/types';
+
+const apiUrl = 'http://localhost:3000/api/v1';
+
+export const updateMessage = (message) => {
+  return dispatch => {
+    axios.put(`${apiUrl}/message`)
+      .then(response => {
+        dispatch({
+          type: UPDATE_MESSAGE,
+          payload: response.data,
+        });
+      });
+  };
+};
+
+export const addMessage = (message) => {
+  return dispatch => {
+    dispatch({
+      type: ADD_MESSAGE,
+      payload: message,
+    });
+  };
+};
+
+export const getMessages = (coupleID) => {
+  return dispatch => {
+    axios.get(`${apiUrl}/message/${coupleID}`)
+      .then(response => {
+        dispatch({
+          type: GET_MESSAGES,
+          payload: response.data.data,
+        });
+      });
+  };
+};

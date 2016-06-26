@@ -1,31 +1,17 @@
 import {combineReducers} from 'redux';
-import {UPDATE_MESSAGE, ADD_MESSAGE, ADD_RESPONSE} from './messageActions'
+import {UPDATE_MESSAGE, ADD_MESSAGE, GET_MESSAGES}  from '../../helpers/constants/types';
 
-export default function (initialState) {
-  function messages(currentMessages=initialState.messages, action) {
-    const messages = currentMessages.map(message => Object.assign({}, message));
-
-    switch(action.type) {
-      case ADD_RESPONSE:
-        messages.push(Object.assign({}, action.message));
-        break;
-      case ADD_MESSAGE:
-        messages.push({id: messages.length + 1, text: action.message});
-    }
-
-    return messages;
+export default (state = {messages:[]}, action) => {
+  switch (action.type) {
+    case UPDATE_MESSAGE:
+      return {};
+    case ADD_MESSAGE:
+      let holder = state.messages.slice();
+      holder.push(action.payload)
+      return {...state, messages: holder};
+    case GET_MESSAGES:
+      return {...state, messages: action.payload};
+    default: return state;
   }
-
-  function currentMessage(currentMessage=initialState.currentMessage, action) {
-    switch(action.type) {
-      case UPDATE_MESSAGE:
-        return action.message;
-      case ADD_MESSAGE:
-        return '';
-      default:
-        return currentMessage;
-    }
-  }
-
-  return combineReducers({currentMessage, messages});
-}
+  return state;
+};
