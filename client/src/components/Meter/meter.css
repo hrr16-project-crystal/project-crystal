@@ -1,3 +1,36 @@
+.data {
+  background-color: #fff;
+  width: 100%;
+}
+
+.data_chart {
+  padding: 24px;
+}
+
+.data_chart--half {
+  width: 49%;
+  display: inline-block;
+}
+
+.data_chart--left {
+  border-right: 1px solid #e5e5e5;
+}
+
+.data_chart--top {
+  border-top: 1px solid #e5e5e5;
+  margin-top: -6px;
+}
+
+.data__header {
+  line-height: 50px;
+  border-bottom: 1px solid #e5e5e5;
+  color: #000;
+  text-align: center;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
 .health-meter {
 
 }
