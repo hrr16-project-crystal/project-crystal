@@ -1,4 +1,4 @@
-
+import axios from 'axios';
 import { MARK_ANSWERED, FETCH_QUESTIONS } from '../../helpers/constants/types';
 import { browserHistory } from 'react-router';
 const apiUrl = 'http://localhost:3000/api/v1';

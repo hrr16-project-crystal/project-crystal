@@ -10,7 +10,7 @@ import './calendar.css';
 
 // Note: JavaScript months go from 0-11 & edited css style sheet (not sure if edits went to GIT)
 // CSS edits were the margin top of 48px and min-height of 600px on main calendar
-
+// TODO: add popup box with meterial-ui when clicking on event
 class Calendar extends Component {
   constructor(props) {
     super(props);
@@ -22,6 +22,8 @@ class Calendar extends Component {
   }
 
   getEvents() {
+    // Function which gets all events from state and formats them in a
+    // way in that can be read by the BigCalendar
     const eventsArr = this.props.events;
     for (let i = 0; i < eventsArr.length; i++) {
       let tempStart = eventsArr[i].start;
@@ -61,7 +63,6 @@ class Calendar extends Component {
             selectable
             formats={{ weekHeaderFormat: 'ddd MM DD' }}
             events={this.getEvents()}
-            // events={testEvents}
             style={{ border: '1px solid #26a69a' }}
             onSelectEvent={event => console.log(event.title + ' | ' + event.start + ' | ' + event.end)}
           />

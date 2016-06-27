@@ -40,7 +40,7 @@ class CreateEvent extends Component {
       category: '',
       description: '',
     };
-
+    // Iterate through the formProps and set the initial values of event to post
     for (const key in formProps) {
       if (key === 'title') {
         event.title = formProps[key];
@@ -78,6 +78,8 @@ class CreateEvent extends Component {
         event.description = formProps[key];
       }
     }
+    // Coerce the start and end dates/times in a way that can be read by
+    // the JavaScript date object
     const tempSt = event.start.split(',');
     const temporaryS = `${tempSt[0]}-${tempSt[1]}-${tempSt[2]} ${tempSt[3]}:${tempSt[4]}`;
     const tempEnd = event.end.split(',');
