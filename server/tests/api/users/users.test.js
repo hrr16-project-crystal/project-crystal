@@ -21,7 +21,7 @@ describe('## User APIs', function() {
     describe('# POST /api/v1/users/add', function() {
       const firstUser = Object.assign({}, mockUsers.firstUserOfCouple);
 
-      it('It should add a new User and create a new linked Couple', function(done) {
+      it('It should allow a new User to sign up and should generate a new, linked Couple', function(done) {
         request
           .post('/api/v1/users/add')
           .send(firstUser)
@@ -36,6 +36,7 @@ describe('## User APIs', function() {
             expect(res.body.data.couple_id).to.equal(1);
             expect(res.body.data.user_id).to.equal(1);
             expect(res.body.data.score).to.equal(0);
+            expect(res.body.data.have_both_users_joined).to.equal(false);
             // RF: Add to account for other properties returning on couple e.g. couple scores
             // RF URGENT: Add DB so can query directly if user added in DB
             // as currently only tests if valid response returns from server
@@ -57,31 +58,68 @@ describe('## User APIs', function() {
           });
       });
 
+      // RF URGENT: Add DB so can query directly if user added in DB
+      // as currently only tests if valid response returns from server  
+      it('It should allow a Second User to sign up and link to an existing Couple by referencing an existing User\'s email', function(done) {
+        const secondUser = Object.assign({}, mockUsers.secondUserOfCouple);
+        request
+          .post('/api/v1/users/add')
+          .send(secondUser)
+          .end(function(err, res) {
+            if (err) return done(err);
+            expect(res.body.success).to.equal(true);
+            expect(res.body.data.email).to.equal(secondUser.email.toLowerCase());
+            expect(res.body.data.first_name).to.equal(secondUser.first_name.toLowerCase());
+            expect(res.body.data.last_name).to.equal(secondUser.last_name.toLowerCase());
+            expect(res.body.data.password).to.equal(undefined);
+            expect(res.body.data.couple_id).to.equal(1);
+            expect(res.body.data.user_id).to.equal(2);
+            expect(res.body.data.score).to.equal(0);
+            expect(res.body.data.have_both_users_joined).to.equal(true);
+            done();
+          });
+      });
 
+      // RF URGENT: Add DB so can query directly if user added in DB
+      // as currently only tests if valid response returns from server  
+      // RF: More specific test, as current test failure signal (success: false) may refer to other types of failure?
+      it('It should NOT allow a third User to sign up and link to an existing, completed Couple by referencing an existing User\'s email', function(done) {
+        const stranger = Object.assign({}, mockUsers.stranger);
+        request
+          .post('/api/v1/users/add')
+          .send(stranger)
+          .end(function(err, res) {
+            if (err) return done(err);
+            expect(res.body.success).to.equal(false);
+            done();
+          });
+      });
 
-      // it('It should allow a Second User to sign up and link to an existing Couple by referencing an existing User\'s email', function(done) {
-      //   request
-      //     .post('/api/v1/users/add')
-      //     .send(user)
-      //     .expect(httpStatus.OK)
-      //     .end(function(err, res) {
-      //       if (err) return done(err);
-      //       expect(res.body.success).to.equal(true);
-      //       expect(res.body.data.email).to.equal(user.email.toLowerCase());
-      //       expect(res.body.data.first_name).to.equal(user.first_name.toLowerCase());
-      //       expect(res.body.data.last_name).to.equal(user.last_name.toLowerCase());
-      //       expect(res.body.data.password).to.equal(undefined);
-      //       expect(res.body.data.couple_id).to.equal(1);
-      //       expect(res.body.data.user_id).to.equal(1);
-      //       expect(res.body.data.score).to.equal(0);
-      //       // Add to account for other properties returning on couple e.g. couple scores
-      //       done();
-      //     });
-      // });
-
+      // add additional sequenced tests here
     });
   });
 });
+
+
+// it('It should allow a Second User to sign up and link to an existing Couple by referencing an existing User\'s email', function(done) {
+//   request
+//     .post('/api/v1/users/add')
+//     .send(user)
+//     .expect(httpStatus.OK)
+//     .end(function(err, res) {
+//       if (err) return done(err);
+//       expect(res.body.success).to.equal(true);
+//       expect(res.body.data.email).to.equal(user.email.toLowerCase());
+//       expect(res.body.data.first_name).to.equal(user.first_name.toLowerCase());
+//       expect(res.body.data.last_name).to.equal(user.last_name.toLowerCase());
+//       expect(res.body.data.password).to.equal(undefined);
+//       expect(res.body.data.couple_id).to.equal(1);
+//       expect(res.body.data.user_id).to.equal(1);
+//       expect(res.body.data.score).to.equal(0);
+//       // Add to account for other properties returning on couple e.g. couple scores
+//       done();
+//     });
+// });
 
 
 // const user = Object.assign({}, mockUsers.firstUserOfCouple);

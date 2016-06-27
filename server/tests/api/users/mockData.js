@@ -21,4 +21,17 @@
    is_first_of_couple: false,
    other_user_email: 'MIchelle@GMaiL.com',
  };
-
+ exports.firstUserOfCouple2 = {
+   first_name: 'mike',
+   last_name: 'cruz',
+   email: 'mike@GMAIL.com',
+   password: 'm1234',
+   is_first_of_couple: true,
+ };
+ exports.firstUserOfCouple2 = {
+   first_name: 'mrs',
+   last_name: 'cruz',
+   email: 'mrs@GMAIL.com',
+   password: 'm4321',
+   is_first_of_couple: false,
+ };
