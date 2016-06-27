@@ -192,17 +192,28 @@ describe('## User APIs', function() {
 
     describe('# DELETE /api/v1/users/:id', function() {
       it('It should delete user #2 and set linked Couple\'s have_both_users_joined back to false', function(done) {
-        const expectedDeletedSecondUser = Object.assign({}, mockUsers.secondUserOfCouple);
+        const secondUserToDelete = Object.assign({}, mockUsers.secondUserOfCouple);
         // update expected value to be returned
-        expectedDeletedSecondUser.expected.have_both_users_joined = false;
+        secondUserToDelete.expected.have_both_users_joined = false;
         request
           .delete('/api/v1/users/2')
           .end(function(err, res) {
             if (err) return done(err);
             expect(res.body.success).to.equal(true);
             expect(res.body.data).to.be.an('object');
-            expect(res.body.data).to.deep.equals(expectedDeletedSecondUser.expected);
-            done();
+            expect(res.body.data).to.deep.equals(secondUserToDelete.expected);
+            Users.findById(secondUserToDelete.expected.user_id)
+              .then(function(foundUser) {
+                expect(foundUser).to.not.exist; 
+              })
+              .then(function() {
+                Couples.findById(secondUserToDelete.expected.couple_id)
+                  .then(function(foundCouple) {
+                    expect(foundCouple.couple_id).to.equal(secondUserToDelete.expected.couple_id);
+                    expect(foundCouple.have_both_users_joined).to.equal(false);
+                    done();
+                  });
+              });
           });
       });
 
