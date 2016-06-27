@@ -8,13 +8,16 @@ const each = require('lodash/each');
 const request = require('supertest')('http://localhost:3000');
 const map = require('lodash/map');
 const omit = require('lodash/omit');
-// chai.config.includeStack = true;  =>  if want to display stack trace
+const Users = require(__dirname + '/../../../db/index').db.users;
+const Couples = require(__dirname + '/../../../db/index').db.couples;
 
+// Note for rewrites: 
+// mutations on mock Data appear to occur during sequential tests. 
+// Can take advantage of this or not, but be consistent. 
 describe('## User APIs', function() {
 
   describe('-- Webpack loading... --', function() {
     before(function(done) {
-      // RF: Do DB or table drops on app initialisation
       // RF: Need alternative to setTimeout in before hook, to account for loadtime.  
       setTimeout(() => { done(); }, 1800);
     });
@@ -172,7 +175,7 @@ describe('## User APIs', function() {
     describe('# DELETE /api/v1/users/:id', function() {
       it('It should delete user #2 and set linked Couple\'s have_both_users_joined back to false', function(done) {
         const expectedDeletedSecondUser = Object.assign({}, mockUsers.secondUserOfCouple);
-          // update expected value to be returned
+        // update expected value to be returned
         expectedDeletedSecondUser.expected.have_both_users_joined = false;
         request
           .delete('/api/v1/users/2')
@@ -184,194 +187,35 @@ describe('## User APIs', function() {
             done();
           });
       });
-      
+
+      // RF: All tests should imitate below test group setup (testing database state using promises)
+      it('It should delete user #1 and delete linked Couple record completely', function(done) {
+        const firstUserToDelete = Object.assign({}, mockUsers.firstUserOfCouple);
+        // update expected value to be returned, due to previous mutation 
+        firstUserToDelete.expected.have_both_users_joined = false;
+
+        request
+          .delete('/api/v1/users/1')
+          .end(function(err, res) {
+            if (err) return done(err);
+            // test expected API repsonse
+            expect(res.body.success).to.equal(true);
+            expect(res.body.data).to.be.an('object');
+            expect(res.body.data).to.deep.equals(firstUserToDelete.expected);
+            // test database to ensure database state reflects API response
+            Users.findById(firstUserToDelete.expected.couple_id)
+              .then(function(foundUser) {
+                expect(foundUser).to.not.exist;
+              })
+              .then(Couples.findById(firstUserToDelete.expected.couple_id))
+              .then(function(foundCouple) {
+                expect(foundCouple).to.not.exist;
+                done();
+              });
+          });
+      });
       // add additional tests to DELETE test group here
     });
-    // add aditional describe / test groups here(e.g.DELETE);
+    // add aditional describe / test groups here (e.g. Update);
   });
 });
-
-
-// it('It should allow a Second User to sign up and link to an existing Couple by referencing an existing User\'s email', function(done) {
-//   request
-//     .post('/api/v1/users/add')
-//     .send(user)
-//     .expect(httpStatus.OK)
-//     .end(function(err, res) {
-//       if (err) return done(err);
-//       expect(res.body.success).to.equal(true);
-//       expect(res.body.data.email).to.equal(user.email.toLowerCase());
-//       expect(res.body.data.first_name).to.equal(user.first_name.toLowerCase());
-//       expect(res.body.data.last_name).to.equal(user.last_name.toLowerCase());
-//       expect(res.body.data.password).to.equal(undefined);
-//       expect(res.body.data.couple_id).to.equal(1);
-//       expect(res.body.data.user_id).to.equal(1);
-//       expect(res.body.data.score).to.equal(0);
-//       // Add to account for other properties returning on couple e.g. couple scores
-//       done();
-//     });
-// });
-
-
-// const user = Object.assign({}, mockUsers.firstUserOfCouple);
-// it('It should allow a Second User to sign up and link to an existing Couple by referencing an existing User\'s email', function(done) {
-//   request
-//     .post('/api/v1/users/add')
-//     .send(user)
-//     .expect(httpStatus.OK)
-//     .end(function(err, res) {
-//       if (err) return done(err);
-//       expect(res.body.success).to.equal(true);
-//       expect(res.body.data.email).to.equal(user.email.toLowerCase());
-//       expect(res.body.data.first_name).to.equal(user.first_name.toLowerCase());
-//       expect(res.body.data.last_name).to.equal(user.last_name.toLowerCase());
-//       expect(res.body.data.password).to.equal(undefined);
-//       expect(res.body.data.couple_id).to.equal(1);
-//       expect(res.body.data.user_id).to.equal(1);
-//       expect(res.body.data.score).to.equal(0);
-//       // Add to account for other properties returning on couple e.g. couple scores
-//       done();
-//     });
-// });
-
-
-
-//     it('It should add a new User and create a new linked Couple', function(done) {
-//       request
-//         .post('/api/v1/users/add')
-//         .send(user)
-//         .expect(httpStatus.OK)
-//         .end(function(err, res) {
-//           if (err) return done(err);
-//           expect(res.body.success).to.equal(true);
-//           expect(res.body.data.email).to.equal(user.email.toLowerCase());
-//           expect(res.body.data.first_name).to.equal(user.first_name.toLowerCase());
-//           expect(res.body.data.last_name).to.equal(user.last_name.toLowerCase());
-//           expect(res.body.data.password).to.equal(undefined);
-//           expect(res.body.data.couple_id).to.equal(1);
-//           expect(res.body.data.user_id).to.equal(1);
-//           expect(res.body.data.score).to.equal(0);
-//           // Add to account for other properties returning on couple e.g. couple scores
-//           done();
-//         });
-//     });
-//   });
-// });
-
-
-//   describe('Add firstUserOfCouple', function() {
-//     it('should return a HTTP 200 response', function(done) {
-//       request(app)
-//         .post('/api/v1/users/add')
-//         .send(user)
-//         .expect(httpStatus.OK)
-//         // is the below part needed? 
-//         .end(function(err, res) {
-//           if (err) return done(err);
-//           it('should respond with a success value of true', function(done) {
-//             expect(res.body.success).to.equal(true);
-//             done();
-//           });
-//           it('should have true be true, see if this works', function(done) {
-//             expect(true).to.equal(true);
-//             done();
-//           });
-//         });
-//     });
-//   });
-// });
-
-// it('should add a new User and generate a new linked Couple', (done) => {
-//   request(app)
-//     .post('/api/v1/users/add')
-//     .send(user)
-//     .expect(httpStatus.OK)
-//     .end((err, res) => {
-//       if (err) return done(err);
-//       // expect(res.body.success).to.equal(true);
-//       // expect(res.body.data.email).to.equal(user.email.toLowerCase());
-//       done();
-//     });
-// });
-// it('should create a new User and a new linked Couple', (done) => {
-//   const user = Object.assign({}, mockUsers.firstUserOfCouple);
-//   request(app)
-//     .post('/api/v1/users/add')
-//     .send(user)
-//     // .expect(httpStatus.OK)
-//     .end((err, res) => {
-//       if (err) return done(err);
-//       expect(res.body.success).to.equal(true);
-//       // expect(res.body.data.email).to.equal(user.email.toLowerCase());
-//       done();
-//     });
-// });
-
-
-// });
-
-// describe('# GET /api/users/:userId', () => {
-//   it('should get user details', (done) => {
-//     request(app)
-//       .get(`/api/users/${user._id}`)
-//       .expect(httpStatus.OK)
-//       .then(res => {
-//         expect(res.body.username).to.equal(user.username);
-//         expect(res.body.mobileNumber).to.equal(user.mobileNumber);
-//         done();
-//       });
-//   });
-
-//   it('should report error with message - Not found, when user does not exists', (done) => {
-//     request(app)
-//       .get('/api/users/56c787ccc67fc16ccc1a5e92')
-//       .expect(httpStatus.NOT_FOUND)
-//       .then(res => {
-//         expect(res.body.message).to.equal('Not Found');
-//         done();
-//       });
-//   });
-// });
-
-
-// describe('# GET /api/v1/users/', () => {
-//   it('should get all users', (done) => {
-//     request(app)
-//       .get('/api/users')
-//       .expect(httpStatus.OK)
-//       .then(res => {
-//         expect(res.body).to.be.an('array');
-//         done();
-//       });
-//   });
-// });
-
-
-// describe('# PUT /api/users/:userId', () => {
-//   it('should update user details', (done) => {
-//     user.username = 'KK';
-//     request(app)
-//       .put(`/api/users/${user._id}`)
-//       .send(user)
-//       .expect(httpStatus.OK)
-//       .then(res => {
-//         expect(res.body.username).to.equal('KK');
-//         expect(res.body.mobileNumber).to.equal(user.mobileNumber);
-//         done();
-//       });
-//   });
-// });
-
-// describe('# DELETE /api/users/', () => {
-//   it('should delete user', (done) => {
-//     request(app)
-//       .delete(`/api/users/${user._id}`)
-//       .expect(httpStatus.OK)
-//       .then(res => {
-//         expect(res.body.username).to.equal('KK');
-//         expect(res.body.mobileNumber).to.equal(user.mobileNumber);
-//         done();
-//       });
-//   });
-// });
-// });
