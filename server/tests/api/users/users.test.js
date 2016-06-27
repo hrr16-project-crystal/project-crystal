@@ -42,19 +42,19 @@ describe('## User APIs', function() {
             expect(res.body.data).to.deep.equals(firstUser.expected);
             Users.findById(firstUser.expected.user_id)
               .then(function(foundUser) {
-                console.log('----- inside first test Couples db query.. foundUser is: ');
-                console.log(foundUser);
-                console.log('===========');
                 expect(omit(foundUser, ['password'])).to.deep.equals(firstUser.expected);
               })
-              .then(Couples.findById.bind(null, firstUser.expected.couple_id))
-              .then(function(foundCouple) {
-                console.log('----- inside first test Couples db query.. foundCouple is: ');
-                console.log(foundCouple);
-                console.log('===========');
-                // expect(foundCouple).to.deep.equals(...);
-                expect(true).to.equal(true);
-                done();
+              .then(function() {
+                Couples.findById(firstUser.expected.couple_id)
+                  .then(function(foundCouple) {
+                    console.log('found couple in couples query... ------');
+                    console.log(foundCouple);
+                    console.log("---------"); 
+                    expect(foundCouple.couple_id).to.equal(firstUser.expected.couple_id);
+                    expect(foundCouple.score).to.equal(firstUser.expected.score);
+                    expect(foundCouple.have_both_users_joined).to.equal(false);
+                    done();
+                  });
               });
           });
       });

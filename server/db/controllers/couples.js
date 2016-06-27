@@ -53,7 +53,8 @@ module.exports = rep => {
     findById: couple_id => {
       console.log("YAY IM IN FINDBYID COUPLES");
       console.log(couple_id);
-      return rep.any(sql.findById, couple_id, couples => {
+      // change from rep.any to rep.oneOrNone to ensure only single value expected to return!!! instead single value in array
+      return rep.oneOrNone(sql.findById, couple_id, couples => {
         console.log('COUPLE JS IN THE REPOS');
         console.log(couples);
         return couples;
