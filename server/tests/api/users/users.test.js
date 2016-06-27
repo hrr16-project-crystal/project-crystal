@@ -108,7 +108,7 @@ describe('## User APIs', function() {
       // add aditional POST tests here 
     });
 
-    describe('# GET /api/v1/users', function() {
+    describe('# GET /api/v1/users/:id', function() {
       it('It should get all existing Users', function(done) {
         request
           .get('/api/v1/users')
@@ -169,27 +169,27 @@ describe('## User APIs', function() {
 
     });
 
-    // describe('# GET /api/v1/users', function() {
-    //   it('It should get all existing Users', function(done) {
-    //     request
-    //       .get('/api/v1/users')
-    //       .end(function(err, res) {
-    //         if (err) return done(err);
-    //         expect(res.body.success).to.equal(true);
-    //         expect(res.body.data).to.be.instanceof(Array);
-    //         expect(res.body.data).to.have.lengthOf(4);
-    //         // convert current mock User data expected values post POST operations and 
-    //         // convert all mock Users data to an expected array of Users
-    //         const expectedUsers = map(omit(mockUsers, ['stranger']), function(mockUser) {
-    //           mockUser.expected.have_both_users_joined = true;
-    //           return mockUser.expected;
-    //         });
-    //         expect(res.body.data).to.deep.include.members(expectedUsers);
-    //         done();
-    //       });
-    //   });
-    // });
-    // add aditional describe/test groups here (e.g. DELETE); 
+    describe('# DELETE /api/v1/users/:id', function() {
+      it('It should delete user #2 and set linked Couple\'s have_both_users_joined back to false', function(done) {
+        const expectedDeletedSecondUser = Object.assign({}, mockUsers.secondUserOfCouple);
+          // update expected value to be returned
+        expectedDeletedSecondUser.expected.have_both_users_joined = false;
+        request
+          .delete('/api/v1/users/2')
+          .end(function(err, res) {
+            if (err) return done(err);
+            console.log('--- in delete test, res.body and expected deleted second user is:...');
+            console.log(res.body);
+            console.log(expectedDeletedSecondUser.expected); 
+            console.log('=======');
+            expect(res.body.success).to.equal(true);
+            expect(res.body.data).to.be.an('object');
+            expect(res.body.data).to.deep.equals(expectedDeletedSecondUser.expected);
+            done();
+          });
+      });
+    });
+    // add aditional describe / test groups here(e.g.DELETE);
   });
 });
 

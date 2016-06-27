@@ -109,7 +109,7 @@ router.delete('/users/:id', (req, res, next) => {
         .then(deletedUser => {
           res.status(200)
             .json({
-              status: true,
+              success: true,
               data: helpers.desensitize(deletedUser),
             });
         });
