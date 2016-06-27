@@ -11,35 +11,84 @@ class Meter extends Component {
 
   renderStats() {
     let areaOptions = {
-      title: 'Snapshots',
-      legend: {position: 'none'},
-      vAxis: {minValue: 0, maxValue: 100},
+      isStacked: 'percent',
+      title: 'Relationship Snapshots',
+      // titlePosition: 'none',
+      chartArea: {
+        // backgroundColor: '#eef2f5',
+        // left: 0,
+        // top: 0,
+        // width: '100%',
+        // height:'100%',
+      },
+      legend: {
+        position: 'none'
+      },
+      hAxis: {
+        // textPosition: 'none',
+      },
+      // axisTitlesPosition: 'in',
+      vAxis: {
+        minValue: 0,
+        baselineColor: '#fff',
+        gridlines: {
+          color: '#ccc',
+          count: 0,
+        },
+        // textPosition: 'none',
+      },
+      fontSize: 12,
+      titleTextStyle: {
+        fontSize: 12,
+      },
+      animation: {
+        startup: true, 
+        duration: 3000, 
+        easing: 'linear'
+      },
       series: {
-        0:{color: '#ee6e73'},
-      }
+        0: {color: '03c9a9'},
+        1: {color: 'ee6e73'},
+        2: {color: 'eef2f5'},
+      },
     };
 
     let areaData = [
-      ['Month', 'Score'],
-      ['Jan',  20],
-      ['Feb',  25],
-      ['Mar',  40],
-      ['Apr',  55],
-      ['May',  75],
-      ['Jun',  this.props.health.data.score],
+      ['Month', 'Your Score', 'Partner Score', 'Room To Grow'],
+      ['Jan',  20, 80, 50],
+      ['Feb',  25, 55, 75],
+      ['Mar',  20, 60, 70],
+      ['Apr',  40, 100, 10],
+      ['May',  50, 80, 30],
+      ['Jun',  this.props.health.data.score, 100, 15],
     ];
     let pieOptions = {
       legend: 'none',
-      title: 'Total',
-      pieHole: 0.80,
+      // pieSliceText: 'value',
+      title: 'Sparkq Score',
+      pieHole: 0.75,
+      animation: {
+        startup: true, 
+        duration: 3000, 
+        easing: 'linear'
+      },
       pieSliceTextStyle: {
         color: '#03C9A9',
-        fontSize: 36,
+        fontSize: 16,
       },
-      tooltip: {text: 'percentage'},
+      tooltip: {
+        text: 'percentage'
+      },
       slices: {
-        0: { color: '#03C9A9' },
-        1: { color: '#eef2f5', textStyle: { color: 'transparent' } }
+        0: { 
+          color: '#03C9A9' 
+        },
+        1: { 
+          color: '#eef2f5',
+          textStyle: { 
+            color: 'transparent'
+          }
+        }
       },
     };
 
@@ -51,13 +100,39 @@ class Meter extends Component {
 
     let barOptions = {
       isStacked: 'percent',
-      title: 'Categories',
-      series: {
-        0:{color: '#03C9A9', visibleInLegend: false},
-        1:{color: '#eef2f5', visibleInLegend: false}
+      title: 'Personal Scores',
+      animation: {
+        startup: true, 
+        duration: 3000,
+        easing: 'linear'
       },
-      bars: 'horizontal', // Required for Material Bar Charts.
-      bar: { groupWidth: "85%" }
+      series: {
+        0: {
+          color: '#03C9A9', 
+          visibleInLegend: false
+        },
+        1: {
+          color: '#eef2f5', 
+          visibleInLegend: false
+        }
+      },
+      // bars: 'horizontal', // Required for Material Bar Charts.
+      bar: { 
+        // groupWidth: "55%" 
+      },
+      hAxis: {
+        baselineColor: '#fff',
+        gridlines: {
+          color: '#ccc',
+          count: 0,
+        },
+        // textPosition: 'none',
+      },
+      // axisTitlesPosition: 'in',
+      // chartArea:{left:0,top:0,width:'100%',height:'100%'},
+      vAxis: {
+        // textPosition: 'none',
+      },
     };
 
     let barData = [
@@ -84,7 +159,7 @@ class Meter extends Component {
             <Chart chartType = "BarChart" data = {barData} options = {barOptions} width={"100%"} height={"250px"} chartPackages={undefined}/>
           </div>
           <div className="data_chart data_chart--top">
-            <Chart chartType = "AreaChart" data = {areaData} options = {areaOptions} width={"100%"} height={"150px"} chartPackages={undefined}/>
+            <Chart chartType = "AreaChart" data = {areaData} options = {areaOptions} width={"100%"} height={"250px"} chartPackages={undefined}/>
           </div>
         </div>
       </div>
