@@ -37,9 +37,11 @@ describe('## User APIs', function() {
           .expect(httpStatus.OK)
           .end(function(err, res) {
             if (err) return done(err);
+            // test expected API response 
             expect(res.body.success).to.equal(true);
             expect(res.body.data).to.be.an('object');
             expect(res.body.data).to.deep.equals(firstUser.expected);
+            // test database to ensure database state reflects API response
             Users.findById(firstUser.expected.user_id)
               .then(function(foundUser) {
                 expect(omit(foundUser, ['password'])).to.deep.equals(firstUser.expected);
@@ -47,9 +49,6 @@ describe('## User APIs', function() {
               .then(function() {
                 Couples.findById(firstUser.expected.couple_id)
                   .then(function(foundCouple) {
-                    console.log('found couple in couples query... ------');
-                    console.log(foundCouple);
-                    console.log("---------"); 
                     expect(foundCouple.couple_id).to.equal(firstUser.expected.couple_id);
                     expect(foundCouple.score).to.equal(firstUser.expected.score);
                     expect(foundCouple.have_both_users_joined).to.equal(false);
@@ -217,7 +216,7 @@ describe('## User APIs', function() {
           .delete('/api/v1/users/1')
           .end(function(err, res) {
             if (err) return done(err);
-            // test expected API repsonse
+            // test expected API repsonse 
             expect(res.body.success).to.equal(true);
             expect(res.body.data).to.be.an('object');
             expect(res.body.data).to.deep.equals(firstUserToDelete.expected);
