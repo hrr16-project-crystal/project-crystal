@@ -126,7 +126,7 @@ describe('## User APIs', function() {
           });
       });
 
-      it('It should get user #2\'s User record', function(done) {
+      it('It should get user #2 User record', function(done) {
         const secondUser = Object.assign({}, mockUsers.secondUserOfCouple); 
         request
           .get('/api/v1/users/2')
