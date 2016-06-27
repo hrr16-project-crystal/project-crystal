@@ -15,10 +15,10 @@ export const fetchEvents = () => {
   };
 };
 
-export const createEvent = ({ title, startDate, startTime, endDate, endTime, category, description }) => {
+export const createEvent = ({ title, start, end, category, description }) => {
   return dispatch => {
     axios.post(`${testAPI}/createevent`,
-      { title, startDate, startTime, endDate, endTime, category, description })
+      { title, start, end, category, description })
     .then(response => {
       dispatch({
         type: CREATE_EVENT,

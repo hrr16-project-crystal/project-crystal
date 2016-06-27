@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
 import * as actions from './calendarActions';
+import moment from 'moment';
 import DatePicker from 'material-ui/DatePicker';
 import TimePicker from 'material-ui/TimePicker';
 import Dialog from 'material-ui/Dialog';
@@ -32,14 +33,64 @@ class CreateEvent extends Component {
 
   handleFormSubmit(formProps) {
     this.setState({ open: false });
-    console.log(formProps.startDate.toString().split(' '));
-    console.log(formProps.startTime.toString().split(' '));
-    this.props.createEvent(formProps);
-    // TODO: Look into fixing the start and end dates/times.
-    // right now there are two properties. Can possibly merge into just one
-    // Need to get into YYYY, MM, DD, HR, MIN format for event array
-    // ["Tue", "Jun", "28", "2016", "00:00:00", "GMT-0400", "(EDT)"] => DatePicker
-    // ["Sat", "Jun", "25", "2016", "18:45:43", "GMT-0400", "(EDT)"] => TimePicker
+    const event = {
+      title: '',
+      start: '',
+      end: '',
+      category: '',
+      description: '',
+    };
+
+    for (const key in formProps) {
+      if (key === 'title') {
+        event.title = formProps[key];
+      }
+      if (key === 'startDate') {
+        const tempSD = formProps[key].toString().split(' ');
+        event.start = tempSD[3] + ', ' + tempSD[1] + ', ' + tempSD[2] + ', ';
+      }
+      if (key === 'startTime') {
+        const tempST = formProps[key].toString().split(' ');
+        const otherTempST = tempST[4].split(':');
+        if (otherTempST[1] === '00') {
+          event.start += otherTempST[0] + ', 0';
+        } else {
+          event.start += otherTempST[0] + ', ' + otherTempST[1];
+        }
+      }
+      if (key === 'endDate') {
+        const tempED = formProps[key].toString().split(' ');
+        event.end = tempED[3] + ', ' + tempED[1] + ', ' + tempED[2] + ', ';
+      }
+      if (key === 'endTime') {
+        const tempET = formProps[key].toString().split(' ');
+        const otherTempET = tempET[4].split(':');
+        if (otherTempET[1] === '00') {
+          event.end += otherTempET[0] + ', 0';
+        } else {
+          event.end += otherTempET[0] + ', ' + otherTempET[1];
+        }
+      }
+      if (key === 'category') {
+        event.category = formProps[key];
+      }
+      if (key === 'description') {
+        event.description = formProps[key];
+      }
+    }
+    const tempStart = event.start.split(',');
+    const temporaryS = tempStart[0] + '-' + tempStart[1] + '-' + tempStart[2] + ' ' + tempStart[3] + ':' + tempStart[4];
+    const tempEnd = event.end.split(',');
+    const temporaryE = tempEnd[0] + '-' + tempEnd[1] + '-' + tempEnd[2] + ' ' + tempEnd[3] + ':' + tempEnd[4];
+    const startD = Number(moment(temporaryS).format('x'));
+    const endD = Number(moment(temporaryE).format('x'));
+    event.start = new Date(startD);
+    event.end = new Date(endD);
+    
+    this.props.createEvent(event);
+    setTimeout(() => {
+      this.props.fetchEvents();
+    }, 1000);
   }
 
   render() {
@@ -91,7 +142,6 @@ class CreateEvent extends Component {
               />
               <TimePicker
                 hintText="Please select a start time"
-                autoOK={true}
                 onChange={(x, event) => startTime.onChange(event)}
               />
               <DatePicker
@@ -106,7 +156,6 @@ class CreateEvent extends Component {
               />
               <TimePicker
                 hintText="Please select an end time"
-                autoOk={true}
                 onChange={(x, event) => endTime.onChange(event)}
               />
               <RadioButtonGroup {...category}>
