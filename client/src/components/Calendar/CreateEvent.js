@@ -47,28 +47,28 @@ class CreateEvent extends Component {
       }
       if (key === 'startDate') {
         const tempSD = formProps[key].toString().split(' ');
-        event.start = tempSD[3] + ', ' + tempSD[1] + ', ' + tempSD[2] + ', ';
+        event.start = `${tempSD[3]}, ${tempSD[1]}, ${tempSD[2]}, `;
       }
       if (key === 'startTime') {
         const tempST = formProps[key].toString().split(' ');
         const otherTempST = tempST[4].split(':');
         if (otherTempST[1] === '00') {
-          event.start += otherTempST[0] + ', 0';
+          event.start += `${otherTempST[0]}, 0`;
         } else {
-          event.start += otherTempST[0] + ', ' + otherTempST[1];
+          event.start += `${otherTempST[0]}, ${otherTempST[1]}`;
         }
       }
       if (key === 'endDate') {
         const tempED = formProps[key].toString().split(' ');
-        event.end = tempED[3] + ', ' + tempED[1] + ', ' + tempED[2] + ', ';
+        event.end = `${tempED[3]}, ${tempED[1]}, ${tempED[2]}, `;
       }
       if (key === 'endTime') {
         const tempET = formProps[key].toString().split(' ');
         const otherTempET = tempET[4].split(':');
         if (otherTempET[1] === '00') {
-          event.end += otherTempET[0] + ', 0';
+          event.end += `${otherTempET[0]}, 0`;
         } else {
-          event.end += otherTempET[0] + ', ' + otherTempET[1];
+          event.end += `${otherTempET[0]}, ${otherTempET[1]}`;
         }
       }
       if (key === 'category') {
@@ -78,15 +78,15 @@ class CreateEvent extends Component {
         event.description = formProps[key];
       }
     }
-    const tempStart = event.start.split(',');
-    const temporaryS = tempStart[0] + '-' + tempStart[1] + '-' + tempStart[2] + ' ' + tempStart[3] + ':' + tempStart[4];
+    const tempSt = event.start.split(',');
+    const temporaryS = `${tempSt[0]}-${tempSt[1]}-${tempSt[2]} ${tempSt[3]}:${tempSt[4]}`;
     const tempEnd = event.end.split(',');
-    const temporaryE = tempEnd[0] + '-' + tempEnd[1] + '-' + tempEnd[2] + ' ' + tempEnd[3] + ':' + tempEnd[4];
+    const temporaryE = `${tempEnd[0]}-${tempEnd[1]}-${tempEnd[2]} ${tempEnd[3]}:${tempEnd[4]}`;
     const startD = Number(moment(temporaryS).format('x'));
     const endD = Number(moment(temporaryE).format('x'));
     event.start = new Date(startD);
     event.end = new Date(endD);
-    
+
     this.props.createEvent(event);
     setTimeout(() => {
       this.props.fetchEvents();
