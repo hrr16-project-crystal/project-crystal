@@ -14,6 +14,10 @@ const Couples = require(__dirname + '/../../../db/index').db.couples;
 // Note for rewrites: 
 // mutations on mock Data appear to occur during sequential tests. 
 // Can take advantage of this or not, but be consistent. 
+
+// Refactor comment: Mimic final delete test as also ensures DB state reflects expectations. 
+// But also ensure accounting for errors not caught (current last delete test does not use .catch); 
+
 describe('## User APIs', function() {
 
   describe('-- Webpack loading... --', function() {
@@ -36,7 +40,22 @@ describe('## User APIs', function() {
             expect(res.body.success).to.equal(true);
             expect(res.body.data).to.be.an('object');
             expect(res.body.data).to.deep.equals(firstUser.expected);
-            done();
+            Users.findById(firstUser.expected.user_id)
+              .then(function(foundUser) {
+                console.log('----- inside first test Couples db query.. foundUser is: ');
+                console.log(foundUser);
+                console.log('===========');
+                expect(omit(foundUser, ['password'])).to.deep.equals(firstUser.expected);
+              })
+              .then(Couples.findById.bind(null, firstUser.expected.couple_id))
+              .then(function(foundCouple) {
+                console.log('----- inside first test Couples db query.. foundCouple is: ');
+                console.log(foundCouple);
+                console.log('===========');
+                // expect(foundCouple).to.deep.equals(...);
+                expect(true).to.equal(true);
+                done();
+              });
           });
       });
 
@@ -203,7 +222,7 @@ describe('## User APIs', function() {
             expect(res.body.data).to.be.an('object');
             expect(res.body.data).to.deep.equals(firstUserToDelete.expected);
             // test database to ensure database state reflects API response
-            Users.findById(firstUserToDelete.expected.couple_id)
+            Users.findById(firstUserToDelete.expected.user_id)
               .then(function(foundUser) {
                 expect(foundUser).to.not.exist;
               })
