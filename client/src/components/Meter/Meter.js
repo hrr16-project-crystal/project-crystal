@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-<<<<<<< dd8670d2fb53579ab3f154bf10cb7318c920b1fc
 import { Chart } from 'react-google-charts';
-=======
-import { Chart } from 'react-google-charts'
->>>>>>> Integrate charts
 import { connect } from 'react-redux';
 import * as actions from './meterAction';
 import './meter.css';
@@ -14,7 +10,6 @@ class Meter extends Component {
   }
 
   renderStats() {
-<<<<<<< dd8670d2fb53579ab3f154bf10cb7318c920b1fc
     /*
      * SPARK SCORE ALGORITHM
      * ==============================
@@ -124,38 +119,6 @@ class Meter extends Component {
             color: 'transparent'
           },
         }
-=======
-    let areaOptions = {
-      title: 'Snapshots',
-      legend: {position: 'none'},
-      vAxis: {minValue: 0, maxValue: 100},
-      series: {
-        0:{color: '#ee6e73'},
-      }
-    };
-
-    let areaData = [
-      ['Month', 'Score'],
-      ['Jan',  20],
-      ['Feb',  25],
-      ['Mar',  40],
-      ['Apr',  55],
-      ['May',  75],
-      ['Jun',  this.props.health.data.score],
-    ];
-    let pieOptions = {
-      legend: 'none',
-      title: 'Total',
-      pieHole: 0.80,
-      pieSliceTextStyle: {
-        color: '#03C9A9',
-        fontSize: 36,
-      },
-      tooltip: {text: 'percentage'},
-      slices: {
-        0: { color: '#03C9A9' },
-        1: { color: '#eef2f5', textStyle: { color: 'transparent' } }
->>>>>>> Integrate charts
       },
     };
 
@@ -167,7 +130,6 @@ class Meter extends Component {
 
     let barOptions = {
       isStacked: 'percent',
-<<<<<<< dd8670d2fb53579ab3f154bf10cb7318c920b1fc
       title: 'Personal Scores',
       animation: {
         startup: true, 
@@ -201,15 +163,6 @@ class Meter extends Component {
       vAxis: {
         // textPosition: 'none',
       },
-=======
-      title: 'Categories',
-      series: {
-        0:{color: '#03C9A9', visibleInLegend: false},
-        1:{color: '#eef2f5', visibleInLegend: false}
-      },
-      bars: 'horizontal', // Required for Material Bar Charts.
-      bar: { groupWidth: "85%" }
->>>>>>> Integrate charts
     };
 
     let barData = [
@@ -230,21 +183,14 @@ class Meter extends Component {
         <div className="data">
           <div className="data__header">Relationship Health Meter</div>
           <div className="data_chart data_chart--half data_chart--left">
-<<<<<<< dd8670d2fb53579ab3f154bf10cb7318c920b1fc
             <span className="personalScore">{sparkScore + '%'}</span>
-=======
->>>>>>> Integrate charts
             <Chart chartType = "PieChart" data = {pieData} options = {pieOptions} width={"100%"} height={"250px"} chartPackages={undefined}/>
           </div>
           <div className="data_chart data_chart--half">
             <Chart chartType = "BarChart" data = {barData} options = {barOptions} width={"100%"} height={"250px"} chartPackages={undefined}/>
           </div>
           <div className="data_chart data_chart--top">
-<<<<<<< dd8670d2fb53579ab3f154bf10cb7318c920b1fc
             <Chart chartType = "AreaChart" data = {areaData} options = {areaOptions} width={"100%"} height={"250px"} chartPackages={undefined}/>
-=======
-            <Chart chartType = "AreaChart" data = {areaData} options = {areaOptions} width={"100%"} height={"150px"} chartPackages={undefined}/>
->>>>>>> Integrate charts
           </div>
         </div>
       </div>
