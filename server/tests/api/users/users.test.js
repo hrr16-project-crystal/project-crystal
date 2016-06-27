@@ -178,16 +178,14 @@ describe('## User APIs', function() {
           .delete('/api/v1/users/2')
           .end(function(err, res) {
             if (err) return done(err);
-            console.log('--- in delete test, res.body and expected deleted second user is:...');
-            console.log(res.body);
-            console.log(expectedDeletedSecondUser.expected); 
-            console.log('=======');
             expect(res.body.success).to.equal(true);
             expect(res.body.data).to.be.an('object');
             expect(res.body.data).to.deep.equals(expectedDeletedSecondUser.expected);
             done();
           });
       });
+      
+      // add additional tests to DELETE test group here
     });
     // add aditional describe / test groups here(e.g.DELETE);
   });
