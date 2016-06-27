@@ -34,7 +34,7 @@ exports.secondUserOfCouple = {
     email: 'michelle@gmail.com',
     user_id: 2,
     couple_id: 1,
-    have_both_users_joined: false,
+    have_both_users_joined: true,
     score: 0,
     respect_score: 0,
     communication_score: 0,

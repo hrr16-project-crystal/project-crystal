@@ -1,5 +1,4 @@
 'use strict';
-// let request = require('supertest');
 const httpStatus = require('http-status');
 const chai = require('chai');
 const expect = chai.expect;
@@ -20,8 +19,9 @@ describe('## User APIs', function() {
       setTimeout(() => { done(); }, 1800);
     });
 
+    // URGENT RF: Include in tests DB queries to ensure that DB also correctly reflects expected state after
+    // test operations
     describe('# POST /api/v1/users/add', function() {
-
       it('It should allow a first User to sign up and should generate a new, linked Couple', function(done) {
         const firstUser = Object.assign({}, mockUsers.firstUserOfCouple);
         request
@@ -31,35 +31,12 @@ describe('## User APIs', function() {
           .end(function(err, res) {
             if (err) return done(err);
             expect(res.body.success).to.equal(true);
-            expect(res.body.data.email).to.equal(firstUser.expected.email);
-            expect(res.body.data.first_name).to.equal(firstUser.expected.first_name);
-            expect(res.body.data.last_name).to.equal(firstUser.expected.last_name);
-            // expect(res.body.data.password).to.equal(firstUser.expected.password);
-            expect(res.body.data.password).to.not.exist;
-            expect(res.body.data.couple_id).to.equal(firstUser.expected.couple_id);
-            expect(res.body.data.user_id).to.equal(firstUser.expected.user_id);
-            expect(res.body.data.score).to.equal(firstUser.expected.score);
-            expect(res.body.data.have_both_users_joined).to.equal(firstUser.expected.have_both_users_joined);
-            // =====================================================
-            // expect(res.body.success).to.equal(true);
-            // expect(res.body.data.email).to.equal(firstUser.email.toLowerCase());
-            // expect(res.body.data.first_name).to.equal(firstUser.first_name.toLowerCase());
-            // expect(res.body.data.last_name).to.equal(firstUser.last_name.toLowerCase());
-            // expect(res.body.data.password).to.equal(undefined);
-            // expect(res.body.data.couple_id).to.equal(1);
-            // expect(res.body.data.user_id).to.equal(1);
-            // expect(res.body.data.score).to.equal(0);
-            // expect(res.body.data.have_both_users_joined).to.equal(false);
-
-            // RF: Add to account for other properties returning on couple e.g. couple scores
-            // RF URGENT: Add DB so can query directly if user added in DB
-            // as currently only tests if valid response returns from server
+            expect(res.body.data).to.be.an('object');
+            expect(res.body.data).to.deep.equals(firstUser.expected);
             done();
           });
       });
 
-      // RF URGENT: Add DB so can query directly if user added in DB
-      // as currently only tests if valid response returns from server
       it('It should NOT allow a subsequent user to sign up with the same email, even where the email is in a different case', function(done) {
         const firstUserWithUpperCasedEmail = Object.assign(mockUsers.firstUserOfCouple, { email: mockUsers.firstUserOfCouple.email.toUpperCase() });
         request
@@ -72,8 +49,6 @@ describe('## User APIs', function() {
           });
       });
 
-      // RF URGENT: Add DB so can query directly if user added in DB
-      // as currently only tests if valid response returns from server  
       it('It should allow a second User to sign up and link to an existing, incomplete Couple by referencing an existing User\'s email', function(done) {
         const secondUser = Object.assign({}, mockUsers.secondUserOfCouple);
         request
@@ -82,22 +57,12 @@ describe('## User APIs', function() {
           .end(function(err, res) {
             if (err) return done(err);
             expect(res.body.success).to.equal(true);
-            expect(res.body.data.email).to.equal(secondUser.email.toLowerCase());
-            expect(res.body.data.first_name).to.equal(secondUser.first_name.toLowerCase());
-            expect(res.body.data.last_name).to.equal(secondUser.last_name.toLowerCase());
-            // expect(res.body.data.password).to.equal(undefined);
-            expect(res.body.data.password).to.not.exist;
-            expect(res.body.data.couple_id).to.equal(1);
-            expect(res.body.data.user_id).to.equal(2);
-            expect(res.body.data.score).to.equal(0);
-            expect(res.body.data.have_both_users_joined).to.equal(true);
+            expect(res.body.data).to.be.an('object');
+            expect(res.body.data).to.deep.equals(secondUser.expected);
             done();
           });
       });
 
-      // RF URGENT: Add DB so can query directly if user added in DB
-      // as currently only tests if valid response returns from server  
-      // RF: More specific test, as current test failure signal (success: false) may refer to other types of failure?
       it('It should NOT allow a third User to sign up and link to an existing, complete Couple by referencing an existing User\'s email', function(done) {
         const stranger = Object.assign({}, mockUsers.stranger);
         request
@@ -110,7 +75,6 @@ describe('## User APIs', function() {
           });
       });
 
-      // add additional sequenced tests here
       it('It should allow a third User to sign up and should generate a second, new, linked Couple', function(done) {
         const thirdUser = Object.assign({}, mockUsers.firstUserOfCouple2);
         request
@@ -120,23 +84,12 @@ describe('## User APIs', function() {
           .end(function(err, res) {
             if (err) return done(err);
             expect(res.body.success).to.equal(true);
-            expect(res.body.data.email).to.equal(thirdUser.email.toLowerCase());
-            expect(res.body.data.first_name).to.equal(thirdUser.first_name.toLowerCase());
-            expect(res.body.data.last_name).to.equal(thirdUser.last_name.toLowerCase());
-            expect(res.body.data.password).to.not.exist;
-            expect(res.body.data.couple_id).to.equal(2);
-            expect(res.body.data.user_id).to.equal(3);
-            expect(res.body.data.score).to.equal(0);
-            expect(res.body.data.have_both_users_joined).to.equal(false);
-            // RF: Add to account for other properties returning on couple e.g. couple scores
-            // RF URGENT: Add DB so can query directly if user added in DB
-            // as currently only tests if valid response returns from server
+            expect(res.body.data).to.be.an('object');
+            expect(res.body.data).to.deep.equals(thirdUser.expected);
             done();
           });
       });
 
-      // RF URGENT: Add DB so can query directly if user added in DB
-      // as currently only tests if valid response returns from server  
       it('It should allow a fourth User to sign up and link to the second existing, incomplete Couple by referencing the third User\'s email', function(done) {
         const fourthUser = Object.assign({}, mockUsers.secondUserOfCouple2);
         request
@@ -145,24 +98,16 @@ describe('## User APIs', function() {
           .end(function(err, res) {
             if (err) return done(err);
             expect(res.body.success).to.equal(true);
-            expect(res.body.data.email).to.equal(fourthUser.expected.email);
-            expect(res.body.data.first_name).to.equal(fourthUser.expected.first_name);
-            expect(res.body.data.last_name).to.equal(fourthUser.expected.last_name);
-            expect(res.body.data.password).to.not.exist;
-            expect(res.body.data.couple_id).to.equal(fourthUser.expected.couple_id);
-            expect(res.body.data.user_id).to.equal(fourthUser.expected.user_id);
-            expect(res.body.data.score).to.equal(fourthUser.expected.score);
-            expect(res.body.data.have_both_users_joined).to.equal(fourthUser.expected.have_both_users_joined);
+            expect(res.body.data).to.be.an('object');
+            expect(res.body.data).to.deep.equals(fourthUser.expected);
             done();
           });
       });
       // add aditional POST tests here 
     });
 
-    // add another describe function. see if still has access to existing user values! 
     describe('# GET /api/v1/users', function() {
       it('It should get all existing Users', function(done) {
-        const fourthUser = Object.assign({}, mockUsers.secondUserOfCouple2);
         request
           .get('/api/v1/users')
           .end(function(err, res) {
@@ -170,8 +115,8 @@ describe('## User APIs', function() {
             expect(res.body.success).to.equal(true);
             expect(res.body.data).to.be.instanceof(Array);
             expect(res.body.data).to.have.lengthOf(4);
-            // update current mock User data expected values and convert all mock Users data 
-            // to an expected array of Users
+            // convert current mock User data expected values post POST operations and 
+            // convert all mock Users data to an expected array of Users
             const expectedUsers = map(omit(mockUsers, ['stranger']), function(mockUser) {
               mockUser.expected.have_both_users_joined = true;
               return mockUser.expected;
@@ -180,8 +125,25 @@ describe('## User APIs', function() {
             done();
           });
       });
+
+      it('It should get user #2\'s User record', function(done) {
+        const secondUser = Object.assign({}, mockUsers.secondUserOfCouple); 
+        request
+          .get('/api/v1/users/2')
+          .end(function(err, res) {
+            if (err) return done(err);
+            expect(res.body.success).to.equal(true);
+            expect(res.body.data).to.be.an('object');
+            expect(res.body.data).to.deep.equals(secondUser.expected);
+            done();
+          });
+      });
+
+      // add aditional tests to GET test suite here
+
     });
 
+    // add aditional test groups here (e.g. DELETE); 
   });
 });
 
