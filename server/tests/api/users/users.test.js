@@ -17,6 +17,9 @@ const Couples = require(__dirname + '/../../../db/index').db.couples;
 
 // Refactor comment: Mimic final delete test as also queries DB state to ensure reflects expectations. 
 // But also ensure accounting for errors not caught (current last delete test does not use .catch); 
+// Also, when dealing with new columns created_at and updated_at, simply create an omit version
+// that gets tested (actually, you're currently doing that with ['password'] removed, but add 
+// ['created_at, updated_at'] => but prior to this removal, test their existence! then remove.)
 
 describe('## User APIs', function() {
 
