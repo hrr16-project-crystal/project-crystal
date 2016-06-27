@@ -45,6 +45,7 @@ describe('## User APIs', function() {
           .end(function(err, res) {
             if (err) return done(err);
             expect(res.body.success).to.equal(false);
+            expect(res.body.data).to.be.a('string');
             done();
           });
       });
@@ -71,6 +72,7 @@ describe('## User APIs', function() {
           .end(function(err, res) {
             if (err) return done(err);
             expect(res.body.success).to.equal(false);
+            expect(res.body.data).to.be.a('string');
             done();
           });
       });
@@ -126,8 +128,8 @@ describe('## User APIs', function() {
           });
       });
 
-      it('It should get user #2 User record', function(done) {
-        const secondUser = Object.assign({}, mockUsers.secondUserOfCouple); 
+      it('It should get user #2\'s User record', function(done) {
+        const secondUser = Object.assign({}, mockUsers.secondUserOfCouple);
         request
           .get('/api/v1/users/2')
           .end(function(err, res) {
@@ -139,11 +141,55 @@ describe('## User APIs', function() {
           });
       });
 
+      it('It should get user #4\'s User record', function(done) {
+        const fourthUser = Object.assign({}, mockUsers.secondUserOfCouple2);
+        request
+          .get('/api/v1/users/4')
+          .end(function(err, res) {
+            if (err) return done(err);
+            expect(res.body.success).to.equal(true);
+            expect(res.body.data).to.be.an('object');
+            expect(res.body.data).to.deep.equals(fourthUser.expected);
+            done();
+          });
+      });
+
+      it('It should NOT get non-existing user #999\'s User record', function(done) {
+        request
+          .get('/api/v1/users/999')
+          .end(function(err, res) {
+            if (err) return done(err);
+            expect(res.body.success).to.equal(false);
+            expect(res.body.data).to.be.a('string');
+            done();
+          });
+      });
+
       // add aditional tests to GET test suite here
 
     });
 
-    // add aditional test groups here (e.g. DELETE); 
+    // describe('# GET /api/v1/users', function() {
+    //   it('It should get all existing Users', function(done) {
+    //     request
+    //       .get('/api/v1/users')
+    //       .end(function(err, res) {
+    //         if (err) return done(err);
+    //         expect(res.body.success).to.equal(true);
+    //         expect(res.body.data).to.be.instanceof(Array);
+    //         expect(res.body.data).to.have.lengthOf(4);
+    //         // convert current mock User data expected values post POST operations and 
+    //         // convert all mock Users data to an expected array of Users
+    //         const expectedUsers = map(omit(mockUsers, ['stranger']), function(mockUser) {
+    //           mockUser.expected.have_both_users_joined = true;
+    //           return mockUser.expected;
+    //         });
+    //         expect(res.body.data).to.deep.include.members(expectedUsers);
+    //         done();
+    //       });
+    //   });
+    // });
+    // add aditional describe/test groups here (e.g. DELETE); 
   });
 });
 
