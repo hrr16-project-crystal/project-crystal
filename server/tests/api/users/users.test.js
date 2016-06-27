@@ -7,6 +7,8 @@ const app = require(__dirname + '/../../../server');
 const mockUsers = require(__dirname + '/mockData.js');
 const each = require('lodash/each');
 const request = require('supertest')('http://localhost:3000');
+const map = require('lodash/map');
+const omit = require('lodash/omit');
 // chai.config.includeStack = true;  =>  if want to display stack trace
 
 describe('## User APIs', function() {
@@ -32,7 +34,8 @@ describe('## User APIs', function() {
             expect(res.body.data.email).to.equal(firstUser.expected.email);
             expect(res.body.data.first_name).to.equal(firstUser.expected.first_name);
             expect(res.body.data.last_name).to.equal(firstUser.expected.last_name);
-            expect(res.body.data.password).to.equal(firstUser.expected.password);
+            // expect(res.body.data.password).to.equal(firstUser.expected.password);
+            expect(res.body.data.password).to.not.exist;
             expect(res.body.data.couple_id).to.equal(firstUser.expected.couple_id);
             expect(res.body.data.user_id).to.equal(firstUser.expected.user_id);
             expect(res.body.data.score).to.equal(firstUser.expected.score);
@@ -82,7 +85,8 @@ describe('## User APIs', function() {
             expect(res.body.data.email).to.equal(secondUser.email.toLowerCase());
             expect(res.body.data.first_name).to.equal(secondUser.first_name.toLowerCase());
             expect(res.body.data.last_name).to.equal(secondUser.last_name.toLowerCase());
-            expect(res.body.data.password).to.equal(undefined);
+            // expect(res.body.data.password).to.equal(undefined);
+            expect(res.body.data.password).to.not.exist;
             expect(res.body.data.couple_id).to.equal(1);
             expect(res.body.data.user_id).to.equal(2);
             expect(res.body.data.score).to.equal(0);
@@ -119,7 +123,7 @@ describe('## User APIs', function() {
             expect(res.body.data.email).to.equal(thirdUser.email.toLowerCase());
             expect(res.body.data.first_name).to.equal(thirdUser.first_name.toLowerCase());
             expect(res.body.data.last_name).to.equal(thirdUser.last_name.toLowerCase());
-            expect(res.body.data.password).to.equal(undefined);
+            expect(res.body.data.password).to.not.exist;
             expect(res.body.data.couple_id).to.equal(2);
             expect(res.body.data.user_id).to.equal(3);
             expect(res.body.data.score).to.equal(0);
@@ -140,15 +144,11 @@ describe('## User APIs', function() {
           .send(fourthUser)
           .end(function(err, res) {
             if (err) return done(err);
-            // console.log('==================');
-            // console.log(fourthUser);
-            // console.log(res.body);
-            // console.log('==================');
             expect(res.body.success).to.equal(true);
             expect(res.body.data.email).to.equal(fourthUser.expected.email);
             expect(res.body.data.first_name).to.equal(fourthUser.expected.first_name);
             expect(res.body.data.last_name).to.equal(fourthUser.expected.last_name);
-            expect(res.body.data.password).to.equal(fourthUser.expected.password);
+            expect(res.body.data.password).to.not.exist;
             expect(res.body.data.couple_id).to.equal(fourthUser.expected.couple_id);
             expect(res.body.data.user_id).to.equal(fourthUser.expected.user_id);
             expect(res.body.data.score).to.equal(fourthUser.expected.score);
@@ -156,34 +156,32 @@ describe('## User APIs', function() {
             done();
           });
       });
-
-      // // RF URGENT: Add DB so can query directly if user added in DB
-      // // as currently only tests if valid response returns from server  
-      // it('It should allow a fourth User to sign up and link to the second existing, incomplete Couple by referencing the third User\'s email', function(done) {
-      //   const fourthUser = Object.assign({}, mockUsers.secondUserOfCouple2);
-      //   request
-      //     .post('/api/v1/users/add')
-      //     .send(fourthUser)
-      //     .end(function(err, res) {
-      //       if (err) return done(err);
-      //       // console.log('==================');
-      //       // console.log(fourthUser);
-      //       // console.log(res.body);
-      //       // console.log('==================');
-      //       expect(res.body.success).to.equal(true);
-      //       expect(res.body.data.email).to.equal(fourthUser.expected.email);
-      //       expect(res.body.data.first_name).to.equal(fourthUser.expected.first_name);
-      //       expect(res.body.data.last_name).to.equal(fourthUser.expected.last_name);
-      //       expect(res.body.data.password).to.equal(fourthUser.expected.password);
-      //       expect(res.body.data.couple_id).to.equal(fourthUser.expected.couple_id);
-      //       expect(res.body.data.user_id).to.equal(fourthUser.expected.user_id);
-      //       expect(res.body.data.score).to.equal(fourthUser.expected.score);
-      //       expect(res.body.data.have_both_users_joined).to.equal(fourthUser.expected.have_both_users_joined);
-      //       done();
-      //     });
-      // });
-
+      // add aditional POST tests here 
     });
+
+    // add another describe function. see if still has access to existing user values! 
+    describe('# GET /api/v1/users', function() {
+      it('It should get all existing Users', function(done) {
+        const fourthUser = Object.assign({}, mockUsers.secondUserOfCouple2);
+        request
+          .get('/api/v1/users')
+          .end(function(err, res) {
+            if (err) return done(err);
+            expect(res.body.success).to.equal(true);
+            expect(res.body.data).to.be.instanceof(Array);
+            expect(res.body.data).to.have.lengthOf(4);
+            // update current mock User data expected values and convert all mock Users data 
+            // to an expected array of Users
+            const expectedUsers = map(omit(mockUsers, ['stranger']), function(mockUser) {
+              mockUser.expected.have_both_users_joined = true;
+              return mockUser.expected;
+            });
+            expect(res.body.data).to.deep.include.members(expectedUsers);
+            done();
+          });
+      });
+    });
+
   });
 });
 
