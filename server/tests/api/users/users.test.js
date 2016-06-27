@@ -15,7 +15,7 @@ const Couples = require(__dirname + '/../../../db/index').db.couples;
 // mutations on mock Data appear to occur during sequential tests. 
 // Can take advantage of this or not, but be consistent. 
 
-// Refactor comment: Mimic final delete test as also ensures DB state reflects expectations. 
+// Refactor comment: Mimic final delete test as also queries DB state to ensure reflects expectations. 
 // But also ensure accounting for errors not caught (current last delete test does not use .catch); 
 
 describe('## User APIs', function() {
@@ -199,12 +199,14 @@ describe('## User APIs', function() {
           .delete('/api/v1/users/2')
           .end(function(err, res) {
             if (err) return done(err);
+            // test expected API repsonse 
             expect(res.body.success).to.equal(true);
             expect(res.body.data).to.be.an('object');
             expect(res.body.data).to.deep.equals(secondUserToDelete.expected);
+            // test database to ensure database state reflects API response
             Users.findById(secondUserToDelete.expected.user_id)
               .then(function(foundUser) {
-                expect(foundUser).to.not.exist; 
+                expect(foundUser).to.not.exist;
               })
               .then(function() {
                 Couples.findById(secondUserToDelete.expected.couple_id)
@@ -236,10 +238,12 @@ describe('## User APIs', function() {
               .then(function(foundUser) {
                 expect(foundUser).to.not.exist;
               })
-              .then(Couples.findById(firstUserToDelete.expected.couple_id))
-              .then(function(foundCouple) {
-                expect(foundCouple).to.not.exist;
-                done();
+              .then(function() {
+                Couples.findById(firstUserToDelete.expected.couple_id)
+                  .then(function(foundCouple) {
+                    expect(foundCouple).to.not.exist;
+                    done(); 
+                  });
               });
           });
       });
