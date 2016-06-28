@@ -17,6 +17,9 @@ class Meter extends Component {
      * taken off low score differences, then multiply by less than 0.10 in
      * tenthOfDiff, and multiply that result by more than 3 in tripled.
      */
+    // TODO: deduct points for low category-specific scores
+    // one point if below 50 (for each category)?
+    // two points if below 25?
     const userScore = this.props.health.data[0].score;
     const partnerScore = 60; // change this to whatever the prop is
     const averageScore = Math.ceil((userScore + partnerScore) / 2);
@@ -165,7 +168,6 @@ class Meter extends Component {
     // If using material bar chart pass this variable to chartPackages prop
     // Also need to pass "Bar" rather than "BarChart" to chartType prop
     let materialBarPackages = ['bar'];
-    let personalScore = this.props.health.data[0].score;
     
     return (
       <div>
