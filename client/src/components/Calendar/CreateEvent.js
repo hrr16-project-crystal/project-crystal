@@ -89,9 +89,11 @@ class CreateEvent extends Component {
     event.start = new Date(startD);
     event.end = new Date(endD);
 
+    event.coupleID = this.props.user.coupleID;
+
     this.props.createEvent(event);
     setTimeout(() => {
-      this.props.fetchEvents();
+      this.props.fetchEvents(this.props.user.coupleID);
     }, 1000);
   }
 
@@ -185,7 +187,7 @@ class CreateEvent extends Component {
 }
 
 const mapStateToProps = state => {
-  return { event: state.calendar.event };
+  return { event: state.calendar.event, user: state.auth.user };
 };
 
 export default reduxForm({

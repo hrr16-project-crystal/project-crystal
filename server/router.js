@@ -44,6 +44,7 @@ module.exports = (app) => {
   app.post('/createevent', (req, res) => {
     console.log('server-------');
     console.log(req.body);
+    console.log(typeof req.body.end);
     testEvents.push(req.body);
     console.log(testEvents);
   });

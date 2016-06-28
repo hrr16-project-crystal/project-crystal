@@ -1,11 +1,11 @@
 import { CREATE_EVENT, FETCH_EVENTS } from '../../helpers/constants/types';
 import axios from 'axios';
 const apiUrl = 'http://localhost:3000/api/v1';
-const testAPI = 'http://localhost:3000';
+// const testAPI = 'http://localhost:3000';
 
-export const fetchEvents = () => {
+export const fetchEvents = (coupleID) => {
   return dispatch => {
-    axios.get(`${testAPI}/testevents`)
+    axios.get(`${apiUrl}/events/${coupleID}`)
     .then(response => {
       dispatch({
         type: FETCH_EVENTS,
@@ -15,10 +15,10 @@ export const fetchEvents = () => {
   };
 };
 
-export const createEvent = ({ title, start, end, category, description }) => {
+export const createEvent = ({ title, start, end, category, description, coupleID }) => {
   return dispatch => {
-    axios.post(`${testAPI}/createevent`,
-      { title, start, end, category, description })
+    axios.post(`${apiUrl}/events/add`,
+      { title, start, end, category, description, coupleID })
     .then(response => {
       dispatch({
         type: CREATE_EVENT,

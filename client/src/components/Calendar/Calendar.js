@@ -10,7 +10,7 @@ import './calendar.css';
 
 // Note: JavaScript months go from 0-11 & edited css style sheet (not sure if edits went to GIT)
 // CSS edits were the margin top of 48px and min-height of 600px on main calendar
-// TODO: add popup box with meterial-ui when clicking on event
+// TODO: add popup box with material-ui when clicking on event
 class Calendar extends Component {
   constructor(props) {
     super(props);
@@ -18,7 +18,8 @@ class Calendar extends Component {
     BigCalendar.setLocalizer(BigCalendar.momentLocalizer(moment));
   }
   componentWillMount() {
-    this.props.fetchEvents();
+    console.log(this.props);
+    this.props.fetchEvents(this.props.user.coupleID);
   }
 
   getEvents() {
@@ -73,7 +74,7 @@ class Calendar extends Component {
 }
 
 const mapStateToProps = state => {
-  return { events: state.calendar.events };
+  return { events: state.calendar.events, user: state.auth.user };
 };
 
 export default connect(mapStateToProps, actions)(Calendar);

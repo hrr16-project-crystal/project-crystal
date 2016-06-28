@@ -3,6 +3,7 @@ const config = require('../config');
 const Users = require(__dirname + '/../db/index').db.users;
 const Couples = require(__dirname + '/../db/index').db.couples;
 const CouplesUsers = require(__dirname + '/../db/index').db.couples_users;
+const Events = require(__dirname + '/../db/index').db.events;
 const pgp = require(__dirname + '/../db/index').pgp; 
 const bcrypt = require('bcrypt-nodejs');
 
@@ -16,7 +17,7 @@ const tokenForUser = user => {
 
 exports.signin = (req, res, next) => {
   // User has already had their email and password auth'd ,just need to give them a token
-  req.user.coupleID = 35;
+  // req.user.coupleID = 35;
   res.send({
     token: tokenForUser(req.user),
     user: req.user,
@@ -38,12 +39,20 @@ exports.signup = (req, res, next) => {
         return res.status(422).send({ error: 'Email is in use' });
       }
     // Otherwise, create and save user request
-    const user = {
-      first_name,
-      last_name,
-      email,
-      password,
-    };
+      const user = {
+        first_name,
+        last_name,
+        email,
+        password,
+      };
+
+      const defaultEvent = {
+        title: 'Welcome!',
+        description: 'This is the default event for our calendar!',
+        start_date: '2016-06-30T-06:00:00.000Z',
+        end_date: '2016-06-24T15:00:00.000Z',
+        category: 'Misc',
+      };
 
     bcrypt.genSalt(10, (err, salt) => {
       if (err) {
@@ -54,7 +63,9 @@ exports.signup = (req, res, next) => {
           return next(err);
         }
         user.password = hash;
-
+// Adds a new event, and returns the new event;
+// add: eventObj =>
+//   rep.one(sql.add, eventObj),
         if (req.body.couple === 'yes') {
           Couples.add()
           .then(couple => {
@@ -63,23 +74,21 @@ exports.signup = (req, res, next) => {
               CouplesUsers.add(couple.couple_id, createdUser.user_id)
               .then(coupleUser => {
                 createdUser.coupleID = coupleUser.couple_id;
-                res.json({
-                  token: tokenForUser(createdUser),
-                  user: createdUser,
-                });
+                defaultEvent.couple_id = coupleUser.couple_id;
+                Events.add(defaultEvent)
+                  .then(data => {
+                    res.json({
+                      token: tokenForUser(createdUser),
+                      user: createdUser,
+                    });
+                  });
               });
             });
           });
         } else {
-          console.log('hittttttttt');
           const otherUserEmail = req.body.otherEmail;
-          console.log(otherUserEmail);
-          console.log('Above is the other User email ^^^^^');
-          console.log(req.body);
           Users.findByEmail(otherUserEmail)
           .then(otherUser => {
-            console.log('findByEmail=======');
-            console.log(otherUser);
             CouplesUsers.findByUserId(otherUser.user_id)
             .then(coupleUser => {
               Users.add(user)
@@ -92,3 +101,7 @@ exports.signup = (req, res, next) => {
             });
           });
         }
+      });
+    });
+    });
+};

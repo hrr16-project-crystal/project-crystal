@@ -8,6 +8,10 @@ const populateDb = () => {
     // .then(db.categories.init)   // new
     .then(db.questions.create)
     .then(db.questions.init)
+    .then(db.events.create)
+    .then(db.events.init)
+    .then(() => console.log('DB successfully created with events: '))
+    .catch(err => console.log(err))
     // .then(db.questions_categories.create)  // new
     // .then(db.questions_categories.init)   // new
     .then(result => console.log('Db successfully restarted!'))
