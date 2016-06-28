@@ -18,6 +18,8 @@ class Calendar extends Component {
     BigCalendar.setLocalizer(BigCalendar.momentLocalizer(moment));
   }
   componentWillMount() {
+    console.log('in the CWM in CALENDAR.js');
+    console.log(this.props.user);
     this.props.fetchEvents(this.props.user.coupleID);
   }
 
