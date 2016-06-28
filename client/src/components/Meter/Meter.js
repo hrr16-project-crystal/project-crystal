@@ -14,8 +14,9 @@ class Meter extends Component {
      * SPARK SCORE ALGORITHM
      * ==============================
      * If wanting more points taken off high score differences and less points
-     * taken off low score differences, then multiply by less than 0.10 in
-     * tenthOfDiff, and multiply that result by more than 3 in tripled.
+     * taken off low score differences, then multiply by more than 0.10 in
+     * tenthOfDiff, and multiply that result by more than 3 in tripled. For
+      * example, 0.20 multiplied by 8. 
      */
     // TODO: deduct points for low category-specific scores
     // one point if below 50 (for each category)?
@@ -29,7 +30,8 @@ class Meter extends Component {
     const tenthOfDiff = Math.floor(diff * 0.10);
     const tripled = tenthOfDiff * 3;
     const sparkScore = averageScore - tripled;
-
+    
+    // Dynamically get past 6 months from current date.
     const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug',
       'Sep', 'Oct', 'Nov', 'Dec'];
     const currentMonth = new Date().getMonth();
@@ -37,6 +39,7 @@ class Meter extends Component {
       return monthNames[month];
     }
 
+    // Area chart options
     let areaOptions = {
       isStacked: 'percent',
       title: 'Relationship Snapshots',
@@ -70,7 +73,7 @@ class Meter extends Component {
       },
       animation: {
         startup: true, 
-        duration: 1000, 
+        duration: 1000,
         easing: 'linear'
       },
       series: {
@@ -80,6 +83,7 @@ class Meter extends Component {
       },
     };
 
+    // Area chart data
     let areaData = [
       ['Month', 'Your Score', 'Partner Score', 'Room To Grow'],
       [getMonthName(currentMonth - 5),  20, 80, 50],
@@ -89,14 +93,16 @@ class Meter extends Component {
       [getMonthName(currentMonth - 1),  50, 80, 30],
       [getMonthName(currentMonth),  this.props.health.data.score, 100, 15],
     ];
+
+    // Pie chart options
     let pieOptions = {
       legend: 'none',
       // pieSliceText: 'value',
       title: 'Sparkq Score ™',
       pieHole: 0.75,
       animation: {
-        startup: true, 
-        duration: 1000, 
+        startup: true,
+        duration: 1000,
         easing: 'linear'
       },
       pieSliceTextStyle: {
@@ -122,17 +128,19 @@ class Meter extends Component {
       },
     };
 
+    // Pie chart data
     let pieData = [
       ['Score', 'Percentage'],
       ['Your Score', this.props.health.data.score],
       ['Room To Grow', 100 - this.props.health.data.score],
     ];
 
+    // Bar chart options
     let barOptions = {
       isStacked: 'percent',
       title: 'Personal Scores',
       animation: {
-        startup: true, 
+        startup: true,
         duration: 1000,
         easing: 'linear'
       },
@@ -165,6 +173,7 @@ class Meter extends Component {
       },
     };
 
+    // Bar chart data
     let barData = [
       ['Category', 'Your Score', 'Room To Grow'],
       ["Respect", this.props.health.data.respect_score, 100 - this.props.health.data.respect_score],
