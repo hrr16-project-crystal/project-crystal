@@ -40,6 +40,6 @@ module.exports = rep => {
     // Tries to find questions by frequency;
     findByFrequency: frequency =>
       rep.any(sql.findByFrequency, frequency, questions =>
-        questions)
+        questions),
   };
 };

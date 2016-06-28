@@ -1,5 +1,8 @@
 /*
-    Selects all existing user records.
+    Return all existing User records
 */
 
-SELECT * FROM ${schema~}.Users 
+SELECT * FROM Users
+INNER JOIN Couples
+ON Couples.couple_id = Users.couple_id
+

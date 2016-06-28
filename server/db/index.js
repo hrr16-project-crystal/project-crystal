@@ -1,14 +1,13 @@
 'use strict';
 const promise = require('bluebird');
 
-// Loading all the database repositories separately,
+// Loading all the database controllersitories separately,
 // because event 'extend' is called for every task and transaction
 // executed, which should be as fast as possible.
-const repos = {
-    users: require('./repos/users'),
-    questions: require('./repos/questions'),
-    couples: require('./repos/couples'),
-    couples_users: require('./repos/couples_users'),
+const controllers = {
+    users: require('./controllers/users'),
+    questions: require('./controllers/questions'),
+    couples: require('./controllers/couples'),
 };
 
 // pg-promise initialization options:
@@ -17,12 +16,11 @@ const options = {
     // Use bluebird promise library, instead of the default ES6 Promise:
     promiseLib: promise,
 
-    // Extending the database protocol with our custom repositories:
+    // Extending the database protocol with our custom controllers:
     extend: obj => {
-        obj.users = repos.users(obj);
-        obj.questions = repos.questions(obj);
-        obj.couples = repos.couples(obj); 
-        obj.couples_users = repos.couples_users(obj); 
+        obj.users = controllers.users(obj);
+        obj.questions = controllers.questions(obj);
+        obj.couples = controllers.couples(obj); 
     }
 
 };
@@ -38,6 +36,10 @@ const config = {
   database: 'blossomly',
   user: 'other_user',
   password: 'hottub',
+    // host: 'localhost',
+    // port: 5432,
+    // database: 'blossomly',                       
+    // user: 'postgres',
 };
 
 // Load and initialize pg-promise:

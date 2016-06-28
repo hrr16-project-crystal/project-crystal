@@ -1,8 +1,7 @@
 /*
-    Selects a particular user record by email.
+    Find User record by email
+    RF: Potential optimization LIMIT 1 to prevent additional search, but may obscure UNIQUE CONSTRAINT failure
 */
 
-SELECT * FROM ${schema~}.Users 
+SELECT * FROM Users 
 WHERE email = $1
--- // Optimisation which may obscure failed UNIQUE constraints: 
--- LIMIT 1

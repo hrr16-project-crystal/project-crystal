@@ -25,7 +25,7 @@ const userAPIroutes = require('./routes/api/user');
 const coupleAPIroutes = require('./routes/api/couple');
 const questionAPIroutes = require('./routes/api/questions');
 
-const CouplesUser = require('./db/repos/couples_users');
+// const CouplesUser = require('./db/repos/couples_users');
 
 // // *** API routes *** //
 app.use('/api/v1', userAPIroutes);
