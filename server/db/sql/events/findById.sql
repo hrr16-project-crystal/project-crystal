@@ -3,4 +3,4 @@
 */
 
 SELECT * FROM ${schema~}.Events 
-WHERE event_id = $1
+WHERE couple_id = $1

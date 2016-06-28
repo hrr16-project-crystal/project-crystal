@@ -20,6 +20,8 @@ export const createEvent = ({ title, start, end, category, description, coupleID
     axios.post(`${apiUrl}/events/add`,
       { title, start, end, category, description, coupleID })
     .then(response => {
+      console.log('IN THE CAL ACTIONS')
+      console.log(response)
       dispatch({
         type: CREATE_EVENT,
         payload: response.data,

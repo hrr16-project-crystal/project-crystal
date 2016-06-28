@@ -6,12 +6,8 @@ const pgp = require(`${__dirname}/../../db/index`).pgp;
 // get events for the couple
 router.get('/events/:id', (req, res, next) => {
   const coupleID = parseInt(req.params.id);
-  console.log(`${coupleID} ------------`);
-  Events.findById(coupleID);
-  console.log('IN THE FINDBYID for EVENTS API ROUTE')
+  Events.findById(coupleID)
     .then(data => {
-      console.log(' IF THIS WORKS THEN ISSUE IS NOT FINDBYID for EVENTS');
-      console.log(data);
       return res.status(200)
         .json({
           success: true,
@@ -23,6 +19,9 @@ router.get('/events/:id', (req, res, next) => {
 // add new event and return newly added event
 router.post('/events/add', (req, res, next) => {
   const newEvent = req.body;
+  newEvent.start_date = newEvent.start;
+  newEvent.end_date = newEvent.end;
+  newEvent.couple_id = newEvent.coupleID;
 
   Events.add(newEvent)
     .then(data => {

@@ -4,7 +4,7 @@ const Users = require(__dirname + '/../db/index').db.users;
 const Couples = require(__dirname + '/../db/index').db.couples;
 const CouplesUsers = require(__dirname + '/../db/index').db.couples_users;
 const Events = require(__dirname + '/../db/index').db.events;
-const pgp = require(__dirname + '/../db/index').pgp; 
+const pgp = require(__dirname + '/../db/index').pgp;
 const bcrypt = require('bcrypt-nodejs');
 
 const tokenForUser = user => {
@@ -49,8 +49,8 @@ exports.signup = (req, res, next) => {
       const defaultEvent = {
         title: 'Welcome!',
         description: 'This is the default event for our calendar!',
-        start_date: '2016-06-30T-06:00:00.000Z',
-        end_date: '2016-06-24T15:00:00.000Z',
+        start_date: '2016-06-30T06:00:00.000Z',
+        end_date: '2016-06-30T15:00:00.000Z',
         category: 'Misc',
       };
 
@@ -63,9 +63,7 @@ exports.signup = (req, res, next) => {
           return next(err);
         }
         user.password = hash;
-// Adds a new event, and returns the new event;
-// add: eventObj =>
-//   rep.one(sql.add, eventObj),
+
         if (req.body.couple === 'yes') {
           Couples.add()
           .then(couple => {

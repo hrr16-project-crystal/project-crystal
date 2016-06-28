@@ -18,17 +18,17 @@ class Calendar extends Component {
     BigCalendar.setLocalizer(BigCalendar.momentLocalizer(moment));
   }
   componentWillMount() {
-    console.log(this.props);
     this.props.fetchEvents(this.props.user.coupleID);
   }
 
   getEvents() {
     // Function which gets all events from state and formats them in a
     // way in that can be read by the BigCalendar
-    const eventsArr = this.props.events;
+    const eventsArr = this.props.events.data;
+    console.log(eventsArr);
     for (let i = 0; i < eventsArr.length; i++) {
-      let tempStart = eventsArr[i].start;
-      let tempEnd = eventsArr[i].end;
+      let tempStart = eventsArr[i].start_date;
+      let tempEnd = eventsArr[i].end_date;
       tempStart = new Date(tempStart);
       tempEnd = new Date(tempEnd);
       eventsArr[i].start = tempStart;

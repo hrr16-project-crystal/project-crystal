@@ -19,7 +19,7 @@ const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 
 // populate postgresql db
-require('./db/populateDb')();
+// require('./db/populateDb')();
 
 const userAPIroutes = require('./routes/api/user');
 const coupleAPIroutes = require('./routes/api/couple');

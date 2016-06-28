@@ -27,10 +27,9 @@ module.exports = rep => {
       rep.one(sql.add, eventObj),
 
     // Return all events for a particular couple
-    findById: coupleID => {
-      return rep.oneOrNone(sql.findById, coupleID, event =>
-        event);
-    },
+    findById: coupleID =>
+      rep.any(sql.findById, coupleID, event =>
+        event),
 
     // Tries to delete a event by id, and returns the number of records deleted;
     remove: eventID =>
