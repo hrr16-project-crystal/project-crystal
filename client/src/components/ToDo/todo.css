@@ -21,4 +21,9 @@
   color: #fff;
   line-height: 65px;
   font-weight: 700;
+  margin: auto;
+}
+
+todo__list {
+  color: #fff;
 }

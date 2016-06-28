@@ -13,3 +13,7 @@ export const ADD_MESSAGE = 'ADD_MESSAGE';
 export const GET_MESSAGES = 'GET_MESSAGES';
 export const FETCH_TODOS = 'FETCH_TODOS';
 export const ADDED_TODO = 'ADDED_TODO';
+export const DELETED_TODO = 'DELETED_TODO';
+
+
+
