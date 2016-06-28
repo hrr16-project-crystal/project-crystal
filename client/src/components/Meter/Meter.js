@@ -72,7 +72,7 @@ class Meter extends Component {
         fontSize: 12,
       },
       animation: {
-        startup: true, 
+        startup: true,
         duration: 1000,
         easing: 'linear'
       },
