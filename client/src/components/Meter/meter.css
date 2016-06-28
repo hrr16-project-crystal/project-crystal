@@ -31,26 +31,12 @@
   font-weight: 700;
 }
 
-.health-meter {
-
-}
-
-.overall-meter {
-
-}
-
-.spontaneity-meter {
-
-}
-
-.helpful-meter {
-
-}
-
-.romance-meter {
-
-}
-
-.generosity-meter {
-  
+.personalScore {
+  color: #03c9a9;
+  font-size: 30px;
+  font-weight: 500;
+  position: absolute;
+  z-index: 100;
+  top: 36%;
+  left: 24%;
 }

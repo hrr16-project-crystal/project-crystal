@@ -10,6 +10,21 @@ class Meter extends Component {
   }
 
   renderStats() {
+    /*
+     * SPARK SCORE ALGORITHM
+     * ==============================
+     * If wanting more points taken off high score differences and less points
+     * taken off low score differences, then multiply by less than 0.10 in
+     * tenthOfDiff, and multiply that result by more than 3 in tripled.
+     */
+    const userScore = this.props.health.data[0].score;
+    const partnerScore = 60; // change this to whatever the prop is
+    const averageScore = Math.ceil((userScore + partnerScore) / 2);
+    const diff = Math.max(partnerScore, userScore) - Math.min(partnerScore, userScore);
+    const tenthOfDiff = Math.floor(diff * 0.10);
+    const tripled = tenthOfDiff * 3;
+    const sparkScore = averageScore - tripled;
+
     let areaOptions = {
       isStacked: 'percent',
       title: 'Relationship Snapshots',
@@ -43,7 +58,7 @@ class Meter extends Component {
       },
       animation: {
         startup: true, 
-        duration: 3000, 
+        duration: 1500, 
         easing: 'linear'
       },
       series: {
@@ -65,11 +80,11 @@ class Meter extends Component {
     let pieOptions = {
       legend: 'none',
       // pieSliceText: 'value',
-      title: 'Sparkq Score',
+      title: 'Sparkq Score ™',
       pieHole: 0.75,
       animation: {
         startup: true, 
-        duration: 3000, 
+        duration: 1500, 
         easing: 'linear'
       },
       pieSliceTextStyle: {
@@ -81,13 +96,16 @@ class Meter extends Component {
       },
       slices: {
         0: { 
-          color: '#03C9A9' 
+          color: '#03C9A9',
+          textStyle: {
+            color: 'transparent'
+          },
         },
         1: { 
           color: '#eef2f5',
           textStyle: { 
             color: 'transparent'
-          }
+          },
         }
       },
     };
@@ -103,7 +121,7 @@ class Meter extends Component {
       title: 'Personal Scores',
       animation: {
         startup: true, 
-        duration: 3000,
+        duration: 1500,
         easing: 'linear'
       },
       series: {
@@ -147,12 +165,14 @@ class Meter extends Component {
     // If using material bar chart pass this variable to chartPackages prop
     // Also need to pass "Bar" rather than "BarChart" to chartType prop
     let materialBarPackages = ['bar'];
+    let personalScore = this.props.health.data[0].score;
     
     return (
       <div>
         <div className="data">
           <div className="data__header">Relationship Health Meter</div>
           <div className="data_chart data_chart--half data_chart--left">
+            <span className="personalScore">{sparkScore + '%'}</span>
             <Chart chartType = "PieChart" data = {pieData} options = {pieOptions} width={"100%"} height={"250px"} chartPackages={undefined}/>
           </div>
           <div className="data_chart data_chart--half">
