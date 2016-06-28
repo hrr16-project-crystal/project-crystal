@@ -8,44 +8,33 @@ import { reduxForm } from 'redux-form';
 class ToDo extends Component {
   constructor(props) {
     super(props);
-    this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.newTodo = this.newTodo.bind(this);
     this.trashTodo = this.trashTodo.bind(this);
-  }
-
-  // handleChange: function (event) {
-  //   this.setState({newTodo: event.target.value});
-  // },
-
-  // handleNewTodoKeyDown: function (event) {
-  //   if (event.keyCode !== ENTER_KEY) {
-  //     return;
-  //   }
-
-  //   event.preventDefault();
-
-  //   var val = this.props.todos.trim();
-
-  //   if (val) {
-  //     this.props.model.addTodo(val);
-  //     this.setState({newTodo: ''});
-  //   }
-  // },
-
-  handleFormSubmit(formPropsTheform) {
-    console.log("handle - formProps", formPropsTheform);
-    let postForm = this.props.addTodo(formPropsTheform.text);
-    this.props.postTodo(postForm);
-  }
-
-  trashTodo(trashProps) {
-    console.log("Trash todo trashProps", trashProps);
-    this.props.deleteTodo(trashProps);
   }
 
   componentWillMount() {
     this.props.getTodos();
   }
 
+  newTodo(newTodoProps) {
+    console.log("handle - newTodoProps", newTodoProps);
+    let todoId = new Date().getTime();
+    console.log("newTodo - todoId", todoId);
+    
+    let todoObject = {
+      type: 'ADDED_TODO',
+      todoId: todoId,
+      todo: newTodoProps.text,
+    };
+    console.log("newTodo - todoObject", todoObject);
+
+    this.props.postTodo(todoObject);
+  }
+
+  trashTodo(trashProps) {
+    console.log("Trash todo trashProps", trashProps);
+    this.props.deleteTodo(trashProps);
+  }
 
   renderTodos() {
     const { 
@@ -60,7 +49,7 @@ class ToDo extends Component {
               <div>{todo.todo}
                 <a href="#!" className="secondary-content">
 
-                  <form onSubmit={handleSubmit(this.trashTodo)} {...fields[todo.id]}>
+                  <form onSubmit={handleSubmit(this.trashTodo)}>
                     <button className="waves-effect waves-light btn" type="submit">
                       <i className="material-icons red">delete</i>
                     </button>
@@ -107,7 +96,7 @@ class ToDo extends Component {
             <h3 className="todo__mainTitle">Shared todos never felt so good</h3>
 
 
-            <form id:onSubmit={handleSubmit(this.handleFormSubmit)}>
+            <form onSubmit={handleSubmit(this.newTodo)}>
               <input type="text" placeholder="add to-do" autoFocus={true} {...text}/>
               <button className="waves-effect waves-light btn" type="submit">Add to-do</button>
             </form>
@@ -125,16 +114,16 @@ const mapStateToProps = state => {
   return { todos: state.todo.fetchTodos, user: state.auth.user };
 }
 
+export default ToDo
+
 export default reduxForm({
   form: 'simpleTodos',
-  fields: [ 'text' ],
+  fields: [ 'text', 'todoId' ],
 }, mapStateToProps, actions)(ToDo);
-
-export default ToDo
 
 // <div className="divider divide"></div>
 
-            // <form onSubmit={handleSubmit(this.handleFormSubmit)}>
+            // <form onSubmit={handleSubmit(this.newTodo)}>
             //   <div className="row todo__list">
             //     <div className="row">
             //       <div className="input-field col s6">

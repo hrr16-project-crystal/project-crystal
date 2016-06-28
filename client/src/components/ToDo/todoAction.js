@@ -2,11 +2,11 @@ import axios from 'axios';
 import { FETCH_TODOS, ADDED_TODO, DELETED_TODO } from '../../helpers/constants/types';
 const apiUrl = 'http://localhost:3000';
 
-let todoId = 0;
+let todoId = new Date().getTime();
 export const addTodo = text => {
   return {
     type: 'ADDED_TODO',
-    id: todoId++,
+    id: todoId,
     todo: text,
   };
 };
@@ -19,7 +19,7 @@ export const addTodo = text => {
 // };
 
 export const deleteTodo = (todoId) => {
-  console.log("action deleteTODO YAY!!", formProps);
+  console.log("action deleteTODO YAY!!", todoId);
 
   return dispatch => {
     axios.delete(`${apiUrl}/deleteTodo`, todoId)
