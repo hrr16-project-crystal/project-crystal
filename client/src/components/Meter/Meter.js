@@ -20,13 +20,22 @@ class Meter extends Component {
     // TODO: deduct points for low category-specific scores
     // one point if below 50 (for each category)?
     // two points if below 25?
-    const userScore = this.props.health.data[0].score;
+    // do we do this for both user and partner, though? take it off for
+    // each individual before the average is calculated?
+    const userScore = this.props.health.data.score;
     const partnerScore = 60; // change this to whatever the prop is
     const averageScore = Math.ceil((userScore + partnerScore) / 2);
     const diff = Math.max(partnerScore, userScore) - Math.min(partnerScore, userScore);
     const tenthOfDiff = Math.floor(diff * 0.10);
     const tripled = tenthOfDiff * 3;
     const sparkScore = averageScore - tripled;
+
+    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug',
+      'Sep', 'Oct', 'Nov', 'Dec'];
+    const currentMonth = new Date().getMonth();
+    function getMonthName(month) {
+      return monthNames[month];
+    }
 
     let areaOptions = {
       isStacked: 'percent',
@@ -61,7 +70,7 @@ class Meter extends Component {
       },
       animation: {
         startup: true, 
-        duration: 1500, 
+        duration: 1000, 
         easing: 'linear'
       },
       series: {
@@ -73,12 +82,12 @@ class Meter extends Component {
 
     let areaData = [
       ['Month', 'Your Score', 'Partner Score', 'Room To Grow'],
-      ['Jan',  20, 80, 50],
-      ['Feb',  25, 55, 75],
-      ['Mar',  20, 60, 70],
-      ['Apr',  40, 100, 10],
-      ['May',  50, 80, 30],
-      ['Jun',  this.props.health.data.score, 100, 15],
+      [getMonthName(currentMonth - 5),  20, 80, 50],
+      [getMonthName(currentMonth - 4),  25, 55, 75],
+      [getMonthName(currentMonth - 3),  20, 60, 70],
+      [getMonthName(currentMonth - 2),  40, 100, 10],
+      [getMonthName(currentMonth - 1),  50, 80, 30],
+      [getMonthName(currentMonth),  this.props.health.data.score, 100, 15],
     ];
     let pieOptions = {
       legend: 'none',
@@ -87,7 +96,7 @@ class Meter extends Component {
       pieHole: 0.75,
       animation: {
         startup: true, 
-        duration: 1500, 
+        duration: 1000, 
         easing: 'linear'
       },
       pieSliceTextStyle: {
@@ -124,7 +133,7 @@ class Meter extends Component {
       title: 'Personal Scores',
       animation: {
         startup: true, 
-        duration: 1500,
+        duration: 1000,
         easing: 'linear'
       },
       series: {
