@@ -177,7 +177,7 @@ class Meter extends Component {
     // If using material bar chart pass this variable to chartPackages prop
     // Also need to pass "Bar" rather than "BarChart" to chartType prop
     let materialBarPackages = ['bar'];
-    
+
     return (
       <div>
         <div className="data">
