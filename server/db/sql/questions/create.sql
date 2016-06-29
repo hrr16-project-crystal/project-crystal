@@ -1,12 +1,27 @@
 /*
-    Creates table Users. Uses JSONB for holding object of answers array
+    Creates Questions table
+    INSERT INTO ${schema~}.Questions(body, frequency, category, answers) VALUES
+
 */
 
-CREATE TABLE ${schema~}.Questions
-(
-    question_id serial PRIMARY KEY,
-    body text NOT NULL,
-    frequency text NOT NULL,
-    category text NOT NULL,
-    answers json
+CREATE EXTENSION IF NOT EXISTS citext;
+
+CREATE TABLE Questions (
+question_id serial PRIMARY KEY,
+category text NOT NULL,
+body text NOT NULL,
+frequency text NOT NULL,
+answers json
 );
+
+-- CREATE FUNCTION update_updated_at_column() RETURNS trigger AS $$
+-- BEGIN
+-- NEW.updated_at = NOW();
+-- RETURN NEW;
+-- END;
+-- $$ LANGUAGE plpgsql;
+
+-- CREATE TRIGGER questions_updated_at_trigger
+-- BEFORE UPDATE ON Questions
+-- FOR EACH ROW
+-- EXECUTE PROCEDURE update_updated_at_column();

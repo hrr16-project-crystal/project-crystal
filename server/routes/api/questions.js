@@ -3,17 +3,18 @@ const router = express.Router();
 const Questions = require(__dirname + '/../../db/index').db.questions;
 const pgp = require(__dirname + '/../../db/index').pgp;
 
-// // get all questions
-// router.get('/questions', (req, res, next) => {
-//   Questions.all()
-//     .then(data => {
-//       return res.status(200)
-//         .json({
-//           success: true,
-//           data
-//         });
-//     })
-// });
+/** Get all existing questions. 
+May pass options on req.body to specify additional search criteria  */
+router.get('/questions', (req, res, next) => {
+  Questions.all()
+    .then(data => {
+      return res.status(200)
+        .json({
+          success: true,
+          data
+        });
+    })
+});
 
 // get group of questions
 router.get('/questions/:frequency', (req, res, next) => {

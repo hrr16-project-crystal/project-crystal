@@ -23,7 +23,7 @@ class Signup extends Component {
       );
     }
   }
-  
+
   render() {
     const { handleSubmit, fields: {
       firstName, lastName, email, password, passwordConfirm, couple, otherEmail,
@@ -39,7 +39,7 @@ class Signup extends Component {
                 <input type="text" className="form-control" {...firstName} />
                 <label>First Name:</label>
                 {firstName.touched && firstName.error &&
-                  <div className="error">{firstName.error}</div>}
+                <div className="error">{firstName.error}</div>}
               </div>
             </fieldset>
             <fieldset className="form-group">
@@ -48,7 +48,7 @@ class Signup extends Component {
                 <input type="text" className="form-control" {...lastName} />
                 <label>Last Name:</label>
                 {lastName.touched && lastName.error &&
-                  <div className="error">{lastName.error}</div>}
+                <div className="error">{lastName.error}</div>}
               </div>
             </fieldset>
             <fieldset className="form-group">
@@ -65,7 +65,7 @@ class Signup extends Component {
                 <input type="password" className="form-control" {...password} />
                 <label>Password:</label>
                 {password.touched && password.error &&
-                  <div className="error">{password.error}</div>}
+                <div className="error">{password.error}</div>}
               </div>
             </fieldset>
             <fieldset className="form-group">
@@ -73,8 +73,8 @@ class Signup extends Component {
                 <i id="small-icon" className="material-icons prefix">lock</i>
                 <input type="password" className="form-control" {...passwordConfirm} />
                 <label>Confirm Password:</label>
-                  {passwordConfirm.touched && passwordConfirm.error &&
-                    <div className="error">{passwordConfirm.error}</div>}
+                {passwordConfirm.touched && passwordConfirm.error &&
+                <div className="error">{passwordConfirm.error}</div>}
               </div>
             </fieldset>
             <fieldset className="form-group">
@@ -110,34 +110,34 @@ class Signup extends Component {
 }
 
 /*
-Mike's Attempt at radio buttons....
-<p>
-  <input name="group1" type="radio" {...couple} value="yes" />
-  <label>Yes - my partner has not signed up yet</label>
-</p>
-<p>
-  <input name="group1" type="radio" {...couple} value="no" />
-  <label>No - connect with my partner</label>
-</p>
+ Mike's Attempt at radio buttons....
+ <p>
+ <input name="group1" type="radio" {...couple} value="yes" />
+ <label>Yes - my partner has not signed up yet</label>
+ </p>
+ <p>
+ <input name="group1" type="radio" {...couple} value="no" />
+ <label>No - connect with my partner</label>
+ </p>
 
-Josh's attempt at radio buttons....
-to replace dropdown, need to get this working
-<form action="#">
-   <p>
-     <input className="with-gap" name="group1" id="agree" type="radio" />
-     <label for="agree">Yes - my partner has not signed up yet</label>
-   </p>
-   <p>
-     <input className="with-gap" name="group1" type="radio" />
-     <label for="disagree">No - connect with my partner</label>
-   </p>
+ Josh's attempt at radio buttons....
+ to replace dropdown, need to get this working
+ <form action="#">
+ <p>
+ <input className="with-gap" name="group1" id="agree" type="radio" />
+ <label for="agree">Yes - my partner has not signed up yet</label>
+ </p>
+ <p>
+ <input className="with-gap" name="group1" type="radio" />
+ <label for="disagree">No - connect with my partner</label>
+ </p>
  </form>
  <select className="signup-questions" {...couple}>
-   <option>Select an answer...</option>
-   <option value="yes">Yes - my partner has not signed up yet</option>
-   <option value="no">No - connect with my partner</option>
+ <option>Select an answer...</option>
+ <option value="yes">Yes - my partner has not signed up yet</option>
+ <option value="no">No - connect with my partner</option>
  </select>
-*/
+ */
 
 const validate = (formProps) => {
   const errors = {};

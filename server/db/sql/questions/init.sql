@@ -5,6 +5,23 @@
 
 */
 
+-- INSERT INTO Questions(category_id, content) VALUES
+-- (3, 'Have you done something nice for your partner recently?'),
+-- (2, 'Could you describe the way your partner smells?'),
+-- (1, 'Have you hugged your partner in the last day?'),
+-- (4, 'Did you and your partner laugh together recently?'),
+-- (4, 'Have you gone on a date in the last week?'),
+-- (5, 'What do your friends and family think of your partner?'),
+-- (2, 'What sort of arrangement do the two of you have regarding your finances?'),
+-- (5, 'Where does this relationship fall with regards to past relationships for you?'),
+-- (1, 'Do you remember the first thing you and your partner said to one another?'),
+-- (1, 'What was your first impression of your partner?'),
+-- (2, 'Did you ever dislike your partner?'),
+-- (3, 'What’s your favorite memory of your partner?'),
+-- (4, 'What do you like best about your partner?'),
+-- (1, 'What is your favorite way of spending time with your partner?')
+
+-- // Older Schema below ----- 
 INSERT INTO ${schema~}.Questions(body, frequency, category, answers) VALUES
 
 ('Have you done something nice for your partner recently?', 'daily', 'Generosity',

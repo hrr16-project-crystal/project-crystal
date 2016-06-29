@@ -1,8 +1,8 @@
 /*
-    Selects a particular user record by user id.
+    Selects a particular user record with associated couple information by user id.
 */
 
-SELECT * FROM ${schema~}.Users 
-WHERE user_id = $1
--- // Optimisation which may obscure failed UNIQUE constraints: 
--- LIMIT 1
+SELECT * FROM Users
+INNER JOIN Couples
+ON Couples.couple_id = Users.couple_id
+WHERE Users.user_id = $1

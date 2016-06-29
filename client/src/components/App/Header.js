@@ -7,6 +7,9 @@ class Header extends Component {
     if (this.props.authenticated) {
       // show link to sign out
       return [
+        <li className="menu__item" key={4}>
+          <Link to="/calendar" className="menu__link">Calendar</Link>
+        </li>,
         <li className="menu__item" key={1}>
           <Link to="/quiz" className="menu__link">Quiz</Link>
         </li>,

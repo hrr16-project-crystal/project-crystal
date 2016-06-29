@@ -7,7 +7,17 @@ module.exports = rep => {
   return {
 
     // Creates the table;
-    create: () => rep.none(sql.create),
+    create: () => {
+      return rep.none(sql.create)
+        .then(result => {
+          console.log('couples creation, successfull.. ');
+          return result;
+        })
+        .catch(but => {
+          console.log('couples creation, err but..');
+          return but; 
+        });
+    },
 
     // Initializes the table with some couple records, and returns each couple
     init: () =>
@@ -35,16 +45,17 @@ module.exports = rep => {
     },
 
     // Tries to delete a couple by id, and returns the deleted couple;
-    remove: couple_id =>
-      rep.oneOrNone(sql.remove, couple_id, couple => couple),
+    removeById: couple_id =>
+      rep.oneOrNone(sql.removeById, couple_id, couple => couple),
 
     // Finds a couple by id, returns array of users related to that couple
     findById: couple_id => {
-      console.log("YAY IM IN FINDBYID COUPLES");
-      console.log(couple_id);
-      return rep.any(sql.findById, couple_id, couples => {
-        console.log('COUPLE JS IN THE REPOS');
-        console.log(couples);
+      // console.log("YAY IM IN FINDBYID COUPLES");
+      // console.log(couple_id);
+      // change from rep.any to rep.oneOrNone to ensure only single value expected to return!!! instead single value in array
+      return rep.oneOrNone(sql.findById, couple_id, couples => {
+        // console.log('COUPLE JS IN THE REPOS');
+        // console.log(couples);
         return couples;
       });
     },
@@ -56,10 +67,6 @@ module.exports = rep => {
     updateScore: (scoreObj, coupleId) => {
       // rep.oneOrNone(sql.updateScore, [coupleId, scoreObj], couple =>
       //   couple),
-      console.log('couple.js in the repo ==========');
-      console.log(coupleId);
-      console.log('couple.js in the repo---fsdfsdfsdfd');
-      console.log(scoreObj);
 
       // Grab current scores (can we use sql query to insert something and it will
       return rep.one(sql.updateScore, [

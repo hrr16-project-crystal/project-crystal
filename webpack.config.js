@@ -6,7 +6,7 @@ const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const config = {
-  devtool: '#source-map',
+  devtool: 'source-map',
   entry: [
     'webpack-hot-middleware/client',
     './client/src/index',
