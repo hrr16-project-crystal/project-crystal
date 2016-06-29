@@ -89,11 +89,11 @@ class CreateEvent extends Component {
     event.start = new Date(startD);
     event.end = new Date(endD);
 
-    event.coupleID = this.props.user.coupleID;
+    event.coupleID = this.props.user.data.couple_id;
 
     this.props.createEvent(event);
     setTimeout(() => {
-      this.props.fetchEvents(this.props.user.coupleID);
+      this.props.fetchEvents(this.props.user.data.couple_id);
     }, 1000);
   }
 

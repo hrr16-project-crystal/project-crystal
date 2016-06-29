@@ -1,7 +1,7 @@
 const db = require(__dirname + '/index').db;
 
 const populateDb = () => {
-  db.query('DROP TABLE IF EXISTS Couples, Users, Questions')
+  db.query('DROP TABLE IF EXISTS Couples, Users, Questions, Events')
     .then(db.couples.create)
     .then(db.users.create)
     // .then(db.categories.create)   // new
@@ -9,8 +9,7 @@ const populateDb = () => {
     .then(db.questions.create)
     .then(db.questions.init)
     .then(db.events.create)
-    .then(db.events.init)
-    .then(() => console.log('DB successfully created with events: '))
+    // .then(db.events.init)
     .catch(err => console.log(err))
     // .then(db.questions_categories.create)  // new
     // .then(db.questions_categories.init)   // new

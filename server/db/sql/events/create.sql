@@ -11,5 +11,5 @@ CREATE TABLE ${schema~}.Events
     end_date text NOT NULL,
     category text NOT NULL,
     couple_id int NOT NULL,
-    FOREIGN KEY (couple_id) REFERENCES $(schema~).Couples(couple_id) ON DELETE CASCADE ON UPDATE CASCADE
+    FOREIGN KEY (couple_id) REFERENCES ${schema~}.Couples(couple_id) ON DELETE CASCADE ON UPDATE CASCADE
 );

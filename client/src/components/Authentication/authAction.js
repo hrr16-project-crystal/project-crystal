@@ -18,7 +18,6 @@ export const authError = error => {
 // Whenever we call signinUser we are going to return a function that is auto called by
 // redux-thunk middleware and it gets called with the dispatch method
 export const signinUser = ({ email, password, couple_id }) => {
-  console.log('===== FIRST CONSOLE In signin AA')
   // This is how we get direct access to dispatch method
   // Becuase of redux-thunk we can return a function instead of an object
   // we can then call the dispatch method at any time to dispatch our own actions
@@ -29,8 +28,6 @@ export const signinUser = ({ email, password, couple_id }) => {
     axios.post(`${apiUrl}/signin`, { email, password, couple_id })
     // if request is good,
     .then(response => {
-      console.log('====IN THEN on the authAction isgnin!!!')
-      console.log(response)
       // update the state to indicate the user is authenticated
       // because of redux we have direct access to the dispatch method
       // This is equivalent to calling an action creator and return an object as an action

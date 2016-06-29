@@ -62,13 +62,10 @@ module.exports = rep => {
 
     // Find and return user by user ID
     findById: id => {
-      console.log('IN THE findbyId on user controller')
-      console.log(id)
       return rep.oneOrNone(sql.findById, [id], user => {
-        console.log(user);
         return user;
-      }
-    )},
+      });
+    },
 
     findByEmail: email =>
       rep.oneOrNone(sql.findByEmail, email),

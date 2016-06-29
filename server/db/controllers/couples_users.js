@@ -26,8 +26,6 @@ module.exports = rep => {
       // Possibly need to remove public (may not entire Schema name...)
       rep.one('SELECT * FROM public.couples_users WHERE public.couples_users.user_id = $1', user_id)
       .then(data => {
-        console.log(' IN THE THEN FUNC IN COUPLERS USERS');
-        console.log(data);
         return data;
       }),
 
