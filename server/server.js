@@ -20,13 +20,8 @@ const cors = require('cors');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 
-<<<<<<< 63e2568b14638c3a4fa73e992c1f4ab46ddf69d9
 // populate postgresql db | Not needed once initial database has been populated
 // require('./db/populateDb')();
-=======
-// populate postgresql db
-require('./db/populateDb')();
->>>>>>> Fix rebase errors
 
 const userAPIroutes = require('./routes/api/user');
 const coupleAPIroutes = require('./routes/api/couple');
