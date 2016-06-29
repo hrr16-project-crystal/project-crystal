@@ -5,7 +5,7 @@ import './meter.css';
 
 class Meter extends Component {
   componentWillMount() {
-    this.props.getHealth(this.props.user.coupleID);
+    this.props.getHealth(this.props.user.data.couple_id);
   }
 
   renderStats() {
@@ -20,27 +20,27 @@ class Meter extends Component {
           <tbody>
             <tr>
               <td>Total Score</td>
-              <td>{this.props.health.data[0].score}</td>
+              <td>{this.props.health.data.score}</td>
             </tr>
             <tr>
               <td>Respect</td>
-              <td>{this.props.health.data[0].respect_score}</td>
+              <td>{this.props.health.data.respect_score}</td>
             </tr>
             <tr>
               <td>Communication</td>
-              <td>{this.props.health.data[0].communication_score}</td>
+              <td>{this.props.health.data.communication_score}</td>
             </tr>
             <tr>
               <td>Intimacy</td>
-              <td>{this.props.health.data[0].intimacy_score}</td>
+              <td>{this.props.health.data.intimacy_score}</td>
             </tr>
             <tr>
               <td>Generosity</td>
-              <td>{this.props.health.data[0].generosity_score}</td>
+              <td>{this.props.health.data.generosity_score}</td>
             </tr>
             <tr>
               <td>Spontaneity</td>
-              <td>{this.props.health.data[0].spontaneity_score}</td>
+              <td>{this.props.health.data.spontaneity_score}</td>
             </tr>
           </tbody>
         </table>
@@ -83,5 +83,4 @@ const mapStateToProps = state => {
     user: state.auth.user,
   };
 };
-
 export default connect(mapStateToProps, actions)(Meter);

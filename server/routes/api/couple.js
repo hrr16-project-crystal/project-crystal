@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require(__dirname + '/../../db/index').db;
 const Couples = db.couples;
+const Users = db.users;
 const CouplesUsers = db.couples_users;
 const pgp = require(__dirname + '/../../db/index').pgp;
 
@@ -29,6 +30,7 @@ router.get('/couples', (req, res, next) => {
 router.get('/couples/:id', (req, res, next) => {
   console.log('OMG ROGER IS AWESOME!!!!');
   const couple_id = parseInt(req.params.id);
+  console.log(couple_id)
   Couples.findById(couple_id)
     .then(data => {
       return res.status(200)
@@ -78,12 +80,12 @@ router.post('/couples/answers', (req, res, next) => {
   console.log('lach kdjaskdjksjdkasjdkasjdkjaskdjaskdjaskdja')
   console.log(result);
   // Use userId to get coupleID
-  CouplesUsers.findByUserId(req.body.user_id)
+  Users.findById(req.body.user_id)
   // update couple score using coupleID
-  .then(coupleUser => {
+  .then(foundUserWithCouple => {
     console.log('If this works then issue is NOT findByUserId');
-    console.log(coupleUser);
-    Couples.updateScore(result, coupleUser.couple_id)
+    console.log(foundUserWithCouple);
+    Couples.updateScore(result, foundUserWithCouple.couple_id)
     .then(data => {
       console.log('ROuter COUPLE JS THEN STMT')
       console.log(data)

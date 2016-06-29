@@ -8,7 +8,7 @@ const controllers = {
     users: require('./controllers/users'),
     questions: require('./controllers/questions'),
     couples: require('./controllers/couples'),
-    events: require('./repos/events'),
+    events: require('./controllers/events'),
 };
 
 // pg-promise initialization options:
@@ -22,7 +22,7 @@ const options = {
         obj.users = controllers.users(obj);
         obj.questions = controllers.questions(obj);
         obj.couples = controllers.couples(obj);
-        obj.events = repos.events(obj);
+        obj.events = controllers.events(obj);
     }
 };
 
@@ -31,7 +31,7 @@ const config = {
   host: 'localhost',
   port: 5432,
   database: 'blossomly',
-  user: 'other_user',
+  user: 'postgres',
   password: 'hottub',
     // host: 'localhost',
     // port: 5432,

@@ -30,7 +30,10 @@ const testEvents = [
 ];
 
 module.exports = (app) => {
-  app.get('/dashboard', requireAuth, (req, res) => {
+  app.get('/dashboard', (req, res, next) => {
+    console.log('going throgh dashboard route on server')
+    next() }
+    , requireAuth, (req, res) => {
     res.status(200);
   });
   // @TODO serves up fake stats from above currently
@@ -54,6 +57,9 @@ module.exports = (app) => {
     res.redirect('/dashboard');
   });
   // Signin and signup routes
-  app.post('/signin', requireSignin, Authentication.signin);
+  app.post('/signin', (req,res,next) => {
+    console.log('in the SIGNIN route on router')
+    next();
+  }, requireSignin, Authentication.signin);
   app.post('/signup', Authentication.signup);
 };

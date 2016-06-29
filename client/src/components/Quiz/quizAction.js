@@ -17,6 +17,8 @@ export const getQuestions = () => {
 
 export const postResponse = ({ Respect, Communication, Spontaneity, Intimacy, Generosity, Total, user_id }) => {
   return (dispatch) => {
+    console.log('IN THE qAction POST')
+    console.log(user_id)
     axios.post(`${apiUrl}/couples/answers`,
       { Respect, Communication, Spontaneity, Intimacy, Generosity, Total, user_id })
       .then(response => {
