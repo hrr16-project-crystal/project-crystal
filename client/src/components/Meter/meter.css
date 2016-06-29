@@ -1,8 +1,6 @@
 .data {
   background-color: #fff;
   width: 100%;
-<<<<<<< dd8670d2fb53579ab3f154bf10cb7318c920b1fc
-=======
 }
 
 .data_chart {
@@ -33,43 +31,6 @@
   font-weight: 700;
 }
 
-<<<<<<< cea52376fd331513cfc749cecb9a99c1260d3cc0
-.health-meter {
-
->>>>>>> Integrate charts
-}
-
-.data_chart {
-  padding: 24px;
-}
-
-.data_chart--half {
-  width: 49%;
-  display: inline-block;
-}
-
-.data_chart--left {
-  border-right: 1px solid #e5e5e5;
-}
-
-.data_chart--top {
-  border-top: 1px solid #e5e5e5;
-  margin-top: -6px;
-}
-
-.data__header {
-  line-height: 50px;
-  border-bottom: 1px solid #e5e5e5;
-  color: #000;
-  text-align: center;
-  font-size: 12px;
-  text-transform: uppercase;
-  font-weight: 700;
-}
-
-<<<<<<< dd8670d2fb53579ab3f154bf10cb7318c920b1fc
-=======
->>>>>>> Create and add Spark Score algorithm
 .personalScore {
   color: #03c9a9;
   font-size: 30px;
@@ -78,13 +39,6 @@
   z-index: 100;
   top: 36%;
   left: 24%;
-<<<<<<< cea52376fd331513cfc749cecb9a99c1260d3cc0
-=======
-.generosity-meter {
-  
->>>>>>> Integrate charts
-=======
->>>>>>> Create and add Spark Score algorithm
 }
 
 .meter-spinner {
