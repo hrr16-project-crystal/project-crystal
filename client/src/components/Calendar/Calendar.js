@@ -63,7 +63,7 @@ class Calendar extends Component {
             selectable
             formats={{ weekHeaderFormat: 'ddd MM DD' }}
             events={this.getEvents()}
-            style={{ border: '1px solid #26a69a' }}
+            style={{ border: '1px solid #26a69a', height: '600px', marginTop: '48px' }}
             onSelectEvent={event => console.log(event.title + ' | ' + event.start + ' | ' + event.end)}
           />
         </div>
