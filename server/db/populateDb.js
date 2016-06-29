@@ -16,10 +16,6 @@ const populateDb = () => {
     // .then(db.questions_categories.init)   // new
     .then(result => console.log('Db successfully restarted!'))
     .catch(err => console.log('End of db creation, issue: ' + err));
-    .then(db.todos.create)
-    .then(db.todos.init)
-    .then(() => console.log("DB successfully populated with todos: "))
-    .catch(err => console.log(err));
 };
 
 module.exports = populateDb;
