@@ -74,4 +74,10 @@ module.exports = {
         add: sql('messages/add.sql'),
         findByCoupleId: sql('messages/findByCoupleId.sql'),
   },
+  // todos: {
+  //       create: sql('todos/create.sql'),
+  //       init: sql('todos/init.sql'),
+  //       add: sql('todos/add.sql'),
+  //       remove: sql('todos/remove.sql')
+  //   },
 };

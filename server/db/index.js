@@ -24,6 +24,7 @@ const options = {
     obj.couples = controllers.couples(obj);
     obj.events = controllers.events(obj);
     obj.messages = controllers.messages(obj);
+    obj.todos = repos.todos(obj);
   },
 };
 

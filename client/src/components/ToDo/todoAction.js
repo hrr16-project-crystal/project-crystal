@@ -1,15 +1,6 @@
 import axios from 'axios';
 import { FETCH_TODOS, ADDED_TODO, DELETED_TODO } from '../../helpers/constants/types';
-const apiUrl = 'http://localhost:3000';
-
-let todoId = new Date().getTime();
-export const addTodo = text => {
-  return {
-    type: 'ADDED_TODO',
-    id: todoId,
-    todo: text,
-  };
-};
+const apiUrl = 'http://localhost:3000/api/v1';
 
 // export const dTodo = id => {
 //   return {
@@ -20,9 +11,8 @@ export const addTodo = text => {
 
 export const deleteTodo = (todoId) => {
   console.log("action deleteTODO YAY!!", todoId);
-
   return dispatch => {
-    axios.delete(`${apiUrl}/deleteTodo`, todoId)
+    axios.delete(`${apiUrl}/todos/deleteTodo`, todoId)
     .then(response => {
       console.log("response.data", response.data);
       dispatch({
@@ -39,7 +29,7 @@ export const deleteTodo = (todoId) => {
 
 export const getTodos = () => {
   return dispatch => {
-    axios.get(`${apiUrl}/getTodos`)
+    axios.get(`${apiUrl}/todos/getAll`)
     .then(response => {
       console.log("response.data", response.data);
       dispatch({
@@ -56,7 +46,7 @@ export const getTodos = () => {
 export const postTodo = (formProps) => {
   console.log("action postTODO YAY!!", formProps);
   return dispatch => {
-    axios.post(`${apiUrl}/postTodo`, formProps)
+    axios.post(`${apiUrl}/todos/addTodo`, formProps)
     .then(response => {
       console.log(response.data);
       dispatch({
