@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
 import * as actions from './authAction';
 import './auth.css';
+
 class Signup extends Component {
   constructor(props) {
     super(props);
@@ -22,7 +23,7 @@ class Signup extends Component {
       );
     }
   }
-  
+
   render() {
     const { handleSubmit, fields: {
       firstName, lastName, email, password, passwordConfirm, couple, otherEmail,

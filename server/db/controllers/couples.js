@@ -8,7 +8,6 @@ module.exports = rep => {
 
     // Creates the table;
     create: () => {
-      console.log('inside couples creation...');
       return rep.none(sql.create)
         .then(result => {
           console.log('couples creation, successfull.. ');
@@ -68,10 +67,6 @@ module.exports = rep => {
     updateScore: (scoreObj, coupleId) => {
       // rep.oneOrNone(sql.updateScore, [coupleId, scoreObj], couple =>
       //   couple),
-      console.log('couple.js in the repo ==========');
-      console.log(coupleId);
-      console.log('couple.js in the repo---fsdfsdfsdfd');
-      console.log(scoreObj);
 
       // Grab current scores (can we use sql query to insert something and it will
       return rep.one(sql.updateScore, [

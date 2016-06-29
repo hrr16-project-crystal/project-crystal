@@ -5,3 +5,5 @@ export const FETCH_MESSAGE = 'FETCH_MESSAGE';
 export const MARK_ANSWERED = 'MARK_ANSWERED';
 export const FETCH_QUESTIONS = 'FETCH_QUESTIONS';
 export const FETCH_HEALTH = 'FETCH_HEALTH';
+export const CREATE_EVENT = 'CREATE_EVENT';
+export const FETCH_EVENTS = 'FETCH_EVENTS';

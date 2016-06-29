@@ -3,5 +3,5 @@
     RF: Potential optimization LIMIT 1 to prevent additional search, but may obscure UNIQUE CONSTRAINT failure
 */
 
-SELECT * FROM Users 
-WHERE email = $1
+SELECT * FROM Users
+WHERE Users.email = $1

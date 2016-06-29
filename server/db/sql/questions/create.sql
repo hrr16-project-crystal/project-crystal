@@ -1,15 +1,17 @@
 /*
     Creates Questions table
+    INSERT INTO ${schema~}.Questions(body, frequency, category, answers) VALUES
+
 */
 
 CREATE EXTENSION IF NOT EXISTS citext;
 
 CREATE TABLE Questions (
 question_id serial PRIMARY KEY,
-category citext NOT NULL,
-content citext NOT NULL,
-created_at timestamp NOT NULL DEFAULT now(),
-updated_at timestamp NOT NULL DEFAULT now()
+category text NOT NULL,
+body text NOT NULL,
+frequency text NOT NULL,
+answers json
 );
 
 -- CREATE FUNCTION update_updated_at_column() RETURNS trigger AS $$

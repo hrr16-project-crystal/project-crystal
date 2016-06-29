@@ -32,8 +32,8 @@ module.exports = rep => {
     addFirstUser: newUser =>
       rep.one(sql.addFirstUser, newUser),
 
-    // Adds a new User to an existing couple using passed in data from secondUser object 
-    // RF: rename updateExistingCouple SQL QueryFile to describe exactly what it updates/will Return. 
+    // Adds a new User to an existing couple using passed in data from secondUser object
+    // RF: rename updateExistingCouple SQL QueryFile to describe exactly what it updates/will Return.
     addSecondUser: secondUser =>
       rep.oneOrNone(sql.updateExistingCouple, secondUser.other_user_email)
       .then(updatedExistingCouple => {
@@ -61,9 +61,14 @@ module.exports = rep => {
       }),
 
     // Find and return user by user ID
-    findById: id =>
-      rep.oneOrNone(sql.findById, id, user =>
-        user),
+    findById: id => {
+      return rep.oneOrNone(sql.findById, [id], user => {
+        return user;
+      });
+    },
+
+    findByEmail: email =>
+      rep.oneOrNone(sql.findByEmail, email),
 
     // Check if user exists by email or ID and return boolean true/false
     checkIfExists: emailOrId => {

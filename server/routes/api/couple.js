@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require(__dirname + '/../../db/index').db;
 const Couples = db.couples;
+const Users = db.users;
 const CouplesUsers = db.couples_users;
 const pgp = require(__dirname + '/../../db/index').pgp;
 
@@ -75,17 +76,12 @@ router.post('/couples/add', (req, res, next) => {
 
 router.post('/couples/answers', (req, res, next) => {
   const result = req.body;
-  console.log('lach kdjaskdjksjdkasjdkasjdkjaskdjaskdjaskdja')
-  console.log(result);
   // Use userId to get coupleID
-  CouplesUsers.findByUserId(req.body.user_id)
+  Users.findById(req.body.user_id)
   // update couple score using coupleID
-  .then(coupleUser => {
-    console.log('If this works then issue is NOT findByUserId');
-    console.log(coupleUser);
-    Couples.updateScore(result, coupleUser.couple_id)
+  .then(foundUserWithCouple => {
+    Couples.updateScore(result, foundUserWithCouple.couple_id)
     .then(data => {
-      console.log('ROuter COUPLE JS THEN STMT')
       console.log(data)
     })
   });
