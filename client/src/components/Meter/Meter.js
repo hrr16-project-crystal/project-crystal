@@ -16,7 +16,7 @@ class Meter extends Component {
      * If wanting more points taken off high score differences and less points
      * taken off low score differences, then multiply by more than 0.10 in
      * tenthOfDiff, and multiply that result by more than 3 in tripled. For
-      * example, 0.20 multiplied by 8. 
+     * example, 0.20 multiplied by 8.
      */
     // TODO: deduct points for low category-specific scores
     // one point if below 50 (for each category)?
@@ -30,6 +30,8 @@ class Meter extends Component {
     const tenthOfDiff = Math.floor(diff * 0.10);
     const tripled = tenthOfDiff * 3;
     const sparkScore = averageScore - tripled;
+    
+    // /couples/sparkscore/:coupleId/
     
     // Dynamically get past 6 months from current date.
     const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug',

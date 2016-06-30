@@ -46,3 +46,14 @@ exports.hashPassword = (password) => {
     });
   });
 };
+
+exports.calculateSparkScore = (userScore, partnerScore) => {
+  return Promise.try(function() {
+    const averageScore = Math.ceil((userScore + partnerScore) / 2);
+    const diff = Math.max(partnerScore, userScore) - Math.min(partnerScore, userScore);
+    const tenthOfDiff = Math.floor(diff * 0.10);
+    const tripled = tenthOfDiff * 3;
+    const sparkScore = averageScore - tripled;
+    return sparkScore;
+  });
+};

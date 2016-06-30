@@ -19,6 +19,10 @@ module.exports = rep => {
         });
     },
 
+    getBothUsers: (coupleId) => {
+      return rep.any(sql.getBothUsers, coupleId);
+    },
+
     // Initializes the table with some couple records, and returns each couple
     init: () =>
       rep.tx('Demo-Couples', t =>
