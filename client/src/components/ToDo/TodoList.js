@@ -3,6 +3,7 @@ import * as actions from './todoAction';
 import './todo.css';
 import Header from '../App/Header';
 import SingleTodo from './SingleTodo';
+import TodoAdd from './TodoAdd';
 import { connect } from 'react-redux';
 //import singletodo?
 
@@ -41,14 +42,10 @@ class TodoList extends Component {
       );
     }
 
-    return(
+    return (
       <div>
         <Header />
-
-        <form onSubmit={() => this.props.postTodo(this.state)}>
-          <input onChange={this.handleChange} type="text" value={this.state.text} placeholder="new to-do" autoFocus={true} />
-          <button className="waves-effect waves-light btn" type="submit">Add to-do</button>
-        </form>
+        <TodoAdd handleChange={this.handleChange} state={this.state}/>
 
         <ul>
           {this.props.todos.map(todo => {
@@ -62,12 +59,19 @@ class TodoList extends Component {
 
 }
 
+// const mapStateToProps = state => {
+//   let todoComponentProps = { 
+//     todos: state.todo.fetchTodos,
+//   }
+//   return todoComponentProps;
+// }
+
 const mapStateToProps = state => {
-  let todoComponentProps = { 
-    todos: state.todo.fetchTodos,
-  }
-  return todoComponentProps;
+  return { todos: state.todo.fetchTodos, user: state.auth.user };
 }
+
+
+export default connect(mapStateToProps, actions)(TodoList)
 
 // const mapDispatchToProps = reduxDispatch => {
 //   let todoComponentProps = {
@@ -77,8 +81,6 @@ const mapStateToProps = state => {
 //   }
 //   return todoComponentProps;
 // }
-
-export default connect(mapStateToProps, actions)(TodoList)
 
 // class ToDo extends Component {
 //   constructor(props) {

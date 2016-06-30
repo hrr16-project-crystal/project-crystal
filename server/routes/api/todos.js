@@ -30,12 +30,15 @@ router.get('/todos/getAll', (req, res) => {
 router.post('/todos/addTodo', (req, res) => {
   console.log("post - req.body", req.body);
   var todoId = new Date().getTime();
+  console.log("post - todoId", todoId);
   var todoObject = {
     type: 'ADDED_TODO',
     id: todoId,
     todo: req.body.text,
   };
+  console.log("post - todoObject", todoObject);
   listOfTodos.push(todoObject);
+  console.log("post - listOfTodos", listOfTodos);
   res.send(listOfTodos).status(201);
 });
 
