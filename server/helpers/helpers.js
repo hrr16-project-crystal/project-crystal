@@ -18,8 +18,8 @@ exports.desensitize = (recordOrRecords) => {
   return new Error('There was an error desensitizing the records');
 };
 
-// Takes any amount of input and ouputs bold white text with black background and seperator 
-// lines for clarity. 
+// Takes any amount of input and ouputs bold white text with black background and separator
+// lines for clarity.
 exports.customLog = (input) => {
   console.log('-------------------- Roger\'s Custom Log ---------------------');
   console.log(clc.white.bgBlack.underline(input));

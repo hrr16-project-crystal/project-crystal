@@ -7,3 +7,4 @@ export const FETCH_QUESTIONS = 'FETCH_QUESTIONS';
 export const FETCH_HEALTH = 'FETCH_HEALTH';
 export const CREATE_EVENT = 'CREATE_EVENT';
 export const FETCH_EVENTS = 'FETCH_EVENTS';
+export const DELETE_EVENT = 'DELETE_EVENT';

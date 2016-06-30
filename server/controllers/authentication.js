@@ -18,7 +18,6 @@ const tokenForUser = user => {
 
 exports.signin = (req, res, next) => {
   // User has already had their email and password auth'd ,just need to give them a token
-  // req.user.coupleID = 35;
   res.send({
     token: tokenForUser(req.user),
     data: req.user,
@@ -26,6 +25,7 @@ exports.signin = (req, res, next) => {
 };
 
 exports.signup = (req, res, next) => {
+  // Create new user object and populate with values from the request
   const newUser = {};
   newUser.first_name = req.body.firstName;
   newUser.last_name = req.body.lastName;
@@ -37,7 +37,7 @@ exports.signup = (req, res, next) => {
     newUser.is_first_of_couple = false;
     newUser.other_user_email = req.body.otherEmail;
   }
-
+  // Default event needed for each new Couple that gets registered to database
   const defaultEvent = {
     title: 'Welcome!',
     description: 'This is the default event for our calendar!',
@@ -63,7 +63,9 @@ exports.signup = (req, res, next) => {
             if (newUser.is_first_of_couple) {
               Users.addFirstUser(newUser)
                 .then(addedUser => {
+                  // Set the couple_id of the default event equal to the couple_id of the user that signed up
                   defaultEvent.couple_id = addedUser.couple_id
+                  // Add the defaultEvent to the Events table with the appropriate couple_id
                   Events.add(defaultEvent)
                   .then(data => {
                     res.status(200)

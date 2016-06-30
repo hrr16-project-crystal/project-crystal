@@ -60,7 +60,6 @@
   background-color: rgba(0, 0, 0, 0.5);
   width: 100%;
   text-align: center;
-
 }
 
 .form-group label, .form-group input{
@@ -85,6 +84,29 @@
   display: inline-block;
   text-align: center;
 
+}
+
+.form-group label, .form-group input{
+ color: #fff;
+ font-size: 1.1em;
+
+}
+
+.signup--box__title {
+  text-align: center;
+  color: #fff;
+  font-size: 35px;
+  line-height: 65px;
+  font-weight: 700;
+
+}
+
+.signup__form {
+  max-width: 400px;
+  margin: auto;
+  padding-top: 1em;
+  display: inline-block;
+  text-align: center;
 }
 
 .form-group label, .form-group input{

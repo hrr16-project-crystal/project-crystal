@@ -18,7 +18,7 @@ const cors = require('cors');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 
-// populate postgresql db
+// populate postgresql db | Not needed once initial database has been populated
 // require('./db/populateDb')();
 
 const userAPIroutes = require('./routes/api/user');
@@ -28,7 +28,7 @@ const eventsAPIroutes = require('./routes/api/events');
 
 // const CouplesUser = require('./db/repos/couples_users');
 
-// // *** API routes *** //
+// *** API routes *** //
 app.use('/api/v1', userAPIroutes);
 app.use('/api/v1', coupleAPIroutes);
 app.use('/api/v1', questionAPIroutes);
