@@ -10,17 +10,16 @@ import './calendar.css';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 
-// Note: JavaScript months go from 0-11 & edited css style sheet (not sure if edits went to GIT)
-// CSS edits were the margin top of 48px and min-height of 600px on main calendar
-// TODO: add popup box with material-ui when clicking on event
-
 class Calendar extends Component {
   constructor(props) {
     super(props);
+    // Used to store the state for Material-UI Dialog component and
+    // and for the selectEvent prop in BigCalendar
     this.state = {
       open: false,
       eventBox: '',
     };
+    // Bind all class functions to the class for use throughout the component
     this.deleteEvent = this.deleteEvent.bind(this);
     this.getEvents = this.getEvents.bind(this);
     this.formatDate = this.formatDate.bind(this);
@@ -28,13 +27,15 @@ class Calendar extends Component {
     this.handleDialogClose = this.handleDialogClose.bind(this);
     BigCalendar.setLocalizer(BigCalendar.momentLocalizer(moment));
   }
+
+  // Populate the calendar with all events for the couple on initial render
   componentWillMount() {
     this.props.fetchEvents(this.props.user.data.couple_id);
   }
 
+  // Get all events for the couple
   getEvents() {
-    // Function which gets all events from state and formats them in a
-    // way in that can be read by the BigCalendar
+    // Get all events from state and format them in a way in that can be read by the BigCalendar
     const eventsArr = this.props.events.data;
     for (let i = 0; i < eventsArr.length; i++) {
       let tempStart = eventsArr[i].start_date;
@@ -44,26 +45,35 @@ class Calendar extends Component {
       eventsArr[i].start = tempStart;
       eventsArr[i].end = tempEnd;
     }
+    // This is what gets passed into the events of the BigCalendar component
     return eventsArr;
   }
+
+  // Delete the event that was clicked on then re-render the new updated events
   deleteEvent() {
-    console.log('hiiiiii');
-    // this.setState({ open: false });
+    this.props.deleteEvent(this.state.eventBox.event_id);
+    setTimeout(() => {
+      this.props.fetchEvents(this.props.user.data.couple_id);
+    }, 350);
   }
 
+  // Change the state to allow Dialog component to open
   handleDialogOpen() {
     this.setState({ open: true });
   }
 
+  // Change the state to allow Dialog component to close
   handleDialogClose() {
     this.setState({ open: false });
   }
 
+  // Formats dates into user friendly format on the event pop-up (click)
   formatDate(time) {
     return moment(time).format('MMMM Do @ H:mmA');
   }
 
   render() {
+    // If there are no events yet, load a spinner
     if (!this.props.events) {
       return (
         <div className="center-align calendar-spinner">
@@ -81,12 +91,15 @@ class Calendar extends Component {
         </div>
       );
     }
+    // Defines the action for the Dialog component
     const actions = [
+      // Cancel button to close Dialog
       <FlatButton
         label="Cancel"
         primary={true}
         onTouchTap={this.handleDialogClose}
       />,
+      // Delete button when clicked will trigger delete and close the Dialog
       <FlatButton
         label="Delete"
         primary={true}
@@ -95,6 +108,7 @@ class Calendar extends Component {
       />,
     ];
     return (
+      // Dialog component for the event pop-up on user click. Only appears when user clicks event
       <div>
         <div>
           <Dialog
@@ -119,6 +133,7 @@ class Calendar extends Component {
             </div>
           </Dialog>
         </div>
+      {/* Default render: Renders the Header, CreateEvent button, and BigCalendar */}
         <div>
           <Header />
           <div className="container">
@@ -137,8 +152,10 @@ class Calendar extends Component {
   }
 }
 
+// Connect the state with props for all events and each event
 const mapStateToProps = state => {
   return { events: state.calendar.events, user: state.auth.user };
 };
 
+// Hook up this component with the State and Actions
 export default connect(mapStateToProps, actions)(Calendar);

@@ -4,14 +4,14 @@ const passport = require('passport');
 const bcrypt = require('bcrypt-nodejs');
 // const User = require('../db/models/User');
 const config = require('../config');
-const Users = require(__dirname + '/../db/index').db.users;
-const pgp = require(__dirname + '/../db/index').pgp; 
+const Users = require(`${__dirname}/../db/index`).db.users;
+const pgp = require(`${__dirname}/../db/index`).pgp;
 // A strategy is a method for authenticating a user (can be used for FB/Google login) aka plugin
 const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
 // LocalStrategy is to verify the email and password when signing in to app.
 const LocalStrategy = require('passport-local');
-const FacebookStrategy = require('passport-facebook').Strategy;
+// const FacebookStrategy = require('passport-facebook').Strategy;
 
 
 const comparePassword = function (dbpass, candidatePassword, callback) {
@@ -33,7 +33,6 @@ const localLogin = new LocalStrategy(localOptions, (email, password, done) => {
   // otherwise, call done with false
   Users.findByEmail(email)
     .then(data => {
-      console.log(data);
       return comparePassword(data.password, password, (err, isMatch) => {
         if (err) { return done(err); }
         if (!isMatch) { return done(null, false); }
@@ -72,38 +71,38 @@ const jwtLogin = new JwtStrategy(jwtOptions, (payload, done) => {
 });
 
 // Setup for Facebook Login
-const fbOptions = {
-  clientID: config.fbConfig.appId,
-  clientSecret: config.fbConfig.appSecret,
-  callbackURL: config.fbConfig.callbackUrl,
-};
+// const fbOptions = {
+//   clientID: config.fbConfig.appId,
+//   clientSecret: config.fbConfig.appSecret,
+//   callbackURL: config.fbConfig.callbackUrl,
+// };
 
-const fbLogin = new FacebookStrategy(fbOptions, (accessToken, refreshToken, profile, done) => {
-  User.findOrCreate({ email: profile.emails[0].value }, (err, user) => {
-    if (err) {
-      return done(err);
-    }
-    if (user) {
-      return done(null, user);
-    }
-    const newUser = new User();
+// const fbLogin = new FacebookStrategy(fbOptions, (accessToken, refreshToken, profile, done) => {
+//   User.findOrCreate({ email: profile.emails[0].value }, (err, user) => {
+//     if (err) {
+//       return done(err);
+//     }
+//     if (user) {
+//       return done(null, user);
+//     }
+//     const newUser = new User();
 
-    // newUser.fb.id = profile.id;
-    // newUser.fb.accessToken = accessToken;
-    // newUser.fb.firstName = profile.name.givenName;
-    // newUser.fb.lastName = profile.name.familyName;
-    // newUser.fb.email = profile.emails[0].value;
+//     newUser.fb.id = profile.id;
+//     newUser.fb.accessToken = accessToken;
+//     newUser.fb.firstName = profile.name.givenName;
+//     newUser.fb.lastName = profile.name.familyName;
+//     newUser.fb.email = profile.emails[0].value;
 
-    newUser.save((err) => {
-      if (err) {
-        throw err;
-      }
-      return done(null, newUser);
-    });
-  });
-});
+//     newUser.save((err) => {
+//       if (err) {
+//         throw err;
+//       }
+//       return done(null, newUser);
+//     });
+//   });
+// });
 
 // Tell passport to use this strategy
 passport.use(jwtLogin);
 passport.use(localLogin);
-passport.use(fbLogin);
+// passport.use(fbLogin);

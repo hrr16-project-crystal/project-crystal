@@ -1,5 +1,5 @@
 /*
-    Creates table Users. Uses JSONB for holding object of answers array
+    Creates table Events
 */
 
 CREATE TABLE ${schema~}.Events
