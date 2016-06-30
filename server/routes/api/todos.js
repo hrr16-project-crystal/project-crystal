@@ -32,7 +32,7 @@ router.post('/todos/addTodo', (req, res) => {
   var todoId = new Date().getTime();
   var todoObject = {
     type: 'ADDED_TODO',
-    todoId: todoId,
+    id: todoId,
     todo: req.body.text,
   };
   listOfTodos.push(todoObject);
