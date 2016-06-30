@@ -68,4 +68,9 @@ module.exports = {
     findById: sql('events/findById.sql'),
     remove: sql('events/remove.sql'),
   },
+  messages: {
+        create: sql('messages/create.sql'),
+        add: sql('messages/add.sql'),
+        findByCoupleId: sql('messages/findByCoupleId.sql'),
+  },
 };

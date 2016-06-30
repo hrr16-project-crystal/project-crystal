@@ -28,7 +28,6 @@ router.get('/couples', (req, res, next) => {
 // RF: Inner join, return couple + user infos
 // get single couple
 router.get('/couples/:id', (req, res, next) => {
-  console.log('OMG ROGER IS AWESOME!!!!');
   const couple_id = parseInt(req.params.id);
   Couples.findById(couple_id)
     .then(data => {

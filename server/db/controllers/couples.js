@@ -50,12 +50,8 @@ module.exports = rep => {
 
     // Finds a couple by id, returns array of users related to that couple
     findById: couple_id => {
-      // console.log("YAY IM IN FINDBYID COUPLES");
-      // console.log(couple_id);
       // change from rep.any to rep.oneOrNone to ensure only single value expected to return!!! instead single value in array
       return rep.oneOrNone(sql.findById, couple_id, couples => {
-        // console.log('COUPLE JS IN THE REPOS');
-        // console.log(couples);
         return couples;
       });
     },
@@ -67,7 +63,6 @@ module.exports = rep => {
     updateScore: (scoreObj, coupleId) => {
       // rep.oneOrNone(sql.updateScore, [coupleId, scoreObj], couple =>
       //   couple),
-
       // Grab current scores (can we use sql query to insert something and it will
       return rep.one(sql.updateScore, [
         coupleId, scoreObj.Total, scoreObj.Respect, scoreObj.Communication,

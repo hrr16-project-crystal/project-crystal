@@ -10,7 +10,7 @@ const facebookSigninCallback = passport.authenticate('facebook', { failureRedire
 
 module.exports = (app) => {
   app.get('/dashboard', requireAuth, (req, res) => {
-    res.status(200);
+    res.status(200).send(initialState);
   });
   app.get('/auth/facebook', facebookSignin);
   app.get('/auth/facebook/callback', facebookSigninCallback, (req, res) => {

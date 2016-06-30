@@ -6,7 +6,8 @@ const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const config = {
-  devtool: 'source-map',
+
+  devtool: 'cheap-module-source-map',
   entry: [
     'webpack-hot-middleware/client',
     './client/src/index',
@@ -40,6 +41,10 @@ const config = {
         {
           from: `${__dirname}/client/src/index.html`,
           to: `${__dirname}/client/build/index.html`,
+        },
+        {
+          from: `${__dirname}/client/src/assets/favicon.ico`,
+          to: `${__dirname}/client/build/favicon.ico`,
         },
       ]
     ),
