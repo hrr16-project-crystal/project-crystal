@@ -69,7 +69,7 @@ class Calendar extends Component {
 
   // Formats dates into user friendly format on the event pop-up (click)
   formatDate(time) {
-    return moment(time).format('MMMM Do @ H:mmA');
+    return moment(time).format('MMMM Do @ h:mmA');
   }
 
   render() {
