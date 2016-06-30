@@ -7,14 +7,25 @@ import BigCalendar from 'react-big-calendar';
 import CreateEvent from './CreateEvent';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import './calendar.css';
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
 
 // Note: JavaScript months go from 0-11 & edited css style sheet (not sure if edits went to GIT)
 // CSS edits were the margin top of 48px and min-height of 600px on main calendar
 // TODO: add popup box with material-ui when clicking on event
+
 class Calendar extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      open: false,
+      eventBox: '',
+    };
+    this.deleteEvent = this.deleteEvent.bind(this);
     this.getEvents = this.getEvents.bind(this);
+    this.formatDate = this.formatDate.bind(this);
+    this.handleDialogOpen = this.handleDialogOpen.bind(this);
+    this.handleDialogClose = this.handleDialogClose.bind(this);
     BigCalendar.setLocalizer(BigCalendar.momentLocalizer(moment));
   }
   componentWillMount() {
@@ -35,6 +46,22 @@ class Calendar extends Component {
     }
     return eventsArr;
   }
+  deleteEvent() {
+    console.log('hiiiiii');
+    // this.setState({ open: false });
+  }
+
+  handleDialogOpen() {
+    this.setState({ open: true });
+  }
+
+  handleDialogClose() {
+    this.setState({ open: false });
+  }
+
+  formatDate(time) {
+    return moment(time).format('MMMM Do @ H:mmA');
+  }
 
   render() {
     if (!this.props.events) {
@@ -54,18 +81,56 @@ class Calendar extends Component {
         </div>
       );
     }
+    const actions = [
+      <FlatButton
+        label="Cancel"
+        primary={true}
+        onTouchTap={this.handleDialogClose}
+      />,
+      <FlatButton
+        label="Delete"
+        primary={true}
+        keyboardFocused={true}
+        onTouchTap={() => { this.deleteEvent(); this.handleDialogClose(); }}
+      />,
+    ];
     return (
       <div>
-        <Header />
-        <div className="container">
-          <CreateEvent />
-          <BigCalendar
-            selectable
-            formats={{ weekHeaderFormat: 'ddd MM DD' }}
-            events={this.getEvents()}
-            style={{ border: '1px solid #26a69a', height: '600px', marginTop: '48px' }}
-            onSelectEvent={event => console.log(event.title + ' | ' + event.start + ' | ' + event.end)}
-          />
+        <div>
+          <Dialog
+            title="Event Details"
+            actions={actions}
+            modal={false}
+            open={this.state.open}
+            onRequestClose={this.handleDialogClose}
+          >
+            <div className="section">
+              Title: {this.state.eventBox.title}
+            </div>
+            <div className="divider"></div>
+            <div className="section">
+              Start: {this.formatDate(this.state.eventBox.start)}
+              <br />
+              End: {this.formatDate(this.state.eventBox.end)}
+            </div>
+            <div className="divider"></div>
+            <div className="section">
+              Description: {this.state.eventBox.description}
+            </div>
+          </Dialog>
+        </div>
+        <div>
+          <Header />
+          <div className="container">
+            <CreateEvent />
+            <BigCalendar
+              selectable
+              formats={{ weekHeaderFormat: 'ddd MM DD' }}
+              events={this.getEvents()}
+              style={{ border: '1px solid #26a69a', height: '600px', marginTop: '48px' }}
+              onSelectEvent={event => this.setState({ open: true, eventBox: event })}
+            />
+          </div>
         </div>
       </div>
     );
