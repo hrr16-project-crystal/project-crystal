@@ -28,21 +28,24 @@ router.get('/todos/getAll', (req, res) => {
 });  
 
 router.post('/todos/addTodo', (req, res) => {
+  console.log("post - req.body", req.body);
   var todoId = new Date().getTime();
   var todoObject = {
     type: 'ADDED_TODO',
     todoId: todoId,
-    todo: req.body.todo,
+    todo: req.body.text,
   };
   listOfTodos.push(todoObject);
   res.send(listOfTodos).status(201);
 });
 
-router.delete('/todos/deleteTodo', (req, res) => {
-  console.log("delteTodo req.body", req.body);
+router.delete('/todos/deleteTodo/:id', (req, res) => {
+  console.log("delteTodo req.params.id", req.params.id);
+  var id = req.params.id;
   for(var i = 0; i < listOfTodos.length; i++){
-    if(listOfTodos[i].id === req.body.id) {
-      delete listOfTodos[i];
+    if(listOfTodos[i].id === id) {
+      listOfTodos.splice(i, 1);
+      break;
     }
   }
   res.send(listOfTodos).status(200);

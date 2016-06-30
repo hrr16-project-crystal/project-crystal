@@ -1,6 +1,6 @@
 'use strict';
 
-var sql = require('../sql').todos;
+const sql = require('../sql').todos;
 
 module.exports = rep => {
 

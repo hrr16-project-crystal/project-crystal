@@ -10,6 +10,7 @@ const controllers = {
   couples: require('./controllers/couples'),
   events: require('./controllers/events'),
   messages: require('./controllers/messages')
+  // events: require('./controllers/todos'),
 };
 
 // pg-promise initialization options:
@@ -25,6 +26,7 @@ const options = {
     obj.events = controllers.events(obj);
     obj.messages = controllers.messages(obj);
     obj.todos = repos.todos(obj);
+    // obj.todos = controllers.todos(obj);
   },
 };
 

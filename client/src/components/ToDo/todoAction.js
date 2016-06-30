@@ -2,19 +2,11 @@ import axios from 'axios';
 import { FETCH_TODOS, ADDED_TODO, DELETED_TODO } from '../../helpers/constants/types';
 const apiUrl = 'http://localhost:3000/api/v1';
 
-// export const dTodo = id => {
-//   return {
-//     type: 'DELETED_TODO',
-//     id,
-//   };
-// };
-
-export const deleteTodo = (todoId) => {
-  console.log("action deleteTODO YAY!!", todoId);
+export const deleteTodo = (todoID) => {
   return dispatch => {
-    axios.delete(`${apiUrl}/todos/deleteTodo`, todoId)
+    axios.delete(`${apiUrl}/todos/deleteTodo/${todoID}`)
     .then(response => {
-      console.log("response.data", response.data);
+      console.log("response.data from deleteTodo", response.data);
       dispatch({
         type: DELETED_TODO,
         payload: response.data,
@@ -26,12 +18,11 @@ export const deleteTodo = (todoId) => {
   };
 };
 
-
 export const getTodos = () => {
   return dispatch => {
     axios.get(`${apiUrl}/todos/getAll`)
     .then(response => {
-      console.log("response.data", response.data);
+      console.log("response.data from getTodos", response.data);
       dispatch({
         type: FETCH_TODOS,
         payload: response.data,
@@ -43,12 +34,12 @@ export const getTodos = () => {
   };
 };
 
-export const postTodo = (formProps) => {
-  console.log("action postTODO YAY!!", formProps);
+export const postTodo = (todoText) => {
+  console.log("postTODO - todoText YAY!!", todoText);
   return dispatch => {
-    axios.post(`${apiUrl}/todos/addTodo`, formProps)
+    axios.post(`${apiUrl}/todos/addTodo`, todoText)
     .then(response => {
-      console.log(response.data);
+      console.log("response.data from postTodo", response.data);
       dispatch({
         type: ADDED_TODO,
         payload: response.data,
@@ -59,6 +50,3 @@ export const postTodo = (formProps) => {
     });
   };
 };
-
-
-

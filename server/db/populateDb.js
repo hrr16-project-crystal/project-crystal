@@ -1,7 +1,7 @@
 const db = require(__dirname + '/index').db;
 
 const populateDb = () => {
-  db.query('DROP TABLE IF EXISTS Couples, Users, Questions, Events')
+  db.query('DROP TABLE IF EXISTS Couples, Users, Questions, Events CASCADE')
     .then(db.couples.create)
     .then(db.users.create)
     // .then(db.categories.create)   // new
