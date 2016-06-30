@@ -4,6 +4,7 @@ import * as actions from './calendarActions';
 import { Link } from 'react-router';
 import moment from 'moment';
 
+// Compare function to order the events by start date (oldest to newest)
 const compareFunc = (a, b) => {
   const first = Number(moment(a.start_date).format('x'));
   const second = Number(moment(b.start_date).format('x'));
@@ -16,6 +17,7 @@ const compareFunc = (a, b) => {
   }
 };
 
+// Returns events where the date is after the current time
 const isDateAfterToday = date => {
   const currentDate = Number(Date.now());
   return Number(moment(date.start_date).format('x')) >= currentDate;
@@ -26,12 +28,12 @@ class CalendarCard extends Component {
     this.props.fetchEvents(this.props.user.data.couple_id);
   }
 
+  // Render events into boxes in the Calendar card
   renderEvents() {
     const events = this.props.events.data;
     events.sort(compareFunc);
-    const filteredEvents = events.filter(isDateAfterToday);
 
-    return filteredEvents.splice(0, 3).map(eventObj => {
+    return events.filter(isDateAfterToday).splice(0, 3).map(eventObj => {
       const date = moment(eventObj.start_date).format('MMMM Do @ h:mmA');
       return (
         <div className="col s4">
@@ -68,7 +70,7 @@ class CalendarCard extends Component {
         </div>
       );
     }
-
+    // Call the renderEvents function and place each event into the calendar card
     return (
       <div className="col s7 card white">
         <h4 className="center-align">Upcoming Events</h4>
