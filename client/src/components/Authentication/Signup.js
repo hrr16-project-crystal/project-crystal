@@ -124,15 +124,7 @@ class Signup extends Component {
  <input name="group1" type="radio" {...couple} value="no" />
  <label>No - connect with my partner</label>
  </p>
- <<<<<<< cf084a5eaa5b5dd1a5c74f92b5e180746cef7e99
- <<<<<<< f702070628353f5027ea90caf0713d12c2b4ed07
 
- =======
- ​
- >>>>>>> Add rebase files
- =======
-
- >>>>>>> Add rebase file
  Josh's attempt at radio buttons....
  to replace dropdown, need to get this working
  <form action="#">
