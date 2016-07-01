@@ -21,13 +21,13 @@
 
 .hero__promo__pretitle {
   text-transform: uppercase;
-  letter-spacing: .3em;
+  letter-spacing: .26em;
   font-size: 17px;
   font-weight: 500;
 }
 
 .hero__promo__title {
-  font-size: 84px;
+  font-size: 82px;
   line-height: 65px;
   font-weight: 500;
   margin: 36px 0 12px;

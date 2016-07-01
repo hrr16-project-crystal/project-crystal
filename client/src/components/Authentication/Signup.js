@@ -34,21 +34,20 @@ class Signup extends Component {
       <div className="signup--box">
         <div className="hero__overlay">
           <div className="signin__overlay">
-            <form className="signup__form"
-                  onSubmit={handleSubmit(this.handleFormSubmit)}>
+            <form onSubmit={handleSubmit(this.handleFormSubmit)}>
               <h6 className="signup--box__title">A better relationship is right
                 around the corner...</h6>
               <fieldset className="form-group">
                 <div className="input-field">
-                  <input type="text" className="form-control" {...firstName} />
-                  <label>First Name:</label>
+                  <input id="firstname" type="text" className="form-control validate" {...firstName} />
+                  <label for="firstname">First Name:</label>
                   {firstName.touched && firstName.error &&
                   <div className="error">{firstName.error}</div>}
                 </div>
               </fieldset>
               <fieldset className="form-group">
                 <div className="input-field">
-                  <input type="text" className="form-control" {...lastName} />
+                  <input type="text" className="form-control validate" {...lastName} />
                   <label>Last Name:</label>
                   {lastName.touched && lastName.error &&
                   <div className="error">{lastName.error}</div>}
@@ -56,7 +55,7 @@ class Signup extends Component {
               </fieldset>
               <fieldset className="form-group">
                 <div className="input-field">
-                  <input type="email" className="form-control" {...email} />
+                  <input type="email" className="form-control validate" {...email} />
                   <label>Email:</label>
                   {email.touched && email.error &&
                   <div className="error">{email.error}</div>}
@@ -65,7 +64,7 @@ class Signup extends Component {
               <fieldset className="form-group">
                 <div className="input-field">
                   <input type="password"
-                         className="form-control" {...password} />
+                         className="form-control validate" {...password} />
                   <label>Password:</label>
                   {password.touched && password.error &&
                   <div className="error">{password.error}</div>}
@@ -74,7 +73,7 @@ class Signup extends Component {
               <fieldset className="form-group">
                 <div className="input-field">
                   <input type="password"
-                         className="form-control" {...passwordConfirm} />
+                         className="form-control validate" {...passwordConfirm} />
                   <label>Confirm Password:</label>
                   {passwordConfirm.touched && passwordConfirm.error &&
                   <div className="error">{passwordConfirm.error}</div>}

@@ -35,8 +35,7 @@ class Signin extends Component {
       <div className="signin--box">
         <div className="hero__overlay">
           <div className="signin__overlay">
-            <form className="signin__form"
-                  onSubmit={handleSubmit(this.handleFormSubmit)}>
+            <form onSubmit={handleSubmit(this.handleFormSubmit)}>
               <h6 className="signin--box__title">
                 Self awareness in a relationship makes all the difference...</h6>
               <fieldset className="form-group">

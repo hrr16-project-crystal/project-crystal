@@ -18,7 +18,7 @@ function LandingPage() {
             Honey do lists. Appreciation notes. Passion building. Personal
             Growth.
           </p>
-          <Link to="/learnmore" className="hero__promo__btn hero__promo__btn--primary">Learn More</Link>
+          <Link to="/signin" className="hero__promo__btn hero__promo__btn--primary">Learn More</Link>
           <Link to="/signup" className="hero__promo__btn hero__promo__btn--secondary">Get Started</Link>
         </div>
       </div>
