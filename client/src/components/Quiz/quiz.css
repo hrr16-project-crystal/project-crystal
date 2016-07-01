@@ -1,15 +1,25 @@
-.quiz-questions {
-  display: block;
+.background {
+  height: 100vh;
 }
-.quiz-box {
-  padding-bottom: 50px;
+
+.background--1 {
+  background: #000 no-repeat center/cover url("../../assets/9.jpg");
 }
-label {
-  font-size: 1.2em;
-  color: #555;
+
+.background--2 {
+  background: #000 no-repeat center/cover url("../../assets/5.jpg");
 }
-h2 {
-  padding-left: 7%;
+
+.background--3 {
+  background: #000 no-repeat center/cover url("../../assets/3.jpg");
+}
+
+.background--4 {
+  background: #000 no-repeat center/cover url("../../assets/12.jpg");
+}
+
+.background--5 {
+  background: #000 no-repeat center/cover url("../../assets/14.jpg");
 }
 
 .divide {
@@ -18,4 +28,10 @@ h2 {
 
 .quiz-spinner {
   margin-top: 240px;
+}
+
+.progress {
+  display: inline-block;
+  width: 100%;
+  max-width: 300px;
 }

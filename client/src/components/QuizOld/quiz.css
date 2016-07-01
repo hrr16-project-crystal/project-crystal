@@ -1,0 +1,17 @@
+.quiz-questions {
+  display: block;
+}
+.quiz-box {
+  padding-bottom: 50px;
+}
+label {
+  font-size: 1.2em;
+  color: #555;
+}
+h2 {
+  padding-left: 7%;
+}
+
+.divide {
+  margin-bottom: 36px;
+}

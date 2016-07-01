@@ -39,10 +39,10 @@
   font-size: 36px;
   font-weight: 500;
   position: absolute;
-  top: 657px;
   z-index: 1;
-  left: 485px;
   margin: 0;
+  top: 77.5%;
+  left: 23.7%;
 }
 
 .meter-spinner {

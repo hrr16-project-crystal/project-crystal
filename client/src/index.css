@@ -4,3 +4,9 @@ body {
   font-family: Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
   background-color: #e5e5e5;
 }
+
+.container {
+  top: 64px;
+  position: relative;
+  margin-bottom: 24px;
+}

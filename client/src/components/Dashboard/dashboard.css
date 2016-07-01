@@ -12,5 +12,6 @@
 }
 
 .parallax-container {
-  height: 350px;
+  height: 50vh;
+  max-height: 400px;
 }
