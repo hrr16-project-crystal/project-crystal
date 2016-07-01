@@ -11,6 +11,9 @@ export const fetchEvents = (coupleID) => {
         type: FETCH_EVENTS,
         payload: response.data,
       });
+    })
+    .catch(err => {
+      console.log(err);
     });
   };
 };
