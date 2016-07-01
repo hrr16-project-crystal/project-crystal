@@ -10,7 +10,7 @@ module.exports = rep => {
     create: () => 
       rep.none(sql.create),
 
-    // Initializes the table with some question records.
+    // Initializes the table with some todo records.
     init: () => 
       rep.none(sql.init),
 
@@ -22,24 +22,16 @@ module.exports = rep => {
     empty: () =>
       rep.none(sql.empty),
 
-    // Adds a new question, and returns the new question;
+    // Adds a new todo, and returns the new todo;
     add: newTodoObj =>
-      rep.one(sql.add, newTodoObj, todo =>
-        todo),
+      rep.one(sql.add, newTodoObj, todo => todo),
+    
+    // Return all todos for a particular couple
+    findById: coupleID =>
+      rep.any(sql.findById, coupleID, todo => todo),
 
-    // Return all questions, with qualifiers in an options object
-    // defined on the API route
-    all: (options) => {
-      return ('nothing here yet!'); 
-    },
-
-    // Tries to delete a question by id, and returns the number of records deleted;
-    remove: id =>
-      rep.result('DELETE FROM questions WHERE id = $1', id, r => r.rowCount),
-
-    // Tries to find questions by frequency;
-    findByFrequency: frequency =>
-      rep.any(sql.findByFrequency, frequency, questions =>
-        questions)
+    // Delete a event by id
+    remove: todoID =>
+      rep.oneOrNone(sql.remove, todoID),
   };
 };

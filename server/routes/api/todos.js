@@ -30,6 +30,7 @@ router.get('/todos/getAll', (req, res) => {
 router.post('/todos/addTodo', (req, res) => {
   console.log("post - req.body", req.body);
   var todoId = new Date().getTime();
+  console.log('todoId type', typeof todoId);
   console.log("post - todoId", todoId);
   var todoObject = {
     type: 'ADDED_TODO',
@@ -44,13 +45,15 @@ router.post('/todos/addTodo', (req, res) => {
 
 router.delete('/todos/deleteTodo/:id', (req, res) => {
   console.log("delteTodo req.params.id", req.params.id);
-  var id = req.params.id;
+  var id = parseInt(req.params.id);
+  console.log('router.delete id', typeof id);
   for(var i = 0; i < listOfTodos.length; i++){
     if(listOfTodos[i].id === id) {
       listOfTodos.splice(i, 1);
       break;
     }
   }
+  console.log('router after splice listOfTodos', listOfTodos)
   res.send(listOfTodos).status(200);
 });
 // // get all questions

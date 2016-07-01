@@ -7,7 +7,7 @@ export default (state = {}, action) => {
     case ADDED_TODO:
       return { ...state, fetchTodos: action.payload };
     case DELETED_TODO:
-      return { ...state, deleteTodos: action.payload };
+      return { ...state, fetchTodos: action.payload };
   }
   return state;
 }
