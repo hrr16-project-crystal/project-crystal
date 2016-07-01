@@ -1,10 +1,10 @@
 .hero {
   height: 100vh;
-  background: #000 no-repeat center/cover url("http://bacchetta.co/wp-content/uploads/2016/06/dating.jpg");
+  background: #000 no-repeat center/cover url("../../assets/dating.jpg");
 }
 
 .hero__overlay {
-  height: 100vh;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.5);;
 }
 
@@ -13,78 +13,41 @@
   box-shadow: none;
 }
 
-.logo {
-  color: #fff;
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 28px;
-  float: left;
-  margin-left: 24px;
-}
-
-.logo__dot {
-  color: #03C9A9;
-  font-size: 40px;
-}
-
-.menu {
-  float: right;
-  margin-right: 24px;
-}
-
-.menu__item {
-  list-style: none;
-  display: inline-block;
-  margin: 0 12px;
-}
-
-.menu__link {
-  color: #fff;
-  text-transform: uppercase;
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 13px;
-  transition: .4s;
-  letter-spacing: .15em;
-}
-
-.menu__link:hover {
-  color: #03C9A9;
-}
-
 .hero__promo {
-  padding-top: 27vh;
+  padding-top: 31vh;
   text-align: center;
   color: #fff;
 }
 
 .hero__promo__pretitle {
   text-transform: uppercase;
-  letter-spacing: .15em;
-  font-size: 16px;
+  letter-spacing: .3em;
+  font-size: 17px;
+  font-weight: 500;
 }
 
 .hero__promo__title {
-  font-size: 75px;
+  font-size: 84px;
   line-height: 65px;
-  font-weight: 700;
-  margin: 24px 0 10px;
+  font-weight: 500;
+  margin: 36px 0 12px;
 }
 
 .hero__promo__subtitle {
-  font-family: 'Crimson Text', Georgia, serif;
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 22px;
+  font-family: 'Roboto Slab', Georgia, serif;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 17px;
   font-style: italic;
-  padding: 7px 0;
+  padding: 12px 0;
   margin: 0 auto 15px;
   width: 500px;
 }
 
 .hero__promo__btn {
-  font-weight: 400;
+  font-weight: 500;
   font-size: 14px;
-  letter-spacing: 1px;
+  text-transform: uppercase;
+  letter-spacing: .15em;
   margin: 36px 12px;
   padding: 12px 36px;
   display: inline-block;
@@ -93,12 +56,26 @@
 }
 
 .hero__promo__btn--primary {
-  background-color: #03C9A9;
-  border: 1px solid #03C9A9;
+  background-color: #4dd0e1;
+  border: 1px solid #4dd0e1;
+  color: #fafafa;
+  transition: .4s;
+}
+
+.hero__promo__btn--primary:hover {
+  background-color: #e57373;
+  border: 1px solid #e57373;
   color: #fafafa;
 }
 
 .hero__promo__btn--secondary {
   border: 1px solid rgba(255, 255, 255, 0.5);
   color: #e7e7e7;
+  transition: .4s;
+}
+
+.hero__promo__btn--secondary:hover {
+  background-color: #e57373;
+  border: 1px solid #e57373;
+  color: #fafafa;
 }

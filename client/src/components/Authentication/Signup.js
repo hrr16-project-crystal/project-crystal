@@ -25,84 +25,90 @@ class Signup extends Component {
   }
 
   render() {
-    const { handleSubmit, fields: {
+    const {
+      handleSubmit, fields: {
       firstName, lastName, email, password, passwordConfirm, couple, otherEmail,
-    } } = this.props;
+    }
+    } = this.props;
     return (
       <div className="signup--box">
-        <div className="signup__overlay">
-          <form className="signup__form" onSubmit={handleSubmit(this.handleFormSubmit)}>
-            <h6 className="signup--box__title">A better relationship is right around the corner</h6>
-            <fieldset className="form-group">
-              <div className="input-field">
-                <i id="small-icon" className="material-icons prefix">person_pin</i>
-                <input type="text" className="form-control" {...firstName} />
-                <label>First Name:</label>
-                {firstName.touched && firstName.error &&
-                <div className="error">{firstName.error}</div>}
-              </div>
-            </fieldset>
-            <fieldset className="form-group">
-              <div className="input-field">
-                <i id="small-icon" className="material-icons prefix">person_pin</i>
-                <input type="text" className="form-control" {...lastName} />
-                <label>Last Name:</label>
-                {lastName.touched && lastName.error &&
-                <div className="error">{lastName.error}</div>}
-              </div>
-            </fieldset>
-            <fieldset className="form-group">
-              <div className="input-field">
-                <i id="small-icon" className="material-icons prefix">email</i>
-                <input type="email" className="form-control" {...email} />
-                <label>Email:</label>
-                {email.touched && email.error && <div className="error">{email.error}</div>}
-              </div>
-            </fieldset>
-            <fieldset className="form-group">
-              <div className="input-field">
-                <i id="small-icon" className="material-icons prefix">lock</i>
-                <input type="password" className="form-control" {...password} />
-                <label>Password:</label>
-                {password.touched && password.error &&
-                <div className="error">{password.error}</div>}
-              </div>
-            </fieldset>
-            <fieldset className="form-group">
-              <div className="input-field">
-                <i id="small-icon" className="material-icons prefix">lock</i>
-                <input type="password" className="form-control" {...passwordConfirm} />
-                <label>Confirm Password:</label>
-                {passwordConfirm.touched && passwordConfirm.error &&
-                <div className="error">{passwordConfirm.error}</div>}
-              </div>
-            </fieldset>
-            <fieldset className="form-group">
-              <label>Would you like to start a new couple?</label>
-              <div>
-                <select className="signup-questions" {...couple}>
-                  <option>Select an answer...</option>
-                  <option value="yes">Yes - my partner has not signed up yet</option>
-                  <option value="no">No - connect with my partner</option>
-                </select>
-              </div>
-            </fieldset>
-            <fieldset className="form-group">
-              <div
-                className="input-field"
-                hidden={this.props.fields.couple.value === 'no' ? false : true}
-              >
-                <i id="small-icon" className="material-icons prefix">email</i>
-                <input type="email" className="form-control" {...otherEmail} />
-                <label>Partner's Email:</label>
-              </div>
-            </fieldset>
-            {this.renderAlert()}
-            <button
-              action="Submit"
-              className="btn btn-primary waves-effect waves-light"
-            >Signup</button>
-          </form>
+        <div className="hero__overlay">
+          <div className="signin__overlay">
+            <form className="signup__form"
+                  onSubmit={handleSubmit(this.handleFormSubmit)}>
+              <h6 className="signup--box__title">A better relationship is right
+                around the corner...</h6>
+              <fieldset className="form-group">
+                <div className="input-field">
+                  <input type="text" className="form-control" {...firstName} />
+                  <label>First Name:</label>
+                  {firstName.touched && firstName.error &&
+                  <div className="error">{firstName.error}</div>}
+                </div>
+              </fieldset>
+              <fieldset className="form-group">
+                <div className="input-field">
+                  <input type="text" className="form-control" {...lastName} />
+                  <label>Last Name:</label>
+                  {lastName.touched && lastName.error &&
+                  <div className="error">{lastName.error}</div>}
+                </div>
+              </fieldset>
+              <fieldset className="form-group">
+                <div className="input-field">
+                  <input type="email" className="form-control" {...email} />
+                  <label>Email:</label>
+                  {email.touched && email.error &&
+                  <div className="error">{email.error}</div>}
+                </div>
+              </fieldset>
+              <fieldset className="form-group">
+                <div className="input-field">
+                  <input type="password"
+                         className="form-control" {...password} />
+                  <label>Password:</label>
+                  {password.touched && password.error &&
+                  <div className="error">{password.error}</div>}
+                </div>
+              </fieldset>
+              <fieldset className="form-group">
+                <div className="input-field">
+                  <input type="password"
+                         className="form-control" {...passwordConfirm} />
+                  <label>Confirm Password:</label>
+                  {passwordConfirm.touched && passwordConfirm.error &&
+                  <div className="error">{passwordConfirm.error}</div>}
+                </div>
+              </fieldset>
+              <fieldset className="form-group">
+                <label>Would you like to start a new couple?</label>
+                <div>
+                  <select className="signup-questions" {...couple}>
+                    <option>Select an answer...</option>
+                    <option value="yes">Yes - my partner has not signed up yet
+                    </option>
+                    <option value="no">No - connect with my partner</option>
+                  </select>
+                </div>
+              </fieldset>
+              <fieldset className="form-group">
+                <div
+                  className="input-field"
+                  hidden={this.props.fields.couple.value === 'no' ? false : true}
+                >
+                  <input type="email"
+                         className="form-control" {...otherEmail} />
+                  <label>Partner's Email:</label>
+                </div>
+              </fieldset>
+              {this.renderAlert()}
+              <button
+                action="Submit"
+                className="btn btn-primary waves-effect waves-light"
+              >Signup
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     );
@@ -119,15 +125,15 @@ class Signup extends Component {
  <input name="group1" type="radio" {...couple} value="no" />
  <label>No - connect with my partner</label>
  </p>
-<<<<<<< cf084a5eaa5b5dd1a5c74f92b5e180746cef7e99
-<<<<<<< f702070628353f5027ea90caf0713d12c2b4ed07
+ <<<<<<< cf084a5eaa5b5dd1a5c74f92b5e180746cef7e99
+ <<<<<<< f702070628353f5027ea90caf0713d12c2b4ed07
 
-=======
+ =======
  ​
->>>>>>> Add rebase files
-=======
+ >>>>>>> Add rebase files
+ =======
 
->>>>>>> Add rebase file
+ >>>>>>> Add rebase file
  Josh's attempt at radio buttons....
  to replace dropdown, need to get this working
  <form action="#">

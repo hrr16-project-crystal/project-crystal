@@ -10,3 +10,7 @@
 .calendar-card {
   display: inline-block;
 }
+
+.parallax-container {
+  height: 400px;
+}

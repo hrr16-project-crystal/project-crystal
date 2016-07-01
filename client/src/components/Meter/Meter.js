@@ -79,8 +79,8 @@ class Meter extends Component {
         easing: 'linear'
       },
       series: {
-        0: {color: '03c9a9'},
-        1: {color: 'ee6e73'},
+        0: {color: 'f44336'},
+        1: {color: '00bcd4'},
         2: {color: 'eef2f5'},
       },
     };
@@ -100,7 +100,7 @@ class Meter extends Component {
     let pieOptions = {
       legend: 'none',
       // pieSliceText: 'value',
-      title: 'Sparkq Score ™',
+      title: 'Spark Score ™',
       pieHole: 0.75,
       animation: {
         startup: true,
@@ -108,7 +108,7 @@ class Meter extends Component {
         easing: 'linear'
       },
       pieSliceTextStyle: {
-        color: '#03C9A9',
+        color: '#f44336',
         fontSize: 16,
       },
       tooltip: {
@@ -116,7 +116,7 @@ class Meter extends Component {
       },
       slices: {
         0: { 
-          color: '#03C9A9',
+          color: '#f44336',
           textStyle: {
             color: 'transparent'
           },
@@ -148,7 +148,7 @@ class Meter extends Component {
       },
       series: {
         0: {
-          color: '#03C9A9', 
+          color: '#f44336', 
           visibleInLegend: false
         },
         1: {
@@ -194,7 +194,7 @@ class Meter extends Component {
         <div className="data">
           <div className="data__header">Relationship Health Meter</div>
           <div className="data_chart data_chart--half data_chart--left">
-            <span className="personalScore">{sparkScore + '%'}</span>
+            <span className="personalScore">{sparkScore}</span>
             <Chart chartType = "PieChart" data = {pieData} options = {pieOptions} width={"100%"} height={"250px"} chartPackages={undefined}/>
           </div>
           <div className="data_chart data_chart--half">

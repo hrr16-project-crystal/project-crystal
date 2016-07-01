@@ -1,6 +1,7 @@
 import React from 'react';
 import './landingPage.css';
 import Header from '../App/Header';
+import { Link } from 'react-router';
 
 function LandingPage() {
   return (
@@ -17,12 +18,8 @@ function LandingPage() {
             Honey do lists. Appreciation notes. Passion building. Personal
             Growth.
           </p>
-          <a href="" className="hero__promo__btn hero__promo__btn--primary">
-            <span className="">Learn More</span>
-          </a>
-          <a href="" className="hero__promo__btn hero__promo__btn--secondary">
-            <span className="">Get Started</span>
-          </a>
+          <Link to="/learnmore" className="hero__promo__btn hero__promo__btn--primary">Learn More</Link>
+          <Link to="/signup" className="hero__promo__btn hero__promo__btn--secondary">Get Started</Link>
         </div>
       </div>
     </div>
