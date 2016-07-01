@@ -13,9 +13,9 @@ class TodoList extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
   
-  // componentWillMount() {
-  //   this.props.getTodos(this.props.user.data.couple_id);
-  // }
+  componentWillMount() {
+    this.props.getTodos(this.props.user.data.couple_id);
+  }
 
   handleChange(e){
     this.setState({text: e.target.value});
@@ -55,4 +55,5 @@ class TodoList extends Component {
 const mapStateToProps = state => {
   return { todos: state.todo.fetchTodos, user: state.auth.user };
 };
+
 export default connect(mapStateToProps, actions)(TodoList);
