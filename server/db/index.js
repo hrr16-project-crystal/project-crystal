@@ -42,7 +42,8 @@ const config = {
   host: 'localhost',
   port: 5432,
   database: 'blossomly',
-  user: 'postgres',
+   user: 'Roger',
+  //user: 'postgres',
 };
 
 // Load and initialize pg-promise:

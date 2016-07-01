@@ -57,6 +57,7 @@ const jwtOptions = {
 // Done is a callback that gets called depending on if we successfully authenticate the user
 const jwtLogin = new JwtStrategy(jwtOptions, (payload, done) => {
   // See if the user ID in the payload exists in our database
+  console.log('PAYLOAD IN PASSPORT HERE',payload);
   Users.findById(payload.sub, (err, user) => {
     if (err) {
       return done(err, false);

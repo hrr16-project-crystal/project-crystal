@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Header from '../App/Header';
 import Meter from '../Meter/Meter';
 import ChatCard from '../Chat/ChatCard';
+import BucksCard from '../LoveBucks/BucksCard';
 import CalendarCard from '../Calendar/CalendarCard';
 import TodoCard from '../ToDo/TodoCard';
 import img from '../../assets/10.jpg';
@@ -27,10 +28,11 @@ class Dashboard extends Component {
         </div>
         <div className="dashContainer">
           <Meter />
-        </div>
-        <div className="row">
-          <ChatCard />
-          <CalendarCard />
+          <div className="row">
+            <ChatCard />
+            <CalendarCard />
+          </div>
+          <BucksCard />
           <TodoCard />
         </div>
       </div>
