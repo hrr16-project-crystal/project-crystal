@@ -5,6 +5,7 @@ const Couples = db.couples;
 const Users = db.users;
 const CouplesUsers = db.couples_users;
 const pgp = require(__dirname + '/../../db/index').pgp;
+const helpers = require(__dirname + '/../../helpers/helpers');
 
 // RF: inner join, return couple + user info
 // get all couples
@@ -42,6 +43,23 @@ router.get('/couples/:id', (req, res, next) => {
         success: false,
         error: err.message || err
       });
+    });
+});
+
+// get spark score
+router.get('/couples/sparkscore/:coupleId/', (req, res, next) => {
+  Couples.getBothUsers(req.params.coupleId)
+    .then(function(usersArr) {
+      helpers.calculateSparkScore(usersArr[0].score, usersArr[1].score)
+        .then(function(sparkScore) {
+          res.status(200).json({
+            success: true,
+            data: sparkScore,
+          });
+        })
+        .catch(function(err) {
+          next(err);
+        });
     });
 });
 

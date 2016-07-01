@@ -25,84 +25,89 @@ class Signup extends Component {
   }
 
   render() {
-    const { handleSubmit, fields: {
+    const {
+      handleSubmit, fields: {
       firstName, lastName, email, password, passwordConfirm, couple, otherEmail,
-    } } = this.props;
+    }
+    } = this.props;
     return (
       <div className="signup--box">
-        <div className="signup__overlay">
-          <form className="signup__form" onSubmit={handleSubmit(this.handleFormSubmit)}>
-            <h6 className="signup--box__title">A better relationship is right around the corner</h6>
-            <fieldset className="form-group">
-              <div className="input-field">
-                <i id="small-icon" className="material-icons prefix">person_pin</i>
-                <input type="text" className="form-control" {...firstName} />
-                <label>First Name:</label>
-                {firstName.touched && firstName.error &&
-                <div className="error">{firstName.error}</div>}
-              </div>
-            </fieldset>
-            <fieldset className="form-group">
-              <div className="input-field">
-                <i id="small-icon" className="material-icons prefix">person_pin</i>
-                <input type="text" className="form-control" {...lastName} />
-                <label>Last Name:</label>
-                {lastName.touched && lastName.error &&
-                <div className="error">{lastName.error}</div>}
-              </div>
-            </fieldset>
-            <fieldset className="form-group">
-              <div className="input-field">
-                <i id="small-icon" className="material-icons prefix">email</i>
-                <input type="email" className="form-control" {...email} />
-                <label>Email:</label>
-                {email.touched && email.error && <div className="error">{email.error}</div>}
-              </div>
-            </fieldset>
-            <fieldset className="form-group">
-              <div className="input-field">
-                <i id="small-icon" className="material-icons prefix">lock</i>
-                <input type="password" className="form-control" {...password} />
-                <label>Password:</label>
-                {password.touched && password.error &&
-                <div className="error">{password.error}</div>}
-              </div>
-            </fieldset>
-            <fieldset className="form-group">
-              <div className="input-field">
-                <i id="small-icon" className="material-icons prefix">lock</i>
-                <input type="password" className="form-control" {...passwordConfirm} />
-                <label>Confirm Password:</label>
-                {passwordConfirm.touched && passwordConfirm.error &&
-                <div className="error">{passwordConfirm.error}</div>}
-              </div>
-            </fieldset>
-            <fieldset className="form-group">
-              <label>Would you like to start a new couple?</label>
-              <div>
-                <select className="signup-questions" {...couple}>
-                  <option>Select an answer...</option>
-                  <option value="yes">Yes - my partner has not signed up yet</option>
-                  <option value="no">No - connect with my partner</option>
-                </select>
-              </div>
-            </fieldset>
-            <fieldset className="form-group">
-              <div
-                className="input-field"
-                hidden={this.props.fields.couple.value === 'no' ? false : true}
-              >
-                <i id="small-icon" className="material-icons prefix">email</i>
-                <input type="email" className="form-control" {...otherEmail} />
-                <label>Partner's Email:</label>
-              </div>
-            </fieldset>
-            {this.renderAlert()}
-            <button
-              action="Submit"
-              className="btn btn-primary waves-effect waves-light"
-            >Signup</button>
-          </form>
+        <div className="hero__overlay">
+          <div className="signin__overlay">
+            <form onSubmit={handleSubmit(this.handleFormSubmit)}>
+              <h6 className="signup--box__title">A better relationship is right
+                around the corner...</h6>
+              <fieldset className="form-group">
+                <div className="input-field">
+                  <input id="firstname" type="text" className="form-control validate" {...firstName} />
+                  <label for="firstname">First Name:</label>
+                  {firstName.touched && firstName.error &&
+                  <div className="error">{firstName.error}</div>}
+                </div>
+              </fieldset>
+              <fieldset className="form-group">
+                <div className="input-field">
+                  <input type="text" className="form-control validate" {...lastName} />
+                  <label>Last Name:</label>
+                  {lastName.touched && lastName.error &&
+                  <div className="error">{lastName.error}</div>}
+                </div>
+              </fieldset>
+              <fieldset className="form-group">
+                <div className="input-field">
+                  <input type="email" className="form-control validate" {...email} />
+                  <label>Email:</label>
+                  {email.touched && email.error &&
+                  <div className="error">{email.error}</div>}
+                </div>
+              </fieldset>
+              <fieldset className="form-group">
+                <div className="input-field">
+                  <input type="password"
+                         className="form-control validate" {...password} />
+                  <label>Password:</label>
+                  {password.touched && password.error &&
+                  <div className="error">{password.error}</div>}
+                </div>
+              </fieldset>
+              <fieldset className="form-group">
+                <div className="input-field">
+                  <input type="password"
+                         className="form-control validate" {...passwordConfirm} />
+                  <label>Confirm Password:</label>
+                  {passwordConfirm.touched && passwordConfirm.error &&
+                  <div className="error">{passwordConfirm.error}</div>}
+                </div>
+              </fieldset>
+              <fieldset className="form-group">
+                <label>Would you like to start a new couple?</label>
+                <div>
+                  <select className="signup-questions" {...couple}>
+                    <option>Select an answer...</option>
+                    <option value="yes">Yes - my partner has not signed up yet
+                    </option>
+                    <option value="no">No - connect with my partner</option>
+                  </select>
+                </div>
+              </fieldset>
+              <fieldset className="form-group">
+                <div
+                  className="input-field"
+                  hidden={this.props.fields.couple.value === 'no' ? false : true}
+                >
+                  <input type="email"
+                         className="form-control" {...otherEmail} />
+                  <label>Partner's Email:</label>
+                </div>
+              </fieldset>
+              {this.renderAlert()}
+              <button
+                action="Submit"
+                className="btn btn-primary waves-effect waves-light"
+              >Signup
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     );

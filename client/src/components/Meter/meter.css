@@ -1,6 +1,7 @@
 .data {
   background-color: #fff;
   width: 100%;
+  box-shadow: 0 1px 4px 0 rgba(0,0,0,0.14);
 }
 
 .data_chart {
@@ -22,23 +23,26 @@
 }
 
 .data__header {
-  line-height: 50px;
+  line-height: 55px;
   border-bottom: 1px solid #e5e5e5;
-  color: #000;
+  background-color: #fafafa;
+  color: #333;
   text-align: center;
-  font-size: 12px;
+  font-size: 13px;
+  letter-spacing: .15em;
   text-transform: uppercase;
   font-weight: 700;
 }
 
 .personalScore {
-  color: #03c9a9;
-  font-size: 30px;
+  color: #f44336;
+  font-size: 36px;
   font-weight: 500;
   position: absolute;
-  z-index: 100;
-  top: 36%;
-  left: 24%;
+  z-index: 1;
+  margin: 0;
+  top: 77.5%;
+  left: 23.7%;
 }
 
 .meter-spinner {

@@ -142,7 +142,7 @@ class Calendar extends Component {
               selectable
               formats={{ weekHeaderFormat: 'ddd MM DD' }}
               events={this.getEvents()}
-              style={{ border: '1px solid #26a69a', height: '600px', marginTop: '48px' }}
+              style={{ border: '1px solid #4dd0e1', height: '600px', marginTop: '48px' }}
               onSelectEvent={event => this.setState({ open: true, eventBox: event })}
             />
           </div>

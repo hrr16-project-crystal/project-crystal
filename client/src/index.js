@@ -12,6 +12,7 @@ import Signin from './components/Authentication/Signin';
 import Signout from './components/Authentication/Signout';
 import Signup from './components/Authentication/Signup';
 import Dashboard from './components/Dashboard/Dashboard';
+import OldQuiz from './components/QuizOld/Quiz';
 import Quiz from './components/Quiz/Quiz';
 import requireAuth from './components/Authentication/RequireAuth';
 import LandingPage from './components/LandingPage/LandingPage';

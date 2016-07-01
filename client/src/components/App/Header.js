@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
+import './app.css';
+
 class Header extends Component {
   renderLinks() {
     if (this.props.authenticated) {
@@ -35,8 +37,8 @@ class Header extends Component {
 
   render() {
     return (
-      <nav>
-        <Link to="/" className="logo">Sparkq</Link>
+      <nav className="nav">
+        <Link to="/" className="logo">Spark</Link>
         <ul className="menu">
           {this.renderLinks()}
         </ul>

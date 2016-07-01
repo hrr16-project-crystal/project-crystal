@@ -8,131 +8,59 @@
   background: #000 no-repeat center/cover url("../../assets/15.jpg");
 }
 
-.signin__btn {
-  padding-right: 22vh;
+.signup--box {
+  height: 100vh;
+  background: #000 no-repeat center/cover url("../../assets/17.jpg");
 }
 
 .signin__overlay {
+  overflow: auto;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.3);
   width: 100%;
   display: inline-block;
   margin: auto;
   max-width: 400px;
-  padding-top: 1em;
+  padding: 1em 24px;
+  border-right: 2px solid #fff;
 }
 
-.signin__form {
-  display: inline-block;
-  margin: auto;
-  text-align: center;
+.btn-primary {
+  background-color: #4dd0e1;
+  transition: .4s;
+  width: 100%;
+  height: 52px;
 }
 
-.signin--box__title {
-  padding-top: 27vh;
-  text-align: center;
-  color: #fff;
-  font-size: 35px;
-  line-height: 65px;
-  font-weight: 700;
-  margin: 24px 0 10px;
-}
-
-.signin__alert {
-  color: #fff;
-  font-weight: 70;
+.btn-primary:hover {
+  background-color: #e57373;
 }
 
 .form-group {
-  color: #fff;
-  border: 1px solid transparent;
-
-}
-
-.signup--box {
-  height: 120vh;
-  background: #000 no-repeat center/cover url("../../assets/17.jpg");
-
-}
-
-.signup__overlay {
-  height: 120vh;
-  background-color: rgba(0, 0, 0, 0.5);
-  width: 100%;
-  text-align: center;
-}
-
-.form-group label, .form-group input{
- color: #fff;
- font-size: 1.1em;
-
+  color: #9e9e9e;
+  border: none;
+  margin: 36px 0;
+  padding: 0;
 }
 
 .signup--box__title {
+  padding: 2vh 0 24px;
   text-align: center;
-  color: #fff;
-  font-size: 35px;
-  line-height: 65px;
-  font-weight: 700;
-
+  color: #4dd0e1;
+  font-size: 20px;
+  line-height: 1.5;
+  font-weight: 300;
+  margin: 2vh 0;
+  border-bottom: 1px dotted #4dd0e1;
 }
 
-.signup__form {
-  max-width: 400px;
-  margin: auto;
-  padding-top: 1em;
-  display: inline-block;
+.signin--box__title {
+  padding: 12vh 0 24px;
   text-align: center;
-
-}
-
-.form-group label, .form-group input{
- color: #fff;
- font-size: 1.1em;
-
-}
-
-.signup--box__title {
-  text-align: center;
-  color: #fff;
-  font-size: 35px;
-  line-height: 65px;
-  font-weight: 700;
-
-}
-
-.signup__form {
-  max-width: 400px;
-  margin: auto;
-  padding-top: 1em;
-  display: inline-block;
-  text-align: center;
-}
-
-.form-group label, .form-group input{
- color: #fff;
- font-size: 1.1em;
-
-}
-
-.signup--box__title {
-  text-align: center;
-  color: #fff;
-  font-size: 35px;
-  line-height: 65px;
-  font-weight: 700;
-
-}
-
-.signup__form {
-  max-width: 400px;
-  margin: auto;
-  padding-top: 1em;
-  display: inline-block;
-  text-align: center;
-
-}
-
-#small-icon {
-  font-size: 1.5rem;
+  color: #4dd0e1;
+  font-size: 20px;
+  line-height: 1.5;
+  font-weight: 300;
+  margin: 12vh 0;
+  border-bottom: 1px dotted #4dd0e1;
 }

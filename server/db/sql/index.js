@@ -50,6 +50,7 @@ module.exports = {
     removeById: sql('couples/removeById.sql'),
     updateScore: sql('couples/updateScore.sql'),
     removeByUserId: sql('couples/removeByUserId.sql'),
+    getBothUsers: sql('couples/getBothUsers.sql'),
   },
   questions: {
     create: sql('questions/create.sql'),
