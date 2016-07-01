@@ -61,27 +61,25 @@ class ChatCard extends Component {
 
   render() {
     return (
-      <div className="chat-card">
+      <div className="chat-card col s5">
         <div className="row">
-          <div className="col s12 m6 l4">
-            <div className="card white">
-              <div className="card-content black-text">
-                <span className="card-title">Chat</span>
-                <MessageList
-                  user_id={this.props.user.data.user_id} 
-                  couple_id={this.props.user.data.couple_id} 
-                  messages={this.props.messages}/>
-                <Chat
-                  user_id={this.props.user.data.user_id} 
-                  couple_id={this.props.user.data.couple_id}
-                  socket={socket}
-                  value={this.props.content}
-                  onSubmit={this.props.addMessage}/>
-                  <p style={{visibility:this.state.typing?'visible':'hidden'}}>typing ...</p>
-              </div>
-              <div className="card-action">
-                <a href="#">Go to Chat</a>
-              </div>
+          <div className="card white">
+            <div className="card-content black-text">
+              <span className="card-title">Chat</span>
+              <MessageList
+                user_id={this.props.user.data.user_id} 
+                couple_id={this.props.user.data.couple_id} 
+                messages={this.props.messages}/>
+              <Chat
+                user_id={this.props.user.data.user_id} 
+                couple_id={this.props.user.data.couple_id}
+                socket={socket}
+                value={this.props.content}
+                onSubmit={this.props.addMessage}/>
+                <p style={{visibility:this.state.typing?'visible':'hidden'}}>typing ...</p>
+            </div>
+            <div className="card-action">
+              <a href="#">Go to Chat</a>
             </div>
           </div>
         </div>
