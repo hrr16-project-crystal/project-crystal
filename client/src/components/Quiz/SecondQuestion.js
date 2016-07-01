@@ -31,10 +31,10 @@ class SecondQuestion extends Component {
         <div>
           <label>Sex</label>
           <div>
-            <label>
+            <label className="radio">
               <input type="radio" {...sex} value="male" checked={sex.value === 'male'}/> Male
             </label>
-            <label>
+            <label className="radio">
               <input type="radio" {...sex} value="female" checked={sex.value === 'female'}/> Female
             </label>
           </div>
