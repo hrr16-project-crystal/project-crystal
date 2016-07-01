@@ -5,7 +5,7 @@ import { FETCH_EVENTS } from '../../helpers/constants/types';
 describe('calendar actions', () => {
   describe('fetchEvents', () => {
     it('should have the correct type', () => {
-      const action = fetchEvents();
+      const action = fetchEvents(1);
       expect(action.type).to.equal(FETCH_EVENTS);
     });
   });

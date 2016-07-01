@@ -8,7 +8,8 @@
     "clean": "rimraf client/build",
     "start": "npm run clean && concurrently \"npm run build\" \"nodemon server/server.js\"",
     "generate-docs": "node_modules/.bin/jsdoc -c jsdoc.json",
-    "test": "mocha --compilers js:babel-core/register --require ./client/src/tests/testHelper.js --recursive ./client/src/tests/"
+    "test": "mocha --compilers js:babel-core/register --require ./client/src/tests/testHelper.js --recursive ./client/src/tests/",
+    "test:watch": "npm run test -- --watch"
   },
   "repository": {
     "type": "git",
