@@ -5,7 +5,7 @@
 
 */
 
-INSERT INTO ${schema~}.Todos(content, couple_id) VALUES
+-- INSERT INTO ${schema~}.Todos(content, couple_id) VALUES
 
-('Give your partner a compliment!', 1)
+-- ('Give your partner a compliment!', 1)
 

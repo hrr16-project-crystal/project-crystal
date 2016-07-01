@@ -11,7 +11,8 @@ class TodoAdd extends Component {
   }
 
   newTodo(newTodoProps){
-    this.props.postTodo(newTodoProps);
+    console.log('this.props.user', this.props.user)
+    this.props.postTodo({ content: newTodoProps.text, couple_id: this.props.user.data.couple_id});
   }
 
   handleSubmit(e) {

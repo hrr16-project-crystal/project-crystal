@@ -1,11 +1,13 @@
 import { FETCH_TODOS, ADDED_TODO, DELETED_TODO } from '../../helpers/constants/types';
 
-export default (state = {}, action) => {
+export default (state = { fetchTodos: [] }, action) => {
   switch (action.type) {
     case FETCH_TODOS:
       return { ...state, fetchTodos: action.payload };
     case ADDED_TODO:
-      return { ...state, fetchTodos: action.payload };
+      let holder = state.fetchTodos.slice();
+      holder.push(action.payload)
+      return { ...state, fetchTodos: holder };
     case DELETED_TODO:
       return { ...state, fetchTodos: action.payload };
   }

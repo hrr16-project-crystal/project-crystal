@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from './todoAction';
 import Header from '../App/Header';
-import SingleTodo from './SingleTodo';
 import TodoAdd from './TodoAdd';
 import './todo.css';
 
@@ -22,6 +21,7 @@ class TodoList extends Component {
   }
   
   render(){
+    console.log('this.props.todos', this.props.todos)
     if (!this.props.todos) {
       return (
         <div className="preloader-wrapper big active">
@@ -43,9 +43,20 @@ class TodoList extends Component {
         <Header />
         <TodoAdd handleChange={this.handleChange} state={this.state}/>
         <ul>
+
           {this.props.todos.map(todo => {
-            return <SingleTodo id={todo.id} key={todo.id} todoText={todo.todo} deleteTodo={this.props.deleteTodo} />
+            return (
+              <div>
+                <li>
+                  <p>{todo.content}</p>
+                </li>
+                <div onClick={() => this.props.deleteTodo(todo.todo_id)}>
+                  <button>delete</button>
+                </div>
+              </div>
+            )
           })}
+
         </ul>
       </div>
     )

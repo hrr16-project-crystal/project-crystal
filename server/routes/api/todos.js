@@ -20,8 +20,7 @@ router.get('/todos/:id', (req, res) => {
 router.post('/todos/addTodo', (req, res) => {
   const newTodo = req.body;
   // update syntax to work with DB schema design
-  newTodo.couple_id = newTodo.coupleID;
-
+  console.log('newTodo', newTodo);
   Todos.add(newTodo)
     .then(data => {
       return res.status(201)
@@ -41,7 +40,8 @@ router.post('/todos/addTodo', (req, res) => {
 // Delete single todo
 router.delete('/todos/deleteTodo/:id', (req, res) => {
   const todoID = parseInt(req.params.id);
-  Events.remove(todoID)
+  console.log('server todoID: ', todoID);
+  Todos.remove(todoID)
     .then(data => {
       return res.status(200)
         .json({

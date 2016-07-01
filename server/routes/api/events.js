@@ -23,7 +23,7 @@ router.post('/events/add', (req, res, next) => {
   newEvent.start_date = newEvent.start;
   newEvent.end_date = newEvent.end;
   newEvent.couple_id = newEvent.coupleID;
-
+  console.log('eventpost - newEvent', newEvent);
   Events.add(newEvent)
     .then(data => {
       return res.status(200)
