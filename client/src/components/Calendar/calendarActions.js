@@ -11,20 +11,29 @@ export const fetchEvents = (coupleID) => {
         type: FETCH_EVENTS,
         payload: response.data,
       });
+    })
+    .catch(err => {
+      console.log(err);
     });
   };
 };
 
 // Create a new event
 export const createEvent = ({ title, start, end, category, description, coupleID }) => {
+  console.log('===============')
   return dispatch => {
+    console.log('#############')
     axios.post(`${apiUrl}/events/add`,
       { title, start, end, category, description, coupleID })
     .then(response => {
+      console.log('||||||||||||||')
       dispatch({
         type: CREATE_EVENT,
         payload: response.data,
       });
+    })
+    .catch(err => {
+      console.log(err);
     });
   };
 };
