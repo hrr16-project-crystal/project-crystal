@@ -11,8 +11,6 @@ class TodoAdd extends Component {
   }
 
   newTodo(newTodoProps){
-    console.log("TodoAdd - newTodoProps", newTodoProps);
-
     this.props.postTodo(newTodoProps);
   }
 
@@ -22,7 +20,6 @@ class TodoAdd extends Component {
   }
   
   render(){
-    console.log('this.props - TodoAdd3', this.props)
     return (
 
       <form onSubmit={ this.handleSubmit }>
@@ -37,10 +34,7 @@ class TodoAdd extends Component {
 TodoAdd.PropTypes = {};
 
 const mapStateToProps = state => {
-  let todoComponentProps = { 
-    todos: state.todo.fetchTodos,
-  }
-  return todoComponentProps;
+  return { todos: state.todo.fetchTodos, user: state.auth.user };
 }
 
 export default connect(mapStateToProps, actions)(TodoAdd)

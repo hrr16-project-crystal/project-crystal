@@ -13,23 +13,22 @@ export const deleteTodo = (todoID) => {
       })
     })
     .catch(response => {
-      console.log('ERROR - RESPONSE:', response);
+      console.log('deleteTodo ERROR - RESPONSE:', response);
     });
   };
 };
 
-export const getTodos = () => {
+export const getTodos = (coupleID) => {
   return dispatch => {
-    axios.get(`${apiUrl}/todos/getAll`)
+    axios.get(`${apiUrl}/todos/${coupleID}`)
     .then(response => {
-      console.log("response.data from getTodos", response.data);
       dispatch({
         type: FETCH_TODOS,
         payload: response.data,
       })
     })
     .catch(response => {
-      console.log('ERROR - RESPONSE:', response);
+      console.log('getTodos ERROR - RESPONSE:', response);
     });
   };
 };
@@ -46,7 +45,7 @@ export const postTodo = (todoText) => {
       })
     })
     .catch(response => {
-      console.log('ERROR - RESPONSE:', response);
+      console.log('postTodo ERROR - RESPONSE:', response);
     });
   };
 };
