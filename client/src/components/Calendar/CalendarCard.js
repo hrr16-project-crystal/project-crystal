@@ -33,10 +33,10 @@ class CalendarCard extends Component {
     const events = this.props.events.data;
     events.sort(compareFunc);
 
-    return events.filter(isDateAfterToday).splice(0, 3).map(eventObj => {
+    return events.filter(isDateAfterToday).splice(0, 3).map((eventObj, index) => {
       const date = moment(eventObj.start_date).format('MMMM Do @ h:mmA');
       return (
-        <div className="col s4">
+        <div key={`event-${index}`} className="col s4">
           <div className="card blue-grey darken-1">
             <Link to="/calendar">
               <div className="card-content white-text">

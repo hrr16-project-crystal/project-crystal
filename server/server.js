@@ -8,7 +8,7 @@ const socketServer = require('./socket');
 const io = require('socket.io')(http);
 const React = require('react');
 const port = process.env.PORT || 3000;
-
+// process.env.NODE_ENV = 'production';
 app.use(express.static(`${__dirname}/../client/build`));
 app.use(bodyParser.json());
 
