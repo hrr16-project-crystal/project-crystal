@@ -1,6 +1,6 @@
 import { expect } from '../testHelper';
-import { fetchEvents, createEvent } from '../../components/Calendar/calendarActions';
-import { FETCH_EVENTS, CREATE_EVENT } from '../../helpers/constants/types';
+import { fetchEvents, createEvent, deleteEvent } from '../../components/Calendar/calendarActions';
+import { FETCH_EVENTS, CREATE_EVENT, DELETE_EVENT } from '../../helpers/constants/types';
 import configureMockStore from 'redux-mock-store';
 import nock from 'nock';
 import thunk from 'redux-thunk';
@@ -56,14 +56,15 @@ describe('async actions', () => {
     });
 
     const expectedActions = [
-      { type: CREATE_EVENT, payload: { event: {
+      { type: CREATE_EVENT, payload: {
         title: 'New Event',
-        start: '2016-07-01T21:47:04.757Z',
-        end: '2016-07-01T21:47:08.888Z',
+        start_date: '2016-07-01T21:47:04.757Z',
+        end_date: '2016-07-01T21:47:08.888Z',
+        event_id: 8,
         category: 'Dinner',
         description: 'Test Description...',
-        coupleID: 1,
-      } } },
+        couple_id: 1,
+      } },
     ];
     const store = mockStore({ event: {} });
     store.dispatch(createEvent({
@@ -75,7 +76,41 @@ describe('async actions', () => {
       coupleID: 1,
     }));
     setTimeout(() => {
-      expect(store.getActions().to.eql(expectedActions));
+      expect(store.getActions()).to.eql(expectedActions);
+      done();
+    }, 100);
+  });
+
+  it('should delete a single event', done => {
+    nock(apiUrl)
+    .delete('/events/delete/1')
+    .reply(200, {
+      event_id: 1,
+      title: 'New Event',
+      start_date: '2016-07-01T21:47:04.757Z',
+      end_date: '2016-07-01T21:47:08.888Z',
+      category: 'Dinner',
+      description: 'Test Description...',
+      couple_id: 1,
+    });
+
+    const expectedActions = [
+      { type: DELETE_EVENT, payload: {
+        event_id: 1,
+        title: 'New Event',
+        start_date: '2016-07-01T21:47:04.757Z',
+        end_date: '2016-07-01T21:47:08.888Z',
+        category: 'Dinner',
+        description: 'Test Description...',
+        couple_id: 1,
+      } },
+    ];
+
+    const store = mockStore({ event: {} });
+    store.dispatch(deleteEvent(1));
+    setTimeout(() => {
+      expect(store.getActions()).to.eql(expectedActions);
+      done();
     }, 100);
   });
 });
