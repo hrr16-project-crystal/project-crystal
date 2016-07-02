@@ -9,7 +9,7 @@ const apiUrl = 'http://localhost:3000/api/v1';
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
-describe('async actions', () => {
+describe('Calendar Actions -- Async', () => {
   afterEach(() => {
     nock.cleanAll();
   });

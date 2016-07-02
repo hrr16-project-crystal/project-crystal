@@ -1,6 +1,5 @@
 import { expect } from '../testHelper';
 import React from 'react';
-// import TestUtils from 'react-addons-test-utils';
 import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 import Calendar from '../../components/Calendar/Calendar';
@@ -16,7 +15,6 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 
 import { shallow, mount } from 'enzyme';
-import sinon from 'sinon';
 import thunk from 'redux-thunk';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -41,17 +39,8 @@ describe('Calendar', () => {
   it('should render a CreateEvent component', () => {
     const wrapper = mount(<Provider store={store}>
       <MuiThemeProvider muiTheme={MUI}><Calendar /></MuiThemeProvider></Provider>);
-    expect(wrapper.find(CreateEvent)).to.exist;
+    expect(wrapper.find(CreateEvent)).to.have.length(1);
   });
-
-  // xit('call componentWillMount', () => {
-  //   const spy = sinon.spy(Calendar.prototype, 'componentWillMount');
-  //   const wrapper = mount(<Calendar />, { context: { store: store } });
-  //   // const wrapper = mount(<Provider store={store}>
-  //     // <MuiThemeProvider muiTheme={MUI}><Calendar /></MuiThemeProvider></Provider>);
-  //   expect(spy.calledOnce).to.equal(true);
-  //   // Calendar.prototype.componentWillMount.restore();
-  // });
 
   it('should render a Header component', () => {
     const wrapper = mount(<Provider store={store}>
@@ -107,7 +96,7 @@ describe('Create Event', () => {
   it('should render one Diaglog', () => {
     const wrapper = mount(<Provider store={store}>
       <MuiThemeProvider muiTheme={MUI}><CreateEvent /></MuiThemeProvider></Provider>);
-    expect(wrapper.find(Dialog)).to.exist;
+    expect(wrapper.find(Dialog)).to.have.length(1);
   });
 
   it('should render DatePicker components', () => {
@@ -131,8 +120,8 @@ describe('Create Event', () => {
   it('should render RadioButton components', () => {
     const wrapper = mount(<Provider store={store}>
       <MuiThemeProvider muiTheme={MUI}><CreateEvent /></MuiThemeProvider></Provider>);
-    expect(wrapper.find(RadioButtonGroup)).to.exist;
-    expect(wrapper.find(RadioButton)).to.exist;
+    expect(wrapper.find(RadioButtonGroup)).to.have.exist;
+    expect(wrapper.find(RadioButton)).to.have.exist;
   });
 
   it('should have props for opening and closing the dialog', () => {
@@ -145,13 +134,6 @@ describe('Create Event', () => {
     const wrapper = shallow(<Provider store={store}><CreateEvent /></Provider>);
     expect(wrapper.props().handleFormSubmit).to.be.defined;
   });
-
-  // xit('should submit the form on click', () => {
-  //   const onSubmit = sinon.spy();
-  //   const wrapper = shallow(<CreateEvent onSubmit={onSubmit} />);
-  //   wrapper.find('button').simulate('click');
-  //   expect(onSubmit.calledOnce).to.equal(true);
-  // });
 });
 
 describe('Calendar Card', () => {
