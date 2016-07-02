@@ -37,7 +37,7 @@ chaiJquery(chai, chai.util, $);
 // These parameters are used in the actual test files
 function renderComponent(ComponentClass, props = {}, state = {}) {
   // Spin off a copy of the class and render that component using TestUtils
-  const componentInstance =  TestUtils.renderIntoDocument(
+  const componentInstance = TestUtils.renderIntoDocument(
     // When we create a Redux store we need to pass in our reducers
     <Provider store={createStore(reducers, state)}>
       <ComponentClass {...props} />
