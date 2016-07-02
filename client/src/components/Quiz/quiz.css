@@ -41,3 +41,20 @@
 .radio {
   color: #e9e9e9;
 }
+
+.question { 
+  margin: 10vh 0;
+}
+
+.question-body {
+  font-size: 1.3em;
+}
+
+.question-label > label {
+  font-size: 1.8em;
+}
+
+.quiz-questions > select {
+  display: block;
+}
+

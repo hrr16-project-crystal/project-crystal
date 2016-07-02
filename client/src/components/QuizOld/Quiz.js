@@ -51,7 +51,7 @@ class Quiz extends Component {
             <label>{question.body}</label>
           <div className="quiz-questions input-field col s10 offset-1">
             <select className="quiz-questions col s10 offset-1" {...fields[question.question_id]}>
-              <option value='' className="grey-text text-lighten-1" disabled selected>Select your answer...</option>
+              <option value="" className="grey-text text-lighten-1" disabled selected>Select your answer...</option>
               <option value={[question.category, 20]}>{question.answers.answers[0]}</option>
               <option value={[question.category, 15]}>{question.answers.answers[1]}</option>
               <option value={[question.category, 10]}>{question.answers.answers[2]}</option>

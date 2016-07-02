@@ -1,56 +1,45 @@
 import React, { Component, PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
-export const fields = ['firstName', 'lastName'];
-
-const validate = values => {
-  const errors = {};
-  if (!values.firstName) {
-    errors.firstName = 'Required'
-  } else if (values.firstName.length > 15) {
-    errors.firstName = 'Must be 15 characters or less'
-  }
-  if (!values.lastName) {
-    errors.lastName = 'Required'
-  } else if (values.lastName.length > 15) {
-    errors.lastName = 'Must be 15 characters or less'
-  }
-  return errors
-};
+export const fields = ['communication'];
 
 class ThirdQuestion extends Component {
   render() {
     const {
-      fields: { firstName, lastName },
+      fields: { communication },
       handleSubmit,
-      previousPage
+      previousPage,
     } = this.props;
     return (
       <form onSubmit={handleSubmit}>
         <div>
-          <label>First Name</label>
-          <div>
-            <input type="text" placeholder="First Name" {...firstName}/>
+          <div className="question question-label center-align">
+            <label className="white-text">Have you ever caught your partner in a lie?</label>
+            <div className="quiz-questions input-field col s9 offset-1">
+              <select {...communication}>
+                <option
+                  value=""
+                  className="grey-text text-lighten-1"
+                  disabled
+                  selected
+                >Select your answer...</option>
+                <option>Never</option>
+                <option>Once, but it was minor or a misunderstanding</option>
+                <option>A few times</option>
+                <option>It feels like lying is a constant issue in our relationship</option>
+              </select>
+            </div>
           </div>
-          {firstName.touched && firstName.error &&
-          <div>{firstName.error}</div>}
-        </div>
-        <div>
-          <label>Last Name</label>
           <div>
-            <input type="text" placeholder="Last Name" {...lastName}/>
+            <button type="button" onClick={previousPage}>
+              <i /> Previous
+            </button>
+            <button type="submit">
+              Next <i />
+            </button>
           </div>
-          {lastName.touched && lastName.error && <div>{lastName.error}</div>}
-        </div>
-        <div>
-          <button type="button" onClick={previousPage}>
-            <i/> Previous
-          </button>
-          <button type="submit">
-            Next <i/>
-          </button>
         </div>
       </form>
-    )
+    );
   }
 }
 
@@ -64,5 +53,4 @@ export default reduxForm({
   form: 'wizard',              // <------ same form name
   fields,                      // <------ only fields on this page
   destroyOnUnmount: false,     // <------ preserve form data
-  validate                     // <------ only validates the fields on this page
-})(ThirdQuestion)
+})(ThirdQuestion);

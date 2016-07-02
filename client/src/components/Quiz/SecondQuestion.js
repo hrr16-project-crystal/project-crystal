@@ -1,55 +1,45 @@
 import React, { Component, PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
-export const fields = [ 'email', 'sex' ];
-
-const validate = values => {
-  const errors = {};
-  if (!values.email) {
-    errors.email = 'Required'
-  }
-  if (!values.sex) {
-    errors.sex = 'Required'
-  }
-  return errors
-};
+export const fields = ['spontaneity'];
 
 class SecondQuestion extends Component {
   render() {
     const {
-      fields: { email, sex },
+      fields: { spontaneity },
       handleSubmit,
-      previousPage
+      previousPage,
     } = this.props;
-    return (<form onSubmit={handleSubmit}>
+    return (
+      <form onSubmit={handleSubmit}>
         <div>
-          <label>Email</label>
-          <div>
-            <input type="email" placeholder="Email" {...email}/>
+          <div className="question question-label center-align">
+            <label className="white-text">Its one of your birthdays. How do you spend it?</label>
+            <div className="quiz-questions input-field col s9 offset-1">
+              <select {...spontaneity}>
+                <option
+                  value=""
+                  className="grey-text text-lighten-1"
+                  disabled
+                  selected
+                >Select your answer...</option>
+                <option>Something intimate, just the two of us</option>
+                <option>With friends and each other</option>
+                <option>With friends only</option>
+                <option>No plans</option>
+              </select>
+            </div>
           </div>
-          {email.touched && email.error && <div>{email.error}</div>}
-        </div>
-        <div>
-          <label>Sex</label>
           <div>
-            <label className="radio">
-              <input type="radio" {...sex} value="male" checked={sex.value === 'male'}/> Male
-            </label>
-            <label className="radio">
-              <input type="radio" {...sex} value="female" checked={sex.value === 'female'}/> Female
-            </label>
+            <button type="button" onClick={previousPage}>
+              <i /> Previous
+            </button>
+            <button type="submit">
+              Next <i />
+            </button>
           </div>
-          {sex.touched && sex.error && <div>{sex.error}</div>}
-        </div>
-        <div>
-          <button type="button" onClick={previousPage}>
-            <i/> Previous
-          </button>
-          <button type="submit">
-            Next <i/>
-          </button>
         </div>
       </form>
-    )
+    );
   }
 }
 
@@ -63,5 +53,4 @@ export default reduxForm({
   form: 'wizard',              // <------ same form name
   fields,                      // <------ only fields on this page
   destroyOnUnmount: false,     // <------ preserve form data
-  validate                     // <------ only validates the fields on this page
-})(SecondQuestion)
+})(SecondQuestion);
