@@ -8,7 +8,6 @@ module.exports = rep => {
 
     // Creates the table;
     create: () => {
-      console.log('creating events table ********');
       return rep.none(sql.create)
       .then(() => console.log('after sql.create'));
     },

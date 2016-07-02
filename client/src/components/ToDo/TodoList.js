@@ -41,23 +41,28 @@ class TodoList extends Component {
     return (
       <div>
         <Header />
-        <TodoAdd handleChange={this.handleChange} state={this.state}/>
-        <ul>
+        <div className='todo'>
+          <div className='todo__overlay'>
+            <h3 className='todo__mainTitle'>Shared to-do's never felt so good</h3>
+            <TodoAdd handleChange={this.handleChange} state={this.state} />
+            
+            <ul className='row collection todo__item'>
+              {this.props.todos.map(todo => {
+                return (
+                  <div>
+                    <li className='collection-item col s9'>
+                      <p>{todo.content}</p>
+                      <div onClick={() => this.props.deleteTodo(todo.todo_id)}>
+                        <button className="waves-effect waves-light red">delete</button>
+                      </div>
+                    </li>
+                  </div>
+                )
+              })}
+            </ul>
 
-          {this.props.todos.map(todo => {
-            return (
-              <div>
-                <li>
-                  <p>{todo.content}</p>
-                </li>
-                <div onClick={() => this.props.deleteTodo(todo.todo_id)}>
-                  <button>delete</button>
-                </div>
-              </div>
-            )
-          })}
-
-        </ul>
+          </div>
+        </div>
       </div>
     )
   }

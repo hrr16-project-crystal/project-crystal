@@ -1,9 +1,18 @@
-.todo__todo {
-  display: flex;
+.todo {
+  margin-top: 70px;
+  margin-left: 20px;
+}
+
+.todo__item {
+  /*background-color: yellow;*/
+}
+
+.todo__input {
+  color: #fff;
 }
 
 .todo__addBtn {
-  float: right;
+  background-color: #4dd0e1
 }
 
 .todo {

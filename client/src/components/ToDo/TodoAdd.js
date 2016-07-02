@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import * as actions from './todoAction';
 import { connect } from 'react-redux';
-
+import './todo.css';
 
 class TodoAdd extends Component {
   constructor(props) {
@@ -22,12 +22,12 @@ class TodoAdd extends Component {
   
   render(){
     return (
-
-      <form onSubmit={ this.handleSubmit }>
-        <input onChange={this.props.handleChange} type="text" value={this.props.state.text} placeholder="new to-do" autoFocus={true} />
-        <button className="waves-effect waves-light btn" type="submit">Add to-do</button>
-      </form>
-
+      <div>
+        <form onSubmit={ this.handleSubmit }>
+          <input className='todo__input' onChange={this.props.handleChange} type="text" value={this.props.state.text} placeholder="new to-do" autoFocus={true} />
+          <button className="waves-effect waves-light btn" type="submit">Add to-do</button>
+        </form>
+      </div>
     );
   }
 };

@@ -41,8 +41,10 @@ router.post('/todos/addTodo', (req, res) => {
 router.delete('/todos/deleteTodo/:id', (req, res) => {
   const todoID = parseInt(req.params.id);
   console.log('server todoID: ', todoID);
+  console.log('server type of todoID: ', typeof todoID);
   Todos.remove(todoID)
     .then(data => {
+      console.log(data);
       return res.status(200)
         .json({
           success: true,
