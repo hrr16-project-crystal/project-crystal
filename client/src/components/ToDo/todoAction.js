@@ -7,10 +7,10 @@ export const deleteTodo = (todoID) => {
   return dispatch => {
     axios.delete(`${apiUrl}/todos/deleteTodo/${todoID}`)
     .then(response => {
-      console.log("response.data from deleteTodo", response.data);
+      console.log("response.data.data from deleteTodo", response.data);
       dispatch({
         type: DELETED_TODO,
-        payload: response.data,
+        payload: response.data.data,
       })
     })
     .catch(response => {

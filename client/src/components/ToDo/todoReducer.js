@@ -9,7 +9,7 @@ export default (state = { fetchTodos: [] }, action) => {
       holder.push(action.payload)
       return { ...state, fetchTodos: holder };
     case DELETED_TODO:
-      return { ...state, fetchTodos: action.payload };
+      return { ...state, fetchTodos: state.fetchTodos.filter(todo => todo.todo_id !== action.payload.todo_id ) };
   }
   return state;
 }
