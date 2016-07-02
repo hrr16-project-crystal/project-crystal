@@ -7,8 +7,10 @@ module.exports = rep => {
   return {
 
     // Creates the table;
-    create: () =>
-      rep.none(sql.create),
+    create: () => {
+      return rep.none(sql.create)
+      .then(() => console.log('after sql.create'));
+    },
 
     // Initializes the table with some event records.
     init: () =>

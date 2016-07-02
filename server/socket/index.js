@@ -5,7 +5,7 @@ const Messages = require(__dirname + '/../db/index').db.messages;
 module.exports = (server) => {
   const socketServer = io(server);
   const connections = [];
-  let chatID = 0;
+  // let chatID = 0;
   // on connection client responds with a couple_id which becomes their room
   socketServer.on('connection', socket => {
     socket.on('room', function(room) {

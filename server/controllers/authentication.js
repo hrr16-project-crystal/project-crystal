@@ -37,6 +37,7 @@ exports.signup = (req, res, next) => {
     newUser.is_first_of_couple = false;
     newUser.other_user_email = req.body.otherEmail;
   }
+
   // Default event needed for each new Couple that gets registered to database
   const defaultEvent = {
     title: 'Welcome!',
@@ -48,6 +49,7 @@ exports.signup = (req, res, next) => {
 
   Users.checkIfExists(newUser.email)
     .then(exists => {
+      console.log('just after checkIfExists ********');
       if (exists) {
         res.status(422)
           .json({

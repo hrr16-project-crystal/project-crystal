@@ -28,6 +28,7 @@ const coupleAPIroutes = require('./routes/api/couple');
 const questionAPIroutes = require('./routes/api/questions');
 const eventsAPIroutes = require('./routes/api/events');
 const messageAPIroutes = require('./routes/api/message');
+const todoAPIroutes = require('./routes/api/todos');
 
 // const CouplesUser = require('./db/repos/couples_users');
 
@@ -37,6 +38,7 @@ app.use('/api/v1', coupleAPIroutes);
 app.use('/api/v1', questionAPIroutes);
 app.use('/api/v1', eventsAPIroutes);
 app.use('/api/v1', messageAPIroutes);
+app.use('/api/v1', todoAPIroutes);
 
 router(app);
 

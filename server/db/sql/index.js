@@ -70,8 +70,17 @@ module.exports = {
     remove: sql('events/remove.sql'),
   },
   messages: {
-        create: sql('messages/create.sql'),
-        add: sql('messages/add.sql'),
-        findByCoupleId: sql('messages/findByCoupleId.sql'),
+    create: sql('messages/create.sql'),
+    add: sql('messages/add.sql'),
+    findByCoupleId: sql('messages/findByCoupleId.sql'),
+  },
+  todos: {
+    create: sql('todos/create.sql'),
+    init: sql('todos/init.sql'),
+    add: sql('todos/add.sql'),
+    drop: sql('todos/drop.sql'),
+    empty: sql('todos/empty.sql'),
+    findById: sql('todos/findById.sql'),
+    remove: sql('todos/remove.sql')
   },
 };

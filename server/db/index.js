@@ -9,7 +9,8 @@ const controllers = {
   questions: require('./controllers/questions'),
   couples: require('./controllers/couples'),
   events: require('./controllers/events'),
-  messages: require('./controllers/messages')
+  messages: require('./controllers/messages'),
+  todos: require('./controllers/todos'),
 };
 
 // pg-promise initialization options:
@@ -24,6 +25,7 @@ const options = {
     obj.couples = controllers.couples(obj);
     obj.events = controllers.events(obj);
     obj.messages = controllers.messages(obj);
+    obj.todos = controllers.todos(obj);
   },
 };
 
@@ -32,7 +34,7 @@ const options = {
 //   host: 'ec2-50-112-35-113.us-west-2.compute.amazonaws.com',
 //   port: 5432,
 //   database: 'blossomly',
-//   user: 'postgres',
+//   user: 'other_user',
 //   password: 'hottub',
 // };
 const config = {
