@@ -14,6 +14,7 @@ import Signup from './components/Authentication/Signup';
 import Dashboard from './components/Dashboard/Dashboard';
 import OldQuiz from './components/QuizOld/Quiz';
 import Quiz from './components/Quiz/Quiz';
+import TodoList from './components/ToDo/TodoList';
 import requireAuth from './components/Authentication/RequireAuth';
 import LandingPage from './components/LandingPage/LandingPage';
 import Meter from './components/Meter/Meter';
@@ -49,6 +50,7 @@ render(
         <Route path="meter" component={Meter} />
         <Route path="quiz" component={Quiz} />
         <Route path="calendar" component={Calendar} />
+        <Route path="todo" component={TodoList} />
       </Route>
     </Router>
   </Provider>

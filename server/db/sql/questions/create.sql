@@ -4,8 +4,6 @@
 
 */
 
-CREATE EXTENSION IF NOT EXISTS citext;
-
 CREATE TABLE Questions (
 question_id serial PRIMARY KEY,
 category text NOT NULL,

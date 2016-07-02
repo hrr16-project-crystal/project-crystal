@@ -1,0 +1,38 @@
+.todo {
+  margin-top: 70px;
+  margin-left: 20px;
+}
+
+.todo__item {
+  /*background-color: yellow;*/
+}
+
+.todo__input {
+  color: #fff;
+}
+
+.todo__addBtn {
+  background-color: #4dd0e1
+}
+
+.todo {
+  height: 100vh;
+  background: #000 no-repeat center/cover url("../../assets/13.jpg");
+}
+
+.todo__overlay {
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.todo__mainTitle {
+  text-align: center;
+  color: #fff;
+  line-height: 65px;
+  font-weight: 700;
+  margin: auto;
+}
+
+todo__list {
+  color: #fff;
+}
