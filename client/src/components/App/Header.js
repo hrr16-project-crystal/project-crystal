@@ -13,7 +13,7 @@ class Header extends Component {
           <Link to="/calendar" className="menu__link">Calendar</Link>
         </li>,
         <li className="menu__item" key={2}>
-          <Link to="/todo" className="menu__link">ToDo</Link>
+          <Link to="/todo" className="menu__link">To-Do</Link>
         </li>,
         <li className="menu__item" key={3}>
           <Link to="/quiz" className="menu__link">Quiz</Link>

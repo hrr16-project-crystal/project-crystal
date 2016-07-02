@@ -11,8 +11,8 @@ class TodoAdd extends Component {
   }
 
   newTodo(newTodoProps){
-    console.log('this.props.user', this.props.user)
     this.props.postTodo({ content: newTodoProps.text, couple_id: this.props.user.data.couple_id});
+    this.props.state.text = '';
   }
 
   handleSubmit(e) {
@@ -23,9 +23,9 @@ class TodoAdd extends Component {
   render(){
     return (
       <div>
-        <form onSubmit={ this.handleSubmit }>
+        <form className='todo__addForm' onSubmit={ this.handleSubmit }>
           <input className='todo__input' onChange={this.props.handleChange} type="text" value={this.props.state.text} placeholder="new to-do" autoFocus={true} />
-          <button className="waves-effect waves-light btn" type="submit">Add to-do</button>
+          <button className="todo__btn waves-effect waves-light btn" type="submit">Add to-do</button>
         </form>
       </div>
     );
