@@ -40,7 +40,9 @@ class Signup extends Component {
               <fieldset className="form-group">
                 <div className="input-field">
                   <input id="firstname" type="text" className="form-control validate" {...firstName} />
-                  <label for="firstname">First Name:</label>
+                  <label for="firstname">
+                    <i className="icon material-icons">person_pin</i>
+                    First Name:</label>
                   {firstName.touched && firstName.error &&
                   <div className="error">{firstName.error}</div>}
                 </div>
@@ -48,7 +50,10 @@ class Signup extends Component {
               <fieldset className="form-group">
                 <div className="input-field">
                   <input type="text" className="form-control validate" {...lastName} />
-                  <label>Last Name:</label>
+                  <label>
+                    <i className="icon material-icons">person_pin</i>
+                    Last Name:
+                  </label>
                   {lastName.touched && lastName.error &&
                   <div className="error">{lastName.error}</div>}
                 </div>
@@ -56,7 +61,10 @@ class Signup extends Component {
               <fieldset className="form-group">
                 <div className="input-field">
                   <input type="email" className="form-control validate" {...email} />
-                  <label>Email:</label>
+                  <label>
+                    <i className="icon material-icons">email</i>
+                    Email:
+                  </label>
                   {email.touched && email.error &&
                   <div className="error">{email.error}</div>}
                 </div>
@@ -65,7 +73,10 @@ class Signup extends Component {
                 <div className="input-field">
                   <input type="password"
                          className="form-control validate" {...password} />
-                  <label>Password:</label>
+                  <label>
+                    <i className="icon material-icons">lock</i>
+                    Password:
+                  </label>
                   {password.touched && password.error &&
                   <div className="error">{password.error}</div>}
                 </div>
@@ -74,7 +85,10 @@ class Signup extends Component {
                 <div className="input-field">
                   <input type="password"
                          className="form-control validate" {...passwordConfirm} />
-                  <label>Confirm Password:</label>
+                  <label>
+                    <i className="icon material-icons">lock</i>
+                    Confirm Password:
+                  </label>
                   {passwordConfirm.touched && passwordConfirm.error &&
                   <div className="error">{passwordConfirm.error}</div>}
                 </div>

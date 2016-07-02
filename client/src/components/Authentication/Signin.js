@@ -40,15 +40,21 @@ class Signin extends Component {
                 Self awareness in a relationship makes all the difference...</h6>
               <fieldset className="form-group">
                 <div className="input-field">
-                  <input type="email" className="form-control" {...email} />
-                  <label>Email:</label>
+                  <input type="email" className="form-control validate" {...email} />
+                  <label>
+                    <i className="icon material-icons">email</i>
+                    Email:
+                  </label>
                 </div>
               </fieldset>
               <fieldset className="form-group">
                 <div className="input-field">
                   <input type="password"
-                         className="form-control" {...password} />
-                  <label>Password:</label>
+                         className="form-control validate" {...password} />
+                  <label>
+                    <i className="icon material-icons">lock</i>
+                    Password:
+                  </label>
                 </div>
               </fieldset>
               <div className="signin__btn">
