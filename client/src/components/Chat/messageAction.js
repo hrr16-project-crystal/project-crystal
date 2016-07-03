@@ -1,17 +1,39 @@
 import axios from 'axios';
-import { UPDATE_MESSAGE, ADD_MESSAGE, GET_MESSAGES} from '../../helpers/constants/types';
+import { IS_TYPING, ADD_MESSAGE, GET_MESSAGES } from '../../helpers/constants/types';
 
-const apiUrl = 'http://localhost:3000/api/v1';
-
-export const updateMessage = (message) => {
+export const joinRoom = (info) => {
   return dispatch => {
-    axios.put(`${apiUrl}/message`)
-      .then(response => {
-        dispatch({
-          type: UPDATE_MESSAGE,
-          payload: response.data,
-        });
-      });
+    dispatch({
+      type: info.type,
+      data: info.data,
+    });
+  };
+};
+
+export const sendMessage = (info) => {
+  return dispatch => {
+    dispatch({
+      type: info.type,
+      data: info.data,
+    });
+  };
+};
+
+export const isTyping = (info) => {
+  return dispatch => {
+    dispatch({
+      type: info.type,
+      data: info.data,
+    });
+  };
+};
+
+export const stopTyping = () => {
+  return dispatch => {
+    dispatch({
+      type: IS_TYPING,
+      data: '',
+    });
   };
 };
 
@@ -26,7 +48,7 @@ export const addMessage = (message) => {
 
 export const getMessages = (coupleID) => {
   return dispatch => {
-    axios.get(`${apiUrl}/message/${coupleID}`)
+    axios.get(`/api/v1/message/${coupleID}`)
       .then(response => {
         dispatch({
           type: GET_MESSAGES,

@@ -3,63 +3,27 @@ import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
 import MessageList from './MessageList';
 import Chat from './Chat';
+import _ from 'underscore';
 import * as messageActionCreators from './messageAction.js';
-import io from 'socket.io-client';
-
-let socket = null;
-
-const mapStateToProps = state => {
-  return {
-    messages: state.messages.messages,
-    user: state.auth.user,
-  };
-};            
-
-const mapDispatchToProps = dispatch => {
-  return bindActionCreators({
-    addMessage: messageActionCreators.addMessage,
-    updateMessage: messageActionCreators.updateMessage,
-    getMessages: messageActionCreators.getMessages,
-  }, dispatch);
-};
 
 class ChatCard extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      typing: false,
-    };
-  }
-
-  // gets all messages for this couple when page loads
-  componentWillMount() {
-    socket = io.connect();
   }
 
   componentDidMount() {
-    socket.on('connect', () =>{
-      socket.emit('room', this.props.user.data.couple_id) // 4 should be coupleId
-    });
-
     // get all messages when the component mounts
     this.props.getMessages(this.props.user.data.couple_id);
-    // on new message, updates state with new message
-    socket.on('message', data => {
-      this.props.addMessage(data.data);
-    });
-
-    // makes "typing ..." visible when other user is typing
-    socket.on('typing', (id) => {
-      if (id.slice(2) !== socket.id){
-        this.setState ({ typing: true });
-        setTimeout(
-          () => { this.setState ({ typing: false })}, 1000);
-      }
-    });
+    // if the user has not joined the couple chat room, dispatch socket action with coupleID
+    if (!this.props.joined) {
+      this.props.joinRoom({type: 'server/room', data: this.props.user.data.couple_id});
+    }
   }
 
   render() {
+    const notTyping = _.debounce(this.props.stopTyping, 1500); 
+    if (!!this.props.typing) notTyping();
     return (
       <div className="chat-card col s5">
         <div className="row">
@@ -71,12 +35,13 @@ class ChatCard extends Component {
                 couple_id={this.props.user.data.couple_id} 
                 messages={this.props.messages}/>
               <Chat
+                first_name={this.props.user.data.first_name}
                 user_id={this.props.user.data.user_id} 
                 couple_id={this.props.user.data.couple_id}
-                socket={socket}
-                value={this.props.content}
-                onSubmit={this.props.addMessage}/>
-                <p style={{visibility:this.state.typing?'visible':'hidden'}}>typing ...</p>
+                isTyping={this.props.isTyping}
+                onSubmit={this.props.sendMessage}/>
+                <p className='grey-text text-lighten-1'
+                  style={{visibility:this.props.typing?'visible':'hidden'}}>{this.props.typing} is typing...</p>
             </div>
             <div className="card-action">
               <a href="#">Go to Chat</a>
@@ -88,6 +53,24 @@ class ChatCard extends Component {
   }
 }  
 
+const mapStateToProps = state => {
+  return {
+    messages: state.messages.messages,
+    typing: state.messages.typing,
+    joined: state.messages.joined,
+    user: state.auth.user,
+  };
+};            
 
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({
+    stopTyping: messageActionCreators.stopTyping,
+    joinRoom: messageActionCreators.joinRoom,
+    isTyping: messageActionCreators.isTyping,
+    sendMessage: messageActionCreators.sendMessage,
+    addMessage: messageActionCreators.addMessage,
+    getMessages: messageActionCreators.getMessages,
+  }, dispatch);
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChatCard);

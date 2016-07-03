@@ -20,12 +20,16 @@ import LandingPage from './components/LandingPage/LandingPage';
 import Meter from './components/Meter/Meter';
 import Calendar from './components/Calendar/Calendar';
 
+import io from 'socket.io-client';
+let socket = io.connect();
+let socketIoMiddleware = createSocketIoMiddleware(socket, "server/");
+
 import reducers from './helpers/rootReducer/rootReducer';
 import { AUTH_USER } from './helpers/constants/types';
 
 import './index.css';
 
-const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
+const createStoreWithMiddleware = applyMiddleware(reduxThunk, socketIoMiddleware)(createStore);
 const store = createStoreWithMiddleware(reducers, window.devToolsExtension && window.devToolsExtension());
 
 const token = localStorage.getItem('token');

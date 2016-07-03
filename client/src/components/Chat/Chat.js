@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from './messageAction';
-import _ from 'underscore';
 // import './index.css';
 
 class Chat extends Component {
@@ -11,16 +10,6 @@ class Chat extends Component {
     this.state = {
       text: '',
     };
-  }
-
-  // on mount, set up throttled "user is typing" function
-  componentWillMount(){
-    let type = function(){
-      return this.props.socket.emit('typing', 
-        {type:'server/typing', 
-        payload: this.props.couple_id});
-    };
-    let delayedType = _.throttle(type, 500);
   }
 
   // renders chat input
@@ -42,7 +31,7 @@ class Chat extends Component {
     this.setState({
       text: e.target.value,
     }); 
-    this.props.socket.emit('typing', this.props.couple_id);//coupleid
+    this.props.isTyping({type: 'server/typing', data: {name:this.props.first_name,couple:this.props.couple_id}}); // coupleid
   }
   
   // when user presses enter, send message to server via socket which
@@ -50,8 +39,9 @@ class Chat extends Component {
   handleKeyPress(e) {
     if (e.which === 13) {
       e.preventDefault();
-      this.props.socket.emit('action',
-        {type:'server/message',payload:{
+      this.props.onSubmit(
+        {
+          type:'server/message', data: {
           content: this.state.text,
           user_id: this.props.user_id,//this.props.userID,
           couple_id: this.props.couple_id,//this.props.coupleID,
