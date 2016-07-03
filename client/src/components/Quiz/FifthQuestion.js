@@ -1,71 +1,96 @@
 import React, { Component, PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
-export const fields = [ 'firstName', 'lastName', 'email', 'sex', 'favoriteColor', 'employed', 'notes' ];
-// ^^ All fields on last form
-
-const validate = values => {
-  const errors = {};
-  if (!values.favoriteColor) {
-    errors.favoriteColor = 'Required'
-  }
-  return errors
-};
+import * as actions from '../QuizOld/quizAction';
+import { browserHistory } from 'react-router';
+export const fields = ['Intimacy', 'Spontaneity', 'Communication', 'Generosity', 'Respect'];
 
 class FifthQuestion extends Component {
+  constructor(props) {
+    super(props);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
+  }
+
+  handleFormSubmit(formProps) {
+    for (const key in formProps) {
+      formProps[key] = Number(formProps[key]);
+    }
+    let total = 0;
+    for (const key in formProps) {
+      total += formProps[key];
+    }
+    formProps.Total = Math.floor(total / 5);
+    formProps.user_id = this.props.user.data.user_id;
+
+    this.props.postResponse(formProps);
+
+    setTimeout(() => {
+      browserHistory.push('/dashboard');
+    }, 1000);
+  }
+
   render() {
     const {
-      fields: { favoriteColor, employed, notes },
+      fields: { Respect },
       handleSubmit,
       previousPage,
-      submitting
+      submitting,
     } = this.props;
-    return (<form onSubmit={handleSubmit}>
+    return (
+      <form onSubmit={handleSubmit(this.handleFormSubmit)}>
         <div>
-          <label>Favorite Color</label>
-          <div>
-            <select {...favoriteColor} value={favoriteColor.value || ''}>
-              <option></option>
-              <option value="ff0000">Red</option>
-              <option value="00ff00">Green</option>
-              <option value="0000ff">Blue</option>
-            </select>
+          <div className="question question-label center-align">
+            <label className="white-text">What do your friends and family think of your partner?</label>
+            <div className="quiz-questions input-field col s9 offset-1">
+              <select {...Respect}>
+                <option
+                  value=""
+                  className="grey-text text-lighten-1"
+                  disabled
+                  selected
+                >Select your answer...</option>
+                <option value={100}>They think the two of you are soulmates</option>
+                <option value={75}>They think s/he is good for you</option>
+                <option value={50}>They are indifferent</option>
+                <option value={25}>They have warned you about your partner and/or dont approve</option>
+              </select>
+            </div>
           </div>
-          {favoriteColor.touched && favoriteColor.error && <div>{favoriteColor.error}</div>}
-        </div>
-        <div>
-          <label>
-            <input type="checkbox" {...employed}/> Employed
-          </label>
-        </div>
-        <div>
-          <label>Notes</label>
-          <div>
-            <textarea {...notes} value={notes.value || ''}/>
+          <div className="center-align">
+            <button
+            className="btn form-btn light-blue darken-1"
+            type="button"
+            disabled={submitting}
+            onClick={previousPage}
+            ><i className="material-icons left">skip_previous</i>Previous
+            </button>
+            <button
+              className="btn form-btn light-blue darken-1"
+              type="submit"
+              disabled={submitting}
+            ><i className="material-icons right">done</i>
+            {submitting ? <i /> : <i />}Finish
+            </button>
           </div>
-        </div>
-        <div>
-          <button type="button" disabled={submitting} onClick={previousPage}>
-            <i/> Previous
-          </button>
-          <button type="submit" disabled={submitting}>
-            {submitting ? <i/> : <i/>} Finish
-          </button>
         </div>
       </form>
-    )
+    );
   }
 }
+
+const mapStateToProps = state => {
+  return { user: state.auth.user };
+};
 
 FifthQuestion.propTypes = {
   fields: PropTypes.object.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   previousPage: PropTypes.func.isRequired,
-  submitting: PropTypes.bool.isRequired
+  postResponse: PropTypes.func.isRequired,
+  submitting: PropTypes.bool.isRequired,
 };
 
 export default reduxForm({
   form: 'wizard',              // <------ same form name
   fields,                      // <------ all fields on last wizard page
   destroyOnUnmount: false,     // <------ preserve form data
-  validate                     // <------ only validates the fields on this page
-})(FifthQuestion)
+}, mapStateToProps, actions)(FifthQuestion);
