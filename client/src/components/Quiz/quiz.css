@@ -58,3 +58,9 @@
   display: block;
 }
 
+.form-btn {
+  width: 15%;
+  margin-right: 12px;
+  margin-left: 12px;
+}
+

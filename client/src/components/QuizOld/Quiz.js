@@ -16,7 +16,6 @@ class Quiz extends Component {
   }
 
   handleFormSubmit(formProps) {
-
     const result = {};
     for (const key in formProps) {
       const tempArr = formProps[key] ? formProps[key].split(',') : [];

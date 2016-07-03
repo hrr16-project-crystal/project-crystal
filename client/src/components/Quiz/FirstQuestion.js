@@ -1,11 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
-export const fields = ['intimacy'];
+export const fields = ['Intimacy'];
 
 class FirstQuestion extends Component {
   render() {
     const {
-      fields: { intimacy },
+      fields: { Intimacy },
       handleSubmit,
     } = this.props;
     return (
@@ -20,23 +20,23 @@ class FirstQuestion extends Component {
           <div className="question question-label center-align">
             <label className="white-text">How much time do the two of you spend together?</label>
             <div className="quiz-questions input-field col s9 offset-1">
-              <select {...intimacy}>
+              <select {...Intimacy}>
                 <option
                   value=""
                   className="grey-text text-lighten-1"
                   disabled
                   selected
                 >Select your answer...</option>
-                <option>We spend a fair amount but not all of our time together</option>
-                <option>We have some shared interests that we do together</option>
-                <option>It depends on the week - sometimes we are inseperable and other times we arent</option>
-                <option>We spend very little time together</option>
+                <option value={100}>We spend a fair amount but not all of our time together</option>
+                <option value={75}>We have some shared interests that we do together</option>
+                <option value={50}>It depends on the week - sometimes we are inseperable and other times we arent</option>
+                <option value={25}>We spend very little time together</option>
               </select>
             </div>
           </div>
-          <div>
-            <button type="submit">
-              Next <i />
+          <div className="center-align">
+            <button className="btn form-btn light-blue darken-1" type="submit">
+              <i className="material-icons right">skip_next</i>Next
             </button>
           </div>
         </form>
