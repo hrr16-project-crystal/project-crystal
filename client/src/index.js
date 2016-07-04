@@ -6,13 +6,13 @@ import createSocketIoMiddleware from 'redux-socket.io';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import reduxThunk from 'redux-thunk';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import axios from 'axios';
 
 import App from './components/App/App';
 import Signin from './components/Authentication/Signin';
 import Signout from './components/Authentication/Signout';
 import Signup from './components/Authentication/Signup';
 import Dashboard from './components/Dashboard/Dashboard';
-import OldQuiz from './components/QuizOld/Quiz';
 import Quiz from './components/Quiz/Quiz';
 import TodoList from './components/ToDo/TodoList';
 import requireAuth from './components/Authentication/RequireAuth';
@@ -36,6 +36,10 @@ const token = localStorage.getItem('token');
 // If we have a token then consider user to be signed in
 if (token) {
   // need to update application state
+  axios.post('/verify', { token })
+  .then(response => {
+    store.dispatch({ type: AUTH_USER, payload: response.data });
+  });
   store.dispatch({ type: AUTH_USER });
 }
 

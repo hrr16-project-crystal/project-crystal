@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
-import * as actions from '../QuizOld/quizAction';
+import * as actions from './quizAction';
 import { browserHistory } from 'react-router';
 export const fields = ['Intimacy', 'Spontaneity', 'Communication', 'Generosity', 'Respect'];
 
