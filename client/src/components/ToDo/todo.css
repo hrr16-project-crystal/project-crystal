@@ -1,27 +1,10 @@
 .todo {
-  margin-top: 70px;
-  margin-left: 20px;
-}
-
-.todo__item {
-  /*background-color: yellow;*/
-}
-
-.todo__input {
-  color: #fff;
-}
-
-.todo__addBtn {
-  background-color: #4dd0e1
-}
-
-.todo {
-  height: 100vh;
+  height: 160vh;
   background: #000 no-repeat center/cover url("../../assets/13.jpg");
 }
 
 .todo__overlay {
-  height: 100vh;
+  height: 160vh;
   background-color: rgba(0, 0, 0, 0.5);
 }
 
@@ -30,9 +13,43 @@
   color: #fff;
   line-height: 65px;
   font-weight: 700;
-  margin: auto;
+  margin-top: 60px;
+  padding-top: 30px;
 }
 
-todo__list {
+.todo__input {
   color: #fff;
+}
+
+.todo__btn {
+  background-color: #00bcd4;
+  z-index: 0;
+}
+
+.todo__delete {
+  background-color: #e57373;
+  z-index: 0;
+}
+
+.todo__addForm {
+  padding-left: 30px;
+  padding-right: 1400px;
+  display: inline-block;
+}
+
+.todo__item {
+  padding-left: 60px;
+  padding-right: 90px;
+}
+
+.todo__item__text {
+  color: #fff;
+  float: left;
+  padding-right: 20px;
+}
+
+.todo__content {
+  border: groove;
+  padding: 10px;
+  margin-top: 10px;
 }
