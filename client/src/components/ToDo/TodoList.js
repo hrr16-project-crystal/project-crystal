@@ -4,18 +4,13 @@ import * as actions from './todoAction';
 import Header from '../App/Header';
 import TodoAdd from './TodoAdd';
 import './todo.css';
-// import img from '../../assets/13.jpg';
 
 class TodoList extends Component {
   constructor(props) {
     super(props);
-    this.state = {text: ""};
+    this.state = {text: ''};
     this.handleChange = this.handleChange.bind(this);
   }
-  
-  // componentDidMount() {
-  //   !function(){$('.parallax').parallax();}();
-  // }
 
   componentWillMount() {
     this.props.getTodos(this.props.user.data.couple_id);
@@ -77,32 +72,3 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps, actions)(TodoList);
-
-
-    // return (
-    //   <div>
-    //     <Header />
-    //     <div className='todo'>
-    //       <div className='todo__overlay'>
-    //         <h3 className='todo__mainTitle'>Shared to-do's never felt so good</h3>
-    //         <TodoAdd handleChange={this.handleChange} state={this.state} />
-            
-    //         <ul className='row collection todo__item'>
-    //           {this.props.todos.map(todo => {
-    //             return (
-    //               <div>
-    //                 <li className='todo__content collection-item col s9'>
-    //                   <p>{todo.content}</p>
-    //                   <div onClick={() => this.props.deleteTodo(todo.todo_id)}>
-    //                     <button className="waves-effect waves-light red">delete</button>
-    //                   </div>
-    //                 </li>
-    //               </div>
-    //             )
-    //           })}
-    //         </ul>
-
-    //       </div>
-    //     </div>
-    //   </div>
-    // )

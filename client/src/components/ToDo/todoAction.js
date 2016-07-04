@@ -3,14 +3,12 @@ import { FETCH_TODOS, ADDED_TODO, DELETED_TODO } from '../../helpers/constants/t
 const apiUrl = 'http://localhost:3000/api/v1';
 
 export const deleteTodo = (todoID) => {
-  console.log('deleteTodo todoID', todoID);
   return dispatch => {
     axios.delete(`${apiUrl}/todos/deleteTodo/${todoID}`)
     .then(response => {
-      console.log("response.data.data from deleteTodo", response.data);
       dispatch({
         type: DELETED_TODO,
-        payload: response.data.data,
+        payload: response.data,
       })
     })
     .catch(response => {
@@ -25,10 +23,11 @@ export const getTodos = (coupleID) => {
     .then(response => {
       dispatch({
         type: FETCH_TODOS,
-        payload: response.data.data,
+        payload: response.data,
       })
     })
     .catch(response => {
+      console.log('getTodo ERROR - RESPONSE:', response);
     });
   };
 };
@@ -39,7 +38,7 @@ export const postTodo = (newTodo) => {
     .then(response => {
       dispatch({
         type: ADDED_TODO,
-        payload: response.data.data,
+        payload: response.data,
       })
     })
     .catch(response => {

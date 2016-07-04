@@ -82,3 +82,14 @@ input[type=email].invalid, input[type=password].invalid, input[type=text].invali
   border-bottom: 1px solid #9e9e9e;
   box-shadow: none;
 }
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+input {
+  color: #fff;
+}
