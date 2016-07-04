@@ -90,7 +90,6 @@ app.use('/', express.static(path.resolve(__dirname, '../client/build')));
 app.post('/verify', (req, res, next) => {
   const token = req.body.token;
   const decoded = jwt.decode(token, clientSecret.jwtSecret);
-  console.log(decoded);
   Users.findById(decoded.sub)
   .then(foundUser => {
     if (foundUser) {
