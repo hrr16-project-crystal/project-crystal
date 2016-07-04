@@ -1,6 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const db = require(__dirname + '/db/index').db;
+const jwt = require('jwt-simple');
+const clientSecret = require('./config');
+const Users = require(`${__dirname}/db/index`).db.users;
+const helpers = require(`${__dirname}/helpers/helpers`);
 
 const app = express();
 const http = require('http').Server(app);
@@ -30,8 +34,6 @@ const questionAPIroutes = require('./routes/api/questions');
 const eventsAPIroutes = require('./routes/api/events');
 const messageAPIroutes = require('./routes/api/message');
 const todoAPIroutes = require('./routes/api/todos');
-
-// const CouplesUser = require('./db/repos/couples_users');
 
 // *** API routes *** //
 app.use('/api/v1', userAPIroutes);
@@ -83,7 +85,25 @@ if (app.get('env') === 'development') {
   }));
   app.use(webpackHotMiddleware(compiler));
 }
+
 app.use('/', express.static(path.resolve(__dirname, '../client/build')));
+app.post('/verify', (req, res, next) => {
+  const token = req.body.token;
+  const decoded = jwt.decode(token, clientSecret.jwtSecret);
+  Users.findById(decoded.sub)
+  .then(foundUser => {
+    if (foundUser) {
+      res.json({
+        success: true,
+        data: helpers.desensitize(foundUser),
+      });
+    }
+  });
+});
+
+app.use('*', (req, res) => {
+  res.redirect('/');
+});
 
 // Cors is a middleware that will handle CORS in the browser
 app.use(cors());

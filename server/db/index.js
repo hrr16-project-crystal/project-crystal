@@ -42,7 +42,6 @@ const config = {
   host: 'localhost',
   port: 5432,
   database: 'blossomly',
-  // user: 'Roger',
   user: 'postgres',
 };
 

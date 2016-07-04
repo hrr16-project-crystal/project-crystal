@@ -25,17 +25,17 @@ const config = {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
     }),
-    // new BrowserSyncPlugin({
-    //   // browse to http://localhost:3000/ during development,
-    //   // ./client/build/ directory is being served
-    //   host: 'localhost',
-    //   port: 3030,
-    //   // uncomment to use this instead of express/node server
-    //   // server: { baseDir: ['client/build'] }
-    //   files: [
-    //     'client/build/*.js',
-    //   ],
-    // }),
+    new BrowserSyncPlugin({
+      // browse to http://localhost:3000/ during development,
+      // ./client/build/ directory is being served
+      host: 'localhost',
+      port: 3030,
+      // uncomment to use this instead of express/node server
+      // server: { baseDir: ['client/build'] }
+      files: [
+        'client/build/*.js',
+      ],
+    }),
     new CopyWebpackPlugin(
       [
         {
