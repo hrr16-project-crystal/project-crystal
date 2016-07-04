@@ -1,6 +1,6 @@
 import { expect } from '../testHelper';
 import { ADDED_TODO, FETCH_TODOS } from '../../helpers/constants/types';
-import todoReducer from '../../components/Todo/todoReducer';
+import todoReducer from '../../components/ToDo/todoReducer';
 
 describe('Todo Reducer', () => {
   it('should return an object with a fetchTodos key value pair as the default state', () => {
