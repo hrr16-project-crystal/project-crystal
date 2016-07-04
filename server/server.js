@@ -35,6 +35,23 @@ const eventsAPIroutes = require('./routes/api/events');
 const messageAPIroutes = require('./routes/api/message');
 const todoAPIroutes = require('./routes/api/todos');
 
+const Yelp = require('yelp');
+ 
+const yelp = new Yelp({
+  consumer_key: 'rUJMt1ItNo_L7SRSl8kD5g',
+  consumer_secret: 'X8I7THNYRYxmBvwe246kt5r8i3Y',
+  token: 'lYNQ4I74jQte7E0Qg0y5ZDgDSzeD6gpL',
+  token_secret: 'W7rwtXl75IN6E_5O6DSF9j33h6Q',
+});
+ 
+yelp.search({ term: 'restaurants', location: 'Salt Lake City' })
+.then(function (data) {
+  console.log('search food montreal', data);
+})
+.catch(function (err) {
+  console.error(err);
+});
+
 // *** API routes *** //
 app.use('/api/v1', userAPIroutes);
 app.use('/api/v1', coupleAPIroutes);
