@@ -1,5 +1,4 @@
 const jwt = require('jwt-simple');
-const config = require('../config');
 const Users = require(__dirname + '/../db/index').db.users;
 const Couples = require(__dirname + '/../db/index').db.couples;
 const CouplesUsers = require(__dirname + '/../db/index').db.couples_users;
@@ -13,7 +12,7 @@ const tokenForUser = user => {
   // Sub is short for Subject and it is the convention used for JWT
   // iat is short for Issued at Time and is another convention used for JWT
   const timestamp = new Date().getTime();
-  return jwt.encode({ sub: user.user_id, iat: timestamp, couple_id: user.couple_id }, config.jwtSecret);
+  return jwt.encode({ sub: user.user_id, iat: timestamp, couple_id: user.couple_id }, process.env.JWT_SECRET);
 };
 
 exports.signin = (req, res, next) => {

@@ -17,5 +17,4 @@ node_modules/
 .flooignore
 
 # API Keys and Secrets
-# config.js
-# during final production need to ignore this file to hide secrets
+.env

@@ -1,10 +1,9 @@
 import axios from 'axios';
 import { FETCH_TODOS, ADDED_TODO, DELETED_TODO } from '../../helpers/constants/types';
-const apiUrl = 'http://localhost:3000/api/v1';
 
 export const deleteTodo = (todoID) => {
   return dispatch => {
-    axios.delete(`${apiUrl}/todos/deleteTodo/${todoID}`)
+    axios.delete(`api/v1/todos/deleteTodo/${todoID}`)
     .then(response => {
       dispatch({
         type: DELETED_TODO,
@@ -19,7 +18,7 @@ export const deleteTodo = (todoID) => {
 
 export const getTodos = (coupleID) => {
   return dispatch => {
-    axios.get(`${apiUrl}/todos/${coupleID}`)
+    axios.get(`api/v1/todos/${coupleID}`)
     .then(response => {
       dispatch({
         type: FETCH_TODOS,
@@ -34,7 +33,7 @@ export const getTodos = (coupleID) => {
 
 export const postTodo = (newTodo) => {
   return dispatch => {
-    axios.post(`${apiUrl}/todos/addTodo`, newTodo)
+    axios.post(`api/v1/todos/addTodo`, newTodo)
     .then(response => {
       dispatch({
         type: ADDED_TODO,

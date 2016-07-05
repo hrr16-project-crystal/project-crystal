@@ -15,7 +15,6 @@ module.exports = rep => {
           return message;
         }),
       
-
     // get all couples messages
     findByCoupleId: coupleId =>
       rep.any(sql.findByCoupleId, coupleId, messages =>

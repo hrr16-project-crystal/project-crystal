@@ -25,27 +25,22 @@ class ChatCard extends Component {
     const notTyping = _.debounce(this.props.stopTyping, 1500); 
     if (!!this.props.typing) notTyping();
     return (
-      <div className="chat-card col s5">
-        <div className="row">
-          <div className="card white">
-            <div className="card-content black-text">
-              <span className="card-title">Chat</span>
-              <MessageList
-                user_id={this.props.user.data.user_id} 
-                couple_id={this.props.user.data.couple_id} 
-                messages={this.props.messages}/>
-              <Chat
-                first_name={this.props.user.data.first_name}
-                user_id={this.props.user.data.user_id} 
-                couple_id={this.props.user.data.couple_id}
-                isTyping={this.props.isTyping}
-                onSubmit={this.props.sendMessage}/>
-                <p className='grey-text text-lighten-1'
-                  style={{visibility:this.props.typing?'visible':'hidden'}}>{this.props.typing} is typing...</p>
-            </div>
-            <div className="card-action">
-              <a href="#">Go to Chat</a>
-            </div>
+      <div className="chat-card col s12 m6 l4" style={{height:'324px'}}>
+        <div className="card white">
+          <div className="card-content black-text">
+            <h5 className="center-align">Chat</h5>
+            <MessageList
+              user_id={this.props.user.data.user_id} 
+              couple_id={this.props.user.data.couple_id} 
+              messages={this.props.messages}/>
+            <Chat
+              first_name={this.props.user.data.first_name}
+              user_id={this.props.user.data.user_id} 
+              couple_id={this.props.user.data.couple_id}
+              isTyping={this.props.isTyping}
+              onSubmit={this.props.sendMessage}/>
+              <p className='grey-text text-lighten-1'
+                style={{visibility:this.props.typing?'visible':'hidden'}}>{this.props.typing} is typing...</p>
           </div>
         </div>
       </div>

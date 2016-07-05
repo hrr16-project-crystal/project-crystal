@@ -2,14 +2,15 @@ const path = require('path');
 const webpack = require('webpack');
 const precss = require('precss');
 const autoprefixer = require('autoprefixer');
-const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin'); // this
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
 
 const config = {
 
-  devtool: 'cheap-module-source-map',
+  devtool: 'cheap-module-source-map', // this
   entry: [
-    'webpack-hot-middleware/client',
+    'webpack-hot-middleware/client',  // this
     './client/src/index',
   ],
   output: {
@@ -19,23 +20,38 @@ const config = {
     publicPath: '/',
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
+    new webpack.HotModuleReplacementPlugin(),   // this
     new webpack.NoErrorsPlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+      'process.env': {
+        NODE_ENV: JSON.stringify('production'),
+      },
     }),
-    // new BrowserSyncPlugin({
-    //   // browse to http://localhost:3000/ during development,
-    //   // ./client/build/ directory is being served
-    //   host: 'localhost',
-    //   port: 3030,
-    //   // uncomment to use this instead of express/node server
-    //   // server: { baseDir: ['client/build'] }
-    //   files: [
-    //     'client/build/*.js',
-    //   ],
+    // new webpack.optimize.UglifyJsPlugin({   // this
+    //   compressor: {
+    //     screw_ie8: true,
+    //     warnings: false,
+    //   },
     // }),
+    // new CompressionPlugin({                 // this
+    //         asset: "[path].gz[query]",
+    //         algorithm: "gzip",
+    //         test: /\.js$|\.html$/,
+    //         threshold: 10240,
+    //         minRatio: 0.8
+    //     }),
+    new BrowserSyncPlugin({                   // this
+      // browse to http://localhost:3000/ during development,
+      // ./client/build/ directory is being served
+      host: 'localhost',
+      port: 3030,
+      // uncomment to use this instead of express/node server
+      // server: { baseDir: ['client/build'] }
+      files: [
+        'client/build/*.js',
+      ],
+    }),
     new CopyWebpackPlugin(
       [
         {
@@ -57,7 +73,7 @@ const config = {
         loader: 'babel-loader',
         query: {
           plugins: [
-            ['react-transform', {
+            ['react-transform', {              // this
               transforms: [
                 {
                   transform: 'react-transform-hmr',

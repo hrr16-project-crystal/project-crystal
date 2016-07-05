@@ -18,7 +18,7 @@ const sql = (file) => {
     // using static pre-formatting parameters -
     // we have variable 'schema' in each SQL;
     params: {
-        schema: 'public' // replaces ${schema~} with "public"
+      schema: 'public', // replaces ${schema~} with "public"
     },
   };
 
@@ -32,9 +32,10 @@ module.exports = {
     init: sql('users/init.sql'),
     drop: sql('users/drop.sql'),
     all: sql('users/all.sql'),
+    updateBucks: sql('users/updateBucks.sql'),
     findById: sql('users/findById.sql'),
     findByEmail: sql('users/findByEmail.sql'),
-    addFirstUser: sql('users/addFirstUser.sql'), 
+    addFirstUser: sql('users/addFirstUser.sql'),
     addSecondUser: sql('users/addSecondUser.sql'),
     removeById: sql('users/removeById.sql'),
     updateExistingCouple: sql('users/updateExistingCouple.sql'),
@@ -81,6 +82,11 @@ module.exports = {
     drop: sql('todos/drop.sql'),
     empty: sql('todos/empty.sql'),
     findById: sql('todos/findById.sql'),
-    remove: sql('todos/remove.sql')
+    remove: sql('todos/remove.sql'),
+  },
+  lovebucks: {
+    create: sql('lovebucks/create.sql'),
+    add: sql('lovebucks/add.sql'),
+    findByCoupleId: sql('lovebucks/findByCoupleId.sql'),
   },
 };

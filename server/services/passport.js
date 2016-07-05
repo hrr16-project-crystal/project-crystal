@@ -3,7 +3,6 @@
 const passport = require('passport');
 const bcrypt = require('bcrypt-nodejs');
 // const User = require('../db/models/User');
-const config = require('../config');
 const Users = require(`${__dirname}/../db/index`).db.users;
 const pgp = require(`${__dirname}/../db/index`).pgp;
 // A strategy is a method for authenticating a user (can be used for FB/Google login) aka plugin
@@ -49,7 +48,7 @@ const localLogin = new LocalStrategy(localOptions, (email, password, done) => {
 const jwtOptions = {
   // Whenever a request comes in, it needs to look at request header matching authorization
   jwtFromRequest: ExtractJwt.fromHeader('authorization'),
-  secretOrKey: config.jwtSecret,
+  secretOrKey: process.env.JWT_SECRET,
 };
 // Create the JWT Strategy. First arg is the configuration option.
 // Second is callback when we need to authenticate a user with a jwt token
@@ -73,9 +72,9 @@ const jwtLogin = new JwtStrategy(jwtOptions, (payload, done) => {
 
 // Setup for Facebook Login
 // const fbOptions = {
-//   clientID: config.fbConfig.appId,
-//   clientSecret: config.fbConfig.appSecret,
-//   callbackURL: config.fbConfig.callbackUrl,
+//   clientID: process.env.FB_APPID,
+//   clientSecret: process.env.FB_APPSECRET,
+//   callbackURL: process.env.FB_CALLBACKURL,
 // };
 
 // const fbLogin = new FacebookStrategy(fbOptions, (accessToken, refreshToken, profile, done) => {

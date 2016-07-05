@@ -100,7 +100,7 @@ class Meter extends Component {
     let pieOptions = {
       legend: 'none',
       // pieSliceText: 'value',
-      title: 'Spark Score ™',
+      title: 'Sparkq Score ™',
       pieHole: 0.75,
       animation: {
         startup: true,
@@ -228,7 +228,7 @@ class Meter extends Component {
     }
 
     return (
-      <div>
+      <div className="col s12">
         <div>
         {this.renderStats()}
         </div>

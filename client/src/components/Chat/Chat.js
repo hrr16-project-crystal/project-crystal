@@ -16,7 +16,8 @@ class Chat extends Component {
   render() {
     return (
       <div className='message-entry-box'>
-        <textarea
+        <input 
+          className="black-text"
           name='message'
           placeholder='Enter a message'
           value={this.state.text}

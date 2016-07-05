@@ -26,12 +26,10 @@ class Dashboard extends Component {
             <div className="parallax"><img src={img}/></div>
           </div>
         </div>
-        <div className="dashContainer">
+        <div className="row">
           <Meter />
-          <div className="row">
-            <ChatCard />
-            <CalendarCard />
-          </div>
+          <ChatCard />
+          <CalendarCard />
           <BucksCard />
           <TodoCard />
         </div>
