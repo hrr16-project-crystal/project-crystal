@@ -10,12 +10,7 @@ class DateNight extends Component {
     this.state = {text: ''};
     this.handleChange = this.handleChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
-    this.newView = this.newView.bind(this);
   }
-
-  // componentWillMount() {
-  //   this.props.getTodos(this.props.user.data.couple_id);
-  // }
 
   handleChange(e){
     this.setState({text: e.target.value});
@@ -26,13 +21,8 @@ class DateNight extends Component {
     this.props.getRestaurants(this.state.text);
     this.state.text = '';
   }
-
-  newView(){
-    console.log('newView successful');
-  }
   
   render(){
-    console.log('this.props.places', this.props.places);
     if(!this.props.places){
       return (
         <div>
