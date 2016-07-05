@@ -53,3 +53,11 @@
   padding: 10px;
   margin-top: 10px;
 }
+
+.todo-spinner {
+  margin-top: 240px;
+}
+
+.todo__createdAt {
+  color: #fff;
+}

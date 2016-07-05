@@ -1,3 +1,46 @@
-/*.eats {
+.eats {
+  display: -webkit-inline-box;
+}
+
+.date {
+  height: 170vh;
+  background: #000 no-repeat center/cover url("../../assets/8.jpg");
+}
+
+.date__overlay {
+  height: 170vh;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.date__mainTitle {
+  text-align: center;
+  color: #fff;
+  line-height: 65px;
+  font-weight: 700;
+  margin-top: 60px;
+  padding-top: 30px;
+}
+
+.date__addForm {
+  padding-left: 30px;
+  padding-right: 1400px;
   display: inline-block;
-}*/
+}
+
+.date__btn {
+  background-color: #e57373;
+  z-index: 0;
+}
+
+.date__card {
+  display: inline-block;
+  margin: 10px;
+}
+
+.date__overallCard {
+  padding-top: 90px;
+}
+
+.date__rating {
+  display: block;
+}

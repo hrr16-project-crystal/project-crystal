@@ -5,6 +5,7 @@ import Header from '../App/Header';
 import Meter from '../Meter/Meter';
 import ChatCard from '../Chat/ChatCard';
 import CalendarCard from '../Calendar/CalendarCard';
+import TodoCard from '../ToDo/TodoCard';
 import img from '../../assets/10.jpg';
 import './dashboard.css';
 
@@ -30,6 +31,7 @@ class Dashboard extends Component {
         <div className="row">
           <ChatCard />
           <CalendarCard />
+          <TodoCard />
         </div>
       </div>
     );
