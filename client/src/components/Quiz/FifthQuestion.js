@@ -61,14 +61,14 @@ class FifthQuestion extends Component {
             type="button"
             disabled={submitting}
             onClick={previousPage}
-            ><i className="material-icons left">skip_previous</i>Previous
+            ><i className="material-icons left">skip_previous</i>Back
             </button>
             <button
               className="btn form-btn light-blue darken-1"
               type="submit"
               disabled={submitting}
             ><i className="material-icons right">done</i>
-            {submitting ? <i /> : <i />}Finish
+            {submitting ? <i /> : <i />}Done
             </button>
           </div>
         </div>

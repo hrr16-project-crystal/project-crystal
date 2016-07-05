@@ -55,7 +55,8 @@ render(
         <Route path="signin" component={Signin} />
         <Route path="signout" component={Signout} />
         <Route path="signup" component={Signup} />
-        <Route path="dashboard" component={requireAuth(Dashboard)} />
+        {/*<Route path="dashboard/:access_token" component={requireAuth(Dashboard)} />*/}
+        <Route path="dashboard" component={Dashboard} />
         <Route path="meter" component={Meter} />
         <Route path="quiz" component={Quiz} />
         <Route path="calendar" component={Calendar} />

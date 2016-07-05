@@ -13,9 +13,15 @@ const yelpConfig = {
   token_secret: 'W7rwtXl75IN6E_5O6DSF9j33h6Q',
 };
 
+const fitbitConfig = {
+  clientID: '227VRH',
+  clientSecret: '9f8477ffa2a7d1a168febef2e2b457d6',
+  URI: 'http://localhost:3000/auth/fitbit/callback',
+};
 
 module.exports = {
   jwtSecret,
   fbConfig,
   yelpConfig,
+  fitbitConfig,
 };

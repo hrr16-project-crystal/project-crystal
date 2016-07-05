@@ -48,7 +48,6 @@ exports.signup = (req, res, next) => {
 
   Users.checkIfExists(newUser.email)
     .then(exists => {
-      console.log('just after checkIfExists ********');
       if (exists) {
         res.status(422)
           .json({

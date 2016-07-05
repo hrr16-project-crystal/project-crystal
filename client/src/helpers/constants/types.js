@@ -20,3 +20,5 @@ export const YELP_REQUEST = 'YELP_REQUEST';
 export const CHANGE_POINTS = 'CHANGE_POINTS';
 export const GET_LOVEBUCK_INFO = 'GET_LOVEBUCK_INFO';
 export const ADD_TRANSACTION = 'ADD_TRANSACTION';
+export const AUTH_FITBIT = 'AUTH_FITBIT';
+export const FETCH_STATS = 'FETCH_STATS';

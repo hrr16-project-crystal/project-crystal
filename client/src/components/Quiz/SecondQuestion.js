@@ -31,7 +31,7 @@ class SecondQuestion extends Component {
           </div>
           <div className="center-align">
             <button className="btn form-btn light-blue darken-1" type="button" onClick={previousPage}>
-              <i className="material-icons left">skip_previous</i>Previous
+              <i className="material-icons left">skip_previous</i>Back
             </button>
             <button className="btn form-btn light-blue darken-1" type="submit">
               <i className="material-icons right">skip_next</i>Next
