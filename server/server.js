@@ -38,6 +38,7 @@ const eventsAPIroutes = require('./routes/api/events');
 const messageAPIroutes = require('./routes/api/message');
 const todoAPIroutes = require('./routes/api/todos');
 const dateNightAPIroutes = require('./routes/api/dateNight');
+<<<<<<< 6c32f8d3f7a233a7cff0a4f391c62203bbc92e06
 const lovebucksAPIroutes = require('./routes/api/lovebucks');
 
 const Yelp = require('yelp');
@@ -56,6 +57,8 @@ yelp.search({ term: 'restaurants', location: 'Salt Lake City' })
 .catch(function (err) {
   console.error(err);
 });
+=======
+>>>>>>> (feat) date night set up
 
 // *** API routes *** //
 app.use('/api/v1', userAPIroutes);
@@ -65,9 +68,21 @@ app.use('/api/v1', eventsAPIroutes);
 app.use('/api/v1', messageAPIroutes);
 app.use('/api/v1', todoAPIroutes);
 app.use('/api/v1', dateNightAPIroutes);
+<<<<<<< 6c32f8d3f7a233a7cff0a4f391c62203bbc92e06
 app.use('/api/v1', lovebucksAPIroutes);
+=======
+>>>>>>> (feat) date night set up
 
 router(app);
+
+const Yelp = require('yelp');
+ 
+const yelp = new Yelp({
+  consumer_key: 'rUJMt1ItNo_L7SRSl8kD5g',
+  consumer_secret: 'X8I7THNYRYxmBvwe246kt5r8i3Y',
+  token: 'lYNQ4I74jQte7E0Qg0y5ZDgDSzeD6gpL',
+  token_secret: 'W7rwtXl75IN6E_5O6DSF9j33h6Q',
+});
 
 // // *** error handlers *** //
 // catch 404 and forward to error handler

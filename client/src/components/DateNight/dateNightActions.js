@@ -1,5 +1,4 @@
 import axios from 'axios';
-
 import { YELP_REQUEST } from '../../helpers/constants/types';
 
 export const getRestaurants = city => {
