@@ -16,3 +16,5 @@ export const ADDED_TODO = 'ADDED_TODO';
 export const DELETED_TODO = 'DELETED_TODO';
 export const IS_TYPING = 'IS_TYPING';
 export const JOINED_ROOM = 'JOINED_ROOM';
+export const YELP_REQUEST = 'YELP_REQUEST';
+

@@ -34,6 +34,18 @@ const questionAPIroutes = require('./routes/api/questions');
 const eventsAPIroutes = require('./routes/api/events');
 const messageAPIroutes = require('./routes/api/message');
 const todoAPIroutes = require('./routes/api/todos');
+const dateNightAPIroutes = require('./routes/api/dateNight');
+
+// *** API routes *** //
+app.use('/api/v1', userAPIroutes);
+app.use('/api/v1', coupleAPIroutes);
+app.use('/api/v1', questionAPIroutes);
+app.use('/api/v1', eventsAPIroutes);
+app.use('/api/v1', messageAPIroutes);
+app.use('/api/v1', todoAPIroutes);
+app.use('/api/v1', dateNightAPIroutes);
+
+router(app);
 
 const Yelp = require('yelp');
  
@@ -43,24 +55,6 @@ const yelp = new Yelp({
   token: 'lYNQ4I74jQte7E0Qg0y5ZDgDSzeD6gpL',
   token_secret: 'W7rwtXl75IN6E_5O6DSF9j33h6Q',
 });
- 
-yelp.search({ term: 'restaurants', location: 'Salt Lake City' })
-.then(function (data) {
-  console.log('search food montreal', data);
-})
-.catch(function (err) {
-  console.error(err);
-});
-
-// *** API routes *** //
-app.use('/api/v1', userAPIroutes);
-app.use('/api/v1', coupleAPIroutes);
-app.use('/api/v1', questionAPIroutes);
-app.use('/api/v1', eventsAPIroutes);
-app.use('/api/v1', messageAPIroutes);
-app.use('/api/v1', todoAPIroutes);
-
-router(app);
 
 // // *** error handlers *** //
 // catch 404 and forward to error handler
