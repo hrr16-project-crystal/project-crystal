@@ -88,16 +88,3 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps, actions)(DateNight);
-
-
-                // <div className='eats' onClick={ this.newView } key={eats.id}>
-                //   <div>
-                //     <img src={eats.image_url}></img>
-                //   </div>
-                //   <div>
-                //     <p>{eats.name}</p>
-                //   </div>
-                //   <div>
-                //     <img src={eats.rating_img_url_small}></img>
-                //   </div>
-                // </div>
