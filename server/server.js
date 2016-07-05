@@ -34,6 +34,7 @@ const questionAPIroutes = require('./routes/api/questions');
 const eventsAPIroutes = require('./routes/api/events');
 const messageAPIroutes = require('./routes/api/message');
 const todoAPIroutes = require('./routes/api/todos');
+const dateNightAPIroutes = require('./routes/api/dateNight');
 
 // *** API routes *** //
 app.use('/api/v1', userAPIroutes);
@@ -42,6 +43,7 @@ app.use('/api/v1', questionAPIroutes);
 app.use('/api/v1', eventsAPIroutes);
 app.use('/api/v1', messageAPIroutes);
 app.use('/api/v1', todoAPIroutes);
+app.use('/api/v1', dateNightAPIroutes);
 
 router(app);
 

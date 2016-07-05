@@ -6,6 +6,7 @@ import meterReducer from '../../components/Meter/meterReducer';
 import calendarReducer from '../../components/Calendar/calendarReducer';
 import messageReducer from '../../components/Chat/messageReducer';
 import todoReducer from '../../components/ToDo/todoReducer';
+import dateNightReducer from '../../components/DateNight/dateNightReducer';
 
 const rootReducer = combineReducers({
   form,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   calendar: calendarReducer,
   messages: messageReducer,
   todo: todoReducer,
+  yelp: dateNightReducer,
 });
 
 export default rootReducer;

@@ -4,6 +4,7 @@ import * as actions from './todoAction';
 import Header from '../App/Header';
 import TodoAdd from './TodoAdd';
 import './todo.css';
+import moment from 'moment';
 
 class TodoList extends Component {
   constructor(props) {
@@ -21,6 +22,7 @@ class TodoList extends Component {
   }
   
   render(){
+    console.log('this.props.todos', this.props.todos);
     if (!this.props.todos) {
       return (
         <div className="preloader-wrapper big active">
@@ -42,21 +44,25 @@ class TodoList extends Component {
         <Header />
         <div className="todo">
           <div className="todo__overlay">
-          <h3 className='todo__mainTitle'>Shared to-dos never felt so good</h3>
+          <h3 className='todo__mainTitle'>Shared to-do's never felt so good</h3>
           
           <div>
             <TodoAdd handleChange={this.handleChange} state={this.state} />
             <ul className='todo__item'>
-              {this.props.todos.map(todo => 
-                <div>
-                  <li className='todo__content'>
-                    <div className='todo__item__text'>{todo.content}</div>
-                    <div onClick={() => this.props.deleteTodo(todo.todo_id)}>
-                      <button className="todo__delete waves-effect waves-light">delete</button>
-                    </div>
-                  </li>
-                </div> 
-              )}
+              {this.props.todos.map(todo => {
+                const date = moment(todo.created_at).format('MMMM Do @ h:mmA');
+                return (
+                  <div key={todo.todo_id}>
+                    <li className='todo__content'>
+                      <div className='todo__item__text'>{todo.content}</div>
+                      <div className='todo__createdAt'>created: {date}</div>
+                      <div onClick={() => this.props.deleteTodo(todo.todo_id)}>
+                        <button className="todo__delete waves-effect waves-light">delete</button>
+                      </div>
+                    </li>
+                  </div> 
+                )
+              })}
             </ul>
           </div>
           
