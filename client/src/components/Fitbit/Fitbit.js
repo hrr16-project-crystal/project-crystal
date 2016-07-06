@@ -76,8 +76,8 @@ class Fitbit extends Component {
     let loserUserID = '';
     let loserName = '';
     const userId1Loser = this.props.partnerToken.data[1].user_id
-    const userId2Loser = this.props.partnerToken.data[0].user_id;
     const userName1Loser = this.props.partnerToken.data[1].first_name;
+    const userId2Loser = this.props.partnerToken.data[0].user_id;
     const userName2Loser = this.props.partnerToken.data[0].first_name;
     const coupleID = this.props.partnerToken.data[0].couple_id;
 

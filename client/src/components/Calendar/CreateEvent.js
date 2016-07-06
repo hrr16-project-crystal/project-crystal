@@ -12,8 +12,6 @@ import ActionToday from 'material-ui/svg-icons/action/today';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import './calendar.css';
 
-const DateTimeFormat = global.Intl.DateTimeFormat;
-
 class CreateEvent extends Component {
   constructor(props) {
     super(props);
@@ -136,7 +134,7 @@ class CreateEvent extends Component {
       marginTop: 36,
       width: '13%',
     };
-    // Lines 141-206 all implement the form for this component. Uses a button that when clicked
+    // Lines 139-198 all implement the form for this component. Uses a button that when clicked
     // will open a dialog with the form rendered. On submit, it will call handleFormSubmit
     return (
       <div className="center-align">
@@ -160,11 +158,7 @@ class CreateEvent extends Component {
               <DatePicker
                 autoOk={true}
                 hintText="Please select a start date"
-                formatDate={new DateTimeFormat('en-US', {
-                  day: 'numeric',
-                  month: 'long',
-                  year: 'numeric',
-                }).format}
+                formatDate={date => moment(date).format('MMMM D, YYYY')}
                 onChange={(x, event) => startDate.onChange(event)}
               />
               <TimePicker
@@ -174,11 +168,7 @@ class CreateEvent extends Component {
               <DatePicker
                 autoOk={true}
                 hintText="Please select an end date"
-                formatDate={new DateTimeFormat('en-US', {
-                  day: 'numeric',
-                  month: 'long',
-                  year: 'numeric',
-                }).format}
+                formatDate={date => moment(date).format('MMMM D, YYYY')}
                 onChange={(x, event) => endDate.onChange(event)}
               />
               <TimePicker
@@ -204,7 +194,6 @@ class CreateEvent extends Component {
           </form>
         </Dialog>
       </div>
-
     );
   }
 }
