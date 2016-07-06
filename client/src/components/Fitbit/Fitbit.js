@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import * as actions from './fitbitActions';
+import * as buckActionCreators from '../LoveBucks/buckActions';
 import RaisedButton from 'material-ui/RaisedButton';
 import axios from 'axios';
 
@@ -13,7 +15,7 @@ const callbackURI = fitbitConfig.URI;
 let authToken1 = '';
 let authToken2 = '';
 let userId1 = '';
-let userId2 ='';
+let userId2 = '';
 let user1Stats = 0;
 let user2Stats = 0;
 
@@ -129,4 +131,12 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, actions)(Fitbit);
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({
+    givePoints: buckActionCreators.givePoints,
+    fitbitAccessToken: actions.fitbitAccessToken,
+    partnerFitbitAccessToken: actions.partnerFitbitAccessToken,
+  });
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Fitbit);
