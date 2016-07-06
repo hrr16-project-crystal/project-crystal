@@ -105,6 +105,7 @@ exports.fitbitHandler = (req, res, next) => {
   const tokens = {
     access_token: accessToken,
     refresh_token: refreshToken,
+    fitbit_id: req.fitbit_id,
     user_id: req.userID,
   };
   Users.addToken(tokens)

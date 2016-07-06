@@ -31,14 +31,13 @@ module.exports = (app) => {
       },
     })
     .then(response => {
-      console.log('IN THEN ROUTER.js');
       req.userID = Number(userID);
       req.access_token = response.data.access_token;
       req.refresh_token = response.data.refresh_token;
+      req.fitbit_id = response.data.user_id;
       next();
     })
     .catch(err => {
-      console.log('IN CATCH FOR ROUTER.JS');
       console.log(err.data.errors);
     });
   }, Authentication.fitbitHandler);

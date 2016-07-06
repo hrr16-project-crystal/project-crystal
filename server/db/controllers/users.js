@@ -28,10 +28,8 @@ module.exports = rep => {
     empty: () =>
       rep.none(sql.empty),
 
-    // Add access and refresh token to the User
+    // Add access token, refresh token, and fitbit ID to the User
     addToken: tokens => {
-      console.log('IN USERS CONTROLLERS-------');
-      console.log(tokens);
       return rep.one(sql.addToken, tokens)
       .then(data => {
         console.log(data);
