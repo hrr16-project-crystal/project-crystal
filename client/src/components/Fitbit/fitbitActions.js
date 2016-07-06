@@ -1,6 +1,6 @@
 import { FITBIT_AUTH_TOKEN, PARTNER_ACCESS_TOKEN } from '../../helpers/constants/types';
 import axios from 'axios';
-const apiUrl = 'http://localhost:3000/api/v1';
+const apiUrl = 'http://localhost:9000/api/v1';
 
 export const fitbitAccessToken = userID => {
   return dispatch => {

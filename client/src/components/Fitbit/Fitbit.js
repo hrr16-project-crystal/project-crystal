@@ -73,10 +73,31 @@ class Fitbit extends Component {
   }
 
   compareStats() {
-    console.log(user1Stats);
-    console.log(user2Stats);
-    // Compare both variables and see which is the highest
-      // Whoever has the highest count, increase their lovebucks score by x
+    let loserUserID = '';
+    let loserName = '';
+    const userId1Loser = this.props.partnerToken.data[1].user_id
+    const userId2Loser = this.props.partnerToken.data[0].user_id;
+    const userName1Loser = this.props.partnerToken.data[1].first_name;
+    const userName2Loser = this.props.partnerToken.data[0].first_name;
+    const coupleID = this.props.partnerToken.data[0].couple_id;
+
+    if (user1Stats >= user2Stats) {
+      loserUserID = userId1Loser;
+      loserName = userName1Loser;
+    } else {
+      loserUserID = userId2Loser;
+      loserName = userName2Loser;
+    }
+    const pointsToGive = {
+      points: 25,
+      memo: 'Won Fitbit',
+      couple_id: coupleID,
+      user_id: loserUserID,
+      type: 0,
+      name: loserName,
+    };
+
+    this.props.givePoints(pointsToGive);
   }
 
   getActivity() {
@@ -136,7 +157,7 @@ const mapDispatchToProps = dispatch => {
     givePoints: buckActionCreators.givePoints,
     fitbitAccessToken: actions.fitbitAccessToken,
     partnerFitbitAccessToken: actions.partnerFitbitAccessToken,
-  });
+  }, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Fitbit);

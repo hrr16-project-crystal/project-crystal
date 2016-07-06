@@ -24,7 +24,7 @@ module.exports = (app) => {
   app.get('/auth/fitbit/callback', (req, res, next) => {
     const code = req.query.code;
     const userID = req.query.state;
-    axios.post(`https://api.fitbit.com/oauth2/token?client_id=${fitbit.fitbitConfig.clientID}&grant_type=authorization_code&code=${code}&redirect_uri=http://localhost:3000/auth/fitbit/callback&state=${userID}`, null, {
+    axios.post(`https://api.fitbit.com/oauth2/token?client_id=${fitbit.fitbitConfig.clientID}&grant_type=authorization_code&code=${code}&redirect_uri=http://localhost:9000/auth/fitbit/callback&state=${userID}`, null, {
       headers: {
         Authorization: `Basic ${new Buffer(`${fitbit.fitbitConfig.clientID}:${fitbit.fitbitConfig.clientSecret}`).toString('base64')}`,
         'Content-Type': 'application/x-www-form-urlencoded',

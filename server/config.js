@@ -16,7 +16,7 @@ const yelpConfig = {
 const fitbitConfig = {
   clientID: '227VRH',
   clientSecret: '9f8477ffa2a7d1a168febef2e2b457d6',
-  URI: 'http://localhost:3000/auth/fitbit/callback',
+  URI: 'http://localhost:9000/auth/fitbit/callback',
 };
 
 module.exports = {
