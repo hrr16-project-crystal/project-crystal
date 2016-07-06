@@ -41,14 +41,13 @@ exports.signup = (req, res, next) => {
   const defaultEvent = {
     title: 'Welcome!',
     description: 'This is the default event for our calendar!',
-    start_date: '2016-06-30T06:00:00.000Z',
-    end_date: '2016-06-30T15:00:00.000Z',
+    start_date: '2016-07-15T10:00:00.000Z',
+    end_date: '2016-07-15T20:00:00.000Z',
     category: 'Misc',
   };
 
   Users.checkIfExists(newUser.email)
     .then(exists => {
-      console.log('just after checkIfExists ********');
       if (exists) {
         res.status(422)
           .json({
@@ -99,3 +98,26 @@ exports.signup = (req, res, next) => {
     })
     .catch(err => next(err));
 };
+
+exports.fitbitHandler = (req, res, next) => {
+  const accessToken = req.access_token;
+  const refreshToken = req.refresh_token;
+  const tokens = {
+    access_token: accessToken,
+    refresh_token: refreshToken,
+    fitbit_id: req.fitbit_id,
+    user_id: req.userID,
+  };
+  Users.addToken(tokens)
+  .then(data => {
+    return res.status(200)
+      .json({
+        success: true,
+        data,
+      });
+  })
+  .catch(err => {
+    console.log(err);
+  });
+};
+

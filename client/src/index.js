@@ -41,7 +41,6 @@ if (token) {
   .then(response => {
     store.dispatch({ type: AUTH_USER, payload: response.data });
   });
-  store.dispatch({ type: AUTH_USER });
 }
 
 injectTapEventPlugin();
@@ -55,6 +54,7 @@ render(
         <Route path="signin" component={Signin} />
         <Route path="signout" component={Signout} />
         <Route path="signup" component={Signup} />
+        {/*<Route path="dashboard/:access_token" component={requireAuth(Dashboard)} />*/}
         <Route path="dashboard" component={requireAuth(Dashboard)} />
         <Route path="meter" component={Meter} />
         <Route path="quiz" component={Quiz} />

@@ -6,6 +6,7 @@ const jwt = require('jwt-simple');
 const Users = require(`${__dirname}/db/index`).db.users;
 const helpers = require(`${__dirname}/helpers/helpers`);
 const compression = require('compression');
+const clientSecret = new Buffer(process.env.JWT_SECRET).toString();
 
 const app = express();
 const http = require('http').Server(app);
@@ -95,7 +96,7 @@ if (app.get('env') === 'development') {
 app.use('/', express.static(path.resolve(__dirname, '../client/build')));
 app.post('/verify', (req, res, next) => {
   const token = req.body.token;
-  const decoded = jwt.decode(token, process.env.JWT_SECRET);
+  const decoded = jwt.decode(token, clientSecret);
   Users.findById(decoded.sub)
   .then(foundUser => {
     if (foundUser) {

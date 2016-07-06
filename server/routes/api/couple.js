@@ -46,6 +46,18 @@ router.get('/couples/:id', (req, res, next) => {
     });
 });
 
+router.get('/couples/both/:id', (req, res, next) => {
+  const couple_id = parseInt(req.params.id);
+  Couples.getBothUsers(couple_id)
+  .then(data => {
+    return res.status(200)
+      .json({
+        success: true,
+        data,
+      });
+  });
+});
+
 // get spark score
 router.get('/couples/sparkscore/:coupleId/', (req, res, next) => {
   Couples.getBothUsers(req.params.coupleId)

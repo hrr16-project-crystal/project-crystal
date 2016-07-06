@@ -4,7 +4,7 @@ import { FETCH_EVENTS, CREATE_EVENT, DELETE_EVENT } from '../../helpers/constant
 import configureMockStore from 'redux-mock-store';
 import nock from 'nock';
 import thunk from 'redux-thunk';
-const apiUrl = 'http://localhost:3000/api/v1';
+const apiUrl = 'http://localhost:9000/api/v1';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);

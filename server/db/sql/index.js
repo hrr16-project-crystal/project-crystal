@@ -36,6 +36,7 @@ module.exports = {
     findById: sql('users/findById.sql'),
     findByEmail: sql('users/findByEmail.sql'),
     addFirstUser: sql('users/addFirstUser.sql'),
+    addToken: sql('users/addToken.sql'),
     addSecondUser: sql('users/addSecondUser.sql'),
     removeById: sql('users/removeById.sql'),
     updateExistingCouple: sql('users/updateExistingCouple.sql'),
