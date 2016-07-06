@@ -1,6 +1,8 @@
-# Project Name
+# Sparkq
+[![Build Status](https://img.shields.io/travis/project-crystal/project-crystal/master.svg)](https://travis-ci.org/project-crystal/project-crystal)
+[![Coverage Status](https://img.shields.io/coveralls/project-crystal/project-crystal/master.svg)](https://coveralls.io/github/project-crystal/project-crystal?branch=master)
 
-> Sparkq — an app for couples.
+> An app for couples.
 
 ## Team
 
