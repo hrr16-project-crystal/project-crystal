@@ -2,7 +2,7 @@
 unit tests client - mocha, karma  **
 unit tests server - mocha  **
 integration tests - supertest  **
-code coverage - coveralls **
+code coverage - coveralls/istanbul **
 end to end tests - casper - maybe
 visual tests - phantomcss - maybe
 continuous integration - travis-ci  **
@@ -49,8 +49,12 @@ describe('Meter', () => {
       quiz: {},
     });
   });
-  
-  
+
+  it('should render a TodoAdd component', () => {
+    const wrapper = mount(<Provider store={store}>
+      <TodoList /></Provider>);
+    expect(wrapper.find(TodoAdd)).to.have.length(0);
+  });
   
   
 });
