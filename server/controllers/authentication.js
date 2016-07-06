@@ -98,3 +98,26 @@ exports.signup = (req, res, next) => {
     })
     .catch(err => next(err));
 };
+
+exports.fitbitHandler = (req, res, next) => {
+  const accessToken = req.access_token;
+  const refreshToken = req.refresh_token;
+  const tokens = {
+    access_token: accessToken,
+    refresh_token: refreshToken,
+    user_id: req.userID,
+  };
+  Users.addToken(tokens)
+  .then(data => {
+    console.log(data)
+    return res.status(200)
+      .json({
+        success: true,
+        data,
+      });
+  })
+  .catch(err => {
+    console.log(err);
+  });
+};
+

@@ -1,13 +1,13 @@
-import { AUTH_FITBIT, FETCH_STATS } from '../../helpers/constants/types';
+import { FITBIT_AUTH_TOKEN, FETCH_ACTIVITY_STATS } from '../../helpers/constants/types';
 
 export default (state = {}, action) => {
   switch (action.type) {
-    case AUTH_FITBIT:
+    case FITBIT_AUTH_TOKEN:
       // Connect state.calendar.event with result of the createEvent action
-      return { ...state, approved: true };
-    case FETCH_STATS:
+      return { ...state, accessToken: action.payload };
+    case FETCH_ACTIVITY_STATS:
       // Connect state.calendar.events with result of the fetchEvent action
-      return { ...state, stats: action.payload };
+      return { ...state, activity: action.payload };
   }
   return state;
 }

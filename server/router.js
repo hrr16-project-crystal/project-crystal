@@ -10,7 +10,6 @@ const requireAuth = passport.authenticate('jwt', { session: false });
 const requireSignin = passport.authenticate('local', { session: false });
 const facebookSignin = passport.authenticate('facebook');
 const facebookSigninCallback = passport.authenticate('facebook', { failureRedirect: '/login' });
-const fitbitAuth = passport.authenticate('fitbit', { scope: ['activity', 'nutrition'] });
 
 module.exports = (app) => {
   app.get('/', requireAuth, (req, res) => {
@@ -24,21 +23,25 @@ module.exports = (app) => {
 
   app.get('/auth/fitbit/callback', (req, res, next) => {
     const code = req.query.code;
-    axios.post(`https://api.fitbit.com/oauth2/token?client_id=${fitbit.fitbitConfig.clientID}&grant_type=authorization_code&code=${code}&redirect_uri=http://localhost:3000/auth/fitbit/callback`, null, {
+    const userID = req.query.state;
+    axios.post(`https://api.fitbit.com/oauth2/token?client_id=${fitbit.fitbitConfig.clientID}&grant_type=authorization_code&code=${code}&redirect_uri=http://localhost:3000/auth/fitbit/callback&state=${userID}`, null, {
       headers: {
         Authorization: `Basic ${new Buffer(`${fitbit.fitbitConfig.clientID}:${fitbit.fitbitConfig.clientSecret}`).toString('base64')}`,
         'Content-Type': 'application/x-www-form-urlencoded',
       },
     })
     .then(response => {
-      console.log(response.data);
-      // Need to store access token for this user...
-      res.redirect(`/dashboard&access_token=${response.data.refresh_token}`);
+      console.log('IN THEN ROUTER.js');
+      req.userID = Number(userID);
+      req.access_token = response.data.access_token;
+      req.refresh_token = response.data.refresh_token;
+      next();
     })
     .catch(err => {
+      console.log('IN CATCH FOR ROUTER.JS');
       console.log(err.data.errors);
-    })
-  });
+    });
+  }, Authentication.fitbitHandler);
   // Signin and signup routes
   app.post('/signin', requireSignin, Authentication.signin);
   app.post('/signup', Authentication.signup);

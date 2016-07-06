@@ -4,7 +4,12 @@ import {
   AUTH_ERROR,
   FETCH_MESSAGE,
 } from '../../helpers/constants/types';
-
+// const INITIAL_STATE = {
+//   user: null,
+//   authenticated: false,
+//   error: '',
+//   message: null,
+// }
 
 export default (state = {}, action) => {
   switch (action.type) {
