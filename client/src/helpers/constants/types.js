@@ -17,4 +17,6 @@ export const DELETED_TODO = 'DELETED_TODO';
 export const IS_TYPING = 'IS_TYPING';
 export const JOINED_ROOM = 'JOINED_ROOM';
 export const YELP_REQUEST = 'YELP_REQUEST';
-
+export const CHANGE_POINTS = 'CHANGE_POINTS';
+export const GET_LOVEBUCK_INFO = 'GET_LOVEBUCK_INFO';
+export const ADD_TRANSACTION = 'ADD_TRANSACTION';

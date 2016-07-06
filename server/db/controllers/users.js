@@ -89,6 +89,11 @@ module.exports = rep => {
       });
     },
 
+    //Alter LoveBucks balance
+    updateBucks: (points,partner) => 
+      rep.one(sql.updateBucks, [points, partner], user => 
+        user),
+
     // Returns all user records;
     all: () =>
       rep.any(sql.all),

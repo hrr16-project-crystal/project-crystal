@@ -11,5 +11,6 @@ CREATE TABLE Users
     email text NOT NULL UNIQUE, 
     password text NOT NULL,
     couple_id integer NOT NULL,
+    love_bucks integer NOT NULL DEFAULT 0,
     FOREIGN KEY (couple_id) REFERENCES Couples(couple_id) ON DELETE CASCADE ON UPDATE CASCADE
 );

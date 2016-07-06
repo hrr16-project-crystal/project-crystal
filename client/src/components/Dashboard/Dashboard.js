@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Header from '../App/Header';
 import Meter from '../Meter/Meter';
 import ChatCard from '../Chat/ChatCard';
+import BucksCard from '../LoveBucks/BucksCard';
 import CalendarCard from '../Calendar/CalendarCard';
 import TodoCard from '../ToDo/TodoCard';
 import img from '../../assets/10.jpg';
@@ -25,12 +26,11 @@ class Dashboard extends Component {
             <div className="parallax"><img src={img}/></div>
           </div>
         </div>
-        <div className="dashContainer">
-          <Meter />
-        </div>
         <div className="row">
+          <Meter />
           <ChatCard />
           <CalendarCard />
+          <BucksCard />
           <TodoCard />
         </div>
       </div>

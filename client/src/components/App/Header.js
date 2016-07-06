@@ -44,7 +44,7 @@ class Header extends Component {
   render() {
     return (
       <nav className="nav">
-        <Link to="/" className="logo">Spark</Link>
+        <Link to="/" className="logo">Sparkq</Link>
         <ul className="menu">
           {this.renderLinks()}
         </ul>

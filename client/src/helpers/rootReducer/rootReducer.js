@@ -7,6 +7,7 @@ import calendarReducer from '../../components/Calendar/calendarReducer';
 import messageReducer from '../../components/Chat/messageReducer';
 import todoReducer from '../../components/ToDo/todoReducer';
 import dateNightReducer from '../../components/DateNight/dateNightReducer';
+import buckReducer from '../../components/LoveBucks/buckReducer';
 
 const rootReducer = combineReducers({
   form,
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   messages: messageReducer,
   todo: todoReducer,
   yelp: dateNightReducer,
+  lovebucks: buckReducer,
 });
 
 export default rootReducer;

@@ -100,7 +100,7 @@ class Meter extends Component {
     let pieOptions = {
       legend: 'none',
       // pieSliceText: 'value',
-      title: 'Spark Score ™',
+      title: 'Sparkq Score ™',
       pieHole: 0.75,
       animation: {
         startup: true,
@@ -193,8 +193,8 @@ class Meter extends Component {
       <div>
         <div className="data">
           <div className="data__header">Relationship Health Meter</div>
-          <div className="data_chart data_chart--half data_chart--left">
-            <span className="personalScore">{sparkScore}</span>
+          <div className="data_chart data_chart--half data_chart--left valign-wrapper">
+            <span className="personalScore valign">{sparkScore}</span>
             <Chart chartType = "PieChart" data = {pieData} options = {pieOptions} width={"100%"} height={"250px"} chartPackages={undefined}/>
           </div>
           <div className="data_chart data_chart--half">
@@ -228,7 +228,7 @@ class Meter extends Component {
     }
 
     return (
-      <div>
+      <div className="col s12">
         <div>
         {this.renderStats()}
         </div>

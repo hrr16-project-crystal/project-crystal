@@ -5,7 +5,6 @@ import axios from 'axios';
 // browserHistory can be used to make changes to the URL for programmatic navigation
 import { browserHistory } from 'react-router';
 import { AUTH_USER, AUTH_ERROR, UNAUTH_USER, FETCH_MESSAGE } from '../../helpers/constants/types';
-const apiUrl = 'http://localhost:3000';
 
 // Pass a string and it will send an error message to all components
 export const authError = error => {
@@ -25,7 +24,7 @@ export const signinUser = ({ email, password, couple_id }) => {
   return (dispatch) => {
     // Submit email/password to the server
     // email => email: email && password => password: password
-    axios.post(`${apiUrl}/signin`, { email, password, couple_id })
+    axios.post('/signin', { email, password, couple_id })
     // if request is good,
     .then(response => {
       // update the state to indicate the user is authenticated
@@ -55,7 +54,7 @@ export const signoutUser = () => {
 
 export const signupUser = ({ firstName, lastName, email, password, couple, otherEmail }) => {
   return (dispatch) => {
-    axios.post(`${apiUrl}/signup`, { firstName, lastName, email, password, couple, otherEmail })
+    axios.post('/signup', { firstName, lastName, email, password, couple, otherEmail })
     .then(response => {
       dispatch({ type: AUTH_USER, payload: response.data });
       localStorage.setItem('token', response.data.token);
@@ -69,7 +68,7 @@ export const signupUser = ({ firstName, lastName, email, password, couple, other
 
 export const fetchMessage = () => {
   return (dispatch) => {
-    axios.get(apiUrl, {
+    axios.get('/', {
       headers: { authorization: localStorage.getItem('token') },
     })
     .then(response => {
