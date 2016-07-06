@@ -9,7 +9,9 @@
     "start": "npm run clean && concurrently \"npm run build\" \"nodemon server/server.js\"",
     "generate-docs": "node_modules/.bin/jsdoc -c jsdoc.json",
     "test": "mocha --compilers js:babel-core/register --require ./client/src/tests/testHelper.js --recursive ./client/src/tests/",
-    "test:watch": "npm run test -- --watch"
+    "test:watch": "npm run test -- --watch",
+    "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --compilers js:babel/register --colors --reporter dot test/",
+    "test-travis": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --compilers js:babel/register --colors --reporter spec test/"
   },
   "repository": {
     "type": "git",
@@ -85,10 +87,10 @@
     "ignore-styles": "^4.0.0",
     "image-webpack-loader": "^1.8.0",
     "isomorphic-style-loader": "^1.0.0",
+    "istanbul": "^0.4.4",
     "jquery": "^3.0.0",
     "jsdom": "^9.3.0",
     "mocha": "^2.5.3",
-    "mocha-lcov-reporter": "^1.2.0",
     "nock": "^8.0.0",
     "postcss-loader": "^0.9.1",
     "precss": "^1.4.0",
