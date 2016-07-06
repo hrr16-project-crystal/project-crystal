@@ -47,7 +47,7 @@
 .form-group {
   color: #9e9e9e;
   border: none;
-  margin: 36px 0;
+  margin: 8px 0;
   padding: 0;
 }
 
@@ -63,7 +63,7 @@
 }
 
 .signin--box__title {
-  padding: 12vh 0 24px;
+  padding: 1vh 0 24px;
   text-align: center;
   color: #4dd0e1;
   font-size: 20px;
@@ -101,6 +101,18 @@ input:-webkit-autofill:active {
   -webkit-text-fill-color: white !important;
 }
 
-input {
+.auth__input {
   color: #fff;
+}
+
+.form__question {
+  font-size: 1em;
+}
+
+.form__btn {
+  font-size: 1.12em;
+}
+
+.form__words {
+  font-size: .882em;
 }

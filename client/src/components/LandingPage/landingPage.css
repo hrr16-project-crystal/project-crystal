@@ -5,7 +5,7 @@
 
 .hero__overlay {
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .hero__header nav {
@@ -22,12 +22,12 @@
 .hero__promo__pretitle {
   text-transform: uppercase;
   letter-spacing: .26em;
-  font-size: 17px;
+  font-size: 20px;
   font-weight: 500;
 }
 
 .hero__promo__title {
-  font-size: 82px;
+  font-size: 85px;
   line-height: 65px;
   font-weight: 500;
   margin: 36px 0 12px;
@@ -78,4 +78,14 @@
   background-color: #e57373;
   border: 1px solid #e57373;
   color: #fafafa;
+}
+
+.learn__box {
+  padding-top: 122px;
+  padding-left: 200px;
+  padding-right: 200px;
+}
+
+.something {
+  background: url("../../assets/1.jpg");
 }

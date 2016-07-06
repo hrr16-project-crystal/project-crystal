@@ -1,14 +1,13 @@
 const Yelp = require('yelp');
- 
-const yelpConfig = new Yelp({
-  consumer_key: ,
-  consumer_secret: ,
-  token: ,
-  token_secret: ,
-});
 
-const yelp = new Yelp(clientSecret.yelpConfig);
+const yelpConfig = {
+  consumer_key: process.env.YELP_KEY,
+  consumer_secret: process.env.YELP_CONSECRET,
+  token: process.env.YELP_TOKEN,
+  token_secret: process.env.YELP_TOKENSECRET,
+};
 
+const yelp = new Yelp(yelpConfig);
 const express = require('express');
 const router = express.Router();
 

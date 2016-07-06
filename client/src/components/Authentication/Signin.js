@@ -40,17 +40,17 @@ class Signin extends Component {
                 Self awareness in a relationship makes all the difference...</h6>
               <fieldset className="form-group">
                 <div className="input-field">
-                  <input type="email" className="form-control validate" {...email} />
+                  <input type="email" className="auth__input form-control validate form__input__general" {...email} />
                   <label>
                     <i className="icon material-icons">email</i>
-                    Email:
+                    <span className='form__words'>Email:</span>
                   </label>
                 </div>
               </fieldset>
               <fieldset className="form-group">
                 <div className="input-field">
                   <input type="password"
-                         className="form-control validate" {...password} />
+                         className="auth__input form-control validate form__input__general" {...password} />
                   <label>
                     <i className="icon material-icons">lock</i>
                     Password:
@@ -60,7 +60,7 @@ class Signin extends Component {
               <div className="signin__btn">
                 <button
                   action="submit"
-                  className="btn btn-primary waves-effect waves-light btn-large"
+                  className="form__btn btn btn-primary waves-effect waves-light btn-large"
                 >Sign In
                 </button>
                 <div className="signin__alert">
