@@ -21,4 +21,36 @@ const middleware = [thunk];
 const mockStore = configureMockStore(middleware);
 
 describe('Meter', () => {
+  let store;
+  beforeEach(() => {
+    store = mockStore({
+      auth: { 
+        user: { 
+          data: { 
+            couple_id: 1 
+          } 
+        } 
+      },
+      meter: {
+        health: {
+          data: {
+            score: 7,
+            respect_score: 1,
+            communication_score: 1,
+            intimacy_score: 2,
+            generosity_score: 5,
+            spontaneity_score: 6,
+          }
+        }
+      },
+      calendar: {},
+      form: {},
+      messages: {},
+      quiz: {},
+    });
+  });
+  
+  
+  
+  
 });
