@@ -4,7 +4,7 @@ import { GET_MESSAGES, ADD_MESSAGE } from '../../helpers/constants/types';
 import configureMockStore from 'redux-mock-store';
 import nock from 'nock';
 import thunk from 'redux-thunk';
-const apiUrl = 'http://localhost:3000/api/v1';
+const apiUrl = 'api/v1';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);

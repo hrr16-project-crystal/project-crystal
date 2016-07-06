@@ -1,5 +1,8 @@
+'use strict';
 const io = require('socket.io');
 const Messages = require(__dirname + '/../db/index').db.messages;
+const Couples = require(__dirname + '/../db/index').db.couples;
+const brain = require('../helpers/brain');
  
 
 module.exports = (server) => {
@@ -17,6 +20,14 @@ module.exports = (server) => {
       if (action.type === 'server/message'){
         Messages.add(action.data)
           .then(data => {
+            console.log(data.content);
+            let messageTone = (brain(data.content));
+            if (messageTone === 'good'){
+              console.log('This should be a couple id',data.couple_id);
+              Couples.updateScore(.1, data.couple_id);
+            } else {
+              Couples.updateScore(-.1, data.couple_id);
+            }
             socketServer.sockets.in(data.couple_id).emit('action', {type:'ADD_MESSAGE', data: data}); //in(data.couple_id)
           })
           .catch(err => {

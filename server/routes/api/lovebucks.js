@@ -11,7 +11,6 @@ const pgp = require(__dirname + '/../../db/index').pgp;
 router.get('/lovebucks/:id', (req, res, next) => {
   Lovebucks.findByCoupleId(req.params.id)
     .then(data => {
-      console.log(data);
       return res.status(200)
         .json({
           success: true,
@@ -20,9 +19,7 @@ router.get('/lovebucks/:id', (req, res, next) => {
     });
 });
 
-// add new message and return newly added message
 router.post('/lovebucks', (req, res, next) => {
-  console.log('about to add to db', req.body);
   //find partner id
   const newGift = req.body;
   let foundPartner;
@@ -42,18 +39,15 @@ router.post('/lovebucks', (req, res, next) => {
   } else {
     Couples.getBothUsers(req.body.couple_id)
       .then(couple => {
-        console.log(couple);
         couple.forEach( partner => {
           if (partner.user_id !== newGift.user_id){
             foundPartner = partner;
           }
         });
-
-        // add points to partner
-        console.log('found partner', foundPartner.user_id);
+        //add transaction and return points
         Lovebucks.add(newGift)
           .then(data => {
-            console.log('ADDED lovebuck transaction');
+            // add points to partner
             Users.updateBucks(+newGift.points, foundPartner.user_id)
             .then(updated => {
               return res.status(200)
@@ -72,7 +66,6 @@ router.post('/lovebucks', (req, res, next) => {
       })
     }
 
-  //add transaction and return points
   
 });
 
