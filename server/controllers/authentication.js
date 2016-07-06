@@ -41,8 +41,8 @@ exports.signup = (req, res, next) => {
   const defaultEvent = {
     title: 'Welcome!',
     description: 'This is the default event for our calendar!',
-    start_date: '2016-06-30T06:00:00.000Z',
-    end_date: '2016-06-30T15:00:00.000Z',
+    start_date: '2016-07-15T10:00:00.000Z',
+    end_date: '2016-07-15T20:00:00.000Z',
     category: 'Misc',
   };
 
