@@ -110,7 +110,6 @@ exports.fitbitHandler = (req, res, next) => {
   };
   Users.addToken(tokens)
   .then(data => {
-    console.log(data)
     return res.status(200)
       .json({
         success: true,
