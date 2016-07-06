@@ -67,11 +67,15 @@ module.exports = rep => {
     updateScore: (scoreObj, coupleId) => {
       // rep.oneOrNone(sql.updateScore, [coupleId, scoreObj], couple =>
       //   couple),
+      console.log('AAAAAAAAAAAAAAAAAAAAAAAAAA',coupleId, scoreObj);
       // Grab current scores (can we use sql query to insert something and it will
-      return rep.one(sql.updateScore, [
+      return typeof scoreObj === 'object' ?
+      rep.one(sql.updateScore, [
         coupleId, scoreObj.Total, scoreObj.Respect, scoreObj.Communication,
         scoreObj.Intimacy, scoreObj.Generosity, scoreObj.Spontaneity,
-      ]);
+      ])
+      : rep.one(sql.updateTotalScore, [scoreObj, coupleId]);
+
       // existing value of the row -- as part of the writing operation)
       // Average them with new scores
       // Then, insert average into the table

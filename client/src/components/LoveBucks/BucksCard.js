@@ -23,7 +23,7 @@ class BucksCard extends Component {
         <div className="card white" >
           <div className="card-content">
             <h5 className="center-align">Lovebucks</h5>
-            <p>Total: {this.props.lovebucks.user_points}</p>
+            <p>Total: {this.props.user.data.love_bucks}</p>
             <Buck user={this.props.user}
                   givePoints={this.props.givePoints}
                   lovebucks={this.props.lovebucks}
