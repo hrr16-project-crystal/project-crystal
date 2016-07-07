@@ -383,8 +383,7 @@ class Meter extends Component {
       <div className="card">
         <h5 className="card__header">Relationship Health Meter</h5>
         <div className="card-content">
-          <div className="test card col s12 m6 l6">
-            {/*<span className="personalScore valign">{sparkScore}</span>*/}
+          <div className="card col s12 m6 l6">
             <Chart chartType = "PieChart" data = {pieData} options = {pieOptions} width={"100%"} height={"250px"} chartPackages={undefined}/>
           </div>
           <div className="test card col s12 m6 l6">
