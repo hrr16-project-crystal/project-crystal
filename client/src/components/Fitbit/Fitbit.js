@@ -10,12 +10,15 @@ const fitbitURL = 'https://www.fitbit.com/oauth2/authorize?response_type=code&cl
 const scope = 'scope=activity%20nutrition';
 // import { fitbitConfig } from '../../../../server/config';
 const fitbitConfig = {
- clientID: process.env.FIT_CLIENTID,
- clientSecret: process.env.FIT_CLIENTSECRET,
- callbackURI: process.env.FIT_URI,
+  // clientID: process.env.FIT_CLIENTID,
+  clientID: '227VRH',
+  // clientSecret: process.env.FIT_CLIENTSECRET,
+  clientSecret: '9f8477ffa2a7d1a168febef2e2b457d6',
+  //callbackURI: process.env.FIT_URI,
+  callbackURI: 'http://localhost:9000/auth/fitbit/callback'
 };
 const clientID = fitbitConfig.clientID;
-const callbackURI = fitbitConfig.URI;
+const callbackURI = fitbitConfig.callbackURI;
 
 let authToken1 = '';
 let authToken2 = '';
@@ -120,6 +123,9 @@ class Fitbit extends Component {
 
   handleClick() {
     const userID = this.props.user.data.user_id;
+    console.log(clientID);
+    console.log(process.env.FIT_CLIENTID);
+    console.log(fitbitConfig.clientID);
     window.open(`${fitbitURL}=${clientID}&redirect_uri=${callbackURI}&${scope}&state=${userID.toString()}`);
   }
 
