@@ -10,6 +10,8 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import './calendar.css';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
+import find from 'lodash/find';
+import merge from 'lodash/merge'; 
 
 class Calendar extends Component {
   constructor(props) {
@@ -33,6 +35,18 @@ class Calendar extends Component {
   componentWillMount() {
     this.props.fetchEvents(this.props.user.data.couple_id);
   }
+
+  componentDidMount(){
+    /** RF: This involves race conditions, assumes fetchEvents populates props quickly enough... 
+    Possibly place in better lifecycle hook.. */
+    if (this.props.params.eventId && this.props.events.data) {
+      this.setState({
+        open: true,
+        eventBox: find(this.props.events.data, { event_id: parseInt(this.props.params.eventId) }),
+      });
+    }
+  }
+
 
   // Get all events for the couple
   getEvents() {
@@ -138,7 +152,7 @@ class Calendar extends Component {
         <div>
           <Header />
           
-          <h1>The url router filter should be: {this.props.params.event ? this.props.params.event : 'it didnt have anything'}</h1>
+          <h1>The url router filter should be: {this.props.params.eventId ? this.props.params.eventId : 'it didnt have anything'}</h1>
         
           <div className="container">
             <CreateEvent />

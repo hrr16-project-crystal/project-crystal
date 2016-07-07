@@ -18,9 +18,6 @@ class Header extends Component {
         <li className="menu__item" key={2}>
           <Link to="/calendar" className="menu__link">Calendar</Link>
         </li>,
-        <li className="menu__item" key={3}>
-          <Link to="/calendar/92891" className="menu__link">Calendar with event id as params.props</Link>
-        </li>,
         <li className="menu__item" key={4}>
           <Link to="/todo" className="menu__link">To-Do's</Link>
         </li>,
