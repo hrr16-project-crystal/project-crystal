@@ -8,9 +8,6 @@ iisnode.yml
 # Build files
 client/build
 
-# Secrets
-.env
-
 # Node modules
 node_modules/
 
