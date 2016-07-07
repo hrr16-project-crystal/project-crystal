@@ -381,8 +381,8 @@ class Meter extends Component {
     // Then in pie options, make slice 0 text color trandparent.
     return (
       <div className="card col s12">
+        <h5 className="card__header">Relationship Health Meter</h5>
         <div className="card-content">
-          <div className="card__header">Relationship Health Meter</div>
           <div className="card col s12 m6 l6">
             {/*<span className="personalScore valign">{sparkScore}</span>*/}
             <Chart chartType = "PieChart" data = {pieData} options = {pieOptions} width={"100%"} height={"250px"} chartPackages={undefined}/>

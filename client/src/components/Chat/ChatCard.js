@@ -27,8 +27,8 @@ class ChatCard extends Component {
     return (
       <div className="chat-card col s12 m6 l6">
         <div className="card white card-height">
+          <h5 className="center-align card__header">Chat</h5>
           <div className="card-content black-text">
-            <h5 className="center-align card__header">Chat</h5>
             <MessageList
               user_id={this.props.user.data.user_id} 
               couple_id={this.props.user.data.couple_id} 

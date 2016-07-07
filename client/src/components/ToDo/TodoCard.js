@@ -68,8 +68,8 @@ class TodoCard extends Component {
     return (
       <div className="col s12 m6 l6">
         <div className="card white card-height">
+          <h5 className="center-align card__header">Recent To-do's</h5>
           <div className="card-content">
-            <h4 className="center-align card__header">Recent To-do's</h4>
             <div className="row">
               {this.renderTodos()}
             </div>
