@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from './dateNightActions';
 import Header from '../App/Header';
+import Footer from '../App/Footer';
+import CreateEvent from '../Calendar/CreateEvent';
 import './date.css';
 
 class DateNight extends Component {
@@ -38,6 +40,7 @@ class DateNight extends Component {
               </div>
             </div>
           </div>
+          <Footer />
         </div>
       );
     }
@@ -53,11 +56,12 @@ class DateNight extends Component {
                 <input className='date__input' onChange={this.handleChange} type="text" value={this.state.text} placeholder="Search by City" autoFocus={true} />
                 <button className="date__btn waves-effect waves-light btn" type="submit">Submit</button>
               </form>
+
             </div>
             <div className='date__overallCard'>
               
               {this.props.places.map(eats => 
-                <div className="card small date__card">
+                <div className="card small date__card" key={eats.id} >
                   <div className="card-image waves-effect waves-block waves-light">
                     <img className="activator" src={eats.image_url}></img>
                   </div>
@@ -71,6 +75,7 @@ class DateNight extends Component {
                     <p>Phone #: {eats.display_phone}</p>
                     <p>Address: {eats.location.address} {eats.location.city}, {eats.location.state_code} {eats.location.postal_code}</p>
                     <p>Currently Open: {eats.is_closed ? 'No' : 'Yes'}</p>
+                    <CreateEvent title={eats.name} description={eats.location.address} activity={'dinner'} />
                   </div>
                 </div>
               )}
@@ -78,6 +83,7 @@ class DateNight extends Component {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     );
   };

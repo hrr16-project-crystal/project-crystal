@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
 import * as actions from './authAction';
+import Footer from '../App/Footer';
 import './auth.css';
+import { Link } from 'react-router';
 
 class Signup extends Component {
   constructor(props) {
@@ -34,12 +36,13 @@ class Signup extends Component {
       <div className="signup--box">
         <div className="hero__overlay">
           <div className="signin__overlay">
+            <Link to="/" className="logo__auth">Sparkq</Link>
             <form onSubmit={handleSubmit(this.handleFormSubmit)}>
               <h6 className="signup--box__title">A better relationship is right
                 around the corner...</h6>
               <fieldset className="form-group">
                 <div className="input-field">
-                  <input id="firstname" type="text" className="form-control validate" {...firstName} />
+                  <input id="firstname" type="text" className="auth__input form-control validate" {...firstName} />
                   <label for="firstname">
                     <i className="icon material-icons">person_pin</i>
                     First Name:</label>
@@ -49,7 +52,7 @@ class Signup extends Component {
               </fieldset>
               <fieldset className="form-group">
                 <div className="input-field">
-                  <input type="text" className="form-control validate" {...lastName} />
+                  <input type="text" className="auth__input form-control validate" {...lastName} />
                   <label>
                     <i className="icon material-icons">person_pin</i>
                     Last Name:
@@ -60,7 +63,7 @@ class Signup extends Component {
               </fieldset>
               <fieldset className="form-group">
                 <div className="input-field">
-                  <input type="email" className="form-control validate" {...email} />
+                  <input type="email" className="auth__input form-control validate" {...email} />
                   <label>
                     <i className="icon material-icons">email</i>
                     Email:
@@ -72,7 +75,7 @@ class Signup extends Component {
               <fieldset className="form-group">
                 <div className="input-field">
                   <input type="password"
-                         className="form-control validate" {...password} />
+                         className="auth__input form-control validate" {...password} />
                   <label>
                     <i className="icon material-icons">lock</i>
                     Password:
@@ -84,7 +87,7 @@ class Signup extends Component {
               <fieldset className="form-group">
                 <div className="input-field">
                   <input type="password"
-                         className="form-control validate" {...passwordConfirm} />
+                         className="auth__input form-control validate" {...passwordConfirm} />
                   <label>
                     <i className="icon material-icons">lock</i>
                     Confirm Password:
@@ -94,7 +97,7 @@ class Signup extends Component {
                 </div>
               </fieldset>
               <fieldset className="form-group">
-                <label>Would you like to start a new couple?</label>
+                <label className="form__question">Would you like to start a new couple?</label>
                 <div>
                   <select className="signup-questions" {...couple}>
                     <option>Select an answer...</option>
@@ -110,19 +113,23 @@ class Signup extends Component {
                   hidden={this.props.fields.couple.value === 'no' ? false : true}
                 >
                   <input type="email"
-                         className="form-control" {...otherEmail} />
-                  <label>Partner's Email:</label>
+                         className="auth__input form-control" {...otherEmail} />
+                  <label>
+                    <i className="icon material-icons">email</i>
+                    Partner's Email:
+                  </label>
                 </div>
               </fieldset>
               {this.renderAlert()}
               <button
                 action="Submit"
-                className="btn btn-primary waves-effect waves-light"
+                className="form__btn btn btn-primary waves-effect waves-light"
               >Signup
               </button>
             </form>
           </div>
         </div>
+        <Footer />
       </div>
     );
   }

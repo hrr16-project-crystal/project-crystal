@@ -18,6 +18,7 @@ import TodoList from './components/ToDo/TodoList';
 import DateNight from './components/DateNight/DateNight';
 import requireAuth from './components/Authentication/RequireAuth';
 import LandingPage from './components/LandingPage/LandingPage';
+import LearnMore from './components/LandingPage/LearnMore';
 import Meter from './components/Meter/Meter';
 import Calendar from './components/Calendar/Calendar';
 
@@ -55,6 +56,7 @@ render(
         <Route path="signout" component={Signout} />
         <Route path="signup" component={Signup} />
         {/*<Route path="dashboard/:access_token" component={requireAuth(Dashboard)} />*/}
+        <Route path="learnmore" component={LearnMore} />
         <Route path="dashboard" component={requireAuth(Dashboard)} />
         <Route path="meter" component={Meter} />
         <Route path="quiz" component={Quiz} />

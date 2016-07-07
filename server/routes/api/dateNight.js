@@ -1,10 +1,18 @@
-// var yelp = require ('../../server');
-
-const clientSecret = require('../../config');
 const Yelp = require('yelp');
- 
-const yelp = new Yelp(clientSecret.yelpConfig);
 
+const YELP_KEY = new Buffer(process.env.YELP_KEY).toString();
+const YELP_CONSECRET = new Buffer(process.env.YELP_CONSECRET).toString();
+const YELP_TOKEN = new Buffer(process.env.YELP_TOKEN).toString();
+const YELP_TOKENSECRET = new Buffer(process.env.YELP_TOKENSECRET).toString();
+
+const yelpConfig = {
+  consumer_key: YELP_KEY,
+  consumer_secret: YELP_CONSECRET,
+  token: YELP_TOKEN,
+  token_secret: YELP_TOKENSECRET,
+};
+
+const yelp = new Yelp(yelpConfig);
 const express = require('express');
 const router = express.Router();
 

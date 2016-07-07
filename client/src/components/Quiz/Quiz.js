@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import Header from '../App/Header';
+import Footer from '../App/Footer';
 import FirstQuestion from './FirstQuestion';
 import SecondQuestion from './SecondQuestion';
 import ThirdQuestion from './ThirdQuestion';
@@ -57,6 +58,7 @@ class Quiz extends Component {
           </div>
           </div>
       </div>
+      <Footer />
     </div>
     )
   }

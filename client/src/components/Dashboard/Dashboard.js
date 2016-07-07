@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import * as actions from './meterAction';
 import Header from '../App/Header';
+import Footer from '../App/Footer';
 import Meter from '../Meter/Meter';
 import ChatCard from '../Chat/ChatCard';
 import BucksCard from '../LoveBucks/BucksCard';
@@ -45,6 +46,7 @@ class Dashboard extends Component {
           <TodoCard />
           <Fitbit />
         </div>
+        <Footer />
       </div>
     );
   }

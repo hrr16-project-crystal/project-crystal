@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from './todoAction';
 import Header from '../App/Header';
+import Footer from '../App/Footer';
 import TodoAdd from './TodoAdd';
 import './todo.css';
 import moment from 'moment';
@@ -68,6 +69,7 @@ class TodoList extends Component {
           
           </div>
         </div>
+        <Footer />
       </div>
     )
   }

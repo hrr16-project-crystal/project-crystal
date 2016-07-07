@@ -44,3 +44,7 @@
 .date__rating {
   display: block;
 }
+
+.date__input {
+  color: #fff;
+}

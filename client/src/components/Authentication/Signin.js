@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
 import * as actions from './authAction';
+import Footer from '../App/Footer';
 import './auth.css';
+import { Link } from 'react-router';
 
 class Signin extends Component {
   constructor(props) {
@@ -35,22 +37,23 @@ class Signin extends Component {
       <div className="signin--box">
         <div className="hero__overlay">
           <div className="signin__overlay">
+            <Link to="/" className="logo__auth">Sparkq</Link>
             <form onSubmit={handleSubmit(this.handleFormSubmit)}>
               <h6 className="signin--box__title">
                 Self awareness in a relationship makes all the difference...</h6>
               <fieldset className="form-group">
                 <div className="input-field">
-                  <input type="email" className="form-control validate" {...email} />
+                  <input type="email" className="auth__input form-control validate form__input__general" {...email} />
                   <label>
                     <i className="icon material-icons">email</i>
-                    Email:
+                    <span className='form__words'>Email:</span>
                   </label>
                 </div>
               </fieldset>
               <fieldset className="form-group">
                 <div className="input-field">
                   <input type="password"
-                         className="form-control validate" {...password} />
+                         className="auth__input form-control validate form__input__general" {...password} />
                   <label>
                     <i className="icon material-icons">lock</i>
                     Password:
@@ -60,7 +63,7 @@ class Signin extends Component {
               <div className="signin__btn">
                 <button
                   action="submit"
-                  className="btn btn-primary waves-effect waves-light btn-large"
+                  className="form__btn btn btn-primary waves-effect waves-light btn-large"
                 >Sign In
                 </button>
                 <div className="signin__alert">
@@ -70,6 +73,7 @@ class Signin extends Component {
             </form>
           </div>
         </div>
+        <Footer />
       </div>
     );
   }
