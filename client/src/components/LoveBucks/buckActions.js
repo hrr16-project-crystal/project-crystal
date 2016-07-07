@@ -6,11 +6,10 @@ export const givePoints = (giftInfo) => {
   return dispatch => {
     axios.post('/api/v1/lovebucks', giftInfo)
       .then(response => {
-        console.log('added',response);
-        // dispatch({
-        //   type: ADD_TRANSACTION,
-        //   payload: response.data.data,
-        // });
+        dispatch({
+          type: ADD_TRANSACTION,
+          payload: response.data.updated.love_bucks,
+        });
       });
   };
 };
