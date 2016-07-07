@@ -137,6 +137,9 @@ class Calendar extends Component {
       {/* Default render: Renders the Header, CreateEvent button, and BigCalendar */}
         <div>
           <Header />
+          
+          <h1>The url router filter should be: {this.props.params.event ? this.props.params.event : 'it didnt have anything'}</h1>
+        
           <div className="container">
             <CreateEvent />
             <BigCalendar

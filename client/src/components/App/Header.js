@@ -5,6 +5,9 @@ import { Link } from 'react-router';
 import './app.css';
 
 class Header extends Component {
+
+ 
+
   renderLinks() {
     if (this.props.authenticated) {
       // show link to sign out
@@ -16,15 +19,18 @@ class Header extends Component {
           <Link to="/calendar" className="menu__link">Calendar</Link>
         </li>,
         <li className="menu__item" key={3}>
-          <Link to="/todo" className="menu__link">To-Do's</Link>
+          <Link to="/calendar/92891" className="menu__link">Calendar with event id as params.props</Link>
         </li>,
         <li className="menu__item" key={4}>
-          <Link to="/quiz" className="menu__link">Quiz</Link>
+          <Link to="/todo" className="menu__link">To-Do's</Link>
         </li>,
         <li className="menu__item" key={5}>
-          <Link to="/dashboard" className="menu__link">Dashboard</Link>
+          <Link to="/quiz" className="menu__link">Quiz</Link>
         </li>,
         <li className="menu__item" key={6}>
+          <Link to="/dashboard" className="menu__link">Dashboard</Link>
+        </li>,
+        <li className="menu__item" key={7}>
           <Link to="/signout" className="menu__link">Sign Out</Link>
         </li>,
       ];
@@ -52,6 +58,7 @@ class Header extends Component {
     );
   }
 }
+
 
 const mapStateToProps = state => {
   return {

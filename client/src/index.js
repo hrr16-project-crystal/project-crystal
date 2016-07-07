@@ -60,7 +60,7 @@ render(
         <Route path="dashboard" component={requireAuth(Dashboard)} />
         <Route path="meter" component={Meter} />
         <Route path="quiz" component={Quiz} />
-        <Route path="calendar" component={Calendar} />
+        <Route path="calendar(/:event)" component={Calendar} />
         <Route path="todo" component={TodoList} />
         <Route path="dateNight" component={DateNight} />
       </Route>

@@ -25,3 +25,6 @@ export default (state = {}, action) => {
   }
   return state;
 }
+
+/*** Selectors */
+export const getUser = (state) => state.auth.user;
