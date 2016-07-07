@@ -55,7 +55,7 @@ export default class History extends React.Component {
               return (
                 <li key={`trans-${index}`} className='trans-item'>
                   <p className={`transaction`}>
-                    {name} { trans.type === 0 ? 'gave' : 'spent' } {Math.abs(trans.points)} points for {trans.memo} {time}.
+                    {name} gave {trans.points} points for {trans.memo} {time}.
                   </p>
                 </li>
               );

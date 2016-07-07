@@ -22,7 +22,7 @@ class BucksCard extends Component {
     return (
       <div className="bucks-card col s12 m6 l6">
         <div className="card white card-height" >
-          <h5 className="center-align card__header">Lovebucks: {this.props.lovebucks.totalPoints === 0 ? this.props.user.data.love_bucks : this.props.lovebucks.totalPoints}</h5>
+          <h5 className="center-align card__header">Lovebucks: {this.props.user.data.love_bucks}</h5>
           <div className="card-content">
             <div className="col s12 m6 l6">
               <p className="inner-card__header">Manage</p>
