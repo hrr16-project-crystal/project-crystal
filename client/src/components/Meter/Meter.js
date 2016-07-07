@@ -380,17 +380,17 @@ class Meter extends Component {
     // TODO: Uncomment personalScore span once we figure out how to position it.
     // Then in pie options, make slice 0 text color trandparent.
     return (
-      <div className="card col s12">
+      <div className="card">
         <h5 className="card__header">Relationship Health Meter</h5>
         <div className="card-content">
-          <div className="card col s12 m6 l6">
+          <div className="test card col s12 m6 l6">
             {/*<span className="personalScore valign">{sparkScore}</span>*/}
             <Chart chartType = "PieChart" data = {pieData} options = {pieOptions} width={"100%"} height={"250px"} chartPackages={undefined}/>
           </div>
-          <div className="card col s12 m6 l6">
+          <div className="test card col s12 m6 l6">
             <Chart chartType = "BarChart" data = {barData} options = {barOptions} width={"100%"} height={"250px"} chartPackages={undefined}/>
           </div>
-          <div className="card col s12 m12 l12">
+          <div className="test card col s12 m12 l12">
             {this.state.resize===true? <Chart chartType = "AreaChart" data = {areaData} options = {areaOptions} width={"100%"} height={"250px"} chartPackages={undefined}/>:this.renderChart()}
           </div>
         </div>
@@ -419,9 +419,7 @@ class Meter extends Component {
 
     return (
       <div className="col s12">
-        <div>
         {this.renderStats()}
-        </div>
       </div>
     );
   }
