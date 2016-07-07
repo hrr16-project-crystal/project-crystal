@@ -5,6 +5,9 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import moment from 'moment';
 
+const style = {
+  margin: 12,
+};
 /**
  * A modal dialog can only be closed by selecting one of the actions.
  */
@@ -37,7 +40,7 @@ export default class History extends React.Component {
 
     return (
       <div>
-        <RaisedButton label="View History" onTouchTap={this.handleOpen} />
+        <RaisedButton style={style} backgroundColor="#E6EE9C" label="View History" onTouchTap={this.handleOpen} />
         <Dialog
           title="Your lovebucks transaction history:"
           actions={actions}

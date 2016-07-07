@@ -25,10 +25,10 @@ class ChatCard extends Component {
     const notTyping = _.debounce(this.props.stopTyping, 1500); 
     if (!!this.props.typing) notTyping();
     return (
-      <div className="chat-card col s12 m6 l4" style={{height:'324px'}}>
-        <div className="card white">
+      <div className="chat-card col s12 m6 l6">
+        <div className="card white card-height">
           <div className="card-content black-text">
-            <h5 className="center-align">Chat</h5>
+            <h5 className="center-align card__header">Chat</h5>
             <MessageList
               user_id={this.props.user.data.user_id} 
               couple_id={this.props.user.data.couple_id} 

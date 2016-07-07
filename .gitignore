@@ -8,6 +8,9 @@ iisnode.yml
 # Build files
 client/build
 
+# env variables
+.env
+
 # Node modules
 node_modules/
 
@@ -17,4 +20,3 @@ node_modules/
 .flooignore
 
 # API Keys and Secrets
-.env

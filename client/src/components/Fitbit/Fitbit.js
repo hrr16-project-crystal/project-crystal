@@ -127,21 +127,15 @@ class Fitbit extends Component {
     return (
       <div>
         <RaisedButton
-          label="Connect with Fitbit"
+          label="Connect Fitbit"
           style={style}
-          primary={true}
           onTouchTap={this.handleClick}
-        />
-        <RaisedButton
-          label="Get activity"
-          style={style}
-          secondary={true}
-          onTouchTap={this.getActivity}
+          backgroundColor="#E6EE9C"
         />
         <RaisedButton
           label="Compare Stats!"
           style={style}
-          primary={true}
+          backgroundColor="#E6EE9C"
           onTouchTap={this.compareStats}
         />
       </div>

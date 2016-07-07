@@ -4,6 +4,9 @@ import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 
+const style = {
+  margin: 12,
+};
 /**
  * A modal dialog can only be closed by selecting one of the actions.
  */
@@ -50,7 +53,7 @@ export default class Spend extends React.Component {
 
     return (
       <div>
-        <RaisedButton label="Spend" onTouchTap={this.handleOpen} />
+        <RaisedButton style={style} backgroundColor="#E6EE9C" label="Spend" onTouchTap={this.handleOpen} />
         <Dialog
           title="Spend your hard earned Lovebucks to get perks from your partner"
           actions={actions}

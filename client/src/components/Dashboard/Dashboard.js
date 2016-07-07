@@ -44,7 +44,6 @@ class Dashboard extends Component {
           <CalendarCard />
           <BucksCard />
           <TodoCard />
-          <Fitbit />
         </div>
         <Footer />
       </div>
