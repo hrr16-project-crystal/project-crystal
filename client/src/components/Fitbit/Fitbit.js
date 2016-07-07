@@ -15,7 +15,7 @@ const fitbitConfig = {
   // clientSecret: process.env.FIT_CLIENTSECRET,
   clientSecret: '9f8477ffa2a7d1a168febef2e2b457d6',
   //callbackURI: process.env.FIT_URI,
-  callbackURI: 'http://localhost:9000/auth/fitbit/callback'
+  callbackURI: 'http://sparkq.us/auth/fitbit/callback',
 };
 const clientID = fitbitConfig.clientID;
 const callbackURI = fitbitConfig.callbackURI;
