@@ -39,7 +39,9 @@ class CalendarCard extends Component {
         <div key={`event-${index}`} className="col s12 m6 l4 ">
           <div className="lime lighten-3 card inner-card">
             <div className="card-content black-text">
-              <Link to="/calendar">
+              {/*<pre>{JSON.stringify(eventObj,null,2)}</pre>*/}
+              {/* see if eventsObjtitle passes down. IF it does, then find out where */}
+              <Link to={`/calendar/${eventObj.event_id}`}> 
                 <div className="black-text our-card-title">{eventObj.title}</div>
                 <p className="black-text">{date}</p>
               </Link>

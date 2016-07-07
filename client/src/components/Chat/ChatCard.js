@@ -48,12 +48,15 @@ class ChatCard extends Component {
   }
 }  
 
+import { getLastThreeMessages } from './messageReducer'; 
+
 const mapStateToProps = state => {
   return {
-    messages: state.messages.messages,
+    // messages: state.messages.messages,
     typing: state.messages.typing,
     joined: state.messages.joined,
     user: state.auth.user,
+    messages: getLastThreeMessages(state),
   };
 };            
 

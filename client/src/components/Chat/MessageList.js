@@ -1,30 +1,20 @@
-import React, {Component} from 'react';
-import moment from 'moment';
- 
-class MessageList extends Component {
-  constructor(props) {
-    super(props);
-  }
+import React, { Component } from 'react';
+import Message from './Message'; 
 
-  render() {
-    return (
+const MessageList = ({ messages, user_id}) => {
+
+      const renderMessage = (message, index) => 
+        <Message
+          key={message.message_id} 
+          message={message}
+          user_id={user_id}
+        />
+
+      return (
       <ul className='message-list'>
-        {this.props.messages && this.props.messages.slice(-6).map((message, index) => {
-          const messageClass = message.user_id === this.props.user_id ? 'right-align' : 'left-align';
-          const timeClass = message.user_id === this.props.user_id ? 'left' : 'right';
-          const time = moment(message.created_at).calendar();
-          return (
-            <li key={`message-${index}`} className='message-item'>
-              <p className={`message ${messageClass}`}>
-                {message.content}
-              <span style={{float: timeClass}} className='timestamp grey-text text-lighten-2'>{time}</span>
-              </p>
-            </li>
-          );
-        })}
+        {messages && messages.map(renderMessage)}
       </ul>
-    );
-  }
-}
+      );
+};
 
-module.exports = MessageList;
+export default MessageList;
