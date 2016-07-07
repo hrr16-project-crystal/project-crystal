@@ -377,12 +377,14 @@ class Meter extends Component {
     // If using material bar chart pass this variable to chartPackages prop
     // Also need to pass "Bar" rather than "BarChart" to chartType prop
     let materialBarPackages = ['bar'];
+    // TODO: Uncomment personalScore span once we figure out how to position it.
+    // Then in pie options, make slice 0 text color trandparent.
     return (
       <div className="card col s12">
+        <h5 className="card__header">Relationship Health Meter</h5>
         <div className="card-content">
-          <div className="card__header">Relationship Health Meter</div>
           <div className="card col s12 m6 l6">
-            <span className="personalScore">{sparkScore}</span>
+            {/*<span className="personalScore valign">{sparkScore}</span>*/}
             <Chart chartType = "PieChart" data = {pieData} options = {pieOptions} width={"100%"} height={"250px"} chartPackages={undefined}/>
           </div>
           <div className="card col s12 m6 l6">

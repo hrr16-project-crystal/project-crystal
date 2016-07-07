@@ -22,15 +22,15 @@
 }
 
 .card__header {
-  line-height: 45px;
+  line-height: 52px;
   border-bottom: 1px solid #e5e5e5;
   background-color: #fafafa;
   color: #333;
   text-align: center;
-  font-size: 18px;
+  font-size: 16px;
   letter-spacing: .15em;
   text-transform: uppercase;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .inner-card__header {
