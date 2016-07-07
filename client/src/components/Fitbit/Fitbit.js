@@ -130,12 +130,12 @@ class Fitbit extends Component {
           label="Connect Fitbit"
           style={style}
           onTouchTap={this.handleClick}
-          backgroundColor="#E6EE9C"
+          backgroundColor="#fff59d"
         />
         <RaisedButton
           label="Compare Stats!"
           style={style}
-          backgroundColor="#E6EE9C"
+          backgroundColor="#fff59d"
           onTouchTap={this.compareStats}
         />
       </div>

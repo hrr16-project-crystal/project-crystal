@@ -137,7 +137,7 @@ class CreateEvent extends Component {
     // Lines 139-198 all implement the form for this component. Uses a button that when clicked
     // will open a dialog with the form rendered. On submit, it will call handleFormSubmit
     return (
-      <div className="center-align">
+      <div className="createButton center-align">
         <RaisedButton
           label="Create"
           icon={<ActionToday />}

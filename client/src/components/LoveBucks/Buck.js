@@ -56,7 +56,7 @@ export default class Buck extends React.Component {
       <div>
         <RaisedButton label="Give"
           style={style}
-          backgroundColor="#E6EE9C"
+          backgroundColor="#fff59d"
           onTouchTap={this.handleOpen} />
         <Dialog
           title="Give Lovebucks to your significant other for doing something nice"

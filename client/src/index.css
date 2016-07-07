@@ -10,7 +10,10 @@ body {
 }
 
 .container {
-  top: 64px;
   position: relative;
   margin-bottom: 24px;
+}
+
+.ternaryColor {
+  background-color: #fff59d;
 }
