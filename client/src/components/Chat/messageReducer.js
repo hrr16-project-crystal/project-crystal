@@ -17,3 +17,5 @@ export default (state = {messages:[],typing:false,joined:false,}, action) => {
   }
   return state;
 };
+
+export const getLastThreeMessages = state => state.messages.messages.slice(-3);
