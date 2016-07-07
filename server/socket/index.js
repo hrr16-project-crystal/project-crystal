@@ -3,7 +3,7 @@ const io = require('socket.io');
 const Messages = require(__dirname + '/../db/index').db.messages;
 const Couples = require(__dirname + '/../db/index').db.couples;
 const brain = require('../helpers/brain');
- 
+
 
 module.exports = (server) => {
   const socketServer = io(server);
@@ -20,24 +20,28 @@ module.exports = (server) => {
       if (action.type === 'server/message'){
         Messages.add(action.data)
           .then(data => {
-            console.log(data.content);
             let messageTone = (brain(data.content));
-            if (messageTone === 'good'){
-              console.log('This should be a couple id',data.couple_id);
-              Couples.updateScore(.1, data.couple_id);
+            if (messageTone === 'good') {
+              Couples.updateScore(.1, data.couple_id)
+              .then(changed => {
+                  socketServer.sockets.in(data.couple_id).emit('action', { type: 'FETCH_HEALTH', payload: { data: changed } });
+              });
             } else {
-              Couples.updateScore(-.1, data.couple_id);
+              Couples.updateScore(-.1, data.couple_id)
+              .then(changed => {
+                  socketServer.sockets.in(data.couple_id).emit('action', { type: 'FETCH_HEALTH', payload: { data: changed } });
+              });
             }
-            socketServer.sockets.in(data.couple_id).emit('action', {type:'ADD_MESSAGE', data: data}); //in(data.couple_id)
+            socketServer.sockets.in(data.couple_id).emit('action', { type: 'ADD_MESSAGE', data: data });
           })
           .catch(err => {
-            socketServer.sockets.in(action.payload.couple_id).emit('message', {type:'error', data: err});
+            socketServer.sockets.in(action.payload.couple_id).emit('message', { type: 'error', data: err });
           });
       // if user is typing, send signal to their partner
-      } else if (action.type === 'server/typing'){
+      } else if (action.type === 'server/typing') {
         socket.broadcast.to(action.data.couple).emit('action', { type: 'IS_TYPING', data: action.data.name });
       // add couple to rooms by their couple id
-      } else if (action.type === 'server/room'){
+      } else if (action.type === 'server/room') {
         socket.join(action.data);
         socket.emit('action', { type: 'JOINED_ROOM', data: true });
       }
