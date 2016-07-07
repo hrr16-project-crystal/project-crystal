@@ -99,7 +99,7 @@ class Meter extends Component {
     // Pie chart options
     let pieOptions = {
       legend: 'none',
-      // pieSliceText: 'value',
+      pieSliceText: 'value',
       title: 'Sparkq Score ™',
       pieHole: 0.75,
       animation: {
@@ -109,7 +109,7 @@ class Meter extends Component {
       },
       pieSliceTextStyle: {
         color: '#f44336',
-        fontSize: 16,
+        fontSize: 24,
       },
       tooltip: {
         text: 'percentage'
@@ -118,7 +118,7 @@ class Meter extends Component {
         0: { 
           color: '#f44336',
           textStyle: {
-            color: 'transparent'
+            color: '#f44336'
           },
         },
         1: { 
@@ -188,13 +188,14 @@ class Meter extends Component {
     // If using material bar chart pass this variable to chartPackages prop
     // Also need to pass "Bar" rather than "BarChart" to chartType prop
     let materialBarPackages = ['bar'];
-
+    // TODO: Uncomment personalScore span once we figure out how to position it.
+    // Then in pie options, make slice 0 text color trandparent.
     return (
       <div>
         <div className="data">
           <div className="data__header">Relationship Health Meter</div>
           <div className="data_chart data_chart--half data_chart--left valign-wrapper">
-            <span className="personalScore valign">{sparkScore}</span>
+            {/*<span className="personalScore valign">{sparkScore}</span>*/}
             <Chart chartType = "PieChart" data = {pieData} options = {pieOptions} width={"100%"} height={"250px"} chartPackages={undefined}/>
           </div>
           <div className="data_chart data_chart--half">

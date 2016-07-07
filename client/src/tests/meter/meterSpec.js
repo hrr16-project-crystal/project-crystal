@@ -50,11 +50,11 @@ describe('Meter', () => {
     });
   });
 
-  it('should render a TodoAdd component', () => {
-    const wrapper = mount(<Provider store={store}>
-      <TodoList /></Provider>);
-    expect(wrapper.find(TodoAdd)).to.have.length(0);
-  });
+  // it('should render a TodoAdd component', () => {
+  //   const wrapper = mount(<Provider store={store}>
+  //     <TodoList /></Provider>);
+  //   expect(wrapper.find(TodoAdd)).to.have.length(0);
+  // });
   
   
 });
