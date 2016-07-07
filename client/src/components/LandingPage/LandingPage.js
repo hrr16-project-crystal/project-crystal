@@ -1,6 +1,7 @@
 import React from 'react';
 import './landingPage.css';
 import Header from '../App/Header';
+import Footer from '../App/Footer';
 import { Link } from 'react-router';
 
 function LandingPage() {
@@ -19,6 +20,7 @@ function LandingPage() {
           <Link to="/signin" className="hero__promo__btn hero__promo__btn--primary">Learn More</Link>
           <Link to="/signup" className="hero__promo__btn hero__promo__btn--secondary">Get Started</Link>
         </div>
+        <Footer />
       </div>
     </div>
   );

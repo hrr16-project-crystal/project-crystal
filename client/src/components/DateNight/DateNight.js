@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from './dateNightActions';
 import Header from '../App/Header';
+import Footer from '../App/Footer';
 import CreateEvent from '../Calendar/CreateEvent';
 import './date.css';
 
@@ -39,6 +40,7 @@ class DateNight extends Component {
               </div>
             </div>
           </div>
+          <Footer />
         </div>
       );
     }
@@ -81,6 +83,7 @@ class DateNight extends Component {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     );
   };

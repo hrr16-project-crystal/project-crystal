@@ -8,7 +8,12 @@ import axios from 'axios';
 
 const fitbitURL = 'https://www.fitbit.com/oauth2/authorize?response_type=code&client_id';
 const scope = 'scope=activity%20nutrition';
-import { fitbitConfig } from '../../../../server/config';
+// import { fitbitConfig } from '../../../../server/config';
+const fitbitConfig = {
+ clientID: process.env.FIT_CLIENTID,
+ clientSecret: process.env.FIT_CLIENTSECRET,
+ callbackURI: process.env.FIT_URI,
+};
 const clientID = fitbitConfig.clientID;
 const callbackURI = fitbitConfig.URI;
 

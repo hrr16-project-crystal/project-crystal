@@ -33,7 +33,6 @@ class LearnMore extends Component {
               </li>
               <li>
                 <img src="../../assets/1.jpg"></img>
-                <div className='something'></div>
                 <div className="caption left-align">
                   <h3>Calendar</h3>
                   <h5 className="light grey-text text-lighten-3">Small Calendar.</h5>

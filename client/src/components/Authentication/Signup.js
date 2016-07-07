@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
 import * as actions from './authAction';
+import Footer from '../App/Footer';
 import './auth.css';
+import { Link } from 'react-router';
 
 class Signup extends Component {
   constructor(props) {
@@ -34,6 +36,7 @@ class Signup extends Component {
       <div className="signup--box">
         <div className="hero__overlay">
           <div className="signin__overlay">
+            <Link to="/" className="logo__auth">Sparkq</Link>
             <form onSubmit={handleSubmit(this.handleFormSubmit)}>
               <h6 className="signup--box__title">A better relationship is right
                 around the corner...</h6>
@@ -126,6 +129,7 @@ class Signup extends Component {
             </form>
           </div>
         </div>
+        <Footer />
       </div>
     );
   }

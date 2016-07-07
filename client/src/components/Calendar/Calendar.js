@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from './calendarActions';
 import moment from 'moment';
 import Header from '../App/Header';
+import Footer from '../App/Footer';
 import BigCalendar from 'react-big-calendar';
 import CreateEvent from './CreateEvent';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
@@ -147,6 +148,7 @@ class Calendar extends Component {
             />
           </div>
         </div>
+        <Footer />
       </div>
     );
   }

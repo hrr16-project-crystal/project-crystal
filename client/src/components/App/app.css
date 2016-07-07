@@ -43,3 +43,15 @@
 .menu__item:hover {
   border-bottom: 2px solid #4dd0e1;
 }
+
+.footer__box {
+  background-color: #e57373;
+  position: fixed;
+  clear: both;
+  bottom: 0%;
+  z-index: 2;
+  width: 100%;
+  padding: .8em;
+}
+
+
