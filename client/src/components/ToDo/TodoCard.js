@@ -31,14 +31,14 @@ class TodoCard extends Component {
     return sortedTodos.splice(0, 3).map((todoObj, index) => {
       const date = moment(todoObj.created_at).format('MMMM Do @ h:mmA');
       return (
-        <div key={`todo-${index}`} className="col s4">
-          <div className="card blue-grey darken-1">
-            <Link to="/todo">
-              <div className="card-content white-text">
-                <p>{todoObj.content}</p>
-                <p>{date}</p>
-              </div>
-            </Link>
+        <div key={`todo-${index}`} className="col s12 m6 l4">
+          <div className="card lime lighten-3">
+            <div className="card-content">
+              <Link to="/todo">
+                  <div className="our-card-title black-text">{todoObj.content}</div>
+                  <p className="black-text">{date}</p>
+              </Link>
+            </div>
           </div>
         </div>
       );
@@ -66,10 +66,14 @@ class TodoCard extends Component {
     }
     // Call the renderTodos function and place each todo into the todo card
     return (
-      <div className="col s7 card white">
-        <h4 className="center-align">Recent To-do's</h4>
-        <div className="row">
-          {this.renderTodos()}
+      <div className="col s12 m6 l6">
+        <div className="card white card-height">
+          <div className="card-content">
+            <h4 className="center-align card__header">Recent To-do's</h4>
+            <div className="row">
+              {this.renderTodos()}
+            </div>
+          </div>
         </div>
       </div>
     );
