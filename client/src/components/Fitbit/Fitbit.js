@@ -42,42 +42,46 @@ class Fitbit extends Component {
   componentDidMount() {
     this.props.fitbitAccessToken(this.props.user.data.user_id);
     this.props.partnerFitbitAccessToken(this.props.user.data.couple_id);
-    setTimeout(() => {
-      authToken1 = this.props.partnerToken.data[0].access_token;
-      authToken2 = this.props.partnerToken.data[1].access_token;
-      userId1 = this.props.partnerToken.data[0].fitbit_id;
-      userId2 = this.props.partnerToken.data[1].fitbit_id;
-    }, 1000);
-    setTimeout(() => {
-      axios.get(`https://api.fitbit.com/1/user/${userId1}/activities/steps/date/today/7d.json`, {
-        headers: { authorization: `Bearer ${authToken1}` },
-      })
-      .then(response => {
-        const activities = response.data['activities-steps'];
-        for (let i = 0; i < activities.length; i++) {
-          const stepValue = Number(activities[i].value);
-          user1Stats += stepValue;
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      });
-    }, 1800);
-    setTimeout(() => {
-      axios.get(`https://api.fitbit.com/1/user/${userId2}/activities/steps/date/today/7d.json`, {
-        headers: { authorization: `Bearer ${authToken2}` },
-      })
-      .then(response => {
-        const activities = response.data['activities-steps'];
-        for (let i = 0; i < activities.length; i++) {
-          const stepValue = Number(activities[i].value);
-          user2Stats += stepValue;
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      });
-    }, 2500);
+    // if (this.props.user.data.access_token !== '' || undefined) {
+      setTimeout(() => {
+        authToken1 = this.props.partnerToken.data[0].access_token;
+        authToken2 = this.props.partnerToken.data[1].access_token;
+        userId1 = this.props.partnerToken.data[0].fitbit_id;
+        userId2 = this.props.partnerToken.data[1].fitbit_id;
+      }, 1000);
+      setTimeout(() => {
+        axios.get(`https://api.fitbit.com/1/user/${userId1}/activities/steps/date/today/7d.json`, {
+          headers: { authorization: `Bearer ${authToken1}` },
+        })
+        .then(response => {
+          const activities = response.data['activities-steps'];
+          for (let i = 0; i < activities.length; i++) {
+            const stepValue = Number(activities[i].value);
+            user1Stats += stepValue;
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
+      }, 1800);
+      setTimeout(() => {
+        axios.get(`https://api.fitbit.com/1/user/${userId2}/activities/steps/date/today/7d.json`, {
+          headers: { authorization: `Bearer ${authToken2}` },
+        })
+        .then(response => {
+          const activities = response.data['activities-steps'];
+          for (let i = 0; i < activities.length; i++) {
+            const stepValue = Number(activities[i].value);
+            user2Stats += stepValue;
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
+      }, 2500);
+    // } else {
+    //   console.log('No access token');
+    // }
   }
 
   compareStats() {
@@ -123,9 +127,6 @@ class Fitbit extends Component {
 
   handleClick() {
     const userID = this.props.user.data.user_id;
-    console.log(clientID);
-    console.log(process.env.FIT_CLIENTID);
-    console.log(fitbitConfig.clientID);
     window.open(`${fitbitURL}=${clientID}&redirect_uri=${callbackURI}&${scope}&state=${userID.toString()}`);
   }
 
