@@ -32,7 +32,7 @@ class TodoCard extends Component {
       const date = moment(todoObj.created_at).format('MMMM Do @ h:mmA');
       return (
         <div key={`todo-${index}`} className="col s12 m6 l4">
-          <div className="card lime lighten-3">
+          <div className="card ternaryColor">
             <div className="card-content">
               <Link to="/todo">
                   <div className="our-card-title black-text">{todoObj.content}</div>

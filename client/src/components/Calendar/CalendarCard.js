@@ -37,7 +37,7 @@ class CalendarCard extends Component {
       const date = moment(eventObj.start_date).format('MMMM Do @ h:mmA');
       return (
         <div key={`event-${index}`} className="col s12 m6 l4 ">
-          <div className="lime lighten-3 card inner-card">
+          <div className="ternaryColor card inner-card">
             <div className="card-content black-text">
               {/*<pre>{JSON.stringify(eventObj,null,2)}</pre>*/}
               {/* see if eventsObjtitle passes down. IF it does, then find out where */}

@@ -40,7 +40,7 @@ export default class History extends React.Component {
 
     return (
       <div>
-        <RaisedButton style={style} backgroundColor="#E6EE9C" label="View History" onTouchTap={this.handleOpen} />
+        <RaisedButton style={style} backgroundColor="#fff59d" label="View History" onTouchTap={this.handleOpen} />
         <Dialog
           title="Your lovebucks transaction history:"
           actions={actions}

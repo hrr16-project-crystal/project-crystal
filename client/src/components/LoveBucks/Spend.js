@@ -53,7 +53,7 @@ export default class Spend extends React.Component {
 
     return (
       <div>
-        <RaisedButton style={style} backgroundColor="#E6EE9C" label="Spend" onTouchTap={this.handleOpen} />
+        <RaisedButton style={style} backgroundColor="#fff59d" label="Spend" onTouchTap={this.handleOpen} />
         <Dialog
           title="Spend your hard earned Lovebucks to get perks from your partner"
           actions={actions}
