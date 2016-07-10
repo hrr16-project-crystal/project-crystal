@@ -11,13 +11,10 @@ module.exports = rep => {
 
     // add a new message
     add: newMessage =>
-      rep.one(sql.add, newMessage, message =>{
-          return message;
-        }),
+      rep.one(sql.add, newMessage),
       
     // get all couples messages
     findByCoupleId: coupleId =>
-      rep.any(sql.findByCoupleId, coupleId, messages =>
-        messages),
+      rep.any(sql.findByCoupleId, coupleId)
   };
 };
